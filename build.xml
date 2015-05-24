@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="YUICompression" basedir=".">
+	
+	<property name="pathToNode" value="C:/Program Files/nodejs/" />
+	<property name="lessc" value="C:/Users/Vincent/AppData/Roaming/npm/lessc.cmd" />
+	
+	<target name="cleanup" description="Cleanup">
+  	<delete dir="tmp"/>
+		<delete file="style/minified.css"/>
+  </target>
+	
+  <target name="concat" depends="cleanup" description="Concatenate CSS source files">
+    <concat destfile="tmp/minified.css">
+    	<fileset dir="lib/pure-release-0.5.0" includes="*.css" />
+    	<fileset dir="lib/reset" includes="reset.css" />
+    	<fileset dir="style" includes="**/*.css" excludes="minified.css,font.css" />
+    	<fileset dir="app" includes="**/*.css" />
+    </concat>
+  </target>
+	
+	<target name="compress" depends="concat" description="Minify a set of files">
+    <taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
+      <classpath>
+        <pathelement path="lib/yui/yuicompressor-2.4.8.jar" />
+        <pathelement path="lib/yui/YUIAnt.jar" />
+      </classpath>
+    </taskdef>
+    
+    <yuicompress linebreak="16000" warn="true" munge="no" preserveallsemicolons="true" outputfolder="tmp">
+    	<fileset dir="tmp" includes="minified.css" />
+    </yuicompress>
+  </target>
+	  
+	<target name="default" depends="compress" description="Concatenate CSS source files">
+    <concat destfile="style/minified.css">
+    	<fileset dir="style" includes="font.css" />
+    	<fileset dir="tmp" includes="**/*.css" />
+    </concat>
+  </target>
+	
+	<!-- less -->
+	<target name="less" description="Compile LESS files">
+    <antcall target="lessfile">
+    	<param name="source.file" value="style/toto.less" />
+    	<param name="target.file" value="tmp/toto.css" />
+    </antcall>
+  </target>
+ 
+	<target name="lessfile">
+    <exec executable="${lessc}" failonerror="true">
+      <env key="PATH" value="${pathToNode}" />
+      <arg line="-x ${source.file} ${target.file}" />
+    </exec>
+  </target>
+
+</project>

@@ -1,0 +1,25 @@
+<table ng-show="!isLoading() && hasResults()">
+  <thead>
+    <tr>
+      <th ng-show="cfg.showRanking"></th>
+      <th ng-repeat="column in cfg.columns" ng-click="sortBy($index)" ng-class="getHeaderClass($index)">{{column.title}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending" ng-click="selectRow(item.id)" ng-class="{'selected': item.id === cfg.selected.id}">
+      <td ng-show="cfg.showRanking" class="ranking">{{($index+1) + '.'}}</td>
+      <td ng-repeat="column in cfg.columns">
+        <lvdlom-format formatter="column.formatter" value="item[column.key]" item="item"></lvdlom-format>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="{{getNbColumns()}}">{{cfg.data.list.length}} {{cfg.itemName}}</td>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="no-result" ng-show="!isLoading() && !hasResults()">Pas de résultat</div>
+
+<lvdlom-mini-loading ng-show="isLoading()"></lvdlom-mini-loading>

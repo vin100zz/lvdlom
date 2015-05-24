@@ -1,0 +1,4 @@
+.externalToolBuilders/
+.settings/
+services/om.db3
+tmp/

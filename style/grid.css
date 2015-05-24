@@ -1,0 +1,16 @@
+/* Blocks */
+.block {
+  padding: 10px;
+}
+.block > div {
+  background: #fff;
+  border-radius: 3px;
+  padding: 10px;
+}
+.block > div .block-title {
+  font-size: 12pt;
+  color: #999;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

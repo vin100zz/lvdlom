@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en" ng-app="lvdlom">
+
+<head>
+  <meta charset="utf-8">
+  <link rel='shortcut icon' type='image/gif' href='style/favicon.ico' />
+  <title>La Vie de l'OM</title>
+  
+  
+  <link rel="stylesheet" href="style/minified.css">
+  
+  <!-- 
+  <link rel="stylesheet" href="lib/reset/reset.css">
+  <link rel="stylesheet" href="lib/pure-release-0.5.0/grids.css">
+  
+  <link rel="stylesheet" href="style/font.css">
+  <link rel="stylesheet" href="style/global.css">
+  <link rel="stylesheet" href="style/main.css">
+  <link rel="stylesheet" href="style/grid.css">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/sprites.css">
+  <link rel="stylesheet" href="style/loading.css">
+  
+  <link rel="stylesheet" href="app/directives/breadcrumb.css">
+  <link rel="stylesheet" href="app/directives/charts.css">
+  <link rel="stylesheet" href="app/directives/filters.css">
+  <link rel="stylesheet" href="app/directives/table.css">
+  
+  <link rel="stylesheet" href="app/modules/mini/minijoueur.css">
+  <link rel="stylesheet" href="app/modules/date.css">
+  -->
+  
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular/angular-locale_fr-fr.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
+  <script src="lib/angular/angular-sanitize.min.js"></script>
+  <script src="lib/chartjs/chart.min.js"></script>
+  
+  <script src="app/main.js"></script>
+  
+  <script src="app/directives/breadcrumb.js"></script>
+  <script src="app/directives/charts.js"></script>
+  <script src="app/directives/filters.js"></script>
+  <script src="app/directives/format.js"></script>
+  <script src="app/directives/miniloading.js"></script>
+  <script src="app/directives/table.js"></script>
+  
+  <script src="app/modules/common/abstractList.js"></script>
+  <script src="app/modules/mini/minijoueur.js"></script>
+  <script src="app/modules/adversaires.js"></script>
+  <script src="app/modules/competitions.js"></script>
+  <script src="app/modules/date.js"></script>
+  <script src="app/modules/joueur.js"></script>
+  <script src="app/modules/joueurs.js"></script>
+  <script src="app/modules/matches.js"></script>  
+  <script src="app/modules/saisons.js"></script>
+  <script src="app/modules/statsJoueurs.js"></script>
+  
+  <script src="app/utils/bom.js"></script>
+  <script src="app/utils/datetime.js"></script>
+  <script src="app/utils/dictionary.js"></script>
+  <script src="app/utils/filters.js"></script>
+  <script src="app/utils/formatters.js"></script>
+  <script src="app/utils/loading.js"></script>
+  <script src="app/utils/picture.js"></script>
+  <script src="app/utils/sorters.js"></script>
+
+</head>
+
+<body ng-controller="MainCtrl">
+
+  <div id="header">
+    <div class="dernier">
+      <span>Dernier match :</span>
+      <div class="caret"></div>
+      <div><a href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}} - {{actu.dernierMatch.clubDroite}} : {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a></div>
+    </div>
+    <div class="prochain">
+      <span>Prochains matches :</span>
+      <ul>
+        <li ng-repeat="prochainMatch in actu.prochainsMatches">
+          <div class="caret"></div>
+          <div class="match">{{prochainMatch.match}}<span class="tele">{{prochainMatch.date}}, {{prochainMatch.tele}}</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="menu">
+    <div class="title"></div>
+    <ul class="navigation">
+      <li ng-repeat="item in menu" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
+        <a href="{{'#' + item.hash}}">{{item.title}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <ng-view id="content" ng-show="!loading"></ng-view>
+  
+  <div id="mask" ng-show="loading">
+    <div class="anim">
+      <div class="outer-ball"></div>
+      <div class="inner-ball"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

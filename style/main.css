@@ -1,0 +1,89 @@
+/* Header */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+	height: 35px;
+  background: #01131F;
+  color: #999;
+	border-bottom: 1px solid #7acef4;
+	padding: 10px 20px;
+}
+#header * {
+	display: inline-block;
+}
+#header > div {
+	margin-right: 40px;
+}
+#header .match {
+	color: #ccc;
+}
+#header .caret:before {
+  content: '\25b6';
+  color: #999;
+  margin: 0 5px;
+}
+#header .prochain > ul > li {
+	margin-right: 20px;
+}
+#header .tele {
+	font-size: 9pt;
+	margin-left: 5px;
+  font-style: italic;
+}
+
+/* Menu */
+#menu {
+  position: fixed;
+  width: 160px;
+  top: 35px;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  background: #01131F;
+  font-size: 11pt;
+}
+#menu .title {
+  width: 114px;
+  height: 80px;
+  margin: 20px auto;
+  background: url(img/title.png) no-repeat;  
+}
+#menu .navigation {
+	background: url(img/logo.png) no-repeat bottom 10px right 10px;
+	min-height: calc(100% - 120px);
+	padding-bottom: 50px;
+}
+#menu .navigation li {
+  height: 35px;
+  line-height: 35px;
+  padding-left: 10px;
+}
+#menu .navigation li.sep {
+  border-bottom: 1px solid #333;
+}
+#menu .navigation li:hover {
+  background: #02273F;
+}
+#menu .navigation li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #ccc;
+  text-decoration: none;
+}
+#menu .navigation li.selected a {
+  color: #ff9000;
+}
+
+/* Content */
+#content {
+  position: fixed;
+  overflow-y: auto;
+  top: 35px;
+  left: 160px;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+}

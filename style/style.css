@@ -1,0 +1,122 @@
+.remark {
+  color: #999;
+  margin-left: 5px;
+  font-size: 8pt;
+}
+
+/* Photos */
+.photo-id {
+  width: 200px;
+  height: 300px;
+  background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin: auto;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  width: 17px;
+  line-height: 17px;
+  color: white;
+  border-radius: 2px;
+  text-align: center;
+  vertical-align: baseline;
+  margin-right: 8px;
+}
+
+/* Postes */
+.badge.poste.GA {
+	background: #9b59b6;
+}
+.badge.poste.DE {
+  background: #1abc9c;
+}
+.badge.poste.MI {
+  background: #f39c12;
+}
+.badge.poste.AV {
+  background: #c0392b;
+}
+
+/* Competitions */
+.badge.competition {
+	width: 21px;
+	vertical-align: baseline;
+}
+.badge.competition.C1,
+.badge.competition.C2,
+.badge.competition.C3,
+.badge.competition.IN,
+.badge.competition.FO {
+  background: #c0392b;
+}
+.badge.competition.CF {
+  background: #9b59b6;
+}
+.badge.competition.CH,
+.badge.competition.L1,
+.badge.competition.D1,
+.badge.competition.D2 {
+  background: #2980b9;
+}
+.badge.competition.CL,
+.badge.competition.TC {
+  background: #2ecc71;
+}
+
+/* Bars */
+.table-bilan {
+	width: 150px;
+}
+.table-bilan > div {
+	height: 5px;
+	margin: 1px 0;
+}
+
+/* Au Club */
+.icon-au-club {
+	display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 4px solid #3498db;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Lieu */
+.icon-lieu {
+	display: inline-block;
+	margin-right: 5px;
+}
+.icon-lieu.D {
+	width: 8px;
+	height: 8px;
+	background: #1abc9c;
+}
+.icon-lieu.E {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-left: 8px solid #8e44ad;
+  border-bottom: 4px solid transparent;
+}
+
+/* Résultat */
+.icon-resultat {
+  display: inline-block;
+  margin-right: 5px;
+  width: 8px;
+  height: 8px;
+}
+.icon-resultat.V {
+  background: #2ecc71;
+}
+.icon-resultat.N {
+  background: #f39c12;
+}
+.icon-resultat.D {
+  background: #e74c3c;
+}
+

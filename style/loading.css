@@ -1,0 +1,112 @@
+/* Main */
+#mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #02273F;
+  opacity: 0.75;
+}
+
+#mask .anim {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}
+#mask .anim .outer-ball {
+  border: 7px solid #FF9000;
+  opacity: .9;
+  border-top: 7px solid rgba(1,19,31,0.1);
+  border-left: 7px solid rgba(1,19,31,0.1);
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  -moz-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+}
+#mask .anim .inner-ball {
+  border: 7px solid #fff;
+  opacity: .9;
+  border-top: 7px solid rgba(1,19,31,0.1);
+  border-left: 7px solid rgba(1,19,31,0.1);
+  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+  top: -80px;
+  -moz-animation: spinoff 1s infinite linear;
+  -webkit-animation: spinoff 1s infinite linear;
+}
+
+/* Mini */
+.mini-loading {
+	width: 30px;
+	height: 30px;
+}
+.mini-loading .outer-ball {
+  border: 3px solid #FF9000;
+  opacity: .9;
+  border-top: 3px solid rgba(1,19,31,0.1);
+  border-left: 3px solid rgba(1,19,31,0.1);
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  -moz-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+}
+.mini-loading .inner-ball {
+  border: 3px solid #0769ad;
+  opacity: .9;
+  border-top: 3px solid rgba(1,19,31,0.1);
+  border-left: 3px solid rgba(1,19,31,0.1);
+  border-radius: 50px;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+  position: relative;
+  top: -24px;
+  -moz-animation: spinoff 1s infinite linear;
+  -webkit-animation: spinoff 1s infinite linear;
+}
+
+
+@-moz-keyframes spin {
+  0% {
+      -moz-transform: rotate(0deg);
+  }
+  100% {
+      -moz-transform: rotate(360deg);
+  };
+}
+
+@-moz-keyframes spinoff {
+  0% {
+      -moz-transform: rotate(0deg);
+  }
+  100% {
+      -moz-transform: rotate(-360deg);
+  };
+}
+
+@-webkit-keyframes spin {
+  0% {
+      -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+      -webkit-transform: rotate(360deg);
+  };
+}
+
+@-webkit-keyframes spinoff {
+  0% {
+      -webkit-transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(-360deg);
+  };
+}

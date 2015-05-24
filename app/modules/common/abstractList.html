@@ -1,0 +1,37 @@
+<meta charset="utf-8">
+
+<div class="pure-g">
+
+   <div class="pure-u-1 block">
+     <div>
+       <lvdlom-filters cfg="filters"></lvdlom-filters>
+     </div>
+   </div>
+    
+  <div class="pure-u-18-24">
+    <div class="pure-u-1 block">
+      <div>
+        <lvdlom-table cfg="tableCfg"></lvdlom-table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pure-u-6-24">
+    <div class="pure-u-1 block" ng-show="chartCfg != null">
+      <div>
+        <lvdlom-charts cfg="chartCfg"></lvdlom-charts>
+      </div>
+    </div>
+    
+    <div class="pure-u-1 block">
+      <div>
+        <ng-include src="selectionTpl"></ng-include>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+		
+
+

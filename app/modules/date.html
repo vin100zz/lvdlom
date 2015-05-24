@@ -1,0 +1,62 @@
+<div class="pure-g" id="page-date">
+
+  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
+
+  <div class="pure-u-8-24 block">
+    <div class="summary">
+      <div class="title">{{DateTime.format(breadcrumb.current, 'd MMMM')}}</div>
+      <ul>
+        <li><div class="figure">{{model.matches.length}}</div><div class="desc">matches</div></li>
+        <li><div class="figure">{{model.joueurs.length}}</div><div class="desc">naissances<br/>de joueurs</div></li>
+        <li><div class="figure">{{model.dirigeants.length}}</div><div class="desc">naissances<br/>de dirigeants</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pure-u-8-24 block" ng-show="model.matches.length > 0">
+    <div>
+      <ul class="list">
+        <li ng-repeat="match in model.matches" class="match {{match.sousTypeCompetition}}">
+          <a href="#match/{{match.id}}">
+           <div class="year">{{match.date.substr(0,4)}}</div>
+           <!-- <div class="pict">
+             <div style="background-image: url({{Picture.club(match.idAdv)}})"></div>
+           </div> -->
+           <div class="main"><div ng-bind-html="match.sousTypeCompetition | format:'sousTypeCompetition'"></div><span class="label">{{match | format:'match'}}</span></div>
+           <div class="info {{Bom.resultat(match)}}" ng-bind-html="match | score"></div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="pure-u-8-24">
+    <div class="pure-u-1 block" ng-show="model.joueurs.length > 0">
+      <div>
+        <ul class="list">
+          <li ng-repeat="joueur in model.joueurs" class="joueur {{joueur.poste}}">
+            <a href="#joueur/{{joueur.id}}">
+             <div class="year">{{joueur.dateNaissance.substr(0,4)}}</div>
+             <div class="main"><div ng-bind-html="joueur.poste | format:'poste'"></div><span class="label">{{joueur.prenom}} {{joueur.nom}}</span></div>
+             <div class="info" ng-bind-html="joueur.nationalite | format:'flag'"></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="pure-u-1 block" ng-show="model.dirigeants.length > 0">
+      <div>
+        <ul class="list">
+          <li ng-repeat="dirigeant in model.dirigeants" class="dirigeant">
+            <a href="#dirigeant/{{dirigeant.id}}">
+             <div class="year">{{dirigeant.dateNaissance.substr(0,4)}}</div>
+             <div class="main"><span class="label">{{dirigeant.prenom}} {{dirigeant.nom}}</span></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+   
+</div>

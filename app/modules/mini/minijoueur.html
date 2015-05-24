@@ -1,0 +1,14 @@
+<div ng-controller="MiniJoueurCtrl">
+
+  <div ng-show="!loading && joueur == null">Aucun joueur sélectionné</div>
+  
+  <div ng-show="!loading && joueur != null">
+  
+    <div class="block-title">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</div>
+    <div class="photo-id" style="background-image: url(../laviedelom/photos/id_joueurs/{{joueur.id}}.jpg)"></div>
+  
+  </div>
+  
+  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+
+</div>

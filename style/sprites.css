@@ -1,0 +1,348 @@
+/* Clubs */
+.club {
+	display: inline-block;
+	width: 25px;
+	margin-right: 5px;
+	vertical-align: -5px;
+}
+.club .icon {
+	background: url(clubs/small/sprite.png) no-repeat 500px 500px;
+	margin: auto;
+}
+.club .icon.club-1 { background-position: 0 0; width: 14px; height: 18px; } 
+.club .icon.club-10 { background-position: 0 -19px; width: 25px; height: 18px; } 
+.club .icon.club-100 { background-position: 0 -38px; width: 25px; height: 18px; } 
+.club .icon.club-102 { background-position: 0 -57px; width: 25px; height: 18px; } 
+.club .icon.club-103 { background-position: 0 -76px; width: 25px; height: 18px; } 
+.club .icon.club-108 { background-position: 0 -95px; width: 25px; height: 18px; } 
+.club .icon.club-11 { background-position: 0 -114px; width: 18px; height: 18px; } 
+.club .icon.club-112 { background-position: 0 -133px; width: 25px; height: 18px; } 
+.club .icon.club-116 { background-position: 0 -152px; width: 25px; height: 18px; } 
+.club .icon.club-119 { background-position: 0 -171px; width: 25px; height: 18px; } 
+.club .icon.club-12 { background-position: 0 -190px; width: 18px; height: 12px; } 
+.club .icon.club-127 { background-position: 0 -203px; width: 25px; height: 18px; } 
+.club .icon.club-128 { background-position: 0 -222px; width: 25px; height: 18px; } 
+.club .icon.club-13 { background-position: 0 -241px; width: 17px; height: 18px; } 
+.club .icon.club-130 { background-position: 0 -260px; width: 25px; height: 18px; } 
+.club .icon.club-135 { background-position: 0 -279px; width: 25px; height: 18px; } 
+.club .icon.club-138 { background-position: 0 -298px; width: 25px; height: 18px; } 
+.club .icon.club-14 { background-position: 0 -317px; width: 14px; height: 18px; } 
+.club .icon.club-140 { background-position: 0 -336px; width: 25px; height: 18px; } 
+.club .icon.club-141 { background-position: 0 -355px; width: 25px; height: 18px; } 
+.club .icon.club-142 { background-position: 0 -374px; width: 25px; height: 18px; } 
+.club .icon.club-144 { background-position: 0 -393px; width: 25px; height: 18px; } 
+.club .icon.club-15 { background-position: 0 -412px; width: 25px; height: 18px; } 
+.club .icon.club-150 { background-position: 0 -431px; width: 25px; height: 18px; } 
+.club .icon.club-153 { background-position: 0 -450px; width: 25px; height: 18px; } 
+.club .icon.club-16 { background-position: 0 -469px; width: 18px; height: 18px; } 
+.club .icon.club-161 { background-position: 0 -488px; width: 25px; height: 18px; } 
+.club .icon.club-168 { background-position: 0 -507px; width: 25px; height: 18px; } 
+.club .icon.club-17 { background-position: 0 -526px; width: 11px; height: 18px; } 
+.club .icon.club-170 { background-position: 0 -545px; width: 25px; height: 18px; } 
+.club .icon.club-172 { background-position: 0 -564px; width: 25px; height: 18px; } 
+.club .icon.club-18 { background-position: 0 -583px; width: 25px; height: 18px; } 
+.club .icon.club-180 { background-position: 0 -602px; width: 25px; height: 18px; } 
+.club .icon.club-186 { background-position: 0 -621px; width: 25px; height: 18px; } 
+.club .icon.club-188 { background-position: 0 -640px; width: 25px; height: 18px; } 
+.club .icon.club-19 { background-position: 0 -659px; width: 18px; height: 18px; } 
+.club .icon.club-190 { background-position: 0 -678px; width: 25px; height: 19px; } 
+.club .icon.club-197 { background-position: 0 -698px; width: 25px; height: 18px; } 
+.club .icon.club-2 { background-position: 0 -717px; width: 18px; height: 10px; } 
+.club .icon.club-20 { background-position: 0 -728px; width: 18px; height: 12px; } 
+.club .icon.club-202 { background-position: 0 -741px; width: 25px; height: 18px; } 
+.club .icon.club-21 { background-position: 0 -760px; width: 25px; height: 18px; } 
+.club .icon.club-210 { background-position: 0 -779px; width: 25px; height: 18px; } 
+.club .icon.club-212 { background-position: 0 -798px; width: 25px; height: 18px; } 
+.club .icon.club-219 { background-position: 0 -817px; width: 25px; height: 18px; } 
+.club .icon.club-220 { background-position: 0 -836px; width: 25px; height: 18px; } 
+.club .icon.club-221 { background-position: 0 -855px; width: 25px; height: 18px; } 
+.club .icon.club-229 { background-position: 0 -874px; width: 25px; height: 18px; } 
+.club .icon.club-23 { background-position: 0 -893px; width: 14px; height: 18px; } 
+.club .icon.club-230 { background-position: 0 -912px; width: 25px; height: 18px; } 
+.club .icon.club-236 { background-position: 0 -931px; width: 25px; height: 18px; } 
+.club .icon.club-24 { background-position: 0 -950px; width: 16px; height: 18px; } 
+.club .icon.club-243 { background-position: 0 -969px; width: 27px; height: 18px; } 
+.club .icon.club-245 { background-position: 0 -988px; width: 18px; height: 18px; } 
+.club .icon.club-246 { background-position: 0 -1007px; width: 25px; height: 18px; } 
+.club .icon.club-247 { background-position: 0 -1026px; width: 15px; height: 18px; } 
+.club .icon.club-249 { background-position: 0 -1045px; width: 15px; height: 18px; } 
+.club .icon.club-25 { background-position: 0 -1064px; width: 17px; height: 18px; } 
+.club .icon.club-26 { background-position: 0 -1083px; width: 18px; height: 18px; } 
+.club .icon.club-27 { background-position: 0 -1102px; width: 12px; height: 18px; } 
+.club .icon.club-28 { background-position: 0 -1121px; width: 11px; height: 18px; } 
+.club .icon.club-29 { background-position: 0 -1140px; width: 25px; height: 18px; } 
+.club .icon.club-3 { background-position: 0 -1159px; width: 15px; height: 18px; } 
+.club .icon.club-33 { background-position: 0 -1178px; width: 25px; height: 18px; } 
+.club .icon.club-34 { background-position: 0 -1197px; width: 25px; height: 18px; } 
+.club .icon.club-37 { background-position: 0 -1216px; width: 25px; height: 18px; } 
+.club .icon.club-4 { background-position: 0 -1235px; width: 25px; height: 18px; } 
+.club .icon.club-40 { background-position: 0 -1254px; width: 25px; height: 18px; } 
+.club .icon.club-42 { background-position: 0 -1273px; width: 15px; height: 18px; } 
+.club .icon.club-45 { background-position: 0 -1292px; width: 25px; height: 18px; } 
+.club .icon.club-49 { background-position: 0 -1311px; width: 25px; height: 18px; } 
+.club .icon.club-5 { background-position: 0 -1330px; width: 18px; height: 18px; } 
+.club .icon.club-50 { background-position: 0 -1349px; width: 18px; height: 18px; } 
+.club .icon.club-52 { background-position: 0 -1368px; width: 25px; height: 18px; } 
+.club .icon.club-6 { background-position: 0 -1387px; width: 25px; height: 18px; } 
+.club .icon.club-63 { background-position: 0 -1406px; width: 25px; height: 18px; } 
+.club .icon.club-7 { background-position: 0 -1425px; width: 17px; height: 18px; } 
+.club .icon.club-74 { background-position: 0 -1444px; width: 25px; height: 18px; } 
+.club .icon.club-8 { background-position: 0 -1463px; width: 16px; height: 18px; } 
+.club .icon.club-80 { background-position: 0 -1482px; width: 25px; height: 18px; } 
+.club .icon.club-81 { background-position: 0 -1501px; width: 25px; height: 18px; } 
+.club .icon.club-86 { background-position: 0 -1520px; width: 25px; height: 18px; } 
+.club .icon.club-89 { background-position: 0 -1539px; width: 25px; height: 18px; } 
+.club .icon.club-9 { background-position: 0 -1558px; width: 18px; height: 18px; } 
+.club .icon.club-91 { background-position: 0 -1577px; width: 25px; height: 18px; } 
+.club .icon.club-93 { background-position: 0 -1596px; width: 25px; height: 18px; } 
+.club .icon.club-94 { background-position: 0 -1615px; width: 25px; height: 18px; } 
+.club .icon.club-95 { background-position: 0 -1634px; width: 25px; height: 18px; } 
+.club .icon.club-96 { background-position: 0 -1653px; width: 25px; height: 18px; } 
+.club .icon.club-99 { background-position: 0 -1672px; width: 25px; height: 18px; } 
+.club .icon.club-OM { background-position: 0 -1691px; width: 25px; height: 18px; } 
+
+
+
+/* Flags */
+.flag:before {
+	content: '';
+	display: inline-block;
+	width: 25px;
+	height: 18px;
+	margin-right: 5px;
+  background: url(flags/small/sprite.png) no-repeat 500px 500px;
+  vertical-align: -5px;
+}
+
+.flag-AFG:before { background-position: 0 0; } 
+.flag-AIA:before { background-position: 0 -19px; } 
+.flag-ALB:before { background-position: 0 -38px; } 
+.flag-ALG:before { background-position: 0 -57px; } 
+.flag-AND:before { background-position: 0 -76px; } 
+.flag-ANG:before { background-position: 0 -95px; } 
+.flag-ANT:before { background-position: 0 -114px; } 
+.flag-ARG:before { background-position: 0 -133px; } 
+.flag-ARM:before { background-position: 0 -152px; } 
+.flag-ARU:before { background-position: 0 -171px; } 
+.flag-ASA:before { background-position: 0 -190px; } 
+.flag-ATG:before { background-position: 0 -209px; } 
+.flag-AUS:before { background-position: 0 -228px; } 
+.flag-AUT:before { background-position: 0 -247px; } 
+.flag-AZE:before { background-position: 0 -266px; } 
+.flag-BAH:before { background-position: 0 -285px; } 
+.flag-BAN:before { background-position: 0 -304px; } 
+.flag-BAS:before { background-position: 0 -323px; } 
+.flag-BDI:before { background-position: 0 -342px; } 
+.flag-BEL:before { background-position: 0 -361px; } 
+.flag-BEN:before { background-position: 0 -380px; } 
+.flag-BER:before { background-position: 0 -399px; } 
+.flag-BFA:before { background-position: 0 -418px; } 
+.flag-BHR:before { background-position: 0 -437px; } 
+.flag-BHU:before { background-position: 0 -456px; } 
+.flag-BIH:before { background-position: 0 -475px; } 
+.flag-BLR:before { background-position: 0 -494px; } 
+.flag-BLZ:before { background-position: 0 -513px; } 
+.flag-BOL:before { background-position: 0 -532px; } 
+.flag-BOT:before { background-position: 0 -551px; } 
+.flag-BRA:before { background-position: 0 -570px; } 
+.flag-BRB:before { background-position: 0 -589px; } 
+.flag-BRD:before { background-position: 0 -608px; } 
+.flag-BRU:before { background-position: 0 -627px; } 
+.flag-BUL:before { background-position: 0 -646px; } 
+.flag-BUR:before { background-position: 0 -665px; } 
+.flag-CAM:before { background-position: 0 -684px; } 
+.flag-CAN:before { background-position: 0 -703px; } 
+.flag-CAY:before { background-position: 0 -722px; } 
+.flag-CGO:before { background-position: 0 -741px; } 
+.flag-CHA:before { background-position: 0 -760px; } 
+.flag-CHI:before { background-position: 0 -779px; } 
+.flag-CHN:before { background-position: 0 -798px; } 
+.flag-CIV:before { background-position: 0 -817px; } 
+.flag-CMR:before { background-position: 0 -836px; } 
+.flag-COD:before { background-position: 0 -855px; } 
+.flag-COK:before { background-position: 0 -874px; } 
+.flag-COL:before { background-position: 0 -893px; } 
+.flag-COM:before { background-position: 0 -912px; } 
+.flag-CPV:before { background-position: 0 -931px; } 
+.flag-CRC:before { background-position: 0 -950px; } 
+.flag-CRO:before { background-position: 0 -969px; } 
+.flag-CTA:before { background-position: 0 -988px; } 
+.flag-CUB:before { background-position: 0 -1007px; } 
+.flag-CYP:before { background-position: 0 -1026px; } 
+.flag-CZE:before { background-position: 0 -1045px; } 
+.flag-DEN:before { background-position: 0 -1064px; } 
+.flag-DJI:before { background-position: 0 -1083px; } 
+.flag-DMA:before { background-position: 0 -1102px; } 
+.flag-DOM:before { background-position: 0 -1121px; } 
+.flag-ECU:before { background-position: 0 -1140px; } 
+.flag-EGY:before { background-position: 0 -1159px; } 
+.flag-ENG:before { background-position: 0 -1178px; } 
+.flag-EQG:before { background-position: 0 -1197px; } 
+.flag-ERI:before { background-position: 0 -1216px; } 
+.flag-ESP:before { background-position: 0 -1235px; } 
+.flag-EST:before { background-position: 0 -1254px; } 
+.flag-ETH:before { background-position: 0 -1273px; } 
+.flag-FIJ:before { background-position: 0 -1292px; } 
+.flag-FIN:before { background-position: 0 -1311px; } 
+.flag-FRA:before { background-position: 0 -1330px; } 
+.flag-FRO:before { background-position: 0 -1349px; } 
+.flag-GAB:before { background-position: 0 -1368px; } 
+.flag-GAM:before { background-position: 0 -1387px; } 
+.flag-GBR:before { background-position: 0 -1406px; } 
+.flag-GDR:before { background-position: 0 -1425px; } 
+.flag-GEO:before { background-position: 0 -1444px; } 
+.flag-GER:before { background-position: 0 -1463px; } 
+.flag-GHA:before { background-position: 0 -1482px; } 
+.flag-GLP:before { background-position: 0 -1501px; } 
+.flag-GNB:before { background-position: 0 -1520px; } 
+.flag-GRE:before { background-position: 0 -1539px; } 
+.flag-GRN:before { background-position: 0 -1558px; } 
+.flag-GUA:before { background-position: 0 -1577px; } 
+.flag-GUF:before { background-position: 0 -1596px; } 
+.flag-GUI:before { background-position: 0 -1615px; } 
+.flag-GUM:before { background-position: 0 -1634px; } 
+.flag-GUY:before { background-position: 0 -1653px; } 
+.flag-HAI:before { background-position: 0 -1672px; } 
+.flag-HKG:before { background-position: 0 -1691px; } 
+.flag-HON:before { background-position: 0 -1710px; } 
+.flag-HUN:before { background-position: 0 -1729px; } 
+.flag-IDN:before { background-position: 0 -1748px; } 
+.flag-IND:before { background-position: 0 -1767px; } 
+.flag-IRL:before { background-position: 0 -1786px; } 
+.flag-IRN:before { background-position: 0 -1805px; } 
+.flag-IRQ:before { background-position: 0 -1824px; } 
+.flag-ISL:before { background-position: 0 -1843px; } 
+.flag-ISR:before { background-position: 0 -1862px; } 
+.flag-ITA:before { background-position: 0 -1881px; } 
+.flag-JAM:before { background-position: 0 -1900px; } 
+.flag-JOR:before { background-position: 0 -1919px; } 
+.flag-JPN:before { background-position: 0 -1938px; } 
+.flag-KAZ:before { background-position: 0 -1957px; } 
+.flag-KEN:before { background-position: 0 -1976px; } 
+.flag-KGZ:before { background-position: 0 -1995px; } 
+.flag-KOR:before { background-position: -26px 0; } 
+.flag-KSA:before { background-position: -26px -19px; } 
+.flag-KUW:before { background-position: -26px -38px; } 
+.flag-LAO:before { background-position: -26px -57px; } 
+.flag-LBR:before { background-position: -26px -76px; } 
+.flag-LBY:before { background-position: -26px -95px; } 
+.flag-LCA:before { background-position: -26px -114px; } 
+.flag-LES:before { background-position: -26px -133px; } 
+.flag-LIB:before { background-position: -26px -152px; } 
+.flag-LIE:before { background-position: -26px -171px; } 
+.flag-LTU:before { background-position: -26px -190px; } 
+.flag-LUX:before { background-position: -26px -209px; } 
+.flag-LVA:before { background-position: -26px -228px; } 
+.flag-MAC:before { background-position: -26px -247px; } 
+.flag-MAD:before { background-position: -26px -266px; } 
+.flag-MAR:before { background-position: -26px -285px; } 
+.flag-MAS:before { background-position: -26px -304px; } 
+.flag-MAY:before { background-position: -26px -323px; } 
+.flag-MDA:before { background-position: -26px -342px; } 
+.flag-MDV:before { background-position: -26px -361px; } 
+.flag-MEX:before { background-position: -26px -380px; } 
+.flag-MGL:before { background-position: -26px -399px; } 
+.flag-MGO:before { background-position: -26px -418px; } 
+.flag-MKD:before { background-position: -26px -437px; } 
+.flag-MLI:before { background-position: -26px -456px; } 
+.flag-MLT:before { background-position: -26px -475px; } 
+.flag-MON:before { background-position: -26px -494px; } 
+.flag-MOZ:before { background-position: -26px -513px; } 
+.flag-MRI:before { background-position: -26px -532px; } 
+.flag-MSR:before { background-position: -26px -551px; } 
+.flag-MTN:before { background-position: -26px -570px; } 
+.flag-MTQ:before { background-position: -26px -589px; } 
+.flag-MWI:before { background-position: -26px -608px; } 
+.flag-MYA:before { background-position: -26px -627px; } 
+.flag-NAM:before { background-position: -26px -646px; } 
+.flag-NCA:before { background-position: -26px -665px; } 
+.flag-NCL:before { background-position: -26px -684px; } 
+.flag-NED:before { background-position: -26px -703px; } 
+.flag-NEP:before { background-position: -26px -722px; } 
+.flag-NGA:before { background-position: -26px -741px; } 
+.flag-NIG:before { background-position: -26px -760px; } 
+.flag-NIR:before { background-position: -26px -779px; } 
+.flag-NOR:before { background-position: -26px -798px; } 
+.flag-NRM:before { background-position: -26px -817px; } 
+.flag-NZL:before { background-position: -26px -836px; } 
+.flag-OMA:before { background-position: -26px -855px; } 
+.flag-PAK:before { background-position: -26px -874px; } 
+.flag-PAL:before { background-position: -26px -893px; } 
+.flag-PAN:before { background-position: -26px -912px; } 
+.flag-PAR:before { background-position: -26px -931px; } 
+.flag-PER:before { background-position: -26px -950px; } 
+.flag-PHI:before { background-position: -26px -969px; } 
+.flag-PNG:before { background-position: -26px -988px; } 
+.flag-POL:before { background-position: -26px -1007px; } 
+.flag-POR:before { background-position: -26px -1026px; } 
+.flag-PRK:before { background-position: -26px -1045px; } 
+.flag-PUR:before { background-position: -26px -1064px; } 
+.flag-QAT:before { background-position: -26px -1083px; } 
+.flag-REU:before { background-position: -26px -1102px; } 
+.flag-RFA:before { background-position: -26px -1121px; } 
+.flag-ROM:before { background-position: -26px -1140px; } 
+.flag-RSA:before { background-position: -26px -1159px; } 
+.flag-RUS:before { background-position: -26px -1178px; } 
+.flag-RWA:before { background-position: -26px -1197px; } 
+.flag-SAM:before { background-position: -26px -1216px; } 
+.flag-SCO:before { background-position: -26px -1235px; } 
+.flag-SEN:before { background-position: -26px -1254px; } 
+.flag-SER:before { background-position: -26px -1273px; } 
+.flag-SEY:before { background-position: -26px -1292px; } 
+.flag-SIM:before { background-position: -26px -1311px; } 
+.flag-SIN:before { background-position: -26px -1330px; } 
+.flag-SKN:before { background-position: -26px -1349px; } 
+.flag-SLE:before { background-position: -26px -1368px; } 
+.flag-SLV:before { background-position: -26px -1387px; } 
+.flag-SMA:before { background-position: -26px -1406px; } 
+.flag-SMR:before { background-position: -26px -1425px; } 
+.flag-SOL:before { background-position: -26px -1444px; } 
+.flag-SOM:before { background-position: -26px -1463px; } 
+.flag-SPM:before { background-position: -26px -1482px; } 
+.flag-SRI:before { background-position: -26px -1501px; } 
+.flag-STP:before { background-position: -26px -1520px; } 
+.flag-SUD:before { background-position: -26px -1539px; } 
+.flag-SUI:before { background-position: -26px -1558px; } 
+.flag-SUR:before { background-position: -26px -1577px; } 
+.flag-SVK:before { background-position: -26px -1596px; } 
+.flag-SVN:before { background-position: -26px -1615px; } 
+.flag-SWE:before { background-position: -26px -1634px; } 
+.flag-SWZ:before { background-position: -26px -1653px; } 
+.flag-SYR:before { background-position: -26px -1672px; } 
+.flag-TAH:before { background-position: -26px -1691px; } 
+.flag-TAN:before { background-position: -26px -1710px; } 
+.flag-TCA:before { background-position: -26px -1729px; } 
+.flag-TCH:before { background-position: -26px -1748px; } 
+.flag-TGA:before { background-position: -26px -1767px; } 
+.flag-THA:before { background-position: -26px -1786px; } 
+.flag-TJK:before { background-position: -26px -1805px; } 
+.flag-TKM:before { background-position: -26px -1824px; } 
+.flag-TMP:before { background-position: -26px -1843px; } 
+.flag-TOG:before { background-position: -26px -1862px; } 
+.flag-TPE:before { background-position: -26px -1881px; } 
+.flag-TRI:before { background-position: -26px -1900px; } 
+.flag-TUN:before { background-position: -26px -1919px; } 
+.flag-TUR:before { background-position: -26px -1938px; } 
+.flag-TUV:before { background-position: -26px -1957px; } 
+.flag-UAE:before { background-position: -26px -1976px; } 
+.flag-UGA:before { background-position: -26px -1995px; } 
+.flag-UKR:before { background-position: -52px 0; } 
+.flag-URS:before { background-position: -52px -19px; } 
+.flag-URU:before { background-position: -52px -38px; } 
+.flag-USA:before { background-position: -52px -57px; } 
+.flag-UZB:before { background-position: -52px -76px; } 
+.flag-VAN:before { background-position: -52px -95px; } 
+.flag-VEN:before { background-position: -52px -114px; } 
+.flag-VGB:before { background-position: -52px -133px; } 
+.flag-VIE:before { background-position: -52px -152px; } 
+.flag-VIN:before { background-position: -52px -171px; } 
+.flag-VIR:before { background-position: -52px -190px; } 
+.flag-WAL:before { background-position: -52px -209px; } 
+.flag-WFI:before { background-position: -52px -228px; } 
+.flag-YEM:before { background-position: -52px -247px; } 
+.flag-YUG:before { background-position: -52px -266px; } 
+.flag-ZAI:before { background-position: -52px -285px; } 
+.flag-ZAM:before { background-position: -52px -304px; } 
+.flag-ZIM:before { background-position: -52px -323px; } 
+.flag-ZNZ:before { background-position: -52px -342px; }
+
