@@ -29,7 +29,7 @@ app.controller('MatchesCtrl', function($scope, $injector, Matches, Formatter, So
   $scope.data.list = $scope.fetchData(Filter.toParams($scope.filters));
   
   // selection
-  $scope.selectionTpl = 'app/modules/minijoueur.html';
+  $scope.selectionTpl = 'app/modules/mini/minimatch.html';
   
   // table 
   $scope.tableCfg = {

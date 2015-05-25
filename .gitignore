@@ -1,4 +1,5 @@
 .externalToolBuilders/
 .settings/
 services/om.db3
+style/minified.css
 tmp/

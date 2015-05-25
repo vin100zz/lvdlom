@@ -1,0 +1,13 @@
+<div ng-controller="MiniMatchCtrl">
+
+  <div ng-show="!loading && match == null">Aucun match sélectionné</div>
+  
+  <div ng-show="!loading && match != null">
+  
+    <lvdlom-maillot cfg="maillot"></lvdlom-maillot>
+  
+  </div>
+  
+  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+
+</div>

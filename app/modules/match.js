@@ -1,15 +1,15 @@
 'use strict';
 
 // API
-app.factory('Joueur', function ($resource) {
-  return $resource('services/joueur.php', {}, {
+app.factory('Match', function ($resource) {
+  return $resource('services/match.php', {}, {
     get: {method: 'GET', isArray: false, cache: true}
   });
 });
 
 // controller
-app.controller('JoueurCtrl', function($scope, $routeParams, Joueur) {
-  $scope.joueur = Joueur.get({id: $routeParams.id});
+app.controller('MatchCtrl', function($scope, $routeParams, Joueur) {
+  $scope.joueur = Match.get({id: $routeParams.id});
   
   $scope.maillot = {
     id: 'maillot',
