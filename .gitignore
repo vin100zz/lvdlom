@@ -1,5 +1,6 @@
-.externalToolBuilders/
 .settings/
-services/om.db3
-style/minified.css
+node_modules/
 tmp/
+
+services/om.db3
+style/minified.min.css

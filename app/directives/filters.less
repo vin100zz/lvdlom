@@ -1,0 +1,49 @@
+#filters {
+  li {
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+  }
+  li,
+  select {
+    color: #333;
+    background: #ccc;
+    cursor: pointer;
+  }
+  li.active,
+  .active select {
+    color: #eee;
+    background: #3498db;
+  }
+
+  .label {
+    display: inline-block;
+    margin-right: -4px;
+  }
+  .label:before {
+    content: '\25cf';
+    color: gray;
+    margin: 0 5px;
+  }
+  .active .label:before {
+    color: #2ecc71;
+  }
+
+  .select-container {
+    position: relative;
+    display: inline-block;	
+  }
+  .select-container:after {
+    content: '\25bc';
+    font-size: 8pt;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    pointer-events: none;
+  }
+  select {
+    -webkit-appearance: none;
+    border: none;
+    padding: 2px 15px 2px 0;
+  }
+}
+

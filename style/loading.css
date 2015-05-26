@@ -15,7 +15,8 @@
   left: calc(50% - 50px);
 }
 #mask .anim .outer-ball {
-  border: 7px solid #FF9000;
+  border-right: 7px solid #FF9000;
+  border-bottom: 7px solid #FF9000;
   opacity: .9;
   border-top: 7px solid rgba(1,19,31,0.1);
   border-left: 7px solid rgba(1,19,31,0.1);
@@ -27,7 +28,8 @@
   -webkit-animation: spin 1s infinite linear;
 }
 #mask .anim .inner-ball {
-  border: 7px solid #fff;
+  border-right: 7px solid #fff;
+  border-bottom: 7px solid #fff;
   opacity: .9;
   border-top: 7px solid rgba(1,19,31,0.1);
   border-left: 7px solid rgba(1,19,31,0.1);
@@ -47,7 +49,8 @@
 	height: 30px;
 }
 .mini-loading .outer-ball {
-  border: 3px solid #FF9000;
+  border-right: 3px solid #FF9000;
+  border-bottom: 3px solid #FF9000;
   opacity: .9;
   border-top: 3px solid rgba(1,19,31,0.1);
   border-left: 3px solid rgba(1,19,31,0.1);
@@ -59,7 +62,8 @@
   -webkit-animation: spin 1s infinite linear;
 }
 .mini-loading .inner-ball {
-  border: 3px solid #0769ad;
+  border-right: 3px solid #0769ad;
+  border-bottom: 3px solid #0769ad;
   opacity: .9;
   border-top: 3px solid rgba(1,19,31,0.1);
   border-left: 3px solid rgba(1,19,31,0.1);
