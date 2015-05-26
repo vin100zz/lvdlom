@@ -1,6 +1,5 @@
 app.service('Bom', function() {
-  var _this = this;
-  
+ 
   this.$Resultat = {
     victoire: 'V',
     nul: 'N',
@@ -14,7 +13,7 @@ app.service('Bom', function() {
     var tabAdv = parseInt(match.tabAdv, 10) || 0;
     if (butsOM > butsAdv || (butsOM === butsAdv && tabOM > tabAdv)) {
       return this.$Resultat.victoire;
-    };
+    }
     if (butsOM < butsAdv || (butsOM === butsAdv && tabOM < tabAdv)) {
       return this.$Resultat.defaite;
     }
@@ -23,5 +22,5 @@ app.service('Bom', function() {
   
   this.domicile = function (lieu) {
     return (lieu === 'Huveaune' || lieu === 'Stade Vél\'');
-  }
+  };
 });

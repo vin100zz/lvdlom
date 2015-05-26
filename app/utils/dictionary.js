@@ -8,14 +8,14 @@ app.service('Dictionary', function ($http) {
   });
   
   this.nationalites = function () {
-    return dictionary['nationalites'];
+    return dictionary.nationalites;
   };
   
   this.saisons = function () {
-    return dictionary['saisons'];
+    return dictionary.saisons;
   };
   
   this.adversaires = function () {
-    return dictionary['adversaires'];
+    return dictionary.adversaires;
   };
 });

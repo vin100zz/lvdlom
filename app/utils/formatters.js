@@ -83,7 +83,7 @@ app.service('Formatter', function (Bom) {
   
   // bars
   this._bar = function (width, color) {
-    return '<div style="width: ' + width + '%; background-color: ' + color + ';"></div>';;
+    return '<div style="width: ' + width + '%; background-color: ' + color + ';"></div>';
   };
   
   this._bilan = function (max, data) {

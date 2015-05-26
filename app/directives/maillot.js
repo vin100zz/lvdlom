@@ -2,7 +2,7 @@ app.directive('lvdlomMaillot', function () {
   
   // RGB -> HSV
   function rgb2hsv (r, g, b) {
-    r = r/255, g = g/255, b = b/255;
+    r = r/255; g = g/255; b = b/255;
     var max = Math.max(r, g, b), min = Math.min(r, g, b);
     var h, s, v = max;
 
@@ -20,7 +20,7 @@ app.directive('lvdlomMaillot', function () {
         h /= 6;
     }
     return [h, s, v];
-  };
+  }
   
   // HSV -> RGB
   function hsv2rgb (h, s, v) {
@@ -33,28 +33,22 @@ app.directive('lvdlomMaillot', function () {
     var t = v * (1 - (1 - f) * s);
 
     switch (i % 6){
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
+        case 0: r = v; g = t; b = p; break;
+        case 1: r = q; g = v; b = p; break;
+        case 2: r = p; g = v; b = t; break;
+        case 3: r = p; g = q; b = v; break;
+        case 4: r = t; g = p; b = v; break;
+        case 5: r = v; g = p; b = q; break;
     }
 
     return [r * 255, g * 255, b * 255];
-  };
+  }
   
   // Hex -> RGB
   function hex2rgb (hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
-  };
-  
-  // Hex -> HSV
-  function hex2hsv (hex) {
-    var rgb = hex2rgb(hex);
-    return rgb2hsv(rgb[0], rgb[1], rgb[2]);
-  };
+  }
   
   // load image in canvas
   function loadImgInCanvas (id, source, cb) {
@@ -67,12 +61,12 @@ app.directive('lvdlomMaillot', function () {
       context.drawImage(img, 0, 0);
       cb(canvas, context, img);
     };
-  };
+  }
   
   // change color
   function changeColor (to) {
     return hex2rgb(to);
-  };
+  }
   
   // change colors
   function changeColors (data, color1, color2, color3) {
@@ -98,7 +92,7 @@ app.directive('lvdlomMaillot', function () {
         data[p+2] = rgb[2];
       }
     }
-  };
+  }
   
   // superimpose template
   function superimposeTemplate (id, tplData) {
@@ -128,7 +122,7 @@ app.directive('lvdlomMaillot', function () {
       }
     }
     context.putImageData(map, 0, 0);
-  };
+  }
   
   return {
     scope: {

@@ -3,8 +3,6 @@ app.directive('lvdlomBreadcrumb', function () {
     scope: {
       cfg: '='
     },
-    templateUrl: 'app/directives/breadcrumb.html',
-    controller: function ($scope) {
-    }
+    templateUrl: 'app/directives/breadcrumb.html'
   };
 });

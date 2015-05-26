@@ -1,3 +1,4 @@
+/* exported AbstractListCtrl */
 var AbstractListCtrl = function ($scope, Loading, Filter) {
   
   // filters

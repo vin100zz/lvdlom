@@ -11,7 +11,7 @@ app.directive('lvdlomFilters', function () {
       
       $scope.activate = function (filter) {
         filter.active = true;
-      }
+      };
     }
   };
 });

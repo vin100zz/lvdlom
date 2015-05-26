@@ -38,9 +38,29 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['**/*.less', '**/*.css', '**/*.css'],
-      tasks: ['default']
-    }
+      css: {
+        files: ['app/**/*.less', 'app/**/*.css', 'style/**/*.less', 'style/**/*.css'],
+        tasks: ['default']
+      },
+      js: {
+        files: ['**/*.js'],
+        tasks: ['jshint']
+      }
+    },
+    jshint: {
+      files: ['app/**/*.js'],
+      options: {
+        bitwise: true, curly: true, eqeqeq: true, forin: true, funcscope: true, futurehostile: true, latedef: true, nocomma: true, nonbsp: true, nonew: true, notypeof: true, undef: true, unused: 'vars',
+        browser: true,
+        globals: {
+          AbstractListCtrl: true,
+          angular: false,
+          app: true,
+          Chart: false,
+          stackBlurCanvasRGB: false
+        }
+      }
+    },
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -51,8 +71,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat']);
-
+  grunt.registerTask('watch', ['watch:css', 'watch:js']);
 };
