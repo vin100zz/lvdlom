@@ -23,7 +23,7 @@ app.service('Formatter', function (Bom) {
   };
   
   this.flag = function (pays) {
-    return '<div class="flag flag-' + pays + '">' + pays + '</div>';
+    return '<div class="icon-flag flag-' + pays + '">' + pays + '</div>';
   };
   
   this.date = function (date) {
@@ -110,7 +110,7 @@ app.service('Formatter', function (Bom) {
   };
   
   this.club = function (match) {
-    return '<div class="club"><div class="icon club-' + match.idAdv + '"></div></div>' + match.nomAdv;
+    return '<div class="club"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.nomAdv;
   };
   
   this.$Score = {

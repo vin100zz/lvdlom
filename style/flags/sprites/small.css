@@ -1,0 +1,1391 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-flag.flag-AFG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-AIA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ALB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ALG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-AND:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ANG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ANT:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ARG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ARM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ARU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ASA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ATG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-AUS:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-AUT:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-AZE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BAH:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BAN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BAS:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BDI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BEL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BEN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BER:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BFA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BHR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BHU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BIH:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BLR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BLZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BOL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BOT:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BRA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BRB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BRD:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BRU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BUL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-BUR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CAN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CAY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CGO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CHA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CHI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CHN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CIV:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CMR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-COD:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-COK:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-COL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-COM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CPV:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CRC:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CRO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CTA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CUB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CYP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-CZE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-DEN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-DJI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-DOM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ECU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-EGY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ENG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-EQG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ERI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ESP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-EST:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ETH:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-FIJ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-FIN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-FRA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-FRO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GAB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GBR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GDR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GEO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GER:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GHA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GLP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GNB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GRE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GRN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GUA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GUF:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GUI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GUM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-GUY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-HAI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-HKG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-HON:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-HUN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-IDN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-IND:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-IRL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-IRN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-IRQ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ISL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ISR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ITA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-JAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-JOR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-JPN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KAZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KEN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KGZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KOR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KSA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-KUW:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LAO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LBR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LBY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LCA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LES:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LIB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LIE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LTU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LUX:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-LVA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MAC:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MAD:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MAR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MAS:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MAY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MDA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MDV:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MEX:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MGL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MGO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MKD:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MLI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MLT:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MON:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MOZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MRI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MSR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MTN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MTQ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MWI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-MYA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NCA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NCL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NED:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NEP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NGA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NIG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NIR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NOR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NRM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-NZL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-OMA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PAK:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PAL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PAN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PAR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PER:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PHI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PNG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-POL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-POR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PRK:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-PUR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-QAT:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-REU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-RFA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ROM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-RSA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-RUS:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-RWA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SCO:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SEN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SER:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SEY:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SIM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SIN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SKN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SLE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SLV:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SMA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SMR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SOL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SOM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SPM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SRI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-STP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SUD:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SUI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SUR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SVK:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SVN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SWE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SWZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px 0px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-SYR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -18px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TAH:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -36px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TAN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -54px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TCA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -72px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TCH:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -90px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TGA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -108px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-THA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -126px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TJK:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -144px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TKM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -162px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TMP:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -180px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TOG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -198px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TPE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -216px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TRI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -234px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TUN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -252px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TUR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -270px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-TUV:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-UAE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-UGA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-UKR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-URS:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-URU:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-USA:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-UZB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VAN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VEN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -225px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VGB:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -250px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VIE:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -275px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VIN:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -300px -288px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-VIR:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: 0px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-WAL:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -25px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-WFI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -50px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-YEM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -75px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-YUG:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -100px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ZAI:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -125px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ZAM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -150px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ZIM:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -175px -306px;
+  width: 25px;
+  height: 18px;
+}
+.icon-flag.flag-ZNZ:before {
+  background-image: url(flags/sprites/small.png);
+  background-position: -200px -306px;
+  width: 25px;
+  height: 18px;
+}

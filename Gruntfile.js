@@ -61,6 +61,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    sprite: {
+      clubs: {
+        src: 'style/clubs/small/*.png',
+        dest: 'style/clubs/sprites/small.png',
+        imgPath: 'clubs/sprites/small.png',
+        destCss: 'style/clubs/sprites/small.css',
+        cssVarMap: function (sprite) {
+          sprite.name = 'club.club-' + sprite.name;
+        }
+      },
+      flags: {
+        src: 'style/flags/small/*.png',
+        dest: 'style/flags/sprites/small.png',
+        imgPath: 'flags/sprites/small.png',
+        destCss: 'style/flags/sprites/small.css',
+        cssVarMap: function (sprite) {
+          sprite.name = 'flag.flag-' + sprite.name + ':before';
+        }
+      }
+    }
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -72,8 +92,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-spritesmith');
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat']);
+  grunt.registerTask('sprites', ['sprite', 'default']);
   grunt.registerTask('watch', ['watch:css', 'watch:js']);
 };
