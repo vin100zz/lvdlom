@@ -1,3 +1,5 @@
+@import "../../style/variables";
+
 table {
   width: 100%;
   text-align: left;
@@ -9,7 +11,7 @@ th, td {
   vertical-align: middle;
 }
 td.ranking {
-	color: #999;
+	color: @secondaryText;
 }
 
 /* Rows */
@@ -17,20 +19,20 @@ tr {
   height: 24px;
 }
 tbody tr {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid @tableBorder;
   cursor: pointer;
 }
 tbody tr:nth-child(even) {
-  background: #f7f7f7;
+  background: @alternateBackground;
 }
 tbody tr.selected {
-	background: rgba(255, 144, 0, 0.4);
+	background: @tableSelected;
 }
 
 /* Footer */
 tfoot td {
   text-align: right;
-  color: #999;
+  color: @secondaryText;
   font-size: 9pt;
 }
 
@@ -38,7 +40,7 @@ tfoot td {
 th,
 th.sorting.asc:after,
 th.sorting.desc:after {
-	color: #999;
+	color: @secondaryText;
 }
 th:hover {
   text-decoration: underline;
@@ -48,7 +50,7 @@ th.sorting:after {
 	display: inline-block;
 	margin-left: 3px;
 	font-size: 8pt;
-	color: #fff;
+	color: @boxBackground;
 	content: '\25b2';
 }
 th.sorting.desc:after {

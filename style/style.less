@@ -1,0 +1,121 @@
+@import "variables";
+
+.remark {
+  color: #999;
+  margin-left: 5px;
+  font-size: 8pt;
+}
+
+/* Photos */
+.photo-id {
+  width: 200px;
+  height: 300px;
+  background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin: auto;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  width: 17px;
+  line-height: 17px;
+  color: white;
+  border-radius: 2px;
+  text-align: center;
+  vertical-align: baseline;
+  margin-right: 8px;
+
+  /* Postes */
+  .poste {
+    .GA {
+      background: @poste_ga;
+    }
+    .DE {
+      background: @poste_de;
+    }
+    .MI {
+      background: @poste_mi;
+    }
+    .AV {
+      background: @poste_av;
+    }
+  }
+
+  /* Competitions */
+  .competition {
+    width: 21px;
+    vertical-align: baseline;
+    
+    .C1, .C2, .C3, .IN, .FO {
+      background: @competition_europe;
+    }
+    .CF {
+      background: @competition_coupe_france;
+    }
+    .CH, .L1, .D1, .D2 {
+      background: @competition_championnat;
+    }
+    .CL, .TC {
+      background: @competition_coupe_ligue;
+    }
+  }
+}
+
+/* Bars */
+.table-bilan {
+	width: 150px;
+}
+.table-bilan > div {
+	height: 5px;
+	margin: 1px 0;
+}
+
+/* Au Club */
+.icon-au-club {
+	display: inline-block;
+  width: 8px;
+  height: 8px;
+  border: 4px solid #3498db;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Lieu */
+.icon-lieu {
+	display: inline-block;
+	margin-right: 5px;
+
+  .D {
+    width: 8px;
+    height: 8px;
+    background: #1abc9c;
+  }
+  .E {
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-left: 8px solid #8e44ad;
+    border-bottom: 4px solid transparent;
+  }
+}
+
+/* Résultat */
+.icon-resultat {
+  display: inline-block;
+  margin-right: 5px;
+  width: 8px;
+  height: 8px;
+
+  .V {
+    background: @resultat_v;
+  }
+  .N {
+    background: @resultat_n;
+  }
+  .D {
+    background: @resultat_d;
+  }
+}
+

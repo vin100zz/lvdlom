@@ -1,0 +1,32 @@
+@import "../../style/variables";
+
+#breadcrumb  {
+
+  > div {
+    position: relative;
+    height: 20px;
+    padding: 4px;
+    background: @breadcrumbBackground;
+    text-align: center;
+  }
+  > div,
+  > div a {
+    color: @secondaryReversedText;
+  }
+  .prev,
+  .next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    padding: 4px 10px;
+  }
+  .prev {
+    left: 0;
+    text-align: left;
+  }
+  .next {
+    right: 0;
+    text-align: right;
+  }
+}

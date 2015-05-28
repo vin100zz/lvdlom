@@ -1,0 +1,138 @@
+@import "../../style/variables";
+
+#page-date {
+
+  ul.list li {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    margin: 10px 0;
+    background: @alternateBackground;
+    border-left: 5px solid @alternateBackground;
+  }
+
+  /* Summary */
+  .summary {
+    text-align: center;
+    
+    .title {
+      width: 100%;
+      height: 36px;
+      line-height: 36px;
+      margin: 10px 0;
+      background: @alternateBackground;
+      font-size: 18pt;
+    }
+    li {
+      position: relative;
+      display: inline-block;
+      width: 90px;
+      height: 75px;
+      margin: 0 5px;
+      color: white;
+      background: #16a085;
+      border-radius: 5px;
+      padding-top: 5px;
+    }
+    li .figure {
+      font-size: 28pt;
+    }
+    li .desc {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      font-size: 10pt;
+    }
+  }
+
+  /* Lists */
+  ul.list li > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  ul.list li > a:hover .main span.label {
+    text-decoration: underline;
+  }
+
+  .year,
+  .pict,
+  .main,
+  .main > div,
+  .info {
+    display: inline-block;
+    height: 100%;
+  }
+  .year {
+    padding-left: 10px;
+    width: 50px;
+    color: @secondaryText;
+  }
+  .pict > div {
+    width: 50px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .info {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 11pt;
+    color: @iconText;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  /* Match */
+  li.match .info.V {
+    background: @resultat_v;
+  }
+  li.match .info.N {
+    background: @resultat_n;
+  }
+  li.match .info.D {
+    background: @resultat_d;
+  }
+
+  ul.list li.match.C1,
+  ul.list li.match.C2,
+  ul.list li.match.C3,
+  ul.list li.match.IN,
+  ul.list li.match.FO {
+    border-color: @competition_europe;
+  }
+  ul.list li.match.CF {
+    border-color: @competition_coupe_france;
+  }
+  ul.list li.match.CH,
+  ul.list li.match.L1,
+  ul.list li.match.D1,
+  ul.list li.match.D2 {
+    border-color: @competition_championnat;
+  }
+  ul.list li.match.CL,
+  ul.list li.match.TC {
+    border-color: @competition_coupe_ligue;
+  }
+
+  /* Joueur */
+  ul.list li.joueur.GA {
+    border-color: @poste_ga;
+  }
+  ul.list li.joueur.DE {
+    border-color: @poste_de;
+  }
+  ul.list li.joueur.MI {
+    border-color: @poste_mi;
+  }
+  ul.list li.joueur.AV {
+    border-color: @poste_av;
+  }
+}

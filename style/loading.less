@@ -1,3 +1,5 @@
+@import "variables.less";
+
 /* Main */
 #mask {
   position: fixed;
@@ -5,18 +7,18 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #02273F;
+  background: @maskBackground;
   opacity: 0.75;
 }
 
 #mask .anim {
   position: fixed;
-  top: calc(50% - 50px);
-  left: calc(50% - 50px);
+  top: calc(~"50% - 50px");
+  left: calc(~"50% - 50px");
 }
 #mask .anim .outer-ball {
-  border-right: 7px solid #FF9000;
-  border-bottom: 7px solid #FF9000;
+  border-right: 7px solid @selectedText;
+  border-bottom: 7px solid @selectedText;
   opacity: .9;
   border-top: 7px solid rgba(1,19,31,0.1);
   border-left: 7px solid rgba(1,19,31,0.1);
@@ -28,8 +30,8 @@
   -webkit-animation: spin 1s infinite linear;
 }
 #mask .anim .inner-ball {
-  border-right: 7px solid #fff;
-  border-bottom: 7px solid #fff;
+  border-right: 7px solid @boxBackground;
+  border-bottom: 7px solid @boxBackground;
   opacity: .9;
   border-top: 7px solid rgba(1,19,31,0.1);
   border-left: 7px solid rgba(1,19,31,0.1);
@@ -49,8 +51,8 @@
 	height: 30px;
 }
 .mini-loading .outer-ball {
-  border-right: 3px solid #FF9000;
-  border-bottom: 3px solid #FF9000;
+  border-right: 3px solid @selectedText;
+  border-bottom: 3px solid @selectedText;
   opacity: .9;
   border-top: 3px solid rgba(1,19,31,0.1);
   border-left: 3px solid rgba(1,19,31,0.1);
