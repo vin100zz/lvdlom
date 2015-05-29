@@ -104,15 +104,12 @@
         data: totalsVnd,
         settings: [{
           color: '#e74c3c',
-          highlight: '#e57369',
           label: 'D'
         }, {
           color: '#f39c12',
-          highlight: '#f2aC43',
           label: 'N'
         }, {
           color: '#2ecc71',
-          highlight: '#57cc88',
           label: 'V'
         }]
       },
@@ -120,11 +117,9 @@
         data: totalsBpBc,
         settings: [{
           color: '#e74c3c',
-          highlight: '#e57369',
           label: 'BC'
         }, {
           color: '#2ecc71',
-          highlight: '#57cc88',
           label: 'BP'
         }]
       }

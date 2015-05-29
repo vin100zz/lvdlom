@@ -38,14 +38,8 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      css: {
-        files: ['app/**/*.less', 'app/**/*.css', 'style/**/*.less', 'style/**/*.css'],
-        tasks: ['default']
-      },
-      js: {
-        files: ['**/*.js'],
-        tasks: ['jshint']
-      }
+      files: ['app/**/*.less', 'app/**/*.css', 'style/**/*.less', 'style/**/*.css'],
+      tasks: ['default']
     },
     jshint: {
       files: ['app/**/*.js'],
@@ -97,5 +91,4 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat']);
   grunt.registerTask('sprites', ['sprite', 'default']);
-  grunt.registerTask('watch', ['watch:css', 'watch:js']);
 };
