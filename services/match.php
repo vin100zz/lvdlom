@@ -56,9 +56,13 @@ $adversaire = DBAccess::singleRow
 // competition
 $competition = DBAccess::singleRow
 ("
-	SELECT *
+	SELECT
+    IdCompetition AS id,
+    NomCompetition AS nom,
+    SousTypeCompetition AS sousType,
+    TypeCompetition AS type
 	FROM competitions
-  WHERE competitions.NomCompetition = '" . $ficheMatch['competition'] . "'"
+  WHERE competitions.NomCompetition = '" . str_replace("'", "''", $ficheMatch['competition']) . "'" // FIXME
 );
 
 // buteurs OM
@@ -111,7 +115,7 @@ $titulaires = DBAccess::query
     joueurs.Poste AS poste
 	FROM matches, joue, joueurs
 	WHERE matches.IdMatch = joue.IdMatch AND joueurs.IdJoueur = joue.IdJoueur AND Ordre IS NOT NULL AND joue.IdMatch = $idMatch
-	ORDER BY Id ASC"
+	ORDER BY Ordre ASC"
 );
 
 // remplacants
@@ -126,8 +130,7 @@ $remplacants = DBAccess::query
     joue.NumRmp AS numRmp,
     joueurs.Poste AS poste
 	FROM matches, joue, joueurs
-	WHERE matches.IdMatch = joue.IdMatch AND joueurs.IdJoueur = joue.IdJoueur AND Ordre IS NULL AND joue.IdMatch = $idMatch
-	ORDER BY Id ASC"
+	WHERE matches.IdMatch = joue.IdMatch AND joueurs.IdJoueur = joue.IdJoueur AND Ordre IS NULL AND joue.IdMatch = $idMatch"
 );
 
 // entraineurs

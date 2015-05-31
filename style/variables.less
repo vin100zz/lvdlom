@@ -1,3 +1,15 @@
+.inlineBlockHack(@container) {
+  @normalized: ~"@{container}" ;
+  @{normalized} {
+    letter-spacing: -.31em;
+    word-spacing: -.43em;
+  }
+  @{normalized} > * {
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+}
+
 /* Background */
 @mainBackground: #0769ad;
 @mainBackgroundGradientEnd: #032f4c;
@@ -20,6 +32,9 @@
 /* Border */
 @tableBorder: #ccc;
 
+/* Buttons */
+@button: #0769ad;
+
 /* Icons */
 @auClub: #2196f3;
 
@@ -32,6 +47,7 @@
 @poste_de: #009688;
 @poste_mi: #ff9800;
 @poste_av: #e91e63;
+@poste_en: #666;
 
 /* Competitions */
 @competition_europe: #e91e63;
@@ -39,7 +55,15 @@
 @competition_championnat: #3f51b5;
 @competition_coupe_ligue: #4caf50;
 
-/* Résultat */
+/* RÃ©sultat */
 @resultat_v: #4caf50;
 @resultat_n: #ff9800;
 @resultat_d: #f44336;
+
+/* Cartons */
+@cartonJaune: #ffeB3b;
+@cartonRouge: #f44336;
+
+/* Remplacant */
+@remplacant: #ccc;
+

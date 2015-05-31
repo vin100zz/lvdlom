@@ -11,28 +11,30 @@
   color: @secondaryReversedText;
 	border-bottom: 1px solid #7acef4;
 	padding: 10px 20px;
-}
-#header * {
-	display: inline-block;
-}
-#header > div {
-	margin-right: 40px;
-}
-#header .match {
-	color: @primaryReversedText;
-}
-#header .caret:before {
-  content: '\25b6';
-  color: @primaryReversedText;
-  margin: 0 5px;
-}
-#header .prochain > ul > li {
-	margin-right: 20px;
-}
-#header .tele {
-	font-size: 9pt;
-	margin-left: 5px;
-  font-style: italic;
+
+  * {
+    display: inline-block;
+  }
+  > div {
+    margin-right: 40px;
+    width: auto;
+  }
+  .match {
+    color: @primaryReversedText;
+  }
+  .caret:before {
+    content: '\25b6';
+    color: @primaryReversedText;
+    margin: 0 5px;
+  }
+  .prochain > ul > li {
+    margin-right: 20px;
+  }
+  .tele {
+    font-size: 9pt;
+    margin-left: 5px;
+    font-style: italic;
+  }
 }
 
 /* Menu */
@@ -45,38 +47,39 @@
   overflow-y: auto;
   background: @menuBackground;
   font-size: 11pt;
-}
-#menu .title {
-  width: 114px;
-  height: 80px;
-  margin: 20px auto;
-  background: url(img/title.png) no-repeat;  
-}
-#menu .navigation {
-	background: url(img/logo.png) no-repeat bottom 10px right 10px;
-	min-height: calc(~"100% - 120px");
-	padding-bottom: 50px;
-}
-#menu .navigation li {
-  height: 35px;
-  line-height: 35px;
-  padding-left: 10px;
-}
-#menu .navigation li.sep {
-  border-bottom: 1px solid #333;
-}
-#menu .navigation li:hover {
-  background: @menuHighlightBackground;
-}
-#menu .navigation li a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: @primaryReversedText;
-  text-decoration: none;
-}
-#menu .navigation li.selected a {
-  color: @selectedText;
+
+  .title {
+    width: 114px;
+    height: 80px;
+    margin: 20px auto;
+    background: url(img/title.png) no-repeat;  
+  }
+  .navigation {
+    background: url(img/logo.png) no-repeat bottom 10px right 10px;
+    min-height: calc(~"100% - 120px");
+    padding-bottom: 50px;
+  }
+  .navigation li {
+    height: 35px;
+    line-height: 35px;
+    padding-left: 10px;
+  }
+  .navigation li.sep {
+    border-bottom: 1px solid #333;
+  }
+  .navigation li:hover {
+    background: @menuHighlightBackground;
+  }
+  .navigation li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: @primaryReversedText;
+    text-decoration: none;
+  }
+  .navigation li.selected a {
+    color: @selectedText;
+  }
 }
 
 /* Content */

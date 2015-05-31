@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['app/**/*.less', 'app/**/*.css', 'style/**/*.less', 'style/**/*.css'],
+      files: ['app/**/*.less', 'app/**/*.css', 'style/**/*.less', 'style/**/*.css', '!style/minified.min.css'],
       tasks: ['default']
     },
     jshint: {

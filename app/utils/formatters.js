@@ -1,4 +1,4 @@
-app.service('Formatter', function (Bom) {
+app.service('Formatter', function (Bom, $filter) {
   var _this = this;
   
   this.int = function (value) {
@@ -27,10 +27,15 @@ app.service('Formatter', function (Bom) {
   };
   
   this.date = function (date) {
-    var d = date.substr(8, 2);
-    var m = date.substr(5, 2);
-    var y = date.substr(0, 4);
-    return d + '.' + m + '.' + y;
+    return $filter('date')(date, 'dd.MM.yyyy');
+  };
+  
+  this.dateLong = function (date) {
+    var d = $filter('date')(date, 'd MMMM yyyy');
+    if (d && d.indexOf('1 ') === 0) {
+      d = '1er ' + d.substr(2);
+    }
+    return d;
   };
   
   this.dateNaissance = function (dateNaissance) {
@@ -110,7 +115,7 @@ app.service('Formatter', function (Bom) {
   };
   
   this.club = function (match) {
-    return '<div class="club"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.nomAdv;
+    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.nomAdv;
   };
   
   this.$Score = {
@@ -151,6 +156,24 @@ app.service('Formatter', function (Bom) {
     var left = Bom.domicile(match.lieu) ? _this.nomOm(match.saison) : match.nomAdv;
     var right = Bom.domicile(match.lieu) ? match.nomAdv : _this.nomOm(match.saison);
     return left + "-" + right;
+  };
+  
+  this.carton = function (carton) {
+    if (carton) {
+      return '<div class="icon-carton ' + carton[0] + '"></div>' + (carton.length > 1 ? '<span class="remark">' + carton.substr(1) + '\'</span>' : '');
+    }
+    return '';
+  };
+  
+  this.butsPerJoueur = function (idJoueur, buteurs) {
+    var nbButs = buteurs.reduce(function (previous, buteur) {
+      return previous + (buteur.id === idJoueur ? 1 : 0);
+    }, 0);
+    var res = '';
+    for (var i=0; i<nbButs; ++i) {
+      res += '<div class="icon-but"></div>';
+    }
+    return res;
   };
 });
 
