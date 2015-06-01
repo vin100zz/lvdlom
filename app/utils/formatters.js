@@ -134,16 +134,16 @@ app.service('Formatter', function (Bom, $filter) {
     if (formatting === _this.$Score.table) {
       out = '<span class="icon-resultat ' + resultat + '"></span>';
       out += '<a href="#match/' + match.id + '">' + butsOM + '-' + butsAdv + '</a>';
+      
+      if (tabOM || tabAdv) {
+        out += '<span class="remark">' + tabOM + '-' + tabAdv + ' tab</span>';
+      } else if (match.rqScore) {
+        out += '<span class="remark">' + match.rqScore + '</span>';
+      }
     } else if (formatting === _this.$Score.big) {
       var left = domicile ? match.butsOM : match.butsAdv;
       var right = domicile ? match.butsAdv : match.butsOM;
       out = left + "-" + right;
-    }
-    
-    if (tabOM || tabAdv) {
-      out += '<span class="remark">' + tabOM + '-' + tabAdv + ' tab</span>';
-    } else if (match.rqScore) {
-      out += '<span class="remark">' + match.rqScore + '</span>';
     }
     return out;
   };
@@ -166,7 +166,7 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.butsPerJoueur = function (idJoueur, buteurs) {
-    var nbButs = buteurs.reduce(function (previous, buteur) {
+    var nbButs = (buteurs || []).reduce(function (previous, buteur) {
       return previous + (buteur.id === idJoueur ? 1 : 0);
     }, 0);
     var res = '';

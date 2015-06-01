@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       css: {
         files: [{
           expand: true,
-          src: ['app/**/*.css', 'style/**/*.css', '!**/*.min.css'],
+          src: ['style/**/sprites/*.css'],
           dest: 'tmp/cssmin',
           ext: '.min.css'
         }]

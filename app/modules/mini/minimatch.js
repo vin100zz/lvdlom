@@ -10,7 +10,7 @@ app.controller('MiniMatchCtrl', function($scope, Match, Bom, Picture, Formatter,
         $scope.loading = true;
         $scope.match = Match.get({id: newValue}, function (match) {
           //$scope.maillot = Maillots.get(match.adversaire.nom);
-          $scope.domicile = $scope.Bom.domicile(match.fiche.lieu);
+          $scope.domicile = Bom.domicile(match.fiche.lieu);
           $scope.left = {
             id: $scope.domicile ? 'OM' : match.adversaire.id,
             nom: $scope.domicile ? 'OM' : match.adversaire.nom,

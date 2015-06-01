@@ -51,30 +51,21 @@
     }
     
     .score-container {
-      width: 65px;
+      width: 70px;
       margin: auto;
-      color: @iconText;
+      color: @secondaryText;
       border-radius: 5px;
+      border: 1px solid @lightBorder;
       text-align: center;
       
       .plain {
         line-height: 34px;
-        font-size: 18pt;
+        font-size: 22pt;
       }
       
       .rq {
         line-height: 20px;
-        background: rgba(50, 50, 50, 0.25);
-      }
-
-      &.V {
-        background: @resultat_v;
-      }
-      &.N {
-        background: @resultat_n;
-      }
-      &.D {
-        background: @resultat_d;
+        border-top: 1px dashed @lightBorder;
       }
     }  
   }

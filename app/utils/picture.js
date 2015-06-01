@@ -1,9 +1,10 @@
 app.service('Picture', function () {
   
-  var _baseDir = '../laviedelom/';
+  var _baseDir = './';
+  var _baseDirOld = '../laviedelom/';
   
   this.joueur = function (id) {
-    return _baseDir + 'photos/id_joueurs/' + id + '.jpg';
+    return _baseDirOld + 'photos/id_joueurs/' + id + '.jpg';
   };
   
   this.club = function (id) {

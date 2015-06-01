@@ -19,9 +19,6 @@
         <li ng-repeat="match in model.matches" class="match {{match.sousTypeCompetition}}">
           <a href="#match/{{match.id}}">
            <div class="year">{{match.date.substr(0,4)}}</div>
-           <!-- <div class="pict">
-             <div style="background-image: url({{Picture.club(match.idAdv)}})"></div>
-           </div> -->
            <div class="main"><div ng-bind-html="match.sousTypeCompetition | format:'sousTypeCompetition'"></div><span class="label">{{match | format:'match'}}</span></div>
            <div class="info {{Bom.resultat(match)}}" ng-bind-html="match | score"></div>
           </a>
@@ -37,9 +34,6 @@
           <li ng-repeat="joueur in model.joueurs" class="joueur {{joueur.poste}}">
             <a href="#joueur/{{joueur.id}}">
              <div class="year">{{joueur.dateNaissance.substr(0,4)}}</div>
-             <!-- <div class="pict">
-               <div style="background-image: url({{Picture.joueur(joueur.id)}})"></div>
-             </div> -->
              <div class="main"><div ng-bind-html="joueur.poste | format:'poste'"></div><span class="label">{{joueur.prenom}} {{joueur.nom}}</span></div>
              <div class="info" ng-bind-html="joueur.nationalite | format:'flag'"></div>
             </a>
