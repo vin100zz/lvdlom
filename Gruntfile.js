@@ -55,9 +55,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    responsive_images: {
+      clubs: {
+        options: {
+          engine: 'im',
+          rename: false,
+          sizes: [{
+            width: '10%',
+            height: '10%'
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['style/clubs/large/*.png'],
+          dest: 'tmp/'
+        }]
+      }
+    },
     sprite: {
       clubs: {
-        src: 'style/clubs/small/*.png',
+        src: 'tmp/style/clubs/large/*.png',
         dest: 'style/clubs/sprites/small.png',
         imgPath: 'clubs/sprites/small.png',
         destCss: 'style/clubs/sprites/small.css',
@@ -86,9 +103,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-spritesmith');
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat']);
-  grunt.registerTask('sprites', ['sprite', 'default']);
+  grunt.registerTask('clubs', ['clean', 'responsive_images:clubs', 'sprite:clubs', 'default']);
 };

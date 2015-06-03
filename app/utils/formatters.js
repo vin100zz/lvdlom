@@ -115,7 +115,7 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.club = function (match) {
-    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.nomAdv;
+    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.idAdv + ' ' + match.nomAdv;
   };
   
   this.$Score = {
