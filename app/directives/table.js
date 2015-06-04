@@ -45,6 +45,7 @@ app.directive('lvdlomTable', function() {
       };
       
       $scope.sortBy = function (index) {
+        $scope.sortedItems = [];
         if ($scope.sort.column === index) {
           $scope.sort.descending = !$scope.sort.descending;
         } else {
@@ -62,6 +63,12 @@ app.directive('lvdlomTable', function() {
         return stripAccents(item[column.key]);
       };
       
+      $scope.sortedItems = [];
+      $scope.saveSortedItem = function (itemId) {
+        $scope.sortedItems.push(itemId);
+        return true;
+      };
+      
       $scope.getHeaderClass = function (index) {
         if (index === $scope.sort.column) {
           return 'sorting ' + ($scope.sort.descending ? 'desc' : 'asc');
@@ -70,17 +77,27 @@ app.directive('lvdlomTable', function() {
       };
       
       // selection      
-      $scope.selectRow = function (id) {
+      $scope.selectRow = function (id, rowIndex) {
         if (id === $scope.cfg.selected.id) {
           $scope.cfg.selected.id = null;
+          $scope.cfg.selected.rowIndex = null;
         } else {
           $scope.cfg.selected.id = id;
+          $scope.cfg.selected.rowIndex = rowIndex;
         }
       };
       
+      // watch
       $scope.$watch('cfg.data.list', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           $scope.cfg.selected.id = null;
+          $scope.cfg.selected.rowIndex = null;
+        }
+      }, true);
+      
+      $scope.$watch('cfg.selected.rowIndex', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.cfg.selected.id = $scope.sortedItems[$scope.cfg.selected.rowIndex];
         }
       }, true);
     }

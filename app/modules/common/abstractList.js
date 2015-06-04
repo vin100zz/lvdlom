@@ -36,8 +36,19 @@ var AbstractListCtrl = function ($scope, Loading, Filter) {
   }, true);
   
   // selection
-  $scope.selected = {id: null};
+  $scope.selected = {id: null, rowIndex: null};
   $scope.selectionTpl = '';
+  
+  // keyboard shortcut
+  window.onkeydown = function (evt) {
+    evt.preventDefault();
+    if (evt.which === 40 && $scope.selected.rowIndex < $scope.data.list.length - 1) {
+      ++$scope.selected.rowIndex;
+    } else if (evt.which === 38 && $scope.selected.rowIndex > 0) {
+      --$scope.selected.rowIndex;
+    }
+    $scope.$apply();
+  };
   
   // chart
   $scope.chartCfg = null;
