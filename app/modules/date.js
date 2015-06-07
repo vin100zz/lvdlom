@@ -24,7 +24,6 @@
       var next = new Date(date.getTime() + 1000 * 60 * 60 * 24);
       
       $scope.breadcrumb = {
-        current: DateTime.format(date, 'd MMMM'),
         prev: {
           label: DateTime.format(prev, 'd MMMM'),
           link: '#/date/' + DateTime.format(prev, 'MM-dd')

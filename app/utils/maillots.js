@@ -1,7 +1,10 @@
 app.service('Maillots', function() {
   
   this.get = function (club) {
-    var configClub = config[club];
+    if (club === 'OM') {
+      return {template: 'OM'};
+    }
+    var configClub = config[club] || defaultConfig;
     configClub.id = 'maillot-' + club;
     return configClub;
   };
@@ -51,4 +54,6 @@ app.service('Maillots', function() {
     "VALENCIENNES": {template: 29, color1: "EA1D2A", color2: "FFFFFF", color3: "FFFFFF"},
     "ZURICH": {template: 12, color1: "FFFFFF", color2: "004799", color3: "004799"}
   };
+  
+  var defaultConfig = {template: 1, color1: "CCCCCC", color2: "CCCCCC", color3: "CCCCCC"};
 });

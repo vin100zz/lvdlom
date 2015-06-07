@@ -1,0 +1,71 @@
+@import "../../../style/variables";
+
+.fiche-match {
+
+  text-align: center;
+  line-height: 22px;
+
+  .row-score {
+    display: table;
+    width: 100%;
+  
+    > div {
+      display: table-cell;
+      width: 33.33%;
+      height: 100px;
+      vertical-align: middle;
+    }
+  
+    .club {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+    }
+    
+    .score-container {
+      width: 70px;
+      margin: auto;
+      color: @secondaryText;
+      border-radius: 5px;
+      border: 1px solid @lightBorder;
+      text-align: center;
+      
+      .plain {
+        line-height: 34px;
+        font-size: 22pt;
+      }
+      
+      .rq {
+        line-height: 20px;
+        border-top: 1px dashed @lightBorder;
+      }
+    }  
+  }
+  
+  .row-equipes {
+    display: table;
+    width: 100%;
+    margin-top: 15px !important;
+    
+    > div {
+      display: table-cell;
+      width: 33%;
+    }
+  }
+  
+  .row-info {
+    display: table;
+    width: 100%;
+    background: @alternateBackground;
+    border-top: 1px solid @tableBorder;
+    border-bottom: 1px solid @tableBorder;
+    margin-top: 10px;
+    
+    .col {
+      display: table-cell;
+    }
+  }
+}
+
+
+  

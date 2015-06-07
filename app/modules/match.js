@@ -10,49 +10,20 @@
   });
   
   // controller
-  app.controller('MatchCtrl', function($scope, $routeParams, Match) {
-    $scope.match = Match.get({id: $routeParams.id});
+  app.controller('MatchCtrl', function($scope, $routeParams, Match, Formatter) {
+    $scope.match = Match.get({id: $routeParams.id}, function () {
     
-    $scope.maillot = {
-      id: 'maillot',
-      template: 3,
-      color1: '#ffffff',
-      color2: '#ff0000',
-      color3: '#000000'
-    };
-    
-    $scope.maillot2 = {
-        id: 'maillot2',
-        template: 5,
-        color1: '#FFD800',
-        color2: '#007F0E',
-        color3: '#FFFFFF'
+      $scope.breadcrumb = {
+        prev: {
+          label: Formatter.match($scope.match.navigation.prev) + ' ' + Formatter.score(Formatter.$Score.big, $scope.match.navigation.prev),
+          link: '#/match/' + $scope.match.navigation.prev.id
+        },
+        next: {
+          label: Formatter.match($scope.match.navigation.next) + ' ' + Formatter.score(Formatter.$Score.big, $scope.match.navigation.next),
+          link: '#/match/' + $scope.match.navigation.next.id
+        }
       };
-    
-    $scope.maillot3 = {
-        id: 'maillot3',
-        template: 7,
-        color1: '#FF0000',
-        color2: '#0000FF',
-        color3: '#000000'
-      };
-    
-    $scope.maillot4 = {
-        id: 'maillot4',
-        template: 4,
-        color1: '#ffffff',
-        color2: '#0000FF',
-        color3: '#FF0000'
-      };
-    
-    $scope.maillot5 = {
-        id: 'maillot5',
-        template: 29,
-        color1: '#000000',
-        color2: '#FFFFFF',
-        color3: '#FF0000'
-      };
-   
+    });
   });
 
 }) ();

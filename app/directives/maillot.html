@@ -1,5 +1,16 @@
-<canvas id="template" width="210px" height="210px" style="display:none;">
-</canvas>
+<div class="dir-maillot">
 
-<canvas id="{{cfg.id}}" width="210px" height="210px" style="zoom:0.5;">
-</canvas>
+  <div ng-if="cfg != 'OM'" >
+    <canvas id="template" width="210px" height="210px">
+    </canvas>
+    
+    <canvas id="{{maillotData.id}}" width="210px" height="210px">
+    </canvas>
+    
+    <img ng-src="style/clubs/large/{{cfg.id}}.png" class="ecusson"></img>
+  </div>
+  
+  <img src="style/maillots/OM.png" ng-if="cfg == 'OM'"></img>
+  
+</div>
+

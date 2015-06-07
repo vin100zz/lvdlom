@@ -1,0 +1,22 @@
+<div class="buteurs-match" ng-class="{mini: cfg.mini}">
+  <div class="row-maillots">
+    <div><lvdlom-maillot cfg="left.maillot"></lvdlom-maillot></div>
+    <div><lvdlom-maillot cfg="right.maillot"></lvdlom-maillot></div>
+  </div>
+   
+  <div class="row-buteurs">
+    <ul>
+     <li ng-repeat="but in buts" ng-class="{left: but.left, right: but.right, adv: but.adv, first: but.first, last: but.last}">
+       <div class="icon-but" ng-if="but.left"></div>
+       <span class="remark" ng-if="but.left" >{{but.score}}</span>
+       <span class="remark" ng-if="but.right" >{{but.minute}}'</span>
+       
+       <span>{{but.prenom}} {{but.nom}}</span>
+       
+       <span class="remark" ng-if="but.left" >{{but.minute}}'</span>
+       <span class="remark" ng-if="but.right" >{{but.score}}</span>
+       <div class="icon-but" ng-if="but.right"></div>
+     </li>
+    </ul>
+  </div>
+</div>

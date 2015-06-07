@@ -102,11 +102,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-beep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-spritesmith');
 
   // Default task(s).
-  grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat']);
+  grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat', 'beep']);
   grunt.registerTask('clubs', ['clean', 'responsive_images:clubs', 'sprite:clubs', 'default']);
 };

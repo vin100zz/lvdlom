@@ -1,0 +1,25 @@
+<div class="equipe-match" ng-class="{mini: cfg.mini}">
+  <div class="row-joueurs">
+    <ul>
+      <li ng-repeat="joueur in joueurs" ng-class="{remplacant: joueur.isRemplacant}">
+        <div>
+          <span ng-show="joueur.isRemplacant" class="remplacant remark">{{joueur.minuteRmp}}'</span>
+          <span ng-bind-html="joueur.poste | format:'poste'"></span><span>{{joueur.prenom}} {{joueur.nom}}</span>
+          <span ng-show="joueur.minuteOut" class="remplacant remark">{{joueur.minuteOut}}'</span>
+        </div>
+        <div ng-bind-html="Formatter.butsPerJoueur(joueur.id, match.buteurs.om)"></div>
+        <div><div ng-bind-html="joueur.carton | format:'carton'"></div></div>
+      </li>
+    </ul>
+  </div>
+   
+  <div class="row-entraineurs">
+    <ul>
+     <li ng-repeat="entraineur in match.entraineurs">
+       <div>
+         <span ng-bind-html="'E' | format:'poste'"></span><span>{{entraineur.prenom}} {{entraineur.nom}}</span>
+       </div>
+     </li>
+    </ul>
+  </div>
+</div>

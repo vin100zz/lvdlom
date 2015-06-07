@@ -1,0 +1,21 @@
+@import "../../style/variables";
+
+.dir-maillot {
+  position: relative;
+
+  > div > canvas:first-of-type {
+    display: none;
+  }
+  
+  > div > canvas:last-of-type,
+  > img {
+    zoom: 0.5;
+  }
+  
+  .ecusson {
+    position: absolute;
+    top: 270px;
+    left: calc(~"50% + 80px");
+    zoom: 0.1;
+  }
+}

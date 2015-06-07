@@ -62,7 +62,7 @@ $competition = DBAccess::singleRow
     SousTypeCompetition AS sousType,
     TypeCompetition AS type
 	FROM competitions
-  WHERE competitions.NomCompetition = '" . str_replace("'", "''", $ficheMatch['competition']) . "'" // FIXME
+  WHERE competitions.NomCompetition = '" . utf8_decode(str_replace("'", "''", $ficheMatch['competition'])) . "'" // FIXME
 );
 
 // buteurs OM

@@ -16,7 +16,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
   .when('/matches', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchesCtrl', resolve: dependencies})
-  //.when('/match/:id', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchCtrl'})
+  .when('/match/:id', {templateUrl: 'app/modules/match.html', controller: 'MatchCtrl'})
   .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
   .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
   .when('/saisons', {templateUrl: 'app/modules/common/abstractList.html', controller: 'SaisonsCtrl', resolve: dependencies})

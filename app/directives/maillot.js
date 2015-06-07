@@ -1,4 +1,4 @@
-app.directive('lvdlomMaillot', function () {
+app.directive('lvdlomMaillot', function (Maillots) {
   
   // RGB -> HSV
   function rgb2hsv (r, g, b) {
@@ -105,8 +105,13 @@ app.directive('lvdlomMaillot', function () {
       var g = data[p+1];
       var b = data[p+2];
       var a = data[p+3];
-      
-      if (a > 0) {
+
+      if (a === 0) {
+        data[p] = tplData[p];
+        data[p+1] = tplData[p+1];
+        data[p+2] = tplData[p+2];
+        data[p+3] = tplData[p+3];
+      } else {
         var hsv = rgb2hsv(r,g,b);
         var h = hsv[0];
         var s = hsv[1];
@@ -119,7 +124,7 @@ app.directive('lvdlomMaillot', function () {
         data[p] = rgb[0];
         data[p+1] = rgb[1];
         data[p+2] = rgb[2];
-      }
+      }    
     }
     context.putImageData(map, 0, 0);
   }
@@ -132,31 +137,41 @@ app.directive('lvdlomMaillot', function () {
     controller: function ($scope) {
       
       var render = function () {
-        loadImgInCanvas('template', 'style/maillots/effect.png', function (tplCanvas, tplContext, tplImg) {
+        if (!$scope.cfg) {
+          return;
+        }
+        
+        if ($scope.cfg !== 'OM') {
+          $scope.maillotData = Maillots.get($scope.cfg.nom);
           
-          var tplMap = tplContext.getImageData(0, 0, tplCanvas.width, tplCanvas.height);
-          var tplData = tplMap.data;
-          
-          loadImgInCanvas($scope.cfg.id, 'style/maillots/' + $scope.cfg.template + '.png', function (canvas, context, img) {
-                      
-            var map = context.getImageData(0, 0, canvas.width, canvas.height);
-            var data = map.data;
-
-            // change colors
-            changeColors(data, $scope.cfg.color1, $scope.cfg.color2, $scope.cfg.color3);
-            context.putImageData(map, 0, 0);
+          loadImgInCanvas('template', 'style/maillots/effect.png', function (tplCanvas, tplContext, tplImg) {
             
-            img.onload = null;
-            img.src = canvas.toDataURL();
+            var tplMap = tplContext.getImageData(0, 0, tplCanvas.width, tplCanvas.height);
+            var tplData = tplMap.data;
             
-            // blue image
-            stackBlurCanvasRGB($scope.cfg.id, 0, 0, 210, 210, 3);
-            
-            // superimpose template
-            superimposeTemplate($scope.cfg.id, tplData);
+            loadImgInCanvas($scope.maillotData.id, 'style/maillots/' + $scope.maillotData.template + '.png', function (canvas, context, img) {
+                        
+              var map = context.getImageData(0, 0, canvas.width, canvas.height);
+              var data = map.data;
+  
+              // change colors
+              changeColors(data, $scope.maillotData.color1, $scope.maillotData.color2, $scope.maillotData.color3);
+              context.putImageData(map, 0, 0);
+              
+              img.onload = null;
+              img.src = canvas.toDataURL();
+              
+              // blue image
+              stackBlurCanvasRGB($scope.maillotData.id, 0, 0, 210, 210, 3);
+              
+              // superimpose template
+              superimposeTemplate($scope.maillotData.id, tplData);
+            });           
           });
-        });
+        }
       };
+      
+      render();
       
       $scope.$watch('cfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {

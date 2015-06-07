@@ -2,13 +2,11 @@
 
 #minimatch {
   position: relative;
-  text-align: center;
-  line-height: 22px;
   
   .link-button {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -20,6 +18,7 @@
     cursor: pointer;
     transition: opacity 0.2s linear;
     opacity: 0;
+    text-align: center;
   }
   &:hover .link-button {
     opacity: 0.6;
@@ -31,100 +30,6 @@
   
   .row:not(:first-of-type) {
     margin-top: 10px;
-  }
-
-  .row-score {
-    display: table;
-    width: 100%;
-  
-    > div {
-      display: table-cell;
-      width: 33.33%;
-      height: 100px;
-      vertical-align: middle;
-    }
-  
-    .club {
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-    }
-    
-    .score-container {
-      width: 70px;
-      margin: auto;
-      color: @secondaryText;
-      border-radius: 5px;
-      border: 1px solid @lightBorder;
-      text-align: center;
-      
-      .plain {
-        line-height: 34px;
-        font-size: 22pt;
-      }
-      
-      .rq {
-        line-height: 20px;
-        border-top: 1px dashed @lightBorder;
-      }
-    }  
-  }
-  
-  .row-fiche {
-    background: @alternateBackground;
-    border-top: 1px solid @tableBorder;
-    border-bottom: 1px solid @tableBorder;
-  }
-  
-  .row-joueurs {
-    text-align: left;
-    
-    ul {
-      display: table;
-      width: 100%;
-      padding: 0 10px;
-    }
-    
-    li {
-      display: table-row;
-      width: 100%;
-     
-      > div {
-        display: table-cell;
-      }
-     
-      > div:first-child {
-        width: 75%;
-      }
-      > div:nth-child(2) {
-        min-width: 25px;
-      }
-      
-      &:nth-of-type(11) > div {
-        padding-bottom: 3px;
-      }
-      &:nth-of-type(12) > div {
-        border-top: 1px dashed @tableBorder;
-        padding-top: 3px;
-      }
-      
-      .remplacant {
-        margin-right: 6px;
-      }
-      .remplacant:before {
-        content: '';
-        display: inline-block;
-        margin-right: 3px;
-        border-style: solid;
-        border-width: 4px 0 4px 6px;
-        border-color: transparent transparent transparent @remplacant;
-      }
-    }
-  }
-  
-  .row-entraineurs {
-    margin-left: 10px;
-    text-align: left;
   }
 
 }
