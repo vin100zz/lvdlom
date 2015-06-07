@@ -1,0 +1,22 @@
+<div ng-controller="MiniAdversaireCtrl" id="miniadversaire">
+
+  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+
+  <div ng-show="!loading && !adversaire">Aucun adversaire sélectionné</div>
+  
+  <div ng-show="!loading && adversaire">
+    
+    <div class="block-title">{{adversaire.nom}}</div>
+    
+    <div class="row">
+    
+      <div class="club" style="background-image: url({{Picture.club(adversaire.id)}})"></div>
+      
+      <div><lvdlom-maillot cfg="adversaire"></lvdlom-maillot></div>
+    
+    </div>
+    
+  </div>
+  
+
+</div>

@@ -10,7 +10,7 @@ app.directive('lvdlomEquipeMatch', function (Formatter) {
         
       // render
       var render = function () {
-        if (!$scope.match.$resolved) {
+        if (!$scope.match || !$scope.match.$resolved) {
           return;
         }
         

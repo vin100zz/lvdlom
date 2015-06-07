@@ -23,6 +23,8 @@
       var prev = new Date(date.getTime() - 1000 * 60 * 60 * 24);
       var next = new Date(date.getTime() + 1000 * 60 * 60 * 24);
       
+      $scope.current = DateTime.format(date, 'd MMMM');
+      
       $scope.breadcrumb = {
         prev: {
           label: DateTime.format(prev, 'd MMMM'),

@@ -41,7 +41,7 @@ app.directive('lvdlomButeursMatch', function (Bom) {
       
       // render
       var render = function () {
-        if (!$scope.match.$resolved) {
+        if (!$scope.match || !$scope.match.$resolved) {
           return;
         }
         
