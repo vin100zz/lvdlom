@@ -1,16 +1,16 @@
 <div class="dir-maillot">
 
-  <div ng-if="cfg != 'OM'" >
+  <div ng-show="cfg.nomClub != 'OM'" >
     <canvas id="template" width="210px" height="210px">
     </canvas>
     
-    <canvas id="{{maillotData.id}}" width="210px" height="210px">
+    <canvas id="{{canvasCfg.canvasId}}" width="210px" height="210px">
     </canvas>
     
-    <img ng-src="style/clubs/large/{{cfg.id}}.png" class="ecusson"></img>
+    <img ng-src="style/clubs/large/{{cfg.idClub}}.png" class="ecusson"></img>
   </div>
   
-  <img src="style/maillots/OM.png" ng-if="cfg == 'OM'"></img>
+  <img src="style/maillots/OM.png" ng-show="cfg.nomClub == 'OM'"></img>
   
 </div>
 

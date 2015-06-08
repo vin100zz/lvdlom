@@ -45,12 +45,15 @@ app.directive('lvdlomButeursMatch', function (Bom) {
           return;
         }
         
+        var cfgMaillotOm = {idClub: 'OM', nomClub: 'OM'};
+        var cfgMaillotAdv = {idClub: $scope.match.adversaire.id, nomClub: $scope.match.adversaire.nom};
+        
         var domicile = Bom.domicile($scope.match.fiche.lieu);
         $scope.left = {
-          maillot: domicile ? 'OM' : $scope.match.adversaire
+          maillot: domicile ? cfgMaillotOm : cfgMaillotAdv
         };
         $scope.right = {
-          maillot: !domicile ? 'OM' : $scope.match.adversaire
+          maillot: !domicile ? cfgMaillotOm : cfgMaillotAdv
         };
         
         $scope.match.buteurs.adv = $scope.match.buteurs.adv.map(function (but) {

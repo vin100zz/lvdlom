@@ -141,31 +141,31 @@ app.directive('lvdlomMaillot', function (Maillots) {
           return;
         }
         
-        if ($scope.cfg !== 'OM') {
-          $scope.maillotData = Maillots.get($scope.cfg.nom);
+        if ($scope.cfg.nomClub !== 'OM') {
+          $scope.canvasCfg = JSON.parse(JSON.stringify(Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub)));
           
           loadImgInCanvas('template', 'style/maillots/effect.png', function (tplCanvas, tplContext, tplImg) {
             
             var tplMap = tplContext.getImageData(0, 0, tplCanvas.width, tplCanvas.height);
             var tplData = tplMap.data;
             
-            loadImgInCanvas($scope.maillotData.id, 'style/maillots/' + $scope.maillotData.template + '.png', function (canvas, context, img) {
+            loadImgInCanvas($scope.canvasCfg.canvasId, 'style/maillots/' + $scope.canvasCfg.template + '.png', function (canvas, context, img) {
                         
               var map = context.getImageData(0, 0, canvas.width, canvas.height);
               var data = map.data;
   
               // change colors
-              changeColors(data, $scope.maillotData.color1, $scope.maillotData.color2, $scope.maillotData.color3);
+              changeColors(data, $scope.canvasCfg.color1, $scope.canvasCfg.color2, $scope.canvasCfg.color3);
               context.putImageData(map, 0, 0);
               
               img.onload = null;
               img.src = canvas.toDataURL();
               
               // blue image
-              stackBlurCanvasRGB($scope.maillotData.id, 0, 0, 210, 210, 3);
+              stackBlurCanvasRGB($scope.canvasCfg.canvasId, 0, 0, 210, 210, 3);
               
               // superimpose template
-              superimposeTemplate($scope.maillotData.id, tplData);
+              superimposeTemplate($scope.canvasCfg.canvasId, tplData);
             });           
           });
         }
@@ -173,7 +173,7 @@ app.directive('lvdlomMaillot', function (Maillots) {
       
       render();
       
-      $scope.$watch('cfg', function (newValue, oldValue) {
+      $scope.$watch('cfg.nomClub', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           render();
         }

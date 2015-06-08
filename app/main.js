@@ -20,6 +20,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
   .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
   .when('/saisons', {templateUrl: 'app/modules/common/abstractList.html', controller: 'SaisonsCtrl', resolve: dependencies})
+  .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl', resolve: dependencies})
   .otherwise({redirectTo: '/date'});
 }]);
 

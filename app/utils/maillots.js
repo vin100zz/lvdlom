@@ -1,18 +1,20 @@
 app.service('Maillots', function() {
   
-  this.get = function (club) {
-    if (club === 'OM') {
+  this.get = function (idClub, nomClub) {
+    if (nomClub === 'OM') {
       return {template: 'OM'};
     }
-    var configClub = config[club] || defaultConfig;
-    configClub.id = 'maillot-' + club;
-    return configClub;
+    var cfg = config[nomClub] || config[idClub] || defaultConfig;
+    cfg.canvasId = 'maillot-' + idClub;
+    return cfg;
   };
   
   var config = {
+    1: {template: 48, color1: "F9D614", color2: "000000", color3: "000000"}, // AEK ATHÈNES
+    27: {template: 54, color1: "172983", color2: "E22219", color3: "172983"}, // BOLOGNE
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
-    "AJAX AMSTERDAM": {template: 16, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
+    "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
     "ANGERS": {template: 2, color1: "FFFFFF", color2: "231F20", color3: "231F20"},
     "ARLES-AVIGNON": {template: 5, color1: "FFDD02", color2: "045395", color3: "045395"},
     "ARSENAL": {template: 2, color1: "EE0007", color2: "FFFFFF", color3: "FFFFFF"},
@@ -44,7 +46,7 @@ app.service('Maillots', function() {
     "NANTES": {template: 3, color1: "FFDD00", color2: "006736", color3: "006736"},
     "NICE": {template: 3, color1: "CD1E25", color2: "231F20", color3: "231F20"},
     "NÎMES": {template: 1, color1: "ED1C24", color2: "FFFFFF", color3: "FFFFFF"},
-    "PARIS SG": {template: 16, color1: "002561", color2: "ED1C24", color3: "FFFFFF"},
+    "PARIS SG": {template: 56, color1: "002561", color2: "ED1C24", color3: "FFFFFF"},
     "PSV EINDHOVEN": {template: 11, color1: "ED1C24", color2: "FFFFFF", color3: "000000"},
     "RACING CLUB PARIS": {template: 4, color1: "FFFFFF", color2: "82B1D8", color3: "FFFFFF"},
     "REAL MADRID": {template: 1, color1: "FFFFFF", color2: "004799", color3: "004799"},
