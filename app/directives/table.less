@@ -1,58 +1,61 @@
 @import "../../style/variables";
 
-table {
-  width: 100%;
-  text-align: left;
-}
-
-/* Cells */
-th, td {
-  padding: 3px 5px;
-  vertical-align: middle;
-}
-td.ranking {
-	color: @secondaryText;
-}
-
-/* Rows */
-tr {
-  height: 24px;
-}
-tbody tr {
-  border-bottom: 1px solid @tableBorder;
-  cursor: pointer;
-}
-tbody tr:nth-child(even) {
-  background: @alternateBackground;
-}
-tbody tr.selected {
-	background: @tableSelected;
-}
-
-/* Footer */
-tfoot td {
-  text-align: right;
-  color: @secondaryText;
-  font-size: 9pt;
-}
-
-/* Header */
-th,
-th.sorting.asc:after,
-th.sorting.desc:after {
-	color: @secondaryText;
-}
-th:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-th.sorting:after {
-	display: inline-block;
-	margin-left: 3px;
-	font-size: 8pt;
-	color: @boxBackground;
-	content: '\25b2';
-}
-th.sorting.desc:after {
-	content: '\25bc';
+.dir-table {
+	
+  table {
+	  width: 100%;
+    text-align: left;
+  }
+	
+	/* Cells */
+	th, td {
+	  padding: 3px 5px;
+	  vertical-align: middle;
+	}
+	td.ranking {
+		color: @secondaryText;
+	}
+	
+	/* Rows */
+	tr {
+	  height: 24px;
+	}
+	tbody tr {
+	  border-bottom: 1px solid @tableBorder;
+	  cursor: pointer;
+	}
+	tbody tr:nth-child(even) {
+	  background: @alternateBackground;
+	}
+	tbody tr.selected {
+		background: @tableSelected;
+	}
+	
+	/* Footer */
+	tfoot td {
+	  text-align: right;
+	  color: @secondaryText;
+	  font-size: 9pt;
+	}
+	
+	/* Header */
+	th,
+	th.sorting.asc:after,
+	th.sorting.desc:after {
+		color: @secondaryText;
+	}
+	th:hover {
+	  text-decoration: underline;
+	  cursor: pointer;
+	}
+	th.sorting:after {
+		display: inline-block;
+		margin-left: 3px;
+		font-size: 8pt;
+		color: @boxBackground;
+		content: '\25b2';
+	}
+	th.sorting.desc:after {
+		content: '\25bc';
+	}
 }

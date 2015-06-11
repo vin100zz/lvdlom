@@ -36,7 +36,10 @@ $ficheMatch = DBAccess::singleRow
     Class3 as class3,
     ClassPts3 as classPts3,
     Class4 as class4,
-    ClassPts4 as classPts4
+    ClassPts4 as classPts4,
+    Comm1 as comm1,
+    Comm2 as comm2,
+    Comm3 as comm3
 	FROM matches
 	WHERE IdMatch = $idMatch
 ");

@@ -2,9 +2,9 @@
 
   <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
 
-  <div class="pure-u-8-24 block">
+  <div class="pure-u-1-3 g-block">
     <div class="summary">
-      <div class="block-title">{{DateTime.format(current, 'd MMMM')}}</div>
+      <div class="g-block-title">{{DateTime.format(current, 'd MMMM')}}</div>
       <ul>
         <li><div class="figure">{{model.matches.length}}</div><div class="desc">match<span ng-show="model.matches.length > 0">es</span></div></li>
         <li><div class="figure">{{model.joueurs.length}}</div><div class="desc">naissance<span ng-show="model.joueurs.length > 0">s</span><br/>de joueurs</div></li>
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="pure-u-8-24 block" ng-show="model.matches.length > 0">
+  <div class="pure-u-1-3 g-block" ng-show="model.matches.length > 0">
     <div>
       <ul class="list">
         <li ng-repeat="match in model.matches" class="match {{match.sousTypeCompetition}}">
@@ -27,8 +27,8 @@
     </div>
   </div>
   
-  <div class="pure-u-8-24">
-    <div class="pure-u-1 block" ng-show="model.joueurs.length > 0">
+  <div class="pure-u-1-3">
+    <div class="pure-u-1 g-block" ng-show="model.joueurs.length > 0">
       <div>
         <ul class="list">
           <li ng-repeat="joueur in model.joueurs" class="joueur {{joueur.poste}}">
@@ -42,7 +42,7 @@
       </div>
     </div>
     
-    <div class="pure-u-1 block" ng-show="model.dirigeants.length > 0">
+    <div class="pure-u-1 g-block" ng-show="model.dirigeants.length > 0">
       <div>
         <ul class="list">
           <li ng-repeat="dirigeant in model.dirigeants" class="dirigeant">

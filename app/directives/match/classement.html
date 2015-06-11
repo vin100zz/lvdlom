@@ -1,0 +1,17 @@
+<div class="dir-classement-match" ng-class="{mini: cfg.mini}">
+
+  <div class="g-row row-classement">
+    <ul>
+      <li ng-repeat="row in classement" ng-class="{separator: row.separator}">
+        <div class="remark">{{row.pos}}.</div>
+        <div>{{row.club}}</div>
+        <div class="remark">{{row.pts}} pts</div>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="g-row row-commentaires" ng-if="commentaire">
+    <div><span class="fa fa-lg g-fa fa-info-circle"></span>{{commentaire}}</div>
+  </div>
+  
+</div>

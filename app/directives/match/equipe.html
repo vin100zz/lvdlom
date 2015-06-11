@@ -1,5 +1,6 @@
-<div class="equipe-match" ng-class="{mini: cfg.mini}">
-  <div class="row-joueurs">
+<div class="dir-equipe-match" ng-class="{mini: cfg.mini}">
+
+  <div class="g-row row-joueurs">
     <ul>
       <li ng-repeat="joueur in joueurs" ng-class="{remplacant: joueur.isRemplacant}">
         <div>
@@ -13,7 +14,7 @@
     </ul>
   </div>
    
-  <div class="row-entraineurs">
+  <div class="g-row row-entraineurs">
     <ul>
      <li ng-repeat="entraineur in match.entraineurs">
        <div>
@@ -22,4 +23,5 @@
      </li>
     </ul>
   </div>
+  
 </div>

@@ -25,13 +25,13 @@ app.directive('lvdlomCharts', function () {
           $scope.mainChart.destroy();
         }
         $scope.mainData = prepareData($scope.cfg.main);
-        $scope.mainChart = new Chart(window.document.querySelector("#charts .main").getContext("2d")).Doughnut($scope.mainData, options);
+        $scope.mainChart = new Chart(window.document.querySelector(".dir-charts .main").getContext("2d")).Doughnut($scope.mainData, options);
         
         if ($scope.innerChart) {
           $scope.innerChart.destroy();
         }
         $scope.innerData = prepareData($scope.cfg.inner);
-        $scope.innerChart = new Chart(window.document.querySelector("#charts .inner").getContext("2d")).Pie($scope.innerData, optionsInner);
+        $scope.innerChart = new Chart(window.document.querySelector(".dir-charts .inner").getContext("2d")).Pie($scope.innerData, optionsInner);
       };
       
       $scope.$watch('cfg', function (newValue, oldValue) {

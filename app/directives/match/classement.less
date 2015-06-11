@@ -1,0 +1,39 @@
+@import "../../../style/variables";
+
+.dir-classement-match {
+  line-height: 22px;
+
+  .row-classement {
+    padding: 0 15%;
+    
+    li.separator > div {
+      border-bottom: 1px dashed @tableBorder;
+      padding-bottom: 3px;
+    }
+    
+    li.separator + li > div {
+      padding-top: 3px;
+    }
+  
+    li > div:nth-child(1) {
+      width: 5%;
+      text-align: right;
+      padding-right: 5px;
+    }
+    
+    li > div:nth-child(2) {
+      width: 80%;
+    }
+    
+    li > div:nth-child(3) {
+      width: 10%;
+    }
+  }
+  
+  .row-commentaires {
+    text-align: center;
+  }
+}
+
+
+  

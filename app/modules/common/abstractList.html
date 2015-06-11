@@ -2,28 +2,28 @@
 
 <div class="pure-g">
 
-   <div class="pure-u-1 block">
-     <div>
-       <lvdlom-filters cfg="filters"></lvdlom-filters>
-     </div>
-   </div>
+  <div class="pure-u-1 g-block">
+    <div>
+      <lvdlom-filters cfg="filters"></lvdlom-filters>
+    </div>
+  </div>
     
-  <div class="pure-u-18-24 main-data">
-    <div class="pure-u-1 block">
+  <div class="pure-u-3-4 g-main-block">
+    <div class="pure-u-1 g-block">
       <div>
         <lvdlom-table cfg="tableCfg"></lvdlom-table>
       </div>
     </div>
   </div>
   
-  <div class="pure-u-6-24">
-    <div class="pure-u-1 block" ng-show="chartCfg != null">
+  <div class="pure-u-1-4">
+    <div class="pure-u-1 g-block" ng-show="chartCfg != null">
       <div>
         <lvdlom-charts cfg="chartCfg"></lvdlom-charts>
       </div>
     </div>
     
-    <div class="pure-u-1 block">
+    <div class="pure-u-1 g-block">
       <div>
         <ng-include src="selectionTpl"></ng-include>
       </div>

@@ -1,5 +1,6 @@
-<div class="fiche-match" ng-class="{mini: cfg.mini}">
-  <div class="row-score">
+<div class="dir-fiche-match" ng-class="{mini: cfg.mini}">
+
+  <div class="g-row row-score">
     <div class="club" style="background-image: url({{Picture.club(left.id)}})"></div>
     <div class="score">
       <div class="score-container">
@@ -10,22 +11,27 @@
     <div class="club" style="background-image: url({{Picture.club(right.id)}})"></div>
   </div>
   
-  <div ng-hide="cfg.mini" class="block-title row-equipes">
+  <div class="g-block-title g-row row-equipes" ng-hide="cfg.mini" >
     <div>{{left.nom}}</div>
     <div></div>
     <div>{{right.nom}}</div>
   </div>
   
-  <div class="row-info">
-    <div class="col">
+  <div class="g-row row-info">
+    <div>
       <div>{{match.fiche.date | format:'dateLong'}}</div>
       <div><span ng-bind-html="match.competition.sousType | format:'sousTypeCompetition'"></span><span>{{match.competition.nom}}</span></div>
       <div>{{match.fiche.niveau}}</div>
     </div>
-    <div class="col" ng-hide="cfg.mini">
+    <div ng-hide="cfg.mini">
       <div>Saison {{match.fiche.saison}}</div>
       <div>{{match.fiche.lieu}}</div>
-      <div ng-show="match.fiche.spectateurs">{{match.fiche.spectateurs}} spectateurs</div>
+      <div ng-show="match.fiche.spectateurs > 0">{{match.fiche.spectateurs}} spectateurs</div>
     </div>
   </div>
+  
+  <div class="g-row row-jyetais" ng-if="match.fiche.jyEtais" >
+    <div><span class="fa fa-lg g-fa fa-thumbs-up"></span>{{match.fiche.jyEtais}}</div>
+  </div>
+  
 </div>

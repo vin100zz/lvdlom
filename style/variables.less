@@ -1,15 +1,3 @@
-.inlineBlockHack(@container) {
-  @normalized: ~"@{container}" ;
-  @{normalized} {
-    letter-spacing: -.31em;
-    word-spacing: -.43em;
-  }
-  @{normalized} > * {
-    letter-spacing: normal;
-    word-spacing: normal;
-  }
-}
-
 /* Background */
 @mainBackground: #0769ad;
 @mainBackgroundGradientEnd: #032f4c;
@@ -19,7 +7,7 @@
 @alternateBackground: #f7f7f7;
 @maskBackground: #02273f;
 @breadcrumbBackground: rgba(25, 25, 25, 0.25);
-@tableSelected: rgba(255, 144, 0, 0.4);
+@tableSelected: lighten(@selectedText, 30%);
 
 /* Texts */
 @primaryText: #333;
