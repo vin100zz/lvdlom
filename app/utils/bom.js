@@ -7,7 +7,7 @@ app.service('Bom', function() {
   };
   
   this.resultat = function (match) {
-    if (!match) return '';
+    if (!match) {return '';}
     
     var butsOM = parseInt(match.butsOM, 10) || 0;
     var butsAdv = parseInt(match.butsAdv, 10) || 0;
