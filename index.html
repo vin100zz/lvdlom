@@ -68,15 +68,15 @@
 
   <div id="header">
     <div class="dernier">
-      <div>Dernier match :</div>
-      <div class="caret"></div>
-      <div><a href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}} - {{actu.dernierMatch.clubDroite}} : {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a></div>
+      <span>Dernier match :</span>
+      <span class="caret"></span>
+      <a href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}} - {{actu.dernierMatch.clubDroite}} : {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
     </div>
     <div class="prochain">
       <span>Prochains matches :</span>
       <ul>
         <li ng-repeat="prochainMatch in actu.prochainsMatches">
-          <div class="caret"></div>
+          <span class="caret"></span>
           <div class="match">{{prochainMatch.match}}<span class="tele">{{prochainMatch.date}}, {{prochainMatch.tele}}</span></div>
         </li>
       </ul>

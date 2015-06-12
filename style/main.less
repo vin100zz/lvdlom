@@ -12,10 +12,8 @@
 	border-bottom: 1px solid #7acef4;
 	padding: 10px 20px;
 
-  * {
-    display: inline-block;
-  }
   > div {
+    display: inline-block;
     margin-right: 40px;
     width: auto;
   }
@@ -27,8 +25,17 @@
     color: @primaryReversedText;
     margin: 0 5px;
   }
-  .prochain > ul > li {
-    margin-right: 20px;
+  .prochain > ul {
+    display: inline-block;
+    
+    > li {
+	    display: inline-block;
+	    margin-right: 20px;
+	    
+	    > div {
+	      display: inline-block;
+	    }
+    }
   }
   .tele {
     font-size: 9pt;
