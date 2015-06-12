@@ -33,7 +33,7 @@ app.controller('MainCtrl', function($scope, $location, Loading, $http) {
   });
   
   $scope.menu = [
-    {title: 'Accueil', hash: 'home', last: true},
+    {title: 'Accueil', hash: 'date', last: true},
     {title: 'Infos Joueurs', hash: 'joueurs'},
     {title: 'Stats Joueurs', hash: 'stats-joueurs'},
     {title: 'Âge', hash: 'age', last: true},
