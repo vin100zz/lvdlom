@@ -1,7 +1,11 @@
 @import "variables.less";
 
 /* Header */
-#header {
+#mini-header {
+	display: none;
+}
+#header,
+#mini-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +15,9 @@
   color: @secondaryReversedText;
 	border-bottom: 1px solid #7acef4;
 	padding: 10px 20px;
+}
 
+#header {
   > div {
     display: inline-block;
     margin-right: 40px;
@@ -44,6 +50,17 @@
   }
 }
 
+#mini-header {
+	padding: 0 10px;
+	background: url(img/mini-title.png) no-repeat 50px center, @menuBackground;
+	line-height: 35px;
+	
+	.hamburger {
+	  vertical-align: middle;
+	  cursor: pointer;
+	}
+}
+
 /* Menu */
 #menu {
   position: fixed;
@@ -59,7 +76,7 @@
     width: 114px;
     height: 80px;
     margin: 20px auto;
-    background: url(img/title.png) no-repeat;  
+    background: url(img/title.png) no-repeat;
   }
   .navigation {
     background: url(img/logo.png) no-repeat bottom 10px right 10px;
@@ -98,4 +115,31 @@
   right: 0;
   bottom: 0;
   padding: 15px;
+}
+
+
+
+@media (max-width: 1280px) {
+  #header {
+    display: none;
+  }
+  #mini-header {
+    display: block;
+  }
+  
+  #menu {
+    z-index: 9;
+    transition: left 0.5s ease;
+    
+    &.offcanvas {
+      left:-160px;
+    }
+    .title {
+      display: none;
+    }
+  }
+  
+  #content {
+    left: 0;
+  }
 }

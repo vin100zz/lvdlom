@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
   <link rel='shortcut icon' type='image/gif' href='style/favicon.ico' />
   <title>La Vie de l'OM</title>
   
@@ -82,12 +84,16 @@
       </ul>
     </div>
   </div>
+  
+  <div id="mini-header">
+    <span class="fa fa-2x fa-bars hamburger" ng-click="toggleMenu()"></span>
+  </div>
 
-  <div id="menu">
+  <div id="menu" ng-class="{offcanvas: isMenuOffCanvas}">
     <div class="title"></div>
     <ul class="navigation">
       <li ng-repeat="item in menu" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
-        <a href="{{'#' + item.hash}}">{{item.title}}</a>
+        <a href="{{'#' + item.hash}}" ng-click="hideMenu()">{{item.title}}</a>
       </li>
     </ul>
   </div>

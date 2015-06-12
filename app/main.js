@@ -49,6 +49,16 @@ app.controller('MainCtrl', function($scope, $location, Loading, $http) {
     {title: 'Avancement', hash: 'avancement'}
   ];
   
+  $scope.isMenuOffCanvas = true;
+  
+  $scope.toggleMenu = function () {
+    $scope.isMenuOffCanvas = !$scope.isMenuOffCanvas;
+  };
+  
+  $scope.hideMenu = function () {
+    $scope.isMenuOffCanvas = true;
+  };
+  
   $scope.isCurrentHash = function (hash) {
     return hash === $location.path().substr(1);
   };
