@@ -29,7 +29,7 @@ app.directive('lvdlomClassementMatch', function () {
               pts: $scope.match.fiche['classPts' + i]
             });
             if (i === 4 && pos && parseInt(pos, 10) > 4) {
-              $scope.classement[2].separator = true;
+              $scope.classement[$scope.classement.length-2].separator = true;
             }
           }
         }
