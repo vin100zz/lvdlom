@@ -1,7 +1,5 @@
 ﻿<?php
 
-require_once 'General.php';
-
 class DBAccessor extends SQLite3
 {
 	function __construct()
