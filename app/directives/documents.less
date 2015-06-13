@@ -1,0 +1,44 @@
+@import "../../style/variables";
+
+.dir-documents {
+	text-align: center;
+	
+	.container {
+	  display: inline-block;
+	  margin: 0 10px 20px 10px;
+	}
+
+  .document {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+  
+  .legend {
+    margin-top: 5px;
+    padding: 5px;
+    border-top: 1px solid @tableBorder;
+    border-bottom: 1px solid @tableBorder;
+    background-color: @alternateBackground;
+    
+    .commentaire {
+      margin-bottom: 5px;
+      line-height: 18px;
+    }
+    
+    .laprovence,
+    .lequipe {
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 12px;
+      padding-left: 16px;
+    }
+    .laprovence {
+      background-image: url(sources/provence.png);
+    }
+    .lequipe {
+      background-image: url(sources/lequipe.png);
+    }
+  }
+}

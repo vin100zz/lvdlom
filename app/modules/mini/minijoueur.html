@@ -7,7 +7,7 @@
   <div ng-show="!loading && joueur">
   
     <div class="g-block-title">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</div>
-    <div class="photo-id" style="background-image: url(../laviedelom/photos/id_joueurs/{{joueur.id}}.jpg)"></div>
+    <div class="photo-id" style="background-image: url({{Picture.joueur(joueur.id)}});"></div>
   
   </div>
   

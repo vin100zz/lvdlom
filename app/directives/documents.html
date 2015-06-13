@@ -1,0 +1,20 @@
+<div class="dir-documents">
+  
+  <ul>
+    <li ng-repeat="document in documents" style="" class="container">
+    
+      <div class="document" style="background-image: url({{document.path}}); width:{{document.width}}px; height:{{document.height}}px;"></div>
+      
+      <div class="legend" style="width:{{document.width}}px;">
+        <div class="commentaire" ng-if="document.legende">{{document.legende}}</div>
+        <div>
+          <span class="remark" ng-if="document.date">{{document.date}}</span>
+          <span class="remark {{getSourceClass(document.source)}}" ng-if="document.source">{{document.source}}</span>
+        </div>
+      </div>
+      
+    </li>
+  </ul>
+  
+</div>
+

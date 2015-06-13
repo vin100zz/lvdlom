@@ -1,4 +1,5 @@
-app.controller('MiniJoueurCtrl', function($scope, Joueur, Loading) {
+app.controller('MiniJoueurCtrl', function($scope, Joueur, Picture, Loading) {
+  $scope.Picture = Picture;
   
   $scope.$watch('selected.id', function (newValue, oldValue) {
     if (newValue !== oldValue) {

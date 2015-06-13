@@ -154,8 +154,8 @@ $palmares = DBAccess::query
 	ORDER BY Saison ASC
 ");
 
-// photos
-$photos = DBAccess::query
+// documents
+$documents = DBAccess::query
 ("
 	SELECT
     Fichier AS fichier,
@@ -236,7 +236,7 @@ $json['premierMatch'] = $premierMatch;
 $json['bilan'] = $bilanOrdonne;
 $json['premierBut'] = $premierBut;
 $json['palmares'] = $palmares;
-$json['photos'] = $photos;
+$json['documents'] = $documents;
 $json['dirigeant'] = $dirigeant;
 $json['navigation'] = array(
   'prev' => $prev,
