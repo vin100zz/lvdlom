@@ -8,16 +8,16 @@
   <div class="g-row row-buteurs">
     <ul>
       <li ng-repeat="but in buts" ng-class="{left: but.left, right: but.right, adv: but.adv, first: but.first, last: but.last}">
-        <span class="icon-but" ng-if="but.left"></span>
-        <span class="remark" ng-if="but.left && but.score" >{{but.score}}</span>
-        <span class="remark" ng-if="but.right && but.minute" >{{but.minute}}'</span>
+        <span class="g-icon-but" ng-if="but.left"></span>
+        <span class="g-remark" ng-if="but.left && but.score" >{{but.score}}</span>
+        <span class="g-remark" ng-if="but.right && but.minute" >{{but.minute}}'</span>
         
         <span>{{but.prenom}} {{but.nom}}</span>
         <span ng-if="but.note" >{{but.note}}</span>
         
-        <span class="remark" ng-if="but.left && but.minute" >{{but.minute}}'</span>
-        <span class="remark" ng-if="but.right && but.score" >{{but.score}}</span>
-        <span class="icon-but" ng-if="but.right"></span>
+        <span class="g-remark" ng-if="but.left && but.minute" >{{but.minute}}'</span>
+        <span class="g-remark" ng-if="but.right && but.score" >{{but.score}}</span>
+        <span class="g-icon-but" ng-if="but.right"></span>
      </li>
     </ul>
   </div>

@@ -13,17 +13,17 @@ app.service('Formatter', function (Bom, $filter) {
   this.nom = function (joueur) {
     var out = '<a href="#joueur/' + joueur.id + '">' + joueur.prenom + ' ' + joueur.nom + '</a>';
     if (joueur.auClub === "1" || joueur.auClub === "Y") {
-      out += '<span class="icon-au-club"></span>';
+      out += '<span class="g-icon-au-club"></span>';
     }
     return out;
   };
   
   this.poste = function (poste) {
-    return '<span class="badge poste ' + poste + '">' + poste.substr(0,1) + '</span>';
+    return '<span class="g-badge poste ' + poste + '">' + poste.substr(0,1) + '</span>';
   };
   
   this.flag = function (pays) {
-    return '<div class="icon-flag flag-' + pays + '">' + pays + '</div>';
+    return '<div class="g-icon-flag flag-' + pays + '">' + pays + '</div>';
   };
   
   this.date = function (date) {
@@ -59,13 +59,13 @@ app.service('Formatter', function (Bom, $filter) {
         ++age;
       }
       
-      return '<span>' + date + '</span><span class="remark">' + age + ' ans</span>';
+      return '<span>' + date + '</span><span class="g-remark">' + age + ' ans</span>';
     }
     return '';
   };
   
   this.lieuNaissance = function (joueur) {
-    return '<span>' + joueur.villeNaissance + '</span><span class="remark">' + joueur.territoireNaissance + '</span>';
+    return '<span>' + joueur.villeNaissance + '</span><span class="g-remark">' + joueur.territoireNaissance + '</span>';
   };
   
   this.competition = function (item) {
@@ -73,7 +73,7 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.sousTypeCompetition = function (sousTypeCompetition) {
-    return '<span class="badge competition ' + sousTypeCompetition + '">' + sousTypeCompetition + '</span>';
+    return '<span class="g-badge competition ' + sousTypeCompetition + '">' + sousTypeCompetition + '</span>';
   };
   
   this.competitionNiveau = function (match) {
@@ -98,7 +98,7 @@ app.service('Formatter', function (Bom, $filter) {
       var width = Math.min(value / max * 100, 100);
       out += _this._bar(width, item.color);
     });
-    return '<div class="table-bilan">' + out + '</div>';
+    return '<div class="g-table-bilan">' + out + '</div>';
   };
   
   this.bilanMatchesButs = function (max, joueur) {
@@ -111,11 +111,11 @@ app.service('Formatter', function (Bom, $filter) {
   
   this.lieu = function (lieu) {
     var domicile = Bom.domicile(lieu) ? 'D' : 'E';
-    return '<span class="icon-lieu ' + domicile + '"></span>' + lieu;
+    return '<span class="g-icon-lieu ' + domicile + '"></span>' + lieu;
   };
   
   this.club = function (match) {
-    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.idAdv + ' ' + match.nomAdv;
+    return '<div class="g-icon-club-wrapper"><div class="g-icon-club club-' + match.idAdv + '"></div></div>' + match.idAdv + ' ' + match.nomAdv;
   };
   
   this.$Score = {
@@ -132,13 +132,13 @@ app.service('Formatter', function (Bom, $filter) {
     var out = '';
     
     if (formatting === _this.$Score.table) {
-      out = '<span class="icon-resultat ' + resultat + '"></span>';
+      out = '<span class="g-icon-resultat ' + resultat + '"></span>';
       out += '<a href="#match/' + match.id + '">' + butsOM + '-' + butsAdv + '</a>';
       
       if (tabOM || tabAdv) {
-        out += '<span class="remark">' + tabOM + '-' + tabAdv + ' tab</span>';
+        out += '<span class="g-remark">' + tabOM + '-' + tabAdv + ' tab</span>';
       } else if (match.rqScore) {
-        out += '<span class="remark">' + match.rqScore + '</span>';
+        out += '<span class="g-remark">' + match.rqScore + '</span>';
       }
     } else if (formatting === _this.$Score.big) {
       var left = domicile ? match.butsOM : match.butsAdv;
@@ -160,7 +160,7 @@ app.service('Formatter', function (Bom, $filter) {
   
   this.carton = function (carton) {
     if (carton) {
-      return '<div class="icon-carton ' + carton[0] + '"></div>' + (carton.length > 1 ? '<span class="remark">' + carton.substr(1) + '\'</span>' : '');
+      return '<div class="g-icon-carton ' + carton[0] + '"></div>' + (carton.length > 1 ? '<span class="g-remark">' + carton.substr(1) + '\'</span>' : '');
     }
     return '';
   };
@@ -171,7 +171,7 @@ app.service('Formatter', function (Bom, $filter) {
     }, 0);
     var res = '';
     for (var i=0; i<nbButs; ++i) {
-      res += '<div class="icon-but"></div>';
+      res += '<div class="g-icon-but"></div>';
     }
     return res;
   };
