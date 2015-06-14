@@ -25,4 +25,8 @@ app.service('Bom', function() {
   this.domicile = function (lieu) {
     return (lieu === 'Huveaune' || lieu === 'Stade Vél\'');
   };
+  
+  this.poste = function (poste) {
+    return {'GA': 'Gardien', 'DE': 'Défenseur', 'MI': 'Milieu', 'AV': 'Attaquant'}[poste];
+  }
 });

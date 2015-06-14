@@ -1,9 +1,12 @@
 <div class="dir-carriere-joueur" ng-class="{mini: cfg.mini}">
 
-  <ul>
-    <li ng-repeat="row in carriere">
-      <span class="g-remark">{{row.saison}}</span> {{row.club}}
-    <li>
-  </ul>
+  <div class="g-row">
+    <ul>
+      <li ng-repeat="row in carriere" ng-class="{'g-important': row.om}">
+        <div class="g-remark saison">{{row.saison}}</div>
+        <div>{{row.club}}</div>
+      <li>
+    </ul>
+  </div>
   
 </div>

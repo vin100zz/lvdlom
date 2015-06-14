@@ -24,6 +24,7 @@ app.directive('lvdlomClassementMatch', function () {
               club = club.substr(dotIndex+2);
             }
             $scope.classement.push({
+              om: dotIndex > 0,
               pos: pos || i,
               club: club,
               pts: $scope.match.fiche['classPts' + i]

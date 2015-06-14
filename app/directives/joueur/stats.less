@@ -1,5 +1,34 @@
 @import "../../../style/variables";
 
 .dir-stats-joueur {
+  text-align: center;
 
+  li {
+  
+    &.header {
+      color: @secondaryText;
+      
+      > div {
+        padding-bottom: 3px;
+      }
+    }
+    
+    &.last > div {
+      padding-bottom: 3px;
+    }
+    
+    &.total > div {
+      padding-top: 3px;
+      border-top: 1px dashed @tableBorder;
+    }
+    
+    > div {
+      padding: 0 20px;
+   
+      &.saison {
+        text-align: right;
+      }
+    }
+  }
+  
 }

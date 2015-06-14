@@ -1,9 +1,13 @@
 <div class="dir-palmares-joueur" ng-class="{mini: cfg.mini}">
 
-  <ul>
-    <li ng-repeat="row in joueur.palmares">
-      {{row.bilan}} {{row.competition}} {{row.saison}}
-    </li>
-  </ul>
+  <div class="g-row">
+    <ul>
+      <li ng-repeat="row in joueur.palmares">
+        <div class="g-remark saison">{{row.saison}}</div>
+        <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.competition}}</span></div>
+        <div class="g-remark">{{row.bilan}}</div>
+      </li>
+    </ul>
+  </div>
   
 </div>

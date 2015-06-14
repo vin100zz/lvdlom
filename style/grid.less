@@ -7,12 +7,28 @@
 /* Blocks */
 .g-block {
   padding: 10px;
+  line-height: 22px;
 
   > div {
     background: @boxBackground;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
     padding: 10px;
+    
+    /* Top bar */
+		&.g-topbar {
+		  line-height: 26px;
+		  padding: 0 10px;
+		  background-color: @breadcrumbBackground;
+		  color: white;
+		}
+		&.g-topbar > .fa {
+		  font-size: 1.1em;
+		  opacity: 0.25;
+		  margin-right: 8px;
+		  vertical-align: text-bottom;
+		}
 
+    /* Title */
     .g-block-title {
       font-size: 16pt;
       color: #999;
@@ -21,6 +37,39 @@
       margin-bottom: 20px;
     }
     
+    /* Link */
+    .g-block-link {
+      position: relative;
+      
+      &:hover > a {
+        opacity: 0.6;
+      }
+      
+      > a {
+		    position: absolute;
+		    bottom: 5px;
+		    right: 5px;
+		    width: 40px;
+		    height: 40px;
+		    line-height: 40px;
+		    border-radius: 40px;
+		    background: @button;
+		    color: #fff;
+		    font-size: 12pt;
+		    box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
+		    cursor: pointer;
+		    transition: opacity 0.2s linear;
+		    opacity: 0;
+		    text-align: center;
+
+			  &:hover {
+			    opacity: 1;
+			    text-decoration: none;
+			  }
+	    }
+    }
+    
+    /* Row */
     .g-row {
       display: table;
       table-layout: fixed;
@@ -46,7 +95,7 @@
   }
 }
 
-/* Main clock */
+/* Main block */
 .g-fixed-block {
   height: 100%;
 }

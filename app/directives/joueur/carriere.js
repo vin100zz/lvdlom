@@ -32,8 +32,17 @@ app.directive('lvdlomCarriereJoueur', function (Carriere) {
             .map(function (row) {
               row.saison = row.saison.substr(0, 4) + '-' + row.saison.substr(7, 2);
               row.club = row.club === 'Marseille' ? 'OM' : row.club;
+              row.om = (row.club === 'OM');
               return row;
-            });
+            })
+            .reduce(function (array, current) {
+              if (array.length === 0 || array[array.length-1].club !== current.club) {
+                array.push(current);
+              } else {
+                array[array.length-1].saison = array[array.length-1].saison.substr(0, 5) + current.saison.substr(5, 2);
+              }
+              return array;
+            }, []);
           }
         };
         

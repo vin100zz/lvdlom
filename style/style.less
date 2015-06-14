@@ -1,9 +1,23 @@
 @import "variables";
 
-/* FA icons */
+/* icons */
 .g-fa {
 	color: @secondaryText;
   margin-right: 7px;
+}
+
+/* Info block */
+.g-info-block {
+	background: @alternateBackground;
+  border-top: 1px solid @tableBorder;
+  border-bottom: 1px solid @tableBorder;
+  text-align: center;
+}
+
+/* Important text */
+.g-important {
+	font-family: "Lvdlom-Bold";
+	color: @importantText;
 }
 
 /* Remark */
@@ -23,8 +37,8 @@
 
 /* Photos */
 .g-photo-id {
-  width: 200px;
-  height: 300px;
+  width: 180px;
+  height: 240px;
   background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
@@ -34,13 +48,13 @@
 /* Badges */
 .g-badge {
   display: inline-block;
-  width: 17px;
+  width: 16px;
   line-height: 17px;
   color: white;
   border-radius: 2px;
   text-align: center;
   vertical-align: baseline;
-  margin-right: 8px;
+  margin-right: 5px;
 
   /* Postes */
   &.poste {
@@ -92,7 +106,7 @@
 }
 
 /* Au Club */
-.g-icon-au-club {
+.icon-au-club {
 	display: inline-block;
   width: 8px;
   height: 8px;
@@ -102,7 +116,7 @@
 }
 
 /* Lieu */
-.g-icon-lieu {
+.icon-lieu {
 	display: inline-block;
 	margin-right: 5px;
 
@@ -121,7 +135,7 @@
 }
 
 /* Résultat */
-.g-icon-resultat {
+.icon-resultat {
   display: inline-block;
   margin-right: 5px;
   width: 8px;
@@ -139,7 +153,7 @@
 }
 
 /* Cartons */
-.g-icon-carton {
+.icon-carton {
   display: inline-block;
   border: 1px solid #ccc;
   width: 10px;
@@ -155,7 +169,7 @@
 }
 
 /* But */
-.g-icon-but {
+.icon-but {
   background: url(img/but.png);
   width: 12px;
   height: 12px;

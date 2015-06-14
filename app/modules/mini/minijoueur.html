@@ -4,10 +4,11 @@
 
   <div ng-show="!loading && !joueur">Aucun joueur sélectionné</div>
   
-  <div ng-show="!loading && joueur">
+  <div ng-show="!loading && joueur" class="g-block-link">
   
-    <div class="g-block-title">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</div>
-    <div class="g-photo-id" style="background-image: url({{Picture.joueur(joueur.id)}});"></div>
+    <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward"></a>
+  
+    <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-joueur>
   
   </div>
   

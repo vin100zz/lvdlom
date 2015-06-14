@@ -4,15 +4,15 @@
 
   <div ng-show="!loading && !match">Aucun match sélectionné</div>
   
-  <div ng-show="!loading && match">
+  <div ng-show="!loading && match" class="g-block-link">
     
-    <a href="#match/{{match.fiche.id}}" class="link-button fa fa-mail-forward"></a>
+    <a href="#match/{{match.fiche.id}}" class="fa fa-mail-forward"></a>
     
-    <div class="row">
+    <div class="g-row">
       <lvdlom-fiche-match match="match" cfg="cfg"></lvdlom-fiche-match>
     </div>
     
-    <div class="row">
+    <div class="g-row">
       <lvdlom-equipe-match match="match" cfg="cfg"></lvdlom-equipe-match>
     </div>
     

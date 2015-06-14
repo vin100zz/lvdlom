@@ -193,7 +193,7 @@ $nom = $joueur["nom"];
 $prenom = $joueur["prenom"]; 
 
 $concatNomPrenom = $nom . " " . $prenom;
-$concatNomPrenom = str_replace("'", "''", $concatNomPrenom);
+$concatNomPrenom = utf8_decode(str_replace("'", "''", $concatNomPrenom));
 
 $prev = DBAccess::singleRow
 (
@@ -540,7 +540,7 @@ function ordonnerBilan($iSaisonsArray, $iBilan)
 	$aBilanCompetition["buts"] = 0;
 	
 	$aNewTotalSaison = array();
-	$aNewTotalSaison["Total"] = $aBilanCompetition;
+	$aNewTotalSaison["total"] = $aBilanCompetition;
 	$aNewTotalSaison["Championnat"] = $aBilanCompetition;
 	$aNewTotalSaison["Coupe Nationale"] = $aBilanCompetition;
 	$aNewTotalSaison["Coupe d''Europe"] = $aBilanCompetition;
@@ -564,10 +564,10 @@ function ordonnerBilan($iSaisonsArray, $iBilan)
 					{
 						$aTotal = intval($aStatsPerSaison[$aSaison]);
 						$aTotalSaison[$competition][$aStatType] = $aTotal;
-						$aTotalSaison["Total"][$aStatType] += $aTotal;
+						$aTotalSaison["total"][$aStatType] += $aTotal;
 
 						$aTotaux[$competition][$aStatType] += $aTotal;
-						$aTotaux["Total"][$aStatType] += $aTotal;
+						$aTotaux["total"][$aStatType] += $aTotal;
 					}
 				}				
 			}
@@ -576,7 +576,7 @@ function ordonnerBilan($iSaisonsArray, $iBilan)
 		$aNewBilan[$aCurrentSaison] = $aTotalSaison;
 	}
 
-	$aNewBilan["TOTAL"] = $aTotaux;
+	$aNewBilan["total"] = $aTotaux;
 	
 	return $aNewBilan;
 }
