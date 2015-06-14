@@ -1,13 +1,39 @@
-<div>
-  <span>Joueur</span>
-  <span>{{joueur.fiche.prenom}}</span>
-  <span>{{joueur.fiche.nom}}</span>
+<div class="pure-g" id="page-joueur">
+
+  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
+  
+  <div class="pure-u-1 pure-u-lg-1-4">
+    <div class="pure-u-1 g-block">
+      <div>
+        <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-match>
+      </div>
+    </div>
+    <div class="pure-u-1 g-block">
+      <div>
+        <lvdlom-palmares-joueur joueur="joueur"></lvdlom-palmares-joueur>
+      </div>
+    </div>
+  </div>
+    
+  <div class="pure-u-1 pure-u-lg-1-4">
+    <div class="pure-u-1 g-block">
+      <div>
+        <lvdlom-carriere-joueur joueur="joueur"></lvdlom-carriere-joueur>
+      </div>
+    </div>
+    <div class="pure-u-1 g-block">
+      <div>
+        <lvdlom-stats-joueur joueur="joueur"></lvdlom-stats-joueur>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pure-u-1 pure-u-lg-1-2 g-block g-fixed-block g-scroll-block">
+    <div>
+      <lvdlom-documents documents="joueur.documents"></lvdlom-documents>
+    </div>
+  </div>
+
+   
 </div>
-
- 
-<lvdlom-maillot cfg="maillot"></lvdlom-maillot>
-
-<lvdlom-maillot cfg="maillot2"></lvdlom-maillot>
-<lvdlom-maillot cfg="maillot3"></lvdlom-maillot>
-<lvdlom-maillot cfg="maillot4"></lvdlom-maillot>
-<lvdlom-maillot cfg="maillot5"></lvdlom-maillot>
+  

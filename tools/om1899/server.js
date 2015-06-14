@@ -89,20 +89,25 @@ app.get('/parse', function(req, res) {
         }
       });
       
+      var mapping = {};
+      
       var out = '<table>';
       myData.forEach(function (myJoueur) {
         out += '<tr>';
         out += '<td>' + myJoueur.id + ' ' + myJoueur.nom + '<td/>';
         
         var minDist = {ids: [], value: 99999};
+        var lastMatch = null;
         data.forEach(function (d) {
           if (d.extractedNom) {
             var distance = levenshtein.get(d.extractedNom, myJoueur.nom);
             if (distance < minDist.value) {
               minDist.value = distance;
               minDist.ids = [d.id + ' ' + d.nom];
+              lastMatch = d;
             } else if (distance === minDist.value) {
               minDist.ids.push(d.id + ' ' + d.nom);
+              lastMatch = d;
             }
           }
         });
@@ -110,10 +115,18 @@ app.get('/parse', function(req, res) {
         out += '<td style="background: ' + css + ';">[' + minDist.value + '] ' + minDist.ids.join(', ') + '</td>';
         
         out += '</tr>';
+        
+        if (minDist.ids.length === 1) {
+          mapping[myJoueur.id] = lastMatch;
+        }
       });
 
       out += '</table>';
       res.send(out);
+      
+      fs.writeFile('mapping.json', JSON.stringify(mapping), function (err){
+        if (err) throw err;
+      });
     });
     
   });

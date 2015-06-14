@@ -134,16 +134,28 @@ if(count($premierBut)>0)
 // palmarès
 $palmares = DBAccess::query
 ("
-	SELECT Saison, Titre, Bilan, NomCompetition as Competition, TypeCompetition, SousTypeCompetition
+	SELECT
+    Saison as saison,
+    palmares.Titre as titre,
+    Bilan as bilan,
+    NomCompetition as competition,
+    TypeCompetition as typeCompetition,
+    SousTypeCompetition as sousTypeCompetition
 	FROM palmares
 	JOIN competitions ON competitions.IdCompetition = palmares.IdCompetition
 	JOIN joue ON palmares.Match1 = joue.IdMatch
 	WHERE joue.IdJoueur = $idJoueur
-		AND titre NOT NULL
+		AND palmares.titre NOT NULL
 	
 	UNION
 	
-	SELECT distinct palmares.Saison AS Saison, palmares.Titre as Titre, Bilan, NomCompetition as Competition, TypeCompetition, SousTypeCompetition
+	SELECT
+    distinct palmares.Saison AS saison,
+    palmares.Titre as titre,
+    Bilan as bilan,
+    NomCompetition as competition,
+    TypeCompetition as typeCompetition,
+    SousTypeCompetition as sousTypeCompetition
 	FROM palmares
 	JOIN competitions ON competitions.IdCompetition = palmares.IdCompetition
 	JOIN matches ON matches.Saison = palmares.Saison
@@ -151,7 +163,7 @@ $palmares = DBAccess::query
 	WHERE joue.IdJoueur = $idJoueur
 		AND typecompetition='Championnat'
 		AND palmares.titre NOT NULL
-	ORDER BY Saison ASC
+	ORDER BY saison ASC
 ");
 
 // documents
@@ -192,13 +204,6 @@ $prev = DBAccess::singleRow
 	FROM joueurs
 	WHERE (Nom || ' ' || Prenom) = (SELECT MAX(Nom || ' ' || Prenom) FROM joueurs WHERE (Nom || ' ' || Prenom) < '$concatNomPrenom')"
 );
-$prevId = null;
-$prevNom = null;
-if($prev)
-{
-	$prevId = $prev["id"];
-	$prevNom = $prev["prenom"] . " " . $prev["nom"];
-}
 
 $next = DBAccess::singleRow
 (
@@ -209,13 +214,6 @@ $next = DBAccess::singleRow
 	FROM joueurs
 	WHERE (Nom || ' ' || Prenom) = (SELECT MIN(Nom || ' ' || Prenom) FROM joueurs WHERE (Nom || ' ' || Prenom) > '$concatNomPrenom')"
 );
-$nextId = null;
-$nextNom = null;
-if($next)
-{
-	$nextId = $next["id"];
-	$nextNom = $next["prenom"] . " " . $next["nom"];
-}
 
 
 // ********************************************************
@@ -223,6 +221,12 @@ if($next)
 // ********************************************************
 
 $bilanOrdonne = ordonnerBilan(listerSaisons($sqlBilan), $sqlBilan);
+
+for($i=0; $i<count($documents); ++$i)
+{    
+  $document = $documents[$i];
+  $documents[$i]['path'] = Document::findPath($document['fichier']);
+}
 
 
 // ********************************************************

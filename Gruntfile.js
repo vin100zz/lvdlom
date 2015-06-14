@@ -94,6 +94,13 @@ module.exports = function(grunt) {
           sprite.name = 'flag.flag-' + sprite.name + ':before';
         }
       }
+    },
+    includeSource: {
+      index: {
+        files: {
+          'index.html': 'index.tpl.html'
+        }
+      }
     }
   });
 
@@ -109,6 +116,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-spritesmith');
+  grunt.loadNpmTasks('grunt-include-source');
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat', 'beep']);
