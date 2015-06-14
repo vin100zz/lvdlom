@@ -20,13 +20,21 @@ app.service('Loading', function ($rootScope) {
 
 // interceptor
 app.factory('LoadingInterceptor', function (Loading) {
+  var isServiceQuery = function (config) {
+    return config.url.indexOf('services/') === 0;
+  };
+  
   return {
     request: function (config) {
-      Loading.setLoading(true);
+      if (isServiceQuery(config)) {
+        Loading.setLoading(true);
+      }
       return config;
     },
     response: function (response) {
-      Loading.setLoading(false);
+      if (isServiceQuery(response.config)) {
+        Loading.setLoading(false);
+      }
       return response;
     }
   };

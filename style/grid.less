@@ -1,5 +1,9 @@
 @import "variables.less";
 
+.pure-g {
+  height: 100%;
+}
+
 /* Blocks */
 .g-block {
   padding: 10px;
@@ -44,6 +48,14 @@
 
 /* Main clock */
 .g-fixed-block {
-  overflow-y: auto;
-  max-height: 760px;
+  height: 100%;
+}
+
+.g-scroll-block {
+  height: 100%;
+  
+  > div {
+    height: calc(~"100% - 50px");
+	  overflow-y: auto;
+  }
 }

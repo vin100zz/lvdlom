@@ -17,7 +17,8 @@
   
   .legend {
     margin-top: 5px;
-    padding: 5px;
+    padding: 0 5px;
+    line-height: 22px;
     border-top: 1px solid @tableBorder;
     border-bottom: 1px solid @tableBorder;
     background-color: @alternateBackground;
@@ -27,12 +28,17 @@
       line-height: 18px;
     }
     
+    .remark {
+      display: inline-block;
+    }
+    
     .laprovence,
     .lequipe {
       background-repeat: no-repeat;
-      background-position: left center;
-      background-size: 12px;
-      padding-left: 16px;
+      background-position: left 2px;
+      background-size: 16px;
+      padding-left: 20px;
+      margin-left: 5px;
     }
     .laprovence {
       background-image: url(sources/provence.png);

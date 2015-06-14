@@ -141,7 +141,13 @@ app.directive('lvdlomMaillot', function (Maillots) {
           return;
         }
         
+        if ($scope.canvasCfg) {
+          var oldCanvas = document.getElementById($scope.canvasCfg.canvasId);
+          oldCanvas.getContext('2d').clearRect(0, 0, oldCanvas.width, oldCanvas.height);
+        }
+        
         if ($scope.cfg.nomClub !== 'OM') {
+
           $scope.canvasCfg = JSON.parse(JSON.stringify(Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub)));
           
           loadImgInCanvas('template', 'style/maillots/effect.png', function (tplCanvas, tplContext, tplImg) {
@@ -150,7 +156,7 @@ app.directive('lvdlomMaillot', function (Maillots) {
             var tplData = tplMap.data;
             
             loadImgInCanvas($scope.canvasCfg.canvasId, 'style/maillots/' + $scope.canvasCfg.template + '.png', function (canvas, context, img) {
-                        
+     
               var map = context.getImageData(0, 0, canvas.width, canvas.height);
               var data = map.data;
   

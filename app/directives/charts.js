@@ -21,6 +21,10 @@ app.directive('lvdlomCharts', function () {
       optionsInner.segmentStrokeWidth = 2;
       
       var render = function () {
+        if (!$scope.cfg) {
+          return;
+        }
+        
         if ($scope.mainChart) {
           $scope.mainChart.destroy();
         }
@@ -33,6 +37,8 @@ app.directive('lvdlomCharts', function () {
         $scope.innerData = prepareData($scope.cfg.inner);
         $scope.innerChart = new Chart(window.document.querySelector(".dir-charts .inner").getContext("2d")).Pie($scope.innerData, optionsInner);
       };
+      
+      render();
       
       $scope.$watch('cfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {
