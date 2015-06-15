@@ -77,11 +77,27 @@ foreach($listeComp as $comp => $sqlComp)
 	);
 }
 
+$selectMatch =
+"SELECT
+  IdMatch AS id,
+  Saison AS saison,
+  Lieu AS lieu,
+  DateMatch AS date,
+  Competition AS competition,
+  Niveau AS niveau,
+  Adversaire AS idAdv,
+  NomAdversaire AS nomAdv,
+  ButsOM AS butsOM,
+  ButsAdv AS butsAdv,
+  TABOM as tabOM,
+  TABAdv as tabAdv,
+  RqScore as rqScore 
+";
+
 // premier match
 $premierMatch = DBAccess::singleRow
-("
-	SELECT *
-	FROM matches
+("$selectMatch
+  FROM matches
 	LEFT JOIN adversaires ON matches.Adversaire = adversaires.IdAdversaire
 	LEFT JOIN competitions ON competitions.NomCompetition = matches.competition
 	WHERE DateMatch =
@@ -90,22 +106,22 @@ $premierMatch = DBAccess::singleRow
 ");
 
 // age premier match
+$agePremierMatch = null;
 if($premierMatch)
 {
 	$agePremierMatch = DBAccess::singleValue
 	("
 		SELECT julianday(DateMatch) - julianday(DateNaissance)
 		FROM joue, matches, joueurs
-		WHERE matches.IdMatch=" . $premierMatch["IdMatch"] . " AND joue.IdJoueur = $idJoueur
+		WHERE matches.IdMatch=" . $premierMatch["id"] . " AND joue.IdJoueur = $idJoueur
 		 AND joueurs.IdJoueur = $idJoueur
 	");
 }
 
 // premier but
 $premierBut = DBAccess::singleRow
-("
-	SELECT *
-	FROM matches
+("$selectMatch
+  FROM matches
 	LEFT JOIN adversaires ON matches.Adversaire = adversaires.IdAdversaire
 	LEFT JOIN competitions ON competitions.NomCompetition = matches.competition
 	WHERE DateMatch =
@@ -113,6 +129,7 @@ $premierBut = DBAccess::singleRow
 	   WHERE buteursom.IdJoueur = $idJoueur AND matches.IdMatch = buteursom.IdMatch)
 ");
 
+$nbMatchesAvantPremierBut = null;
 if(count($premierBut)>0)
 {    	
 	// quantième match du premier but
@@ -237,8 +254,10 @@ $json = array();
 $json['id'] = $idJoueur;
 $json['fiche'] = $joueur;
 $json['premierMatch'] = $premierMatch;
+$json['premierMatch']['age'] = $agePremierMatch;
 $json['bilan'] = $bilanOrdonne;
 $json['premierBut'] = $premierBut;
+$json['premierBut']['card'] = $nbMatchesAvantPremierBut;
 $json['palmares'] = $palmares;
 $json['documents'] = $documents;
 $json['dirigeant'] = $dirigeant;
@@ -246,246 +265,6 @@ $json['navigation'] = array(
   'prev' => $prev,
   'next' => $next);
 print json_encode($json, JSON_PRETTY_PRINT);
-
-
-/*
-// begin html
-HtmlLayout::beginHTML("$prenom $nom");
-
-println("<div class='container'>");
-
-	// titre
-	HtmlLayout::drawTitle(25, "$prenom $nom", "#ficheJoueur/", $prevId, $nextId, $prevNom, $nextNom);
-	
-	// photo id
-	println("<div class='span-4 push-1'>");
-		HtmlImage::drawPhotoIdentite(IdentityType::Joueur, $idJoueur, ImageSize::Large);
-		
-		println("<hr/>");
-		
-		// entraîneur
-		if($idDirigeant != null)
-		{
-			println("<div class='span-4 block link-fiche'><a href='#ficheDirigeant/" . $idDirigeant . "'>Fiche dirigeant</a></div>");
-		}
-	
-	println("</div>");
-	
-		
-	// fiche
-	println("<div class='span-8'>");
-	
-		println("<div class='span-4'>");
-		
-			// titre état civil
-			println("<div class='subtitle span-4'>État civil</div>");
-			
-			// data état civil
-			println("<div class='block span-4'>");
-				println("<div class='blockcontent listKeyVal span-4'>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Date naiss. :</div>");
-						println("<div class='listVal'>"); HtmlBom::drawDate($joueur["DateNaissance"], "long"); println("</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Lieu naiss. :</div>");
-						$aTerrNaiss = $joueur["TerritoireNaissance"];
-						println("<div class='listVal'>" . $joueur["VilleNaissance"] . ($aTerrNaiss ? " ($aTerrNaiss)" : "") . "</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Nationalité :</div>");
-						println("<div class='listVal'>"); HtmlBom::drawPays($joueur["Nationalite"], ImageSize::Small, true, WritePays::Long); println("</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Date décès :</div>");
-						println("<div class='listVal'>"); HtmlBom::drawDate($joueur["DateDeces"], "long"); println("</div>");
-					println("</div>");
-					
-				println("</div>");
-			println("</div>");
-		println("</div>");
-		
-		println("<div class='span-4 last'>");
-			
-			// titre carrière
-			println("<div class='subtitle span-4 '>Carrière</div>");
-			
-			// data carrière
-			println("<div class='block span-4'>");
-				println("<div class='blockcontent listKeyVal span-4'>");
-				
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Poste :</div>");
-						println("<div class='listVal'>"); HtmlBom::drawPoste($joueur["Poste"]); println("</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Sél. int. :</div>");
-						println("<div class='listVal'>" . $joueur["Selections"] . "</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Club préc. :</div>");
-						println("<div class='listVal'>" . $joueur["ClubPrecedent"] . "</div>");
-					println("</div>");
-					
-					println("<div class='listItem'>");
-						println("<div class='listKey'>Club suiv. :</div>");
-						println("<div class='listVal'>" . $joueur["ClubSuivant"] . "</div>");
-					println("</div>");
-	
-				println("</div>");
-			println("</div>");
-		println("</div>");
-		
-		println("<hr/>");
-		
-		
-		// titre bilan
-		println("<div class='subtitle span-8'>Bilan</div>");
-		
-		// data bilan
-		println("<div class='block span-8'>");
-			println("<div class='blockcontent listKeyVal span-8'>");
-
-				// premier match
-				println("<div class='listItem'>");
-					println("<div class='listKey'>Premier match :</div>");
-					println("<div class='listVal'>");
-						if($premierMatch)
-							{ HtmlBom::drawMatch($premierMatch); println("<br />à l'âge de " . floor($agePremierMatch/365) . " ans"); }
-					 	else 
-							println("-");
-						println("</div>");
-				println("</div>");
-				
-				// premier but
-				println("<div class='listItem'>");
-					println("<div class='listKey'>Premier but :</div>");
-					println("<div class='listVal'>");
-					if(count($premierBut) == 0)
-						println("-");
-					else
-					{
-						HtmlBom::drawMatch($premierBut); println("<br />pour son " . $nbMatchesAvantPremierBut . ($nbMatchesAvantPremierBut==1?"er":"ème") . " match");
-					}
-					println("</div>");
-				println("</div>");
-				
-				// palmares
-				println("<div class='listItem'>");
-					println("<div class='listKey'>Palmarès :</div>");
-					println("<div class='listVal'>");
-					if(count($palmares) == 0)
-					{
-						println("-");
-					}
-					else
-					{
-						for($i = 0; $i < count($palmares); ++$i)
-						{
-							$aLignePalmares = $palmares[$i];
-							println($aLignePalmares["Saison"] . " : ");
-							if($aLignePalmares["Titre"] == "1") {HtmlImage::drawImage("premier", "sprite-mleft");}
-							if($aLignePalmares["Titre"] == "2") {HtmlImage::drawImage("dernier", "sprite-mleft");}
-							println($aLignePalmares["Bilan"]);
-							HtmlBom::drawCompetition($aLignePalmares, "sprite-mleft");
-							println("<br/>");
-						}	
-					}
-					println("</div>");
-				println("</div>");
-					
-			println("</div>");
-		println("</div>");
-
-	println("</div>");
-	
-	
-	// stats
-	println("<div class='span-11 last'>");
-		
-		// stats
-		println("<div class='span-11 last'>");
-		
-			// table
-			println("<table>");
-			
-				// header
-				println("<thead>");
-					println("<tr>");
-						println("<th class='topleftcorner' rowspan='2'>SAISON</th>");
-						println("<th colspan='2'>TOTAL</th>");
-						println("<th colspan='2'>CHAMPIONNAT</th>");
-						println("<th colspan='2'>COUPES NATIONALES</th>");
-						println("<th class='toprightcorner' colspan='2'>COUPES D'EUROPE</th>");
-					println("</tr>");
-					
-					println("<tr>");
-						println("<th class='matches'>Matches</th><th class='buts'>Buts</th>");
-						println("<th class='matches'>Matches</th><th class='buts'>Buts</th>");
-						println("<th class='matches'>Matches</th><th class='buts'>Buts</th>");
-						println("<th class='matches'>Matches</th><th class='buts'>Buts</th>");
-					println("</tr>");
-				println("</thead>");
-				
-				// stats
-				foreach($bilanOrdonne as $aSaison => $aBilanSaison)
-				{
-					$aIsTotal = ($aSaison == "TOTAL");
-					
-					if($aIsTotal)
-					{
-						println("<tfoot>");
-					}
-					
-					println("<tr>");
-				
-					println("<td>" . ($aIsTotal ? $aSaison : HtmlLink::getSaisonLink($aSaison)) . "</td>");
-					
-					// total
-					HtmlTable::drawCellNbMatches($aBilanSaison["Total"]["tit"], $aBilanSaison["Total"]["rmp"], true);
-					HtmlTable::drawCellNbButs($aBilanSaison["Total"]["buts"], true);
-					
-					// championnat
-					HtmlTable::drawCellNbMatches($aBilanSaison["Championnat"]["tit"], $aBilanSaison["Championnat"]["rmp"]);
-					HtmlTable::drawCellNbButs($aBilanSaison["Championnat"]["buts"]);
-					
-					// coupes nationales
-					HtmlTable::drawCellNbMatches($aBilanSaison["Coupe Nationale"]["tit"], $aBilanSaison["Coupe Nationale"]["rmp"]);
-					HtmlTable::drawCellNbButs($aBilanSaison["Coupe Nationale"]["buts"]);
-					
-					// europe
-					HtmlTable::drawCellNbMatches($aBilanSaison["Coupe d''Europe"]["tit"], $aBilanSaison["Coupe d''Europe"]["rmp"]);
-					HtmlTable::drawCellNbButs($aBilanSaison["Coupe d''Europe"]["buts"]);
-
-					println("</tr>");
-					
-					if($aIsTotal)
-					{
-						println("</tfoot>");
-					}
-				}
-				
-			println("</table>");
-      
-      println("<div class='span-11 block link-matches'><a href='#matchesJoueur/" . $idJoueur . "'>Tous les matches</a></div>");
-		
-		println("</div>");
-	
-	println("</div>");
-	
-	// photos
-	println("<div class='span-23 push-1 last'>");
-		HtmlDoc::drawPhotos($photos);
-	println("</div>");
-	
-println("</div>");
-*/
 
 
 //=========================================================================

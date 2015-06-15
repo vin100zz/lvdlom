@@ -1,8 +1,8 @@
 app.directive('lvdlomPalmaresJoueur', function () {
   return {
     scope: {
-      joueur: '=',
-      cfg: '='
+      joueur: '='
+
     },
     templateUrl: 'app/directives/joueur/palmares.html',
     controller: function ($scope) {

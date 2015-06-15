@@ -1,8 +1,7 @@
 app.directive('lvdlomClassementMatch', function () {
   return {
     scope: {
-      match: '=',
-      cfg: '='
+      match: '='
     },
     templateUrl: 'app/directives/match/classement.html',
     controller: function ($scope) {

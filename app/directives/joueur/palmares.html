@@ -1,7 +1,7 @@
-<div class="dir-palmares-joueur" ng-class="{mini: cfg.mini}">
+<div class="dir-palmares-joueur" ng-if="joueur.id">
 
-  <div class="g-row">
-    <ul>
+  <div class="g-row" ng-if="joueur.palmares.length > 0">
+    <ul ng-if>
       <li ng-repeat="row in joueur.palmares">
         <div class="g-remark saison">{{row.saison}}</div>
         <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.competition}}</span></div>
@@ -9,5 +9,7 @@
       </li>
     </ul>
   </div>
+  
+  <span ng-if="joueur.palmares.length == 0">Néant</span>
   
 </div>

@@ -10,8 +10,12 @@
   });
   
   // controller
-  app.controller('MatchCtrl', function($scope, $routeParams, Match, Formatter) {
+  app.controller('MatchCtrl', function($scope, $routeParams, Match, Bom, Formatter) {
     $scope.match = Match.get({id: $routeParams.id}, function () {
+      
+      var domicile = Bom.domicile($scope.match.fiche.lieu);
+      $scope.left = domicile ? 'OM' : $scope.match.adversaire.nom;
+      $scope.right = !domicile ? 'OM' : $scope.match.adversaire.nom;
     
       $scope.breadcrumb = {
         prev: {

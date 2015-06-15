@@ -208,6 +208,7 @@ for($i=0; $i<count($documents); ++$i)
 // ********************************************************
 
 $json = array();
+$json['id'] = $idMatch;
 $json['fiche'] = $ficheMatch;
 $json['adversaire'] = $adversaire;
 $json['competition'] = $competition;

@@ -1,4 +1,4 @@
-<div class="dir-fiche-match" ng-class="{mini: cfg.mini}">
+<div class="dir-fiche-match" ng-if="match.id" ng-class="{mini: cfg.mini}">
 
   <div class="g-row row-score">
     <div class="club" style="background-image: url({{Picture.club(left.id)}})"></div>
@@ -9,12 +9,6 @@
       </div>
     </div>
     <div class="club" style="background-image: url({{Picture.club(right.id)}})"></div>
-  </div>
-  
-  <div class="g-block-title g-row row-equipes" ng-hide="cfg.mini" >
-    <div>{{left.nom}}</div>
-    <div></div>
-    <div>{{right.nom}}</div>
   </div>
   
   <div class="g-row g-info-block row-info">

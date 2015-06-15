@@ -18,11 +18,7 @@ if(!$date)
 $dirigeants = DBAccess::query(
 "
 	SELECT
-    IdDirigeant AS id,
-    Nom AS nom,
-    Prenom AS prenom,
-    Nationalite AS nationalite,
-    strftime('%Y', DateNaissance) as dateNaissance
+    IdDirigeant as id
 	FROM dirigeants
 	WHERE strftime('%m-%d', DateNaissance) = '$date'
 	ORDER BY DateNaissance, Nom
@@ -30,12 +26,7 @@ $dirigeants = DBAccess::query(
 $joueurs = DBAccess::query(
 "
 	SELECT
-    IdJoueur AS id,
-    Nom AS nom,
-    Prenom AS prenom,
-    Nationalite AS nationalite,
-    Poste AS poste,
-    strftime('%Y', DateNaissance) as dateNaissance
+    IdJoueur as id
 	FROM joueurs
 	WHERE strftime('%m-%d', DateNaissance) = '$date'
 	ORDER BY DateNaissance, Nom
@@ -45,21 +36,7 @@ $joueurs = DBAccess::query(
 $matches = DBAccess::query(
 "
 	SELECT
-    IdMatch AS id,
-    DateMatch AS date,
-    Saison AS saison,
-    Competition AS competition,
-    SousTypeCompetition AS sousTypeCompetition,
-    Lieu AS lieu,
-    Niveau AS niveau,
-    IdAdversaire AS idAdv,
-    NomAdversaire AS nomAdv,
-    ButsOM AS butsOM,
-    ButsAdv AS butsAdv,
-    RqScore AS rqScore,
-    TABOM AS tabOM,
-    TABAdv AS tabAdv,
-    Pays AS pays
+    IdMatch as id
 	FROM matches, adversaires, competitions
 	WHERE matches.Adversaire = adversaires.IdAdversaire
 		AND strftime('%m-%d', DateMatch) = '$date'
@@ -76,7 +53,7 @@ $json = array(
   "date" => $date,
   "dirigeants" => $dirigeants,
   "joueurs" => $joueurs,
-  "matches" => $matches,
+  "matches" => $matches
 );
 print json_encode($json, JSON_PRETTY_PRINT);
 

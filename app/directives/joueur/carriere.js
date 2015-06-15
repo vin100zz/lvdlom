@@ -8,8 +8,7 @@ app.factory('Carriere', function ($resource) {
 app.directive('lvdlomCarriereJoueur', function (Carriere) {
   return {
     scope: {
-      joueur: '=',
-      cfg: '='
+      joueur: '='
     },
     templateUrl: 'app/directives/joueur/carriere.html',
     controller: function ($scope) {

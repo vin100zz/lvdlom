@@ -1,17 +1,24 @@
-<div class="pure-g" id="page-joueur">
+<div class="pure-g" id="page-joueur" ng-if="joueur.id">
 
   <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
   
   <div class="pure-u-1 pure-u-lg-1-4">
     <div class="pure-u-1 g-block">
+      <div class="g-topbar g-main-topbar">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</div>
       <div>
         <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-match>
       </div>
     </div>
     <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-star"></span>Palmarès</div>
+      <div class="g-topbar"><span class="fa fa-trophy"></span>Palmarès</div>
       <div>
         <lvdlom-palmares-joueur joueur="joueur"></lvdlom-palmares-joueur>
+      </div>
+    </div>
+    <div class="pure-u-1 g-block">
+      <div class="g-topbar"><span class="fa fa-star"></span>Premières</div>
+      <div>
+        <lvdlom-premieres-joueur joueur="joueur"></lvdlom-premieres-joueur>
       </div>
     </div>
   </div>

@@ -10,12 +10,28 @@
   });
   
   // controller
-  app.controller('DayCtrl', function($scope, $routeParams, Day, Bom, Formatter, Picture, DateTime) {
-    $scope.Bom = Bom;
-    $scope.Picture = Picture;
+  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, DateTime) {
     $scope.DateTime = DateTime;
     
+    $scope.matches = [];
+    $scope.joueurs = [];
+    $scope.dirigeants = [];
+    
     $scope.model = Day.get({date: $routeParams.date}, function () {
+      
+      // fetch data
+      var fetchData = function (key, factory) {
+        $scope.model[key].forEach(function (raw) {
+          factory.get({id: raw.id}, function (data) {
+            $scope[key].push(data);
+          });        
+        });
+      };
+      
+      fetchData('matches', Match);
+      fetchData('joueurs', Joueur);
+      
+      // breadcrumb
       var month = parseInt($scope.model.date.substr(0, 2), 10);
       var day = parseInt($scope.model.date.substr(3, 2), 10);
       var date = new Date(new Date().getFullYear(), month-1, day);

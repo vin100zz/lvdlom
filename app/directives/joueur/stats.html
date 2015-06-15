@@ -1,4 +1,4 @@
-<div class="dir-stats-joueur" ng-class="{mini: cfg.mini}">
+<div class="dir-stats-joueur" ng-if="joueur.id">
 
   <div class="g-row">
     <ul>
@@ -14,7 +14,7 @@
       </li>
       <li class="total">
         <div>Total</div>
-        <div><span>{{joueur.bilan['total'].total.tit}}</span><span class="g-remark">({{joueur.bilan['total'].total.rmp}})</span></div>
+        <div><span>{{joueur.bilan['total'].total.tit + joueur.bilan['total'].total.rmp}}</span></div>
         <div>{{joueur.bilan['total'].total.buts}}</div>
       </li>
     </ul>

@@ -1,8 +1,7 @@
 app.directive('lvdlomButeursMatch', function (Bom) {
   return {
     scope: {
-      match: '=',
-      cfg: '='
+      match: '='
     },
     templateUrl: 'app/directives/match/buteurs.html',
     controller: function ($scope) {

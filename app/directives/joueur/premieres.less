@@ -1,0 +1,17 @@
+@import "../../../style/variables";
+
+.dir-premieres-joueur {
+
+  ul {
+    border-left: 2px solid @tableBorder;
+    padding-left: 5px;
+  
+    li:first-child {
+      line-height: 14px;
+    }
+    
+	  &:not(:last-child) {
+	    margin-bottom: 12px;
+    }
+	}
+}
