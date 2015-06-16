@@ -28,5 +28,17 @@ app.service('Bom', function() {
   
   this.poste = function (poste) {
     return {'GA': 'Gardien', 'DE': 'Défenseur', 'MI': 'Milieu', 'AV': 'Attaquant'}[poste];
-  }
+  };
+  
+  this.ageSince = function (date) {
+    return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24 * 365));
+  };
+  
+  this.age = function (days) {
+    days = parseInt(days, 10);
+    var years = Math.floor(days / 365);
+    var months = Math.floor((days - years*365)/30);
+    return years + ' ans' + (months > 0 ? ' ' + months + ' mois' : '');
+  };
+  
 });

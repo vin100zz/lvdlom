@@ -1,0 +1,15 @@
+<div class="dir-liste-age">
+
+  <lvdlom-mini-loading ng-if="joueurs.length == 0"></lvdlom-mini-loading>
+
+  <div class="g-row" ng-if="joueurs.length > 0">
+    <ul>
+      <li ng-repeat="joueur in joueurs">
+        <div class="g-remark">{{$index+1}}.</div>
+        <div>{{joueur.prenom}} {{joueur.nom}}</div>
+        <div class="g-remark">{{Bom.age(joueur.age)}}</div>
+      </li>
+    </ul>
+  </div>
+
+</div>

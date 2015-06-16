@@ -36,11 +36,11 @@ $adversaires = DBAccess::query
 // ******* JSON *******************************************
 // ********************************************************  
 
-$json = array(
+$dict = array(
   "nationalites" => $nationalites,
   "saisons" => $saisons,
   "adversaires" => $adversaires
 );
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($dict);
 
 ?>

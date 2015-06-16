@@ -14,6 +14,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
   .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
   .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
+  .when('/age', {templateUrl: 'app/modules/age.html', controller: 'AgeCtrl'})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
   .when('/matches', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchesCtrl', resolve: dependencies})
   .when('/match/:id', {templateUrl: 'app/modules/match.html', controller: 'MatchCtrl'})

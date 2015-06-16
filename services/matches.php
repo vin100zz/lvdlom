@@ -53,7 +53,6 @@ $matches = DBAccess::query
 // ******* JSON *******************************************
 // ********************************************************
 
-$json = $matches;
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($matches);
 
 ?>

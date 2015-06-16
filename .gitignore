@@ -4,5 +4,6 @@ tmp/
 
 index.html
 documents/
+services/_cache.json
 services/om.db3
 style/minified.min.css

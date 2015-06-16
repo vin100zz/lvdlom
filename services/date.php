@@ -49,12 +49,12 @@ $matches = DBAccess::query(
 // ******* JSON *******************************************
 // ********************************************************  
 
-$json = array(
+$out = array(
   "date" => $date,
   "dirigeants" => $dirigeants,
   "joueurs" => $joueurs,
   "matches" => $matches
 );
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($out);
 
 ?>

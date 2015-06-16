@@ -106,7 +106,6 @@ foreach($saisons as $key => $row)
 // ******* JSON *******************************************
 // ********************************************************
 
-$json = $saisons;
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($saisons);
 
 ?>

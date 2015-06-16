@@ -250,21 +250,21 @@ for($i=0; $i<count($documents); ++$i)
 // ******* JSON *******************************************
 // ******************************************************** 
 
-$json = array();
-$json['id'] = $idJoueur;
-$json['fiche'] = $joueur;
-$json['premierMatch'] = $premierMatch;
-$json['premierMatch']['age'] = $agePremierMatch;
-$json['bilan'] = $bilanOrdonne;
-$json['premierBut'] = $premierBut;
-$json['premierBut']['card'] = $nbMatchesAvantPremierBut;
-$json['palmares'] = $palmares;
-$json['documents'] = $documents;
-$json['dirigeant'] = $dirigeant;
-$json['navigation'] = array(
+$out = array();
+$out['id'] = $idJoueur;
+$out['fiche'] = $joueur;
+$out['premierMatch'] = $premierMatch;
+$out['premierMatch']['age'] = $agePremierMatch;
+$out['bilan'] = $bilanOrdonne;
+$out['premierBut'] = $premierBut;
+$out['premierBut']['card'] = $nbMatchesAvantPremierBut;
+$out['palmares'] = $palmares;
+$out['documents'] = $documents;
+$out['dirigeant'] = $dirigeant;
+$out['navigation'] = array(
   'prev' => $prev,
   'next' => $next);
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($out);
 
 
 //=========================================================================

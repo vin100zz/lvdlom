@@ -1,5 +1,14 @@
 @import "variables.less";
 
+/* FIXME */
+.pure-u-1 {
+  letter-spacing: inherit;
+  
+  > * {
+    letter-spacing: normal;
+  }
+}
+
 .pure-g {
   height: 100%;
 }
@@ -96,12 +105,12 @@
 .g-block-link {
   position: relative;
   
-  &:hover > a {
+  &:hover .g-link {
     background: @importantText;
     opacity: 0.5;
   }
   
-  > a {
+  .g-link {
     position: absolute;
     top: 10px;
     left: 10px;

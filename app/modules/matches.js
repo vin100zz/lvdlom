@@ -31,7 +31,7 @@
     $scope.data.list = $scope.fetchData(Filter.toParams($scope.filters));
     
     // selection
-    $scope.selectionTpl = 'app/modules/mini/minimatch.html';
+    $scope.selectionTpl = 'app/directives/mini/minimatch.html';
     $scope.selectionLink = '#match/';
     
     // table 

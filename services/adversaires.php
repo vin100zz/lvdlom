@@ -72,7 +72,6 @@ foreach($adversaires as $key => $row)
 // ******* JSON *******************************************
 // ********************************************************
 
-$json = $adversaires;
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($adversaires);
 
 ?>

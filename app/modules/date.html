@@ -11,9 +11,9 @@
       </div>
       <div class="g-bottombar">
         <span>{{match.fiche.date | format:'dateLong'}}</span>
-        <span class="g-remark">il y a {{age(match.fiche.date)}} ans</span>
+        <span class="g-remark">il y a {{Bom.ageSince(match.fiche.date)}} ans</span>
       </div>
-      <a href="#match/{{match.id}}" class="fa fa-mail-forward"></a>      
+      <a href="#match/{{match.id}}" class="fa fa-mail-forward g-link"></a>      
     </div>
 
     <div class="pure-u-1 pure-u-lg-1-4 g-block g-block-link" ng-repeat="joueur in joueurs">
@@ -23,9 +23,9 @@
       </div>
       <div class="g-bottombar">
         <span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</span>
-        <span class="g-remark">il y a {{age(joueur.fiche.dateNaissance)}} ans</span>
+        <span class="g-remark">il y a {{Bom.ageSince(joueur.fiche.dateNaissance)}} ans</span>
       </div>
-      <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward"></a>
+      <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward g-link"></a>
     </div>
     
   </div>

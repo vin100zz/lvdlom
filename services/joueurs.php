@@ -57,7 +57,6 @@ $joueurs = DBAccess::query
 // ******* JSON *******************************************
 // ********************************************************  
 
-$json = $joueurs;
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($joueurs);
 
 ?>

@@ -10,12 +10,9 @@
   });
   
   // controller
-  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Formatter, DateTime) {
+  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Bom, Formatter, DateTime) {
     $scope.Formatter = Formatter;
-    
-    $scope.age = function (date) {
-      return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24 * 365));
-    };
+    $scope.Bom = Bom;
     
     $scope.matches = [];
     $scope.joueurs = [];

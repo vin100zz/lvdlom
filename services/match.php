@@ -207,24 +207,24 @@ for($i=0; $i<count($documents); ++$i)
 // ******* JSON *******************************************
 // ********************************************************
 
-$json = array();
-$json['id'] = $idMatch;
-$json['fiche'] = $ficheMatch;
-$json['adversaire'] = $adversaire;
-$json['competition'] = $competition;
-$json['buteurs'] = array(
+$out = array();
+$out['id'] = $idMatch;
+$out['fiche'] = $ficheMatch;
+$out['adversaire'] = $adversaire;
+$out['competition'] = $competition;
+$out['buteurs'] = array(
   'om' => $buteursOM,
   'omAutres' => $buteursOMAutres,
   'adv' => $buteursAdv);
-$json['joueurs'] = array(
+$out['joueurs'] = array(
   'titulaires' => $titulaires,
   'remplacants' => $remplacants);
-$json['entraineurs'] = $entraineurs;
-$json['documents'] = $documents;
-$json['navigation'] = array(
+$out['entraineurs'] = $entraineurs;
+$out['documents'] = $documents;
+$out['navigation'] = array(
   'prev' => $prev,
   'next' => $next);
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($out);
 
 
 //=========================================================================

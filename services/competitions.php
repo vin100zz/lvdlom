@@ -139,7 +139,6 @@ foreach($competitions as $key => $row)
 // ******* JSON *******************************************
 // ********************************************************
 
-$json = $competitions;
-print json_encode($json, JSON_PRETTY_PRINT);
+respond($competitions);
 
 ?>

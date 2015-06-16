@@ -26,6 +26,6 @@ $adversaire = DBAccess::singleRow
 // ******* JSON *******************************************
 // ******************************************************** 
 
-print json_encode($adversaire, JSON_PRETTY_PRINT);
+respond($adversaire);
 
 ?>
