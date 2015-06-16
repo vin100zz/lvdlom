@@ -1,4 +1,4 @@
-<div class="dir-fiche-match" ng-if="match.id" ng-class="{mini: cfg.mini}">
+<div class="dir-fiche-match" ng-if="match.id">
 
   <div class="g-row row-score">
     <div class="club" style="background-image: url({{Picture.club(left.id)}})"></div>
@@ -11,13 +11,13 @@
     <div class="club" style="background-image: url({{Picture.club(right.id)}})"></div>
   </div>
   
-  <div class="g-row g-info-block row-info">
+  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
     <div>
       <div>{{match.fiche.date | format:'dateLong'}}</div>
       <div><span ng-bind-html="match.competition.sousType | format:'sousTypeCompetition'"></span><span>{{match.competition.nom}}</span></div>
       <div>{{match.fiche.niveau}}</div>
     </div>
-    <div ng-hide="cfg.mini">
+    <div>
       <div>Saison {{match.fiche.saison}}</div>
       <div>{{match.fiche.lieu}}</div>
       <div ng-show="match.fiche.spectateurs > 0">{{match.fiche.spectateurs}} spectateurs</div>

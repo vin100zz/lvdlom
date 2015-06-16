@@ -4,14 +4,10 @@
 
   <div ng-show="!loading && !joueur">Aucun joueur sélectionné</div>
   
-  <div ng-show="!loading && joueur" class="g-block-link">
-  
-    <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward"></a>
-  
+  <div ng-show="!loading && joueur">
     <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-joueur>
-  
   </div>
   
+  <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward"></a>
   
-
 </div>

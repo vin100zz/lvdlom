@@ -38,6 +38,7 @@ var AbstractListCtrl = function ($scope, Loading, Filter) {
   // selection
   $scope.selected = {id: null, rowIndex: null};
   $scope.selectionTpl = '';
+  $scope.selectionLink = null;
   
   // keyboard shortcut
   window.onkeydown = function (evt) {

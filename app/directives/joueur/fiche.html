@@ -2,7 +2,7 @@
   
   <div class="g-row g-photo-id" style="background-image: url({{Picture.joueur(joueur.id)}});"></div>
 
-  <div class="g-row g-info-block row-info">
+  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
     <div>
       <div ng-if="joueur.fiche.dateNaissance"><span class="g-fa">°</span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</div>
       <div ng-if="joueur.fiche.villeNaissance"><span class="g-remark">à</span>{{joueur.fiche.villeNaissance}}<span ng-if="joueur.fiche.territoireNaissance"> ({{joueur.fiche.territoireNaissance}})</span></div>

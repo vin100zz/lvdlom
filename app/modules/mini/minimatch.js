@@ -6,11 +6,6 @@ app.controller('MiniMatchCtrl', function($scope, Match, Loading) {
         Loading.silent();
         $scope.loading = true;
         $scope.match = Match.get({id: newValue}, function (match) {
-          
-          $scope.cfg = {
-            mini: true
-          };        
-          
           $scope.loading = false;
         });
       } else {

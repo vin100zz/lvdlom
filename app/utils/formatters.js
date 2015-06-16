@@ -149,13 +149,19 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.nomOm = function (saison) {
-    return saison === "1943-44" ? "MARSEILLE-PROVENCE" : "OM";
+    return saison === '1943-44' ? 'MARSEILLE-PROVENCE' : 'OM';
   };
   
   this.match = function (match) {
     var left = Bom.domicile(match.lieu) ? _this.nomOm(match.saison) : match.nomAdv;
     var right = Bom.domicile(match.lieu) ? match.nomAdv : _this.nomOm(match.saison);
-    return left + "-" + right;
+    return left + '-' + right;
+  };
+  
+  this.matchTitle = function (match) {
+    var left = Bom.domicile(match.fiche.lieu) ? _this.nomOm(match.fiche.saison) : match.adversaire.nom;
+    var right = Bom.domicile(match.fiche.lieu) ? match.adversaire.nom : _this.nomOm(match.fiche.saison);
+    return left + ' - ' + right;
   };
   
   this.carton = function (carton) {

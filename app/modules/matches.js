@@ -32,6 +32,7 @@
     
     // selection
     $scope.selectionTpl = 'app/modules/mini/minimatch.html';
+    $scope.selectionLink = '#match/';
     
     // table 
     $scope.tableCfg = {

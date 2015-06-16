@@ -4,9 +4,7 @@
 
   <div ng-show="!loading && !match">Aucun match sélectionné</div>
   
-  <div ng-show="!loading && match" class="g-block-link">
-    
-    <a href="#match/{{match.fiche.id}}" class="fa fa-mail-forward"></a>
+  <div ng-show="!loading && match">
     
     <div class="g-row">
       <lvdlom-fiche-match match="match" cfg="cfg"></lvdlom-fiche-match>

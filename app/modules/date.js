@@ -10,8 +10,12 @@
   });
   
   // controller
-  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, DateTime) {
-    $scope.DateTime = DateTime;
+  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Formatter, DateTime) {
+    $scope.Formatter = Formatter;
+    
+    $scope.age = function (date) {
+      return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24 * 365));
+    };
     
     $scope.matches = [];
     $scope.joueurs = [];
@@ -20,16 +24,19 @@
     $scope.model = Day.get({date: $routeParams.date}, function () {
       
       // fetch data
-      var fetchData = function (key, factory) {
+      var fetchData = function (key, dateKey, factory) {
         $scope.model[key].forEach(function (raw) {
           factory.get({id: raw.id}, function (data) {
             $scope[key].push(data);
+            $scope[key].sort(function (data1, data2) {
+              return data1.fiche[dateKey].localeCompare(data2.fiche[dateKey]);
+            });
           });        
         });
       };
       
-      fetchData('matches', Match);
-      fetchData('joueurs', Joueur);
+      fetchData('matches', 'date', Match);
+      fetchData('joueurs', 'dateNaissance', Joueur);
       
       // breadcrumb
       var month = parseInt($scope.model.date.substr(0, 2), 10);

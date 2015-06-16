@@ -31,6 +31,7 @@
     
     // selection
     $scope.selectionTpl = 'app/modules/mini/minijoueur.html';
+    $scope.selectionLink = '#joueur/';
     
     // table 
     $scope.tableCfg = {
