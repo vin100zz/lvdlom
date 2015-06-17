@@ -10,18 +10,19 @@ app.config(['$routeProvider', function ($routeProvider) {
   };
   
   $routeProvider
+  .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
+  .when('/age', {templateUrl: 'app/modules/age.html', controller: 'AgeCtrl'})
+  .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
   .when('/date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
   .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
-  .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
-  .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
-  .when('/age', {templateUrl: 'app/modules/age.html', controller: 'AgeCtrl'})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
-  .when('/matches', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchesCtrl', resolve: dependencies})
+  .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
   .when('/match/:id', {templateUrl: 'app/modules/match.html', controller: 'MatchCtrl'})
-  .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
-  .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
+  .when('/matches', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchesCtrl', resolve: dependencies})
+  .when('/saison/:id', {templateUrl: 'app/modules/saison.html', controller: 'SaisonCtrl'})
   .when('/saisons', {templateUrl: 'app/modules/common/abstractList.html', controller: 'SaisonsCtrl', resolve: dependencies})
-  .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl', resolve: dependencies})
+  .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
+  .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl'})
   .otherwise({redirectTo: '/date'});
 }]);
 

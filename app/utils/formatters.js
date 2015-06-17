@@ -181,6 +181,10 @@ app.service('Formatter', function (Bom, $filter) {
     }
     return res;
   };
+  
+  this.saison = function (saison) {
+    return '<a href="#/saison/' + saison + '">' + saison + '</a>';
+  };
 });
 
 app.filter('reverse', function () {

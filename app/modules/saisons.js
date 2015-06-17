@@ -36,6 +36,7 @@
       data: $scope.data,
       columns: [{
         title: 'Saison',
+        formatter: Formatter.saison,
         key: 'id'
       }, {
         title: 'Joueurs',
