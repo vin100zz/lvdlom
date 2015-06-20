@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending" ng-click="selectRow(item.id, $index)" ng-show="saveSortedItem(item.id)" ng-class="{'selected': item.id === cfg.selected.id}">
+      <tr ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending" ng-click="selectRow(item.id, $index)" ng-show="saveSortedItem(item.id, $index)" ng-class="{'selected': item.id === cfg.selected.id}">
         <td ng-show="cfg.showRanking" class="ranking">{{($index+1) + '.'}}</td>
         <td ng-repeat="column in cfg.columns">
           <lvdlom-format formatter="column.formatter" value="item[column.key]" item="item"></lvdlom-format>

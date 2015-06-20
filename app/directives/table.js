@@ -58,14 +58,17 @@ app.directive('lvdlomTable', function() {
       $scope.sortFn = function (item) {
         var column = $scope.cfg.columns[$scope.sort.column];
         if (column.sorter) {
+          if (typeof column.key !== 'undefined' && item[column.key] === '') {
+            return Infinity * ($scope.sort.descending ? -1 : 1);
+          }
           return stripAccents(column.sorter.call(this, typeof column.key !== 'undefined' ? item[column.key] : item));
         }
         return stripAccents(item[column.key]);
       };
       
       $scope.sortedItems = [];
-      $scope.saveSortedItem = function (itemId) {
-        $scope.sortedItems.push(itemId);
+      $scope.saveSortedItem = function (itemId, index) {
+        $scope.sortedItems[index] = itemId;
         return true;
       };
       
