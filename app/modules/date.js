@@ -18,7 +18,8 @@
     $scope.joueurs = [];
     $scope.dirigeants = [];
     
-    $scope.model = Day.get({date: $routeParams.date}, function () {
+    var date = $routeParams.date || DateTime.format(new Date(), 'MM-dd');
+    $scope.model = Day.get({date: date}, function () {
       
       // fetch data
       var fetchData = function (key, dateKey, factory) {

@@ -4,10 +4,6 @@ require_once 'utils/service.php';
 
 // date
 $date = General::request("date");
-if(!$date)
-{
-	$date = date("m-d");
-}
 
 
 // ********************************************************
