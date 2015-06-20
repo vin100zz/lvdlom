@@ -1,0 +1,13 @@
+<div class="dir-fonctions-dirigeant" ng-if="dirigeant.id">
+  
+  <div class="g-row">
+    <ul>
+      <li ng-repeat="fonction in dirigeant.fonctions">
+        <div><span ng-bind-html="fonction.titre | format:'fonction'"></span><span>{{fonction.titre}}</span></div>
+        <div class="g-remark">du {{fonction.debut | format:'dateLong'}} au {{fonction.fin | format:'dateLong'}}</div>
+      </li>
+    </ul>
+  </div>
+  
+  
+</div>

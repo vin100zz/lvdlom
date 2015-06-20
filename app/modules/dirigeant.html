@@ -1,0 +1,31 @@
+<div class="pure-g" id="page-dirigeant" ng-if="dirigeant.id">
+
+  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
+  
+  <div class="pure-u-1 pure-u-lg-1-4">
+    <div class="pure-u-1 g-block">
+      <div class="g-topbar g-main-topbar">{{dirigeant.fiche.prenom}} {{dirigeant.fiche.nom}}</div>
+      <div>
+        <lvdlom-fiche-dirigeant dirigeant="dirigeant"></lvdlom-fiche-match>
+      </div>
+    </div>
+  </div>
+    
+  <div class="pure-u-1 pure-u-lg-1-4">
+    <div class="pure-u-1 g-block">
+      <div class="g-topbar"><span class="fa fa-briefcase"></span>Fonctions</div>
+      <div>
+        <lvdlom-fonctions-dirigeant dirigeant="dirigeant"></lvdlom-fonctions-dirigeant>
+      </div>
+    </div>
+  </div>
+  
+  <div class="pure-u-1 pure-u-lg-1-2 g-block g-fixed-block g-scroll-block">
+    <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
+    <div>
+      <lvdlom-documents documents="dirigeant.documents"></lvdlom-documents>
+    </div>
+  </div>
+   
+</div>
+  

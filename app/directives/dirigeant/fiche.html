@@ -1,0 +1,17 @@
+<div class="dir-fiche-dirigeant" ng-if="dirigeant.id">
+  
+  <div class="g-row g-photo-id" style="background-image: url({{Picture.dirigeant(dirigeant.id)}});"></div>
+
+  <div class="g-row g-info-block row-info">
+    <div>
+      <div ng-if="dirigeant.fiche.dateNaissance"><span class="g-fa">°</span>{{dirigeant.fiche.dateNaissance | format:'dateLong'}}</div>
+      <div ng-if="dirigeant.fiche.villeNaissance"><span class="g-remark">à</span>{{dirigeant.fiche.villeNaissance}}<span ng-if="dirigeant.fiche.territoireNaissance"> ({{dirigeant.fiche.territoireNaissance}})</span></div>
+    </div>
+    <div>
+      <div ng-bind-html="dirigeant.fiche.nationalite | format:'flag'"></div>
+      <div ng-if="dirigeant.fiche.dateDeces"><span class="g-fa">&#x271d;</span>{{dirigeant.fiche.dateDeces | format:'dateLong'}}</div>
+    </div>
+  </div>
+  
+  
+</div>

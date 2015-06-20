@@ -1,0 +1,11 @@
+<div ng-controller="MiniDirigeantCtrl">
+
+  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+
+  <div ng-show="!loading && !dirigeant">Aucun dirigeant sélectionné</div>
+  
+  <div ng-show="!loading && dirigeant">
+    <lvdlom-fiche-dirigeant dirigeant="dirigeant"></lvdlom-fiche-dirigeant>
+  </div>
+  
+</div>

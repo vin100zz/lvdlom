@@ -4,6 +4,10 @@ app.service('Picture', function () {
     return 'documents/id_joueurs/' + id + '.jpg';
   };
   
+  this.dirigeant = function (id) {
+    return 'documents/id_dirigeants/' + id + '.jpg';
+  };
+  
   this.club = function (id) {
     return 'style/clubs/large/' + id + '.png';
   };

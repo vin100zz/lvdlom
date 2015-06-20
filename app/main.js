@@ -15,6 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
   .when('/date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
   .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
+  .when('/dirigeant/:id', {templateUrl: 'app/modules/dirigeant.html', controller: 'DirigeantCtrl'})
   .when('/dirigeants', {templateUrl: 'app/modules/common/abstractList.html', controller: 'DirigeantsCtrl', resolve: dependencies})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
   .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
