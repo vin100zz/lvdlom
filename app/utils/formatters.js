@@ -1,6 +1,13 @@
 app.service('Formatter', function (Bom, $filter) {
   var _this = this;
   
+  var removeDuplicates = function (result, item, index) {
+    if (result.indexOf(item) === -1) {
+      result.push(item);
+    }
+    return result;
+  };
+  
   this.int = function (value) {
     return parseInt(value, 10) || 0;
   };
@@ -22,6 +29,14 @@ app.service('Formatter', function (Bom, $filter) {
     return '<span class="g-badge poste ' + poste + '">' + poste.substr(0,1) + '</span>';
   };
   
+  this.fonction = function (fonction) {
+    return '<span class="g-badge fonction ' + fonction.substr(0,1) + '">' + fonction.substr(0,1) + '</span>';
+  };
+  
+  this.fonctions = function (fonctions) {
+    return fonctions.split(',').reduce(removeDuplicates, []).map(_this.fonction).join(' ');
+  };
+  
   this.flag = function (pays) {
     return '<div class="icon-flag flag-' + pays + '">' + pays + '</div>';
   };
@@ -39,7 +54,7 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.dateNaissance = function (dateNaissance) {
-    if (dateNaissance) {
+    if (dateNaissance && dateNaissance.length === 10) {
       var dNaiss = dateNaissance.substr(8, 2);
       var mNaiss = dateNaissance.substr(5, 2);
       var yNaiss = dateNaissance.substr(0, 4);

@@ -109,4 +109,12 @@ app.service('Filter', function (Dictionary) {
     active: true
   };
   
+  this.fonction = {
+    criterion: 'fonction',
+    label: 'Fonction',
+    options: Dictionary.fonctions(),
+    value: Dictionary.fonctions()[0].key,
+    active: false
+  };
+  
 });

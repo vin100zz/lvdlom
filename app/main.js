@@ -15,6 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
   .when('/date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
   .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
+  .when('/dirigeants', {templateUrl: 'app/modules/common/abstractList.html', controller: 'DirigeantsCtrl', resolve: dependencies})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
   .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
   .when('/match/:id', {templateUrl: 'app/modules/match.html', controller: 'MatchCtrl'})
@@ -35,11 +36,11 @@ app.controller('MainCtrl', function($scope, $location, Loading, $http) {
   });
   
   $scope.menu = [
-    {title: 'Accueil', hash: 'date', last: true},
-    {title: 'Infos Joueurs', hash: 'joueurs'},
+    {title: 'Anniversaires', hash: 'date', last: true},
+    {title: 'Joueurs', hash: 'joueurs'},
     {title: 'Stats Joueurs', hash: 'stats-joueurs'},
     {title: 'Âge', hash: 'age', last: true},
-    {title: 'Infos Dirigeants', hash: 'dirigeants'},
+    {title: 'Dirigeants', hash: 'dirigeants'},
     {title: 'Stats Entraîneurs', hash: 'stats-entraineurs', last: true},
     {title: 'Matches', hash: 'matches'},
     {title: 'Adversaires', hash: 'adversaires'},

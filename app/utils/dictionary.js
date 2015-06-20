@@ -18,4 +18,8 @@ app.service('Dictionary', function ($http) {
   this.adversaires = function () {
     return dictionary.adversaires;
   };
+  
+  this.fonctions = function () {
+    return dictionary.fonctions;
+  };
 });

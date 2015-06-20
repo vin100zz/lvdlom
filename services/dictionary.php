@@ -31,6 +31,13 @@ $adversaires = DBAccess::query
   ORDER BY NomAdversaire
 ");
 
+$fonctions = DBAccess::query
+("
+	SELECT DISTINCT	IdFonction AS key, Titre AS label
+	FROM fonctions
+  ORDER BY Titre
+");
+
 
 // ********************************************************
 // ******* JSON *******************************************
@@ -39,7 +46,8 @@ $adversaires = DBAccess::query
 $dict = array(
   "nationalites" => $nationalites,
   "saisons" => $saisons,
-  "adversaires" => $adversaires
+  "adversaires" => $adversaires,
+  "fonctions" => $fonctions
 );
 respond($dict);
 
