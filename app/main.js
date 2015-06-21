@@ -17,6 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl'})
   .when('/dirigeant/:id', {templateUrl: 'app/modules/dirigeant.html', controller: 'DirigeantCtrl'})
   .when('/dirigeants', {templateUrl: 'app/modules/common/abstractList.html', controller: 'DirigeantsCtrl', resolve: dependencies})
+  .when('/equipe-types', {templateUrl: 'app/modules/equipe-types.html', controller: 'EquipeTypesCtrl'})
   .when('/joueur/:id', {templateUrl: 'app/modules/joueur.html', controller: 'JoueurCtrl'})
   .when('/joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'JoueursCtrl', resolve: dependencies})
   .when('/match/:id', {templateUrl: 'app/modules/match.html', controller: 'MatchCtrl'})
@@ -48,6 +49,7 @@ app.controller('MainCtrl', function($scope, $location, Loading, $http) {
     {title: 'Adversaires', hash: 'adversaires'},
     {title: 'Compétitions', hash: 'competitions', last: true},
     {title: 'Saisons', hash: 'saisons'},
+    {title: 'Équipe-types', hash: 'equipe-types'},
     {title: 'Séries', hash: 'series', last: true},
     {title: 'Historique', hash: 'histo'},
     {title: 'Timeline', hash: 'timeline', last: true},

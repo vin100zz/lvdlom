@@ -1,0 +1,28 @@
+<div class="pure-g" id="page-equipe-types">
+ 
+  <div class="pure-u-1">
+  
+    <div class="pure-u-1 pure-u-lg-1-4 g-block g-block-link" ng-repeat="saison in saisons">
+      <div class="g-topbar g-main-topbar">{{saison.id}}</div>
+      <div>
+        <div class="g-row">
+          <ul>
+            <li>
+              <div></div>
+              <div class="g-remark stat">Matches</div>
+              <div class="g-remark stat">Buts</div>
+            </li>
+            <li ng-repeat="joueur in saison.joueurs">
+              <div><span ng-bind-html="joueur.poste | format:'poste'"></span><span>{{joueur.prenom}} {{joueur.nom}}</span></div>
+              <div class="stat">{{joueur.nbMatches}}</div>
+              <div class="stat">{{joueur.nbButs}}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a href="#saison/{{saison.id}}" class="fa fa-mail-forward g-link"></a>
+    </div>
+    
+  </div>
+
+</div>
