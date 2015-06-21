@@ -23,6 +23,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/matches', {templateUrl: 'app/modules/common/abstractList.html', controller: 'MatchesCtrl', resolve: dependencies})
   .when('/saison/:id', {templateUrl: 'app/modules/saison.html', controller: 'SaisonCtrl'})
   .when('/saisons', {templateUrl: 'app/modules/common/abstractList.html', controller: 'SaisonsCtrl', resolve: dependencies})
+  .when('/stats-entraineurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsEntraineursCtrl', resolve: dependencies})
   .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
   .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl'})
   .otherwise({redirectTo: '/date'});

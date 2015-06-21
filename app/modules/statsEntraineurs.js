@@ -3,35 +3,31 @@
   'use strict';
   
   // API
-  app.factory('StatsJoueurs', function ($resource) {
-    return $resource('services/stats-joueurs.php', {}, {
+  app.factory('StatsEntraineurs', function ($resource) {
+    return $resource('services/stats-entraineurs.php', {}, {
       get: {method: 'GET', isArray: true, cache: true}
     });
   });
   
   // controller
-  app.controller('StatsJoueursCtrl', function($scope, $injector, StatsJoueurs, Formatter, Sorter, Filter) {
+  app.controller('StatsEntraineursCtrl', function($scope, $injector, StatsEntraineurs, Formatter, Sorter, Filter) {
     
     $injector.invoke(AbstractListCtrl, this, {$scope: $scope});
     
     // filters
     $scope.filters = [
-      Filter.poste,
-      Filter.nationalite,
-      Filter.lieuNaissance,
-      Filter.formeAuClub,
-      Filter.auClub   
+      Filter.periode  
     ];
     
     // data  
     $scope.fetchData = function (filters) {
-      return StatsJoueurs.get(filters);
+      return StatsEntraineurs.get(filters);
     };
     $scope.data.list = $scope.fetchData(Filter.toParams($scope.filters));
     
     // selection
-    $scope.selectionTpl = 'app/directives/mini/minijoueur.html';
-    $scope.selectionLink = '#joueur/';
+    $scope.selectionTpl = 'app/directives/mini/minidirigeant.html';
+    $scope.selectionLink = '#dirigeant/';
   
     // table
     $scope.tableCfg = {
@@ -40,11 +36,6 @@
         title: 'Nom',
         formatter: Formatter.nom,
         sorter: Sorter.nom
-      }, {
-        title: 'Poste',
-        formatter: Formatter.poste,
-        sorter: Sorter.poste,
-        key: 'poste'
       }, {
         title: 'Période',
         sorter: Sorter.periode,
@@ -56,8 +47,8 @@
         defaultOrderDescending: true
       }, {
         title: 'Bilan',
-        formatter: Formatter.bilanMatchesButs.bind(this, $scope.maxData),
-        sorter: Sorter.bilanMatchesButs,
+        formatter: Formatter.bilanMatchesVictoires.bind(this, $scope.maxData),
+        sorter: Sorter.bilanMatchesVictoires,
         defaultOrderDescending: true
       }, {
         title: 'Matches',
@@ -66,10 +57,10 @@
         key: 'nbMatches',
         defaultOrderDescending: true
       }, {
-        title: 'Buts',
+        title: 'Victoires',
         formatter: Formatter.int,
         sorter: Sorter.int,
-        key: 'nbButs',
+        key: 'nbVictoires',
         defaultOrderDescending: true
       }, {
         title: 'Titres',
@@ -77,10 +68,10 @@
         key: 'titres',
         defaultOrderDescending: true
       }],
-      defaultSort: 5,
+      defaultSort: 4,
       selected: $scope.selected,
       showRanking: true,
-      itemName: 'joueurs'
+      itemName: 'entraîneurs'
     };
     
   });

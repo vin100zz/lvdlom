@@ -1,4 +1,6 @@
 app.service('Sorter', function() {
+  var _this = this;
+  
   this.int = function (nb) {
     return parseInt(nb, 10) || 0;
   };
@@ -28,8 +30,18 @@ app.service('Sorter', function() {
     return duration * 1000000 + begin;
   };
   
-  this.bilan = function (bilan) {
-    return parseInt(bilan.nbMatches, 10) || 0;
+  this._bilan = function (partial, total) {
+    partial = parseInt(partial, 10) || 0;
+    total = parseInt(total, 10);
+    return partial / total * 1000000 + (100000 - total);
+  };
+  
+  this.bilanMatchesButs = function (bilan) {
+    return _this._bilan(bilan.nbButs, bilan.nbMatches);
+  };
+  
+  this.bilanMatchesVictoires = function (bilan) {
+    return _this._bilan(bilan.nbVictoires, bilan.nbMatches);
   };
   
   this.competition = function (item) {

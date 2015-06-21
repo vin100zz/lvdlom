@@ -106,14 +106,17 @@ app.service('Formatter', function (Bom, $filter) {
     return '<div style="width: ' + width + '%; background-color: ' + color + ';"></div>';
   };
   
-  this._bilan = function (max, data) {
+  this._bilan = function (max, data, nbPerDisplay) {
     var out = '';
     data.forEach(function (item) {
       var value = parseInt(item.value, 10) || 0;
       var width = Math.min(value / max * 100, 100);
       out += _this._bar(width, item.color);
     });
-    return '<div class="g-table-bilan">' + out + '</div>';
+    var nbPer = (parseInt(data[1].value, 10) || 0) / (parseInt(data[0].value, 10) || Infinity);
+    nbPer = Math.floor(nbPer*100);
+    nbPer = (nbPerDisplay === 'pc' ? nbPer + '%' : nbPer/100);
+    return '<div class="g-table-bilan"><div class="g-remark">' + nbPer + '</div><div>' + out + '</div></div>';
   };
   
   this.bilanMatchesButs = function (max, joueur) {
@@ -121,7 +124,7 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this.bilanMatchesVictoires = function (max, bilan) {
-    return _this._bilan(max.value, [{value: bilan.nbMatches, color: '#3498db'}, {value: bilan.nbVictoires, color: '#ff9000'}]);
+    return _this._bilan(max.value, [{value: bilan.nbMatches, color: '#3498db'}, {value: bilan.nbVictoires, color: '#ff9000'}], 'pc');
   };
   
   this.lieu = function (lieu) {

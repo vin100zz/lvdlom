@@ -106,8 +106,20 @@
 	width: 150px;
 
   > div {
-		height: 5px;
-		margin: 1px 0;
+    display: inline-block;
+    
+    &:first-child {
+      width: 25px;
+      padding: 0 10px 0 0;
+    }
+    &:last-child {
+      width: calc(~"100% - 35px");
+    }
+    
+    > div {
+			height: 5px;
+			margin: 1px 0;
+		}
 	}
 }
 

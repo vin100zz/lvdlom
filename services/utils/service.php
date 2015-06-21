@@ -1,13 +1,20 @@
 <?php
 
 $lastUpdate = filemtime("om.db3") * 1000;
-$contents = file_get_contents("_cache.json");
-$cache = json_decode($contents, true);
+
+if (file_exists("_cache.json")) {
+  $contents = file_get_contents("_cache.json");
+  $cache = json_decode($contents, true);
+} else {
+  $cache = array();
+}
 
 // cache invalidation
 if (!isset($cache["lastUpdate"]) || $cache["lastUpdate"] != $lastUpdate) {
-  unlink("_cache.json");
-  $cache = array();
+  if (file_exists("_cache.json")) {
+    unlink("_cache.json");
+    $cache = array();
+  }
 }
 
 // check cache
