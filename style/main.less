@@ -52,12 +52,13 @@
 
 #mini-header {
 	padding: 0 10px;
-	background: url(img/mini-title.png) no-repeat 50px center, @menuBackground;
+	background: url(img/mini-title.png) no-repeat 35px center, @menuBackground;
 	line-height: 35px;
 	
 	.hamburger {
 	  vertical-align: middle;
 	  cursor: pointer;
+	  font-size: 1.25em;
 	}
 }
 
@@ -87,22 +88,24 @@
     height: 35px;
     line-height: 35px;
     padding-left: 10px;
-  }
-  .navigation li.sep {
-    border-bottom: 1px solid #333;
-  }
-  .navigation li:hover {
-    background: @menuHighlightBackground;
-  }
-  .navigation li a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: @primaryReversedText;
-    text-decoration: none;
-  }
-  .navigation li.selected a {
-    color: @selectedText;
+
+    &.sep {
+      border-bottom: 1px solid #333;
+    }
+	  &:hover {
+	    background: @menuHighlightBackground;
+	  }
+	  
+    a {
+	    display: block;
+	    width: 100%;
+	    height: 100%;
+	    color: @primaryReversedText;
+	    text-decoration: none;
+	  }
+	  &.selected a {
+	    color: @selectedText;
+	  }
   }
 }
 
@@ -118,7 +121,7 @@
 }
 
 
-
+/* Mobile */
 @media (max-width: 1280px) {
   #header {
     display: none;

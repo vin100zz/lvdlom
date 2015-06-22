@@ -1,0 +1,13 @@
+<div class="dir-dirigeants-saison" ng-if="saison.id">
+
+  <div class="g-row">
+    <ul>
+      <li ng-repeat="dirigeant in saison.dirigeants">
+        <div>{{dirigeant.prenom}} {{dirigeant.nom}}</div>
+        <div class="g-remark">{{dirigeant.titre}}</div>
+      </li>
+    </ul>
+  </div>
+  
+  
+</div>

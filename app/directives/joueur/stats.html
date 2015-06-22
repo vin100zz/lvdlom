@@ -9,7 +9,7 @@
       </li>
       <li ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'"">
         <div class="saison g-remark">{{saison}}</div>
-        <div><span>{{row.total.tit}}</span><span class="g-remark">({{row.total.rmp}})</span></div>
+        <div><span>{{row.total.tit}}</span><span class="g-remark" ng-if="row.total.rmp > 0">({{row.total.rmp}})</span></div>
         <div>{{row.total.buts}}</div>
       </li>
       <li class="total">

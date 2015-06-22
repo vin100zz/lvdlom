@@ -116,7 +116,7 @@ $dirigeants = DBAccess::query
 	ORDER BY fonctions.IdFonction ASC
 ");
 
-// entraîneur
+// entraîneurs
 $entraineurs = DBAccess::query
 ("
 	SELECT

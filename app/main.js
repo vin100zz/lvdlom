@@ -47,12 +47,11 @@ app.controller('MainCtrl', function($scope, $location, Loading, $http) {
     {title: 'Stats Entraîneurs', hash: 'stats-entraineurs', last: true},
     {title: 'Matches', hash: 'matches'},
     {title: 'Adversaires', hash: 'adversaires'},
-    {title: 'Compétitions', hash: 'competitions', last: true},
+    {title: 'Séries', hash: 'series', last: true},
     {title: 'Saisons', hash: 'saisons'},
     {title: 'Équipe-types', hash: 'equipe-types'},
-    {title: 'Séries', hash: 'series', last: true},
-    {title: 'Historique', hash: 'histo'},
-    {title: 'Timeline', hash: 'timeline', last: true},
+    {title: 'Palmarès', hash: 'histo', last: true},
+    {title: 'Compétitions', hash: 'competitions', last: true},
     {title: 'Avancement', hash: 'avancement'}
   ];
   

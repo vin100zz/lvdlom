@@ -1,0 +1,16 @@
+<div ng-controller="MiniSaisonCtrl" id="minisaison">
+
+  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+
+  <div ng-show="!loading && !saison">Aucune saison sélectionnée</div>
+  
+  <div ng-show="!loading && saison">
+    
+    <div class="g-row">
+      <lvdlom-fiche-saison saison="saison"></lvdlom-fiche-saison>
+    </div>
+    
+  </div>
+  
+
+</div>
