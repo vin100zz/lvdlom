@@ -43,7 +43,7 @@ app.directive('lvdlomDocuments', function () {
             document.height = this.naturalHeight * document.width / this.naturalWidth;
             
             $scope.$apply();
-          }
+          };
           img.src = document.path;
         });
       };
