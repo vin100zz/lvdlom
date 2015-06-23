@@ -34,11 +34,11 @@ app.service('Bom', function() {
     return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24 * 365));
   };
   
-  this.age = function (days) {
+  this.age = function (days, showMonth) {
     days = parseInt(days, 10);
     var years = Math.floor(days / 365);
     var months = Math.floor((days - years*365)/30);
-    return years + ' ans' + (months > 0 ? ' ' + months + ' mois' : '');
+    return years + ' ans' + (showMonth && months > 0 ? ' ' + months + ' mois' : '');
   };
   
 });

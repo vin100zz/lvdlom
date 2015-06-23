@@ -7,7 +7,7 @@
       <li ng-repeat="joueur in joueurs">
         <div class="g-remark">{{$index+1}}.</div>
         <div>{{joueur.prenom}} {{joueur.nom}}</div>
-        <div class="g-remark">{{Bom.age(joueur.age)}}</div>
+        <div class="g-remark">{{Bom.age(joueur.age, true)}}</div>
       </li>
     </ul>
   </div>

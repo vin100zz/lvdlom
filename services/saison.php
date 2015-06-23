@@ -123,8 +123,8 @@ $entraineurs = DBAccess::query
     dirigeants.IdDirigeant as id,
     Prenom as prenom,
     Nom as nom,
-    MIN(DateMatch) as debut,
-    count(*) as nb_matches
+    MAX(DateMatch) as fin,
+    count(*) as nbMatches
 	FROM dirige, matches, dirigeants
 	WHERE Fin >= '$firstMatch' AND Debut <= '$lastMatch'
 		AND Saison = '$idSaison'
@@ -132,7 +132,6 @@ $entraineurs = DBAccess::query
 		AND DateMatch >= Debut AND DateMatch <= Fin
 		AND dirigeants.IdDirigeant = dirige.IdDirigeant
 	GROUP BY dirigeants.IdDirigeant
-	ORDER BY debut ASC
 ");
 
 // palmarès
@@ -290,28 +289,10 @@ function ordonnerBilan($iJoueursArray, $iBilan)
 			}
 		}
 		
-		$aNewBilan[$aCurrentJoueur] = $aTotalJoueur;
+		$aNewBilan[] = $aTotalJoueur;
 	}
-	
-	uasort($aNewBilan, "cmpTotaux");
 		
 	return $aNewBilan;
-}
-
-function cmpTotaux($a, $b)
-{
-	$aTotalMatchesA = $a["total"]["tit"] + $a["total"]["rmp"];
-	$aTitA = $a["total"]["tit"];
-	$aTotalMatchesB = $b["total"]["tit"] + $b["total"]["rmp"];
-	$aTitB = $b["total"]["tit"];
-	
-    if($aTotalMatchesA == $aTotalMatchesB)
-    {
-    	if($aTitA == $aTitB)
-	        return 0;
-	    return ($aTitA < $aTitB) ? 1 : -1;
-    }
-    return ($aTotalMatchesA < $aTotalMatchesB) ? 1 : -1;
 }
 
 ?>

@@ -2,10 +2,10 @@
 
   <div class="g-row">
     <ul>
-      <li class="header">
-        <div>Saison</div>
-        <div><span>Tit</span><span class="g-remark">(rmp)</span></div>
-        <div>Buts</div>
+      <li>
+        <div class="g-remark">Saison</div>
+        <div class="g-remark">Tit (rmp)</div>
+        <div class="g-remark">Buts</div>
       </li>
       <li ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'"">
         <div class="saison g-remark">{{saison}}</div>
