@@ -10,7 +10,7 @@
   });
   
   // controller
-  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Bom, Formatter, DateTime) {
+  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Dirigeant, Bom, Formatter, DateTime) {
     $scope.Formatter = Formatter;
     $scope.Bom = Bom;
     
@@ -35,6 +35,7 @@
       
       fetchData('matches', 'date', Match);
       fetchData('joueurs', 'dateNaissance', Joueur);
+      fetchData('dirigeants', 'dateNaissance', Dirigeant);
       
       // breadcrumb
       var month = parseInt($scope.model.date.substr(0, 2), 10);

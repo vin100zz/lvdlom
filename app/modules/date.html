@@ -28,6 +28,18 @@
       <a href="#joueur/{{joueur.id}}" class="fa fa-mail-forward g-link"></a>
     </div>
     
+    <div class="pure-u-1 pure-u-lg-1-4 g-block g-block-link" ng-repeat="dirigeant in dirigeants">
+      <div class="g-topbar g-main-topbar">{{dirigeant.fiche.prenom}} {{dirigeant.fiche.nom}}</div>
+      <div class="uniformized">
+        <lvdlom-fiche-dirigeant dirigeant="dirigeant" cfg="{mini: true}"></lvdlom-fiche-dirigeant>
+      </div>
+      <div class="g-bottombar">
+        <span>{{dirigeant.fiche.dateNaissance | format:'dateLong'}}</span>
+        <span class="g-remark">il y a {{Bom.ageSince(dirigeant.fiche.dateNaissance)}} ans</span>
+      </div>
+      <a href="#dirigeant/{{dirigeant.id}}" class="fa fa-mail-forward g-link"></a>
+    </div>
+    
   </div>
 
 </div>
