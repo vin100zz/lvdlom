@@ -35,7 +35,7 @@
       data: $scope.data,
       columns: [{
         title: 'Nom',
-        formatter: Formatter.nom,
+        formatter: Formatter.nomDirigeant,
         sorter: Sorter.nom
       }, {
         title: 'Fonctions',

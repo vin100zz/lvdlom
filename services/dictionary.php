@@ -38,6 +38,28 @@ $fonctions = DBAccess::query
   ORDER BY Titre
 ");
 
+$joueurs = DBAccess::query
+("
+	SELECT DISTINCT	IdJoueur AS key, (Prenom || ' ' || Nom) AS label
+	FROM joueurs
+  ORDER BY Nom
+");
+
+$dirigeants = DBAccess::query
+("
+	SELECT DISTINCT	IdDirigeant AS key, (Prenom || ' ' || Nom) AS label
+	FROM dirigeants
+  ORDER BY Nom
+");
+
+$matches = DBAccess::query
+("
+	SELECT DISTINCT	IdMatch AS key, (NomAdversaire || ',' || DateMatch || ',' || ButsOM || ',' || ButsAdv) AS label
+	FROM matches
+  JOIN adversaires ON adversaires.IdAdversaire = matches.Adversaire
+  ORDER BY DateMatch
+");
+
 
 // ********************************************************
 // ******* JSON *******************************************
@@ -47,7 +69,10 @@ $dict = array(
   "nationalites" => $nationalites,
   "saisons" => $saisons,
   "adversaires" => $adversaires,
-  "fonctions" => $fonctions
+  "fonctions" => $fonctions,
+  "joueurs" => $joueurs,
+  "dirigeants" => $dirigeants,
+  "matches" => $matches
 );
 respond($dict);
 

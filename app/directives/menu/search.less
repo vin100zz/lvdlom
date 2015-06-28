@@ -1,0 +1,49 @@
+@import "style/variables";
+
+#search-results {
+  position: fixed;
+  top: 35px;
+  left: -80px;
+  bottom: 0;
+  width: 220px;
+  overflow-y: auto;
+  border-left: 1px solid @menuBorder;
+  font-size: 9pt;
+  color: @primaryReversedText;
+  background: @menuBackground;
+  transition: left 0.5s ease;
+   
+  &.visible {
+    left: 160px;
+  }
+  
+  > li {
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 8px 5px 8px 10px;
+      color: @primaryReversedText;
+      text-decoration: none;
+      
+		  &:hover {
+	      background: @menuHighlightBackground;
+	    }
+	    
+	    .match {
+	      color: lighten(@selectedText, 25%);
+	    }
+      
+      .g-remark {
+        margin: 5px 0 0 0;
+      }
+    }
+    
+    &.no-result {
+      font-size: 10pt;
+      padding: 20px;
+      color: @secondaryText;
+    }
+  }
+}

@@ -2,72 +2,73 @@
 <html lang="en" ng-app="lvdlom">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width" />
-  
-  <link rel='shortcut icon' type='image/gif' href='style/favicon.ico' />
-  <title>La Vie de l'OM</title>
-  
-  <link rel="stylesheet" href="lib/reset/reset.css">
-  <link rel="stylesheet" href="lib/pure-release-0.5.0/grids-min.css">
-  <link rel="stylesheet" href="lib/pure-release-0.5.0/grids-responsive-min.css">
-  <link rel="stylesheet" href="lib/font-awesome-4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="style/minified.min.css">
-  
-  <script src="//localhost:35729/livereload.js"></script>
-  
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.min.js"></script>
-  <script src="lib/angular/angular-locale_fr-fr.js"></script>
-  <script src="lib/angular/angular-resource.min.js"></script>
-  <script src="lib/angular/angular-sanitize.min.js"></script>
-  <script src="lib/chartjs/chart.min.js"></script>
-  <script src="lib/stackblur/stackblur.js"></script>
-  
-  <!-- include: "type": "js", "files": "app/**/*.js", "ordering": "top-down" -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+
+<link rel='shortcut icon' type='image/gif' href='style/favicon.ico' />
+<title>La Vie de l'OM</title>
+
+<link rel="stylesheet" href="lib/reset/reset.css">
+<link rel="stylesheet" href="lib/pure-release-0.5.0/grids-min.css">
+<link rel="stylesheet"
+ href="lib/pure-release-0.5.0/grids-responsive-min.css">
+<link rel="stylesheet"
+ href="lib/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style/minified.min.css">
+
+<script src="//localhost:35729/livereload.js"></script>
+
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.min.js"></script>
+<script src="lib/angular/angular-locale_fr-fr.js"></script>
+<script src="lib/angular/angular-resource.min.js"></script>
+<script src="lib/angular/angular-sanitize.min.js"></script>
+<script src="lib/chartjs/chart.min.js"></script>
+<script src="lib/stackblur/stackblur.js"></script>
+
+<!-- include: "type": "js", "files": "app/**/*.js", "ordering": "top-down" -->
 
 </head>
 
 <body ng-controller="MainCtrl">
 
-  <div id="header">
-    <div class="dernier">
-      <span>Dernier match :</span>
-      <span class="caret"></span>
-      <a href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}} - {{actu.dernierMatch.clubDroite}} : {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
-    </div>
-    <div class="prochain">
-      <span>Prochains matches :</span>
-      <ul>
-        <li ng-repeat="prochainMatch in actu.prochainsMatches">
-          <span class="caret"></span>
-          <div class="match">{{prochainMatch.match}}<span class="tele">{{prochainMatch.date}}, {{prochainMatch.tele}}</span></div>
-        </li>
-      </ul>
-    </div>
+ <div id="header">
+  <div class="dernier">
+   <span>Dernier match :</span> <span class="caret"></span> <a
+    href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}}
+    - {{actu.dernierMatch.clubDroite}} :
+    {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
   </div>
-  
-  <div id="mini-header">
-    <span class="fa fa-2x fa-bars hamburger" ng-click="toggleMenu()"></span>
+  <div class="prochain">
+   <span>Prochains matches :</span>
+   <ul>
+    <li ng-repeat="prochainMatch in actu.prochainsMatches"><span
+     class="caret"></span>
+     <div class="match">
+      {{prochainMatch.match}}<span class="tele">{{prochainMatch.date}},
+       {{prochainMatch.tele}}</span>
+     </div></li>
+   </ul>
   </div>
+ </div>
 
-  <div id="menu" ng-class="{offcanvas: isMenuOffCanvas}">
-    <div class="title"></div>
-    <ul class="navigation">
-      <li ng-repeat="item in menu" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
-        <a href="{{'#' + item.hash}}" ng-click="hideMenu()">{{item.title}}</a>
-      </li>
-    </ul>
-  </div>
+ <div id="mini-header">
+  <span class="fa fa-2x fa-bars hamburger" ng-click="toggleMenu()"></span>
+ </div>
 
-  <ng-view id="content" ng-show="!loading"></ng-view>
-  
-  <div id="mask" ng-show="loading">
-    <div class="anim">
-      <div class="outer-ball"></div>
-      <div class="inner-ball"></div>
-    </div>
+ <div id="content">
+  <ng-view id="payload" ng-show="!loading"></ng-view>
+ </div>
+
+ <lvdlom-search cfg="searchCfg"></lvdlom-search>
+ <lvdlom-menu cfg="menuCfg" search-cfg="searchCfg"></lvdlom-menu>
+
+ <div id="mask" ng-show="loading">
+  <div class="anim">
+   <div class="outer-ball"></div>
+   <div class="inner-ball"></div>
   </div>
+ </div>
 
 </body>
 

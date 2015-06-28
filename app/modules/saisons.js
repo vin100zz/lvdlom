@@ -30,6 +30,7 @@
     
     // selection
     $scope.selectionTpl = 'app/directives/mini/minisaison.html';
+    $scope.selectionLink = '#saison/';
     
     // table 
     $scope.tableCfg = {

@@ -1,0 +1,16 @@
+<div id="menu" ng-class="{offcanvas: cfg.offCanvas}">
+
+  <div class="title"></div>
+  
+  <div id="search-field">
+    <input type="text" placeholder="Recherche" ng-model="searchCfg.pattern"></input>
+    <span class="fa fa-search"></span>
+  </div>
+  
+  <ul class="navigation">
+    <li ng-repeat="item in menu" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
+      <a href="{{'#' + item.hash}}" ng-click="hideMenu()">{{item.title}}</a>
+    </li>
+  </ul>
+  
+</div>

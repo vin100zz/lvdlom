@@ -17,13 +17,21 @@ app.service('Formatter', function (Bom, $filter) {
     return (integer > 0 ? '+' : '') + integer;
   };
   
-  this.nom = function (joueur) {
-    var out = '<a href="#joueur/' + joueur.id + '">' + joueur.prenom + ' ' + joueur.nom + '</a>';
+  this._nom = function (personne, link) {
+    return '<a href="#' + link + '/' + personne.id + '">' + personne.prenom + ' ' + personne.nom + '</a>';
+  };
+  
+  this.nomJoueur = function (joueur) {
+    var out = _this._nom(joueur, 'joueur');
     if (joueur.auClub === "1" || joueur.auClub === "Y") {
       out += '<span class="icon-au-club"></span>';
     }
     return out;
   };
+  
+  this.nomDirigeant = function (dirigeant) {
+    return _this._nom(dirigeant, 'dirigeant');
+  };  
   
   this.poste = function (poste) {
     return '<span class="g-badge poste ' + poste + '">' + poste.substr(0,1) + '</span>';

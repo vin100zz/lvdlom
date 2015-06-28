@@ -34,7 +34,7 @@
       data: $scope.data,
       columns: [{
         title: 'Nom',
-        formatter: Formatter.nom,
+        formatter: Formatter.nomJoueur,
         sorter: Sorter.nom
       }, {
         title: 'Période',

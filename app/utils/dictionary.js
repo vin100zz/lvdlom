@@ -22,4 +22,16 @@ app.service('Dictionary', function ($http) {
   this.fonctions = function () {
     return dictionary.fonctions;
   };
+  
+  this.joueurs = function () {
+    return dictionary.joueurs;
+  };
+  
+  this.dirigeants = function () {
+    return dictionary.dirigeants;
+  };
+  
+  this.matches = function () {
+    return dictionary.matches;
+  };
 });
