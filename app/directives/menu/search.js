@@ -5,7 +5,9 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter) {
       cfg: '='
     },
     templateUrl: 'app/directives/menu/search.html',
-    controller: function ($scope) {    
+    controller: function ($scope) {
+      
+      $scope.expanded = true;
       
       $scope.test = function (regex, item) {
         return regex.test(item.label.toLowerCase());
@@ -48,6 +50,14 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter) {
           $scope.search();
         }
       }, true);
+      
+      // events
+      $scope.$on('expand-search-results', function () {
+        $scope.expanded = true;
+      });
+      $scope.$on('collapse-search-results', function () {
+        $scope.expanded = false;
+      });
     }
     
   };

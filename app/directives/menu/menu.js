@@ -27,6 +27,10 @@ app.directive('lvdlomMenu', function () {
       $scope.isCurrentHash = function (hash) {
         return hash === $location.path().substr(1);
       };
+      
+      $scope.clearSearch = function () {
+        $scope.searchCfg.pattern = '';
+      };
     }
     
   };

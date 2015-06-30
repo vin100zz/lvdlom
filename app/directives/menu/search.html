@@ -1,4 +1,4 @@
-<ul id="search-results" ng-class="{visible: cfg.pattern.length > 2}">
+<ul id="search-results" ng-class="{visible: cfg.pattern.length > 2 && expanded}">
   <li ng-repeat="result in results">
     <a href="{{result.link}}">
       <div><span>{{result.preMatch}}</span><span class="match">{{result.match}}</span><span>{{result.postMatch}}</span></div>

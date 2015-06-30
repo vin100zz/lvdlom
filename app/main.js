@@ -2,13 +2,13 @@ var app = angular.module('lvdlom', ['ngResource', 'ngRoute', 'ngSanitize']);
 
 // routing
 app.config(['$routeProvider', function ($routeProvider) {
-  
+
   var dependencies = {
-    'Dictionary': function (Dictionary){
+    'Dictionary': function (Dictionary) {
       return Dictionary.init;
     }
   };
-  
+
   $routeProvider
   .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
   .when('/age', {templateUrl: 'app/modules/age.html', controller: 'AgeCtrl', resolve: dependencies})
@@ -31,36 +31,43 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 // controller
-app.controller('MainCtrl', function($scope, Loading, $http) {
+app.controller('MainCtrl', function ($scope, Loading, $http) {
   $scope.loading = Loading.isLoading();
-  
+
   $scope.$on('loading.update', function () {
     $scope.loading = Loading.isLoading();
   });
-  
+
   // menu
   $scope.menuCfg = {
     offCanvas: true
   };
-  
+
   $scope.toggleMenu = function () {
     $scope.menuCfg.offCanvas = !$scope.menuCfg.offCanvas;
   };
-  
+
   $scope.hideMenu = function () {
     $scope.menuCfg.offCanvas = true;
   };
-  
+
   // search
   $scope.searchCfg = {
     pattern: ''
   };
-  
+
   $http.get('services/actu.php')
   .success(function (data, status, headers, config) {
     $scope.actu = data;
   });
-  
+
+  // click
+  $scope.onClick = function (evt) {
+    if (evt.target.id === 'search-field-input') {
+      $scope.$broadcast('expand-search-results');
+    } else {
+      $scope.$broadcast('collapse-search-results');
+    }
+  };
+
 });
-
-

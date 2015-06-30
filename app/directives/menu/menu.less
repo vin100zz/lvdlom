@@ -50,7 +50,7 @@
 	  margin: 10px 5px;
 	
 	  input {
-	    padding: 4px 4px 4px 25px;
+	    padding: 4px 20px 4px 25px;
 	    width: 100%;
 	    background: @menuBackground;
 	    border: 1px solid @menuBorder;
@@ -60,12 +60,21 @@
 	  
 	  .fa {
 	    position: absolute;
-	    top: 8px;
-	    left: 7px;
-	    color: @primaryReversedText;
-	    font-size: 9pt;
-	    opacity: 0.25;
+	    top: 5px;
+	    
+	    &.search {
+	      left: 5px;
+	    }
+	    &.clear {
+	      right: 5px;
+	      cursor: pointer;
+	      
+	      &:hover {
+	        opacity: 0.75;
+	      }
+	    }
 	  }
+
 	}
 }
 
