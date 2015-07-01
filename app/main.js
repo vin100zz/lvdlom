@@ -63,11 +63,10 @@ app.controller('MainCtrl', function ($scope, Loading, $http) {
 
   // click
   $scope.onClick = function (evt) {
-    if (evt.target.id === 'search-field-input') {
-      $scope.$broadcast('expand-search-results');
-    } else {
-      $scope.$broadcast('collapse-search-results');
+    if (evt.target.id !== 'hamburger' && evt.target.id !== 'search-field-input') {
+      $scope.menuCfg.offCanvas = true;
     }
+    $scope.$broadcast('click', evt);
   };
 
 });

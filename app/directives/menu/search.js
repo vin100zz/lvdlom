@@ -52,12 +52,10 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter) {
       }, true);
       
       // events
-      $scope.$on('expand-search-results', function () {
-        $scope.expanded = true;
+      $scope.$on('click', function (scope, evt) {
+        $scope.expanded = (evt.target.id === 'search-field-input');
       });
-      $scope.$on('collapse-search-results', function () {
-        $scope.expanded = false;
-      });
+
     }
     
   };
