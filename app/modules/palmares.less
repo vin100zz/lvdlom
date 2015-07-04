@@ -1,0 +1,43 @@
+@import "style/variables";
+
+#page-palmares {
+	
+  .chart {
+    width: 100%;
+    height: 300px;
+    
+    &#chart0 {
+      height: 800px;
+    }
+  }
+  
+  /* chart hacking */
+  .line {
+    height: 3px;
+    opacity: 0.5;
+  }
+  
+  .label {
+    font: 'Lvdlom-Bold';
+  }
+  
+  .titre {
+    fill: @trophyVictoire;
+  }
+  .finale {
+    fill: @trophyFinale;
+  }
+  
+  /* Tooltip */
+  .chartTooltip {
+	  width: 220px;
+	  padding: 10px;
+	  line-height: 18px;
+	
+    .minititle {
+		  color: @secondaryText;
+		  margin-bottom: 5px;
+	  }
+	}
+   
+}
