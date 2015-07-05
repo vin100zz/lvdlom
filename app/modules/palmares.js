@@ -13,10 +13,10 @@
   app.controller('PalmaresCtrl', function($scope, $routeParams, Palmares) {
     
     $scope.chartCfg = [
-      {title: 'Championnat', height: 800},
-      {title: 'Coupes d\'Europe', height: 300},
-      {title: 'Coupe de France', height: 300},
-      {title: 'Autres coupes nationales', height: 300},
+      {title: 'Championnat', icon: 'flag-o', height: 800},
+      {title: 'Coupes d\'Europe', icon: 'trophy', height: 300},
+      {title: 'Coupe de France', icon: 'trophy', height: 300},
+      {title: 'Autres coupes nationales', icon: 'trophy', height: 300},
     ];
     
     $scope.drawHisto = function (yAxis, source, containerId, height) {
@@ -133,10 +133,10 @@
     $scope.tooltip = function (saison, matches) {
       var adv = matches[saison] ? matches[saison].join('<br/>') : '';
       
-      var tooltip = "<div class='chartTooltip'>";
-      tooltip += "<div class='minititle'>" + saison + "</div>";
+      var tooltip = '<div class="chartTooltip">';
+      tooltip += '<div class="minititle">' + saison + '</div>';
       tooltip += adv;
-      tooltip += "</div>";
+      tooltip += '</div>';
       return tooltip;
     };
 

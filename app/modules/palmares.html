@@ -3,7 +3,7 @@
   <div class="pure-u-1">
   
     <div class="pure-u-1 g-block" ng-repeat="chart in chartCfg">
-      <div class="g-topbar">{{chart.title}}</div>
+      <div class="g-topbar"><span class="fa fa-{{chart.icon}}"></span>{{chart.title}}</div>
       <div>
         <div id="{{'chart' + $index}}" class="chart"></div>
       </div>
