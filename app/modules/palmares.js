@@ -23,7 +23,7 @@
       
       // ticks
       var ticks = [];
-      for(var i in yAxis) {
+      for (var i in yAxis) {
         if(yAxis.hasOwnProperty(i)) {
           ticks.push({v: yAxis[i].Value, f: yAxis[i].Label});
         }
@@ -31,10 +31,10 @@
       
       // data
       var data = [];
-      for(var saison in source[0].Histo) {
+      for (var saison in source[0].Histo) {
         if(source[0].Histo.hasOwnProperty(saison)) {
           var row = [saison];
-          for(var i = 0; i < source.length; ++i) {
+          for (i = 0; i < source.length; ++i) {
             row.push(source[i].Histo[saison].Niveau);
             row.push($scope.tooltip(saison, source[i].Matches));
           }
@@ -45,7 +45,7 @@
       // datatable
       var dataTable = new google.visualization.DataTable();
       dataTable.addColumn('string', 'Saison');
-      for(var i = 0; i < source.length; ++i) {
+      for (i = 0; i < source.length; ++i) {
         dataTable.addColumn('number', source[i].Nom);
         dataTable.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
       }
@@ -76,7 +76,7 @@
           textStyle: textStyle
         },
         vAxis : {
-          baseline : containerId == 'chart_champ' ? 20.5 : yAxis.length+1,
+          baseline : yAxis.length+1,
           direction : -1,
           ticks : ticks,
           textStyle: textStyle
@@ -144,7 +144,7 @@
     Palmares.get(null, function (chartsData) {
       
       chartsData.forEach(function (chartData, index) {
-        $scope.drawHisto(chartData.niveaux, chartData.competitions, 'chart' + index, $scope.chartCfg[index].height)
+        $scope.drawHisto(chartData.niveaux, chartData.competitions, 'chart' + index, $scope.chartCfg[index].height);
       });
 
     });

@@ -54,6 +54,7 @@ module.exports = function(grunt) {
           angular: false,
           app: true,
           Chart: false,
+          google: true,
           stackBlurCanvasRGB: false
         }
       }

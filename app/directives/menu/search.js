@@ -38,7 +38,7 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter) {
           var test = $scope.test.bind(this, regex);
           $scope.results = Dictionary.joueurs().filter(test).map($scope.format.bind(this, 'Joueur', 'joueur'))
           .concat(Dictionary.dirigeants().filter(test).map($scope.format.bind(this, 'Dirigeant', 'dirigeant')))
-          .concat(Dictionary.matches().filter(test).map($scope.formatMatch.bind(this)))
+          .concat(Dictionary.matches().filter(test).map($scope.formatMatch.bind(this)));
         } else {
           $scope.results = [];
         }
