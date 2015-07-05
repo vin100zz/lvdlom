@@ -2,16 +2,33 @@
   
   <div class="g-row g-photo-id" style="background-image: url({{Picture.joueur(joueur.id)}});"></div>
 
-  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
+  <div class="g-row row-info" ng-if="!cfg.mini">
     <div>
-      <div ng-if="joueur.fiche.dateNaissance"><span class="g-fa">°</span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</div>
-      <div ng-if="joueur.fiche.villeNaissance"><span class="g-remark">à</span>{{joueur.fiche.villeNaissance}}<span ng-if="joueur.fiche.territoireNaissance"> ({{joueur.fiche.territoireNaissance}})</span></div>
-      <div ng-if="joueur.fiche.dateDeces"><span class="g-fa">&#x271d;</span>{{joueur.fiche.dateDeces | format:'dateLong'}}</div>
+      <div ng-if="joueur.fiche.dateNaissance">
+        <span class="g-remark">né le</span>
+        <span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</span>
+      </div>
+      <div ng-if="joueur.fiche.villeNaissance">
+        <span class="g-remark">à</span>
+        <span>{{joueur.fiche.villeNaissance}}</span>
+        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance"> ({{joueur.fiche.territoireNaissance}})</span>
+      </div>
+      <div ng-if="joueur.fiche.dateDeces">
+        <span class="g-fa">décédé le</span>
+        <span>{{joueur.fiche.dateDeces | format:'dateLong'}}</span>
+      </div>
     </div>
     <div>
-      <div ng-bind-html="joueur.fiche.nationalite | format:'flag'"></div>
-      <div ng-if="joueur.fiche.selections">{{joueur.fiche.selections}} <span class="g-remark">sélections</span></div>
-      <div><span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>{{Bom.poste(joueur.fiche.poste)}}</div>
+      <div ng-bind-html="joueur.fiche.nationalite | format:'flag'">
+      </div>
+      <div ng-if="joueur.fiche.selections">
+        <span>{{joueur.fiche.selections}}</span>
+        <span class="g-remark">sélections</span>
+      </div>
+      <div>
+        <span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>
+        <span>{{Bom.poste(joueur.fiche.poste)}}</span>
+      </div>
     </div>
   </div>
   

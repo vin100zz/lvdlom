@@ -46,7 +46,7 @@ function respond($out) {
   }
   $cache[$url] = $out;
   
-  file_put_contents("_cache.json", json_encode($cache));
+  //file_put_contents("_cache.json", json_encode($cache));
   
   print json_encode($out, JSON_PRETTY_PRINT);
 }

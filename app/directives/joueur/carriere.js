@@ -31,6 +31,7 @@ app.directive('lvdlomCarriereJoueur', function (Carriere) {
             .map(function (row) {
               row.saison = row.saison.substr(0, 4) + '-' + row.saison.substr(7, 2);
               row.club = row.club === 'Marseille' ? 'OM' : row.club;
+              row.club = /prêt à Marseille/.test(row.club) ? 'OM' : row.club;
               row.om = (row.club === 'OM');
               return row;
             })

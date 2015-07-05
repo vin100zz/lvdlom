@@ -1,0 +1,59 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-source.source-francefootball {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: 0px 0px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-lamarseillaise {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: -16px 0px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-laprovence {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: 0px -16px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-lauto {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: -16px -16px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-lemonde {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: -32px 0px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-lepetitprovencal {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: -32px -16px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-leprovencal {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: 0px -32px;
+  width: 16px;
+  height: 16px;
+}
+.icon-source.source-lequipe {
+  background-image: url(sources/sprites/sprite.png);
+  background-position: -16px -32px;
+  width: 16px;
+  height: 16px;
+}

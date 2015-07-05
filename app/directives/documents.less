@@ -6,9 +6,11 @@
 	.container {
 	  display: inline-block;
 	  margin: 0 10px 25px 10px;
+	  box-shadow: 1px 1px 5px 1px @tableBorder;
 	}
 
   .document {
+    display: block;
     height: 100%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -16,8 +18,7 @@
   }
   
   .legend {
-    margin-top: 5px;
-    padding: 0 5px;
+    padding: 5px 5px 3px 5px;
     
     .commentaire {
       margin-bottom: 5px;
@@ -26,25 +27,28 @@
     
     .g-remark {
       display: inline-block;
+      
+      &:not(:first-child) {
+        margin-left: 5px;
+      }
     }
     
-    .laprovence,
-    .leprovencal,
-    .lequipe {
+    .date {
+      .fa {
+        margin-right: 5px;
+      }
+    }
+
+    .source {
       background-repeat: no-repeat;
       background-position: left 2px;
       background-size: 16px;
-      padding-left: 20px;
-      margin-left: 5px;
-    }
-    .laprovence {
-      background-image: url(sources/provence.png);
-    }
-    .leprovencal {
-      background-image: url(sources/provencal.png);
-    }
-    .lequipe {
-      background-image: url(sources/lequipe.png);
-    }
+      
+      .icon-source {
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+    }    
   }
 }

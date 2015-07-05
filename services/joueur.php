@@ -39,7 +39,7 @@ $sqlBilan = array(); // tit, rmp et buts pour chaque compétition
 foreach($listeComp as $comp => $sqlComp)
 {
 	// titulaire   
-	$sqlBilan[$sqlComp]["tit"] = DBAccess::keyVal
+	$sqlBilan[$comp]["tit"] = DBAccess::keyVal
 	(
 		"SELECT Saison, Count(*) as nbTot
 		FROM joue, matches, competitions
@@ -52,7 +52,7 @@ foreach($listeComp as $comp => $sqlComp)
 	);
 	
 	// remplacant
-	$sqlBilan[$sqlComp]["rmp"] = DBAccess::keyVal
+	$sqlBilan[$comp]["rmp"] = DBAccess::keyVal
 	(
 		"SELECT Saison, Count(*) as nbTot
 		FROM joue, matches, competitions
@@ -65,7 +65,7 @@ foreach($listeComp as $comp => $sqlComp)
 	);
 	
 	// buts
-	$sqlBilan[$sqlComp]["buts"] = DBAccess::keyVal
+	$sqlBilan[$comp]["buts"] = DBAccess::keyVal
 	(
 		"SELECT Saison, Count(*) as nbTot
 		FROM buteursom, matches, competitions
@@ -84,6 +84,7 @@ $selectMatch =
   Lieu AS lieu,
   DateMatch AS date,
   Competition AS competition,
+  SousTypeCompetition AS sousTypeCompetition,
   Niveau AS niveau,
   Adversaire AS idAdv,
   NomAdversaire AS nomAdv,
@@ -320,9 +321,9 @@ function ordonnerBilan($iSaisonsArray, $iBilan)
 	
 	$aNewTotalSaison = array();
 	$aNewTotalSaison["total"] = $aBilanCompetition;
-	$aNewTotalSaison["Championnat"] = $aBilanCompetition;
-	$aNewTotalSaison["Coupe Nationale"] = $aBilanCompetition;
-	$aNewTotalSaison["Coupe d''Europe"] = $aBilanCompetition;
+	$aNewTotalSaison["ch"] = $aBilanCompetition;
+	$aNewTotalSaison["cn"] = $aBilanCompetition;
+	$aNewTotalSaison["ce"] = $aBilanCompetition;
 	
 	$aTotaux = $aNewTotalSaison;
 	

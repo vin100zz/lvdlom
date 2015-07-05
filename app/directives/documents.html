@@ -3,17 +3,23 @@
   <ul>
     <li ng-repeat="document in documents" style="" class="container">
     
-      <div class="document" style="background-image: url({{document.path}}); width:{{document.width}}px; height:{{document.height}}px;"></div>
+      <a class="document"
+         style="background-image: url({{document.path}}); width:{{document.width}}px; height:{{document.height}}px;"
+         href="{{document.path}}"
+         target="_blank">
+      </a>
       
-      <div class="g-info-block legend" style="width:{{document.width}}px;">
+      <div class="legend" style="width:{{document.width}}px;">
         <div class="commentaire" ng-if="document.legende">{{document.legende}}</div>
         <div>
-          <span class="g-remark" ng-if="document.date">{{document.date}}</span>
-          <span class="g-remark {{getSourceClass(document.source)}}" ng-if="document.source">{{document.source}}</span>
+          <div class="g-remark source" ng-if="document.source"><span class="icon-source source-{{getSourceClass(document.source)}}"></span><span>{{document.source}}</span></div>
+          <div class="g-remark date" ng-if="document.date"><span class="fa fa-calendar"></span>{{document.date | format:'dateLong'}}</div>
         </div>
       </div>
       
     </li>
+    
+    <li ng-if="documents.length == 0">Aucun document</li>
   </ul>
   
 </div>

@@ -1,23 +1,62 @@
 <div class="dir-stats-joueur" ng-if="joueur.id">
 
   <div class="g-row">
-    <ul>
-      <li>
-        <div class="g-remark">Saison</div>
-        <div class="g-remark">Tit (rmp)</div>
-        <div class="g-remark">Buts</div>
-      </li>
-      <li ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'"">
-        <div class="saison g-remark">{{saison}}</div>
-        <div><span>{{row.total.tit}}</span><span class="g-remark" ng-if="row.total.rmp > 0">({{row.total.rmp}})</span></div>
-        <div>{{row.total.buts}}</div>
-      </li>
-      <li class="total">
-        <div>Total</div>
-        <div><span>{{joueur.bilan['total'].total.tit + joueur.bilan['total'].total.rmp}}</span></div>
-        <div>{{joueur.bilan['total'].total.buts}}</div>
-      </li>
-    </ul>
+    <table>
+    
+      <thead class="g-remark">
+        <tr>
+          <th></th>
+          <th colspan="2">Total</th>
+          <th colspan="2">Champ</th>
+          <th colspan="2">Cp Nat</th>
+          <th colspan="2">Europe</th>
+        </tr>
+      
+        <tr>
+          <th></th>
+          <th>M</th>
+          <th>B</th>
+          <th>M</th>
+          <th>B</th>
+          <th>M</th>
+          <th>B</th>
+          <th>M</th>
+          <th>B</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr class="stats-comp" ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'">
+          <td class="saison g-remark">{{saison}}</td>
+          
+          <!-- total -->
+          <td>{{row.total.tit + row.total.rmp}}</td>
+          <td>{{row.total.buts}}</td>
+          
+          <!-- per competition -->
+          <td ng-repeat-start="comp in ['ch', 'cn', 'ce']">
+            <span>{{row[comp].tit}}</span>
+            <span class="g-remark" ng-if="row[comp].rmp > 0">({{row[comp].rmp}})</span>
+          </td>
+          <td ng-repeat-end>{{row[comp].buts}}</td>
+        </tr>
+      </tbody>
+      
+      <tfoot class="g-important">        
+        <tr>
+          <td>Total</td>
+          
+          <!-- total -->
+          <td><span>{{joueur.bilan['total'].total.tit + joueur.bilan['total'].total.rmp}}</span></td>
+          <td>{{joueur.bilan['total'].total.buts}}</td>
+          
+          <!-- per competition -->
+          <td ng-repeat-start="comp in ['ch', 'cn', 'ce']">{{joueur.bilan['total'][comp].tit + joueur.bilan['total'][comp].rmp}}</td>
+          <td ng-repeat-end>{{joueur.bilan['total'][comp].buts}}</td>
+        </tr>
+      </tfoot>
+      
+    </table>
   </div>
   
 </div>

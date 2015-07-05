@@ -3,31 +3,30 @@
 .dir-stats-joueur {
   text-align: center;
 
-  li {
+  table {
   
-    &.header {
-          
-      > div {
-        padding-bottom: 3px;
+    td {
+      width: 40px;
+    }
+    td:first-child {
+      width: 75px;
+    }
+    
+    th[colspan]:nth-child(2),
+    th[colspan]:nth-child(4),
+    th:nth-child(2), td:nth-child(2),
+    th:nth-child(3):not([colspan]), td:nth-child(3),
+    th:nth-child(6), td:nth-child(6),
+    th:nth-child(7), td:nth-child(7) {
+      background: @alternateBackground;
+    }
+  
+    tbody {
+      .g-remark {
+        margin: 0;
       }
     }
-    
-    &.last > div {
-      padding-bottom: 3px;
-    }
-    
-    &.total > div {
-      padding-top: 3px;
-      border-top: 1px dashed @tableBorder;
-    }
-    
-    > div {
-      padding: 0 20px;
-   
-      &.saison {
-        text-align: right;
-      }
-    }
+
   }
   
 }

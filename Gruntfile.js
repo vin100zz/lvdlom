@@ -74,6 +74,21 @@ module.exports = function(grunt) {
           src: ['style/clubs/large/*.png'],
           dest: 'tmp/'
         }]
+      },
+      sources: {
+        options: {
+          engine: 'im',
+          rename: false,
+          sizes: [{
+            width: '50%',
+            height: '50%'
+          }]
+        },
+        files: [{
+          expand: true,
+          src: ['style/sources/logos/*.png'],
+          dest: 'tmp/'
+        }]
       }
     },
     sprite: {
@@ -93,6 +108,15 @@ module.exports = function(grunt) {
         destCss: 'style/flags/sprites/small.css',
         cssVarMap: function (sprite) {
           sprite.name = 'flag.flag-' + sprite.name + ':before';
+        }
+      },
+      sources: {
+        src: 'tmp/style/sources/logos/*.png',
+        dest: 'style/sources/sprites/sprite.png',
+        imgPath: 'sources/sprites/sprite.png',
+        destCss: 'style/sources/sprites/sprite.css',
+        cssVarMap: function (sprite) {
+          sprite.name = 'source.source-' + sprite.name;
         }
       }
     },
@@ -122,4 +146,5 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat', 'beep']);
   grunt.registerTask('clubs', ['clean', 'responsive_images:clubs', 'sprite:clubs', 'default']);
+  grunt.registerTask('sources', ['clean', 'responsive_images:sources', 'sprite:sources', 'default']);
 };
