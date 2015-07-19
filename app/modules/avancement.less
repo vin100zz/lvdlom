@@ -1,0 +1,43 @@
+@import "style/variables";
+
+#page-avancement {
+  text-align: center;
+
+  .percentage {
+    position: absolute;
+    height: 25px;
+    width: 100px;
+    top: calc(~"50% - 2px");
+    left: calc(~"50% - 50px");
+    font-size: 25px;
+  }
+
+  .detail-completion {
+    display: table;
+    text-align: left;
+
+    > li {
+      display: table-row;
+
+      > div:not(.key) {
+        display: table-cell;
+        background: @resultat_d;
+        border-radius: 4px;
+        color: #fff;
+        width: 22px;
+        text-align: center;
+        border: 1px solid #fff;
+
+        &.key {
+          width: 40px;
+          text-align: : right;
+        }
+
+        &.with-doc {
+          background: @resultat_v;
+        }
+      }
+    }
+  }
+
+}

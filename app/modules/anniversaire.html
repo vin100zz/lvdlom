@@ -1,0 +1,23 @@
+<div class="pure-g" id="page-anniversaire">
+
+  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
+  
+  <div class="pure-u-1">
+
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="fiche in fiches">
+      <div class="g-topbar g-main-topbar">{{fiche.title}}</div>
+      <div class="uniformized">
+        <lvdlom-fiche-match match="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'matches'"></lvdlom-fiche-match>
+        <lvdlom-fiche-joueur joueur="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'joueurs'"></lvdlom-fiche-joueur>
+        <lvdlom-fiche-dirigeant dirigeant="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'dirigeants'"></lvdlom-fiche-dirigeant>
+      </div>
+      <div class="g-bottombar">
+        <span>{{fiche.date | format:'dateLong'}}</span>
+        <span class="g-remark">il y a {{Bom.ageSince(fiche.date)}} ans</span>
+        <a href="{{fiche.link}}" class="fa fa-mail-forward g-link"></a>      
+      </div>
+    </div>
+    
+  </div>
+
+</div>

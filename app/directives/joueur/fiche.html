@@ -11,10 +11,10 @@
       <div ng-if="joueur.fiche.villeNaissance">
         <span class="g-remark">à</span>
         <span>{{joueur.fiche.villeNaissance}}</span>
-        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance"> ({{joueur.fiche.territoireNaissance}})</span>
+        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance">{{joueur.fiche.territoireNaissance}}</span>
       </div>
       <div ng-if="joueur.fiche.dateDeces">
-        <span class="g-fa">décédé le</span>
+        <span class="g-remark">décédé le</span>
         <span>{{joueur.fiche.dateDeces | format:'dateLong'}}</span>
       </div>
     </div>

@@ -5,6 +5,9 @@ app.directive('lvdlomCharts', function () {
     },
     templateUrl: 'app/directives/charts.html',
     controller: function ($scope) {
+
+      $scope.uniqueId = 'id-' + Math.floor(Math.random()*10000000000);
+
       var prepareData = function (config) {
         return config.data.value.map(function (value, index) {
           var settings = config.settings[index];
@@ -13,29 +16,33 @@ app.directive('lvdlomCharts', function () {
         });
       };
       
-      var options = {
-        tooltipFontSize: 10,
-        showTooltips: false
-      };
-      var optionsInner = options;
-      optionsInner.segmentStrokeWidth = 2;
-      
       var render = function () {
         if (!$scope.cfg) {
           return;
         }
+
+        var container = window.document.querySelector('#' + $scope.uniqueId);
+        if (!container) {
+          return;
+        }
+
+        var options = $scope.cfg.main.chartjsCfg || {};
+        options.tooltipFontSize = 10;
+        options.showTooltips = false;
         
         if ($scope.mainChart) {
           $scope.mainChart.destroy();
         }
         $scope.mainData = prepareData($scope.cfg.main);
-        $scope.mainChart = new Chart(window.document.querySelector(".dir-charts .main").getContext("2d")).Doughnut($scope.mainData, options);
+        $scope.mainChart = new Chart(container.querySelector('.main').getContext("2d")).Doughnut($scope.mainData, options);
         
         if ($scope.innerChart) {
           $scope.innerChart.destroy();
         }
-        $scope.innerData = prepareData($scope.cfg.inner);
-        $scope.innerChart = new Chart(window.document.querySelector(".dir-charts .inner").getContext("2d")).Pie($scope.innerData, optionsInner);
+        if ($scope.cfg.inner) {
+          $scope.innerData = prepareData($scope.cfg.inner);
+          $scope.innerChart = new Chart(container.querySelector('.inner').getContext("2d")).Pie($scope.innerData, options);
+        }
       };
       
       render();

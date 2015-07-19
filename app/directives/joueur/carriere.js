@@ -30,13 +30,40 @@ app.directive('lvdlomCarriereJoueur', function (Carriere) {
             })
             .map(function (row) {
               row.saison = row.saison.substr(0, 4) + '-' + row.saison.substr(7, 2);
-              row.club = row.club === 'Marseille' ? 'OM' : row.club;
-              row.club = /prêt à Marseille/.test(row.club) ? 'OM' : row.club;
-              row.om = (row.club === 'OM');
+
+              // reformat prêts
+              var pret = /prêt à (.*)/.exec(row.club);
+              if (pret && pret.length > 0) {
+                row.club = pret[1];
+                row.remark = 'prêt';
+              }
+              pret = /prêt (.*)/.exec(row.club);
+              if (pret && pret.length > 0) {
+                row.club = pret[1];
+                row.remark = 'prêt';
+              }
+
+              // remove dates
+              row.club = row.club.replace(/(.*)\(\d+\w* \w+ \d+\)(.*)/, '$1$2');
+
+              // trim
+              row.club = row.club.trim();
+
+              // reformat OM
+              if (row.club === 'Marseille' || row.club === 'Marseille (prêt)') {
+                row.club = 'OM';
+              }
+              if (row.club === 'Marseille (réserve)') {
+                row.club = 'OM';
+                row.remark = 'réserve';
+              }
+
+              row.om = row.club.substr(0, 2) === 'OM';
+
               return row;
             })
             .reduce(function (array, current) {
-              if (array.length === 0 || array[array.length-1].club !== current.club) {
+              if (array.length === 0 || array[array.length-1].club !== current.club || current.remark) {
                 array.push(current);
               } else {
                 array[array.length-1].saison = array[array.length-1].saison.substr(0, 5) + current.saison.substr(5, 2);

@@ -1,0 +1,35 @@
+<div class="pure-g" id="page-avancement">
+  
+  <div class="pure-u-1">
+
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block">
+      <div class="g-topbar"><span class="fa fa-futbol-o"></span>Matches</div>
+      <div>
+        <lvdlom-charts cfg="matchesChartCfg"></lvdlom-charts>
+        <span class="percentage" style="color: #009688">{{(nbMatchesDone/nbMatchesTotal*100).toFixed(1)}}%</span>
+      </div>
+    </div>
+
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block">
+      <div class="g-topbar"><span class="fa fa-user"></span>Joueurs</div>
+      <div>
+        <lvdlom-charts cfg="joueursChartCfg"></lvdlom-charts>
+        <span class="percentage" style="color: #673AB7">{{(nbJoueursDone/nbJoueursTotal*100).toFixed(1)}}%</span>
+      </div>
+    </div>
+
+    <div class="pure-u-1 g-block">
+      <div class="g-topbar"><span class="fa fa-futbol-o"></span>Matches</div>
+      <div>
+        <ul class="detail-completion">
+          <li ng-repeat="(saison, matchesSaison) in matches">
+            <div class="g-remark key">{{saison}}</div>
+            <div ng-repeat="match in matchesSaison" ng-class="{'with-doc': match.nbDocs > 0}">{{match.nbDocs || '-'}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

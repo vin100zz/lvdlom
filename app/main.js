@@ -12,9 +12,10 @@ app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
   .when('/adversaires', {templateUrl: 'app/modules/common/abstractList.html', controller: 'AdversairesCtrl', resolve: dependencies})
   .when('/age', {templateUrl: 'app/modules/age.html', controller: 'AgeCtrl', resolve: dependencies})
+  .when('/anniversaire', {templateUrl: 'app/modules/anniversaire.html', controller: 'DayCtrl', resolve: dependencies})
+  .when('/anniversaire/:date', {templateUrl: 'app/modules/anniversaire.html', controller: 'DayCtrl', resolve: dependencies})
+  .when('/avancement', {templateUrl: 'app/modules/avancement.html', controller: 'AvancementCtrl', resolve: dependencies})
   .when('/competitions', {templateUrl: 'app/modules/common/abstractList.html', controller: 'CompetitionsCtrl', resolve: dependencies})
-  .when('/date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl', resolve: dependencies})
-  .when('/date/:date', {templateUrl: 'app/modules/date.html', controller: 'DayCtrl', resolve: dependencies})
   .when('/dirigeant/:id', {templateUrl: 'app/modules/dirigeant.html', controller: 'DirigeantCtrl', resolve: dependencies})
   .when('/dirigeants', {templateUrl: 'app/modules/common/abstractList.html', controller: 'DirigeantsCtrl', resolve: dependencies})
   .when('/equipe-types', {templateUrl: 'app/modules/equipe-types.html', controller: 'EquipeTypesCtrl', resolve: dependencies})
@@ -28,7 +29,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/stats-entraineurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsEntraineursCtrl', resolve: dependencies})
   .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
   .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl', resolve: dependencies})
-  .otherwise({redirectTo: '/date'});
+  .otherwise({redirectTo: '/anniversaire'});
 }]);
 
 // controller
