@@ -2,29 +2,23 @@
   
   <div class="pure-u-1">
 
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block">
-      <div class="g-topbar"><span class="fa fa-futbol-o"></span>Matches</div>
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="avancement in avancements">
+      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
       <div>
-        <lvdlom-charts cfg="matchesChartCfg"></lvdlom-charts>
-        <span class="percentage" style="color: #009688">{{(nbMatchesDone/nbMatchesTotal*100).toFixed(1)}}%</span>
+        <lvdlom-charts cfg="avancement.chartCfg"></lvdlom-charts>
+        <span class="percentage" style="color: {{avancement.color}}">{{(avancement.nbDone/avancement.nbTotal*100).toFixed(2)}}%</span>
       </div>
     </div>
 
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block">
-      <div class="g-topbar"><span class="fa fa-user"></span>Joueurs</div>
-      <div>
-        <lvdlom-charts cfg="joueursChartCfg"></lvdlom-charts>
-        <span class="percentage" style="color: #673AB7">{{(nbJoueursDone/nbJoueursTotal*100).toFixed(1)}}%</span>
-      </div>
-    </div>
-
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-futbol-o"></span>Matches</div>
+    <div class="pure-u-1 g-block" ng-repeat="avancement in avancements">
+      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
       <div>
         <ul class="detail-completion">
-          <li ng-repeat="(saison, matchesSaison) in matches">
-            <div class="g-remark key">{{saison}}</div>
-            <div ng-repeat="match in matchesSaison" ng-class="{'with-doc': match.nbDocs > 0}">{{match.nbDocs || '-'}}</div>
+          <li ng-repeat="(key, items) in avancement.groups">
+            <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
+            <div ng-repeat="item in items" ng-class="{'with-doc': item.nbDocs > 0}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
+              <a href="#/{{avancement.link}}/{{item.id}}">{{item.nbDocs || '-'}}</a>
+            </div>
           </li>
         </ul>
       </div>

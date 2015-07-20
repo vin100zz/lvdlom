@@ -212,3 +212,31 @@
 	color: @trophyFinale;
 }
 
+/* Tooltip */
+.g-tooltip {
+  position: absolute;
+  background: @menuBackground;
+  color: @primaryReversedText;
+  margin-top: -10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.in {
+    opacity: 1;
+  }
+
+  .tooltip-arrow {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: calc(~"50% - 5px");
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: @menuBackground transparent transparent transparent;
+  }
+}

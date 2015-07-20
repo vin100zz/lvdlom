@@ -1,4 +1,4 @@
-var app = angular.module('lvdlom', ['ngResource', 'ngRoute', 'ngSanitize']);
+var app = angular.module('lvdlom', ['ngResource', 'ngRoute', 'ngSanitize', 'ui.bootstrap']);
 
 // routing
 app.config(['$routeProvider', function ($routeProvider) {

@@ -45,7 +45,7 @@ app.directive('lvdlomCharts', function () {
         }
       };
       
-      render();
+      window.setTimeout(render, 500);
       
       $scope.$watch('cfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {

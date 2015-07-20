@@ -7,11 +7,10 @@ require_once 'utils/service.php';
 // ******* SQL ********************************************
 // ********************************************************
 
-// SQL
-$listeMatches = DBAccess::query
+$matches = DBAccess::query
 ("
   SELECT
-    matches.IdMatch AS id,
+    IdMatch AS id,
     Saison AS saison,
     NomAdversaire AS adversaire,
     ButsOM AS butsOM,
@@ -27,11 +26,10 @@ $listeMatches = DBAccess::query
   ORDER BY DateMatch ASC
 ");
 
-// SQL
-$listeJoueurs = DBAccess::query
+$joueurs = DBAccess::query
 ("
   SELECT
-    joueurs.IdJoueur AS id,
+    IdJoueur AS id,
     Prenom AS prenom,
     Nom AS nom,
     NbDocs AS nbDocs
@@ -42,6 +40,36 @@ $listeJoueurs = DBAccess::query
   WHERE AssocType = 'J'
   GROUP BY IdObjet) AS table_docs ON joueurs.IdJoueur = table_docs.IdObjet   
   ORDER BY Nom ASC, Prenom ASC
+");
+
+$dirigeants = DBAccess::query
+("
+  SELECT
+    IdDirigeant AS id,
+    Prenom AS prenom,
+    Nom AS nom,
+    NbDocs AS nbDocs
+  FROM dirigeants
+  LEFT JOIN
+  (SELECT IdObjet, COUNT(*) as NbDocs
+  FROM documentsAssoc
+  WHERE AssocType = 'D'
+  GROUP BY IdObjet) AS table_docs ON dirigeants.IdDirigeant = table_docs.IdObjet   
+  ORDER BY Nom ASC, Prenom ASC
+");
+
+$saisons = DBAccess::query
+("
+  SELECT
+    saison AS id,
+    NbDocs AS nbDocs
+  FROM saisons
+  LEFT JOIN
+  (SELECT IdObjet, COUNT(*) as NbDocs
+  FROM documentsAssoc
+  WHERE AssocType = 'S'
+  GROUP BY IdObjet) AS table_docs ON saisons.saison = table_docs.IdObjet   
+  ORDER BY id ASC
 ");
 
 
@@ -57,8 +85,10 @@ $listeJoueurs = DBAccess::query
 // ********************************************************
 
 respond(array(
-  "matches" => $listeMatches,
-  "joueurs" => $listeJoueurs
+  "matches" => $matches,
+  "joueurs" => $joueurs,
+  "dirigeants" => $dirigeants,
+  "saisons" => $saisons
 ));
 
 
