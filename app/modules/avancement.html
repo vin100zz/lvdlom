@@ -5,13 +5,23 @@
     <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="avancement in avancements">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
       <div>
-        <lvdlom-charts cfg="avancement.chartCfg"></lvdlom-charts>
-        <span class="percentage" style="color: {{avancement.color}}">{{(avancement.nbDone/avancement.nbTotal*100).toFixed(2)}}%</span>
+        <div class="g-row" style="color: {{avancement.color}}">
+          <div ng-if="avancement.showIdData">
+            <lvdlom-charts cfg="avancement.idChartCfg"></lvdlom-charts>
+            <span class="percentage">{{(avancement.nbIdDone/avancement.nbTotal*100).toFixed(2)}}%</span>
+            <span class="type">id</span>
+          </div>
+          <div>
+            <lvdlom-charts cfg="avancement.chartCfg"></lvdlom-charts>
+            <span class="percentage">{{(avancement.nbDone/avancement.nbTotal*100).toFixed(2)}}%</span>
+            <span class="type">docs</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="pure-u-1 g-block" ng-repeat="avancement in avancements">
-      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
+      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Documents - {{avancement.title}}</div>
       <div>
         <ul class="detail-completion">
           <li ng-repeat="(key, items) in avancement.groups">
@@ -23,7 +33,21 @@
         </ul>
       </div>
     </div>
-    
+  </div>
+
+  <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="avancement.showIdData">
+      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Identité - {{avancement.title}}</div>
+      <div>
+        <ul class="detail-completion">
+          <li ng-repeat="(key, items) in avancement.groups">
+            <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
+            <div ng-repeat="item in items" ng-class="{'with-doc': item.hasIdDoc}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
+              <a href="#/{{avancement.link}}/{{item.id}}">&nbsp;</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
 </div>

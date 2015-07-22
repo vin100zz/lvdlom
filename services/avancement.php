@@ -80,6 +80,8 @@ $saisons = DBAccess::query
 
 
 
+
+
 // ********************************************************
 // ******* JSON ********************************************
 // ********************************************************
@@ -88,7 +90,10 @@ respond(array(
   "matches" => $matches,
   "joueurs" => $joueurs,
   "dirigeants" => $dirigeants,
-  "saisons" => $saisons
+  "saisons" => $saisons,
+  "idJoueurs" => scandir("../documents/id_joueurs"),
+  "idDirigeants" => scandir("../documents/id_dirigeants"),
+  "idSaisons" => scandir("../documents/id_saisons")
 ));
 
 

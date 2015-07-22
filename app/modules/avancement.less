@@ -3,13 +3,26 @@
 #page-avancement {
   text-align: center;
 
-  .percentage {
-    position: absolute;
-    height: 22px;
-    width: 100px;
-    top: calc(~"50% - 2px");
-    left: calc(~"50% - 50px");
-    font-size: 22px;
+  .g-row > div {
+    position: relative;
+    width: 50%;
+
+    .percentage {
+      position: absolute;
+      height: 22px;
+      width: 100px;
+      top: calc(~"50% - 15px");
+      left: calc(~"50% - 50px");
+      font-size: 22px;
+    }
+    .type {
+      position: absolute;
+      height: 12px;
+      width: 100px;
+      top: calc(~"50% + 5px");
+      left: calc(~"50% - 50px");
+      font-size: 12px;
+    }
   }
 
   .detail-completion {

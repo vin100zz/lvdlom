@@ -1,17 +1,27 @@
 // service
 app.service('Loading', function ($rootScope) {
-  var loading = false;
+  var nbQueriesInProgress = 0;
   var silent = false;
   
   this.silent = function () {
     silent = true;
   };
   this.isLoading = function () {
-    return loading;
+    //console.log('isLoading', nbQueriesInProgress);
+    return nbQueriesInProgress > 0;
   };
-  this.setLoading = function (value) {
+  this.increaseNbQueriesInProgress = function () {
     if (!silent) {
-      loading = value;
+      ++nbQueriesInProgress;
+      //console.log('increase', nbQueriesInProgress);
+      $rootScope.$broadcast('loading.update');
+    }
+    silent = false;
+  };
+  this.decreaseNbQueriesInProgress = function () {
+    if (!silent) {
+      --nbQueriesInProgress;
+      //console.log('decrease', nbQueriesInProgress);
       $rootScope.$broadcast('loading.update');
     }
     silent = false;
@@ -27,13 +37,13 @@ app.factory('LoadingInterceptor', function (Loading) {
   return {
     request: function (config) {
       if (isServiceQuery(config)) {
-        Loading.setLoading(true);
+        Loading.increaseNbQueriesInProgress();
       }
       return config;
     },
     response: function (response) {
       if (isServiceQuery(response.config)) {
-        Loading.setLoading(false);
+        Loading.decreaseNbQueriesInProgress();
       }
       return response;
     }
