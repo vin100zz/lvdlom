@@ -13,15 +13,16 @@ $dateDebutSaison = substr($idSaison, 0, 4) . "-08-01";
 // ********************************************************
 	
 // bilan joueur par joueur
-$comp = array("Championnat", "Coupe Nationale", "Coupe d''Europe");
+$listeComp = array();
+$listeComp["ch"] = "Championnat";
+$listeComp["cn"] = "Coupe Nationale";
+$listeComp["ce"] = "Coupe d''Europe";
 $bilan = array(); // tit, rmp et buts pour chaque compétition 
 
-for($i=0; $i<count($comp); $i++)
-{
-	$competition = $comp[$i];
-	
+foreach($listeComp as $comp => $sqlComp)
+{	
 	// titulaire
-	$bilan[$competition]["tit"] = DBAccess::query
+	$bilan[$comp]["tit"] = DBAccess::query
 	("
 		SELECT
       joueurs.IdJoueur as id,
@@ -33,7 +34,7 @@ for($i=0; $i<count($comp); $i++)
       Poste as poste
 		FROM joue, matches, joueurs, competitions
 		WHERE Saison = '$idSaison'
-			AND competitions.TypeCompetition = '" . $comp[$i] . "'
+			AND competitions.TypeCompetition = '$sqlComp'
 			AND Ordre IS NOT NULL
 			AND matches.Competition = competitions.NomCompetition
 			AND joue.IdMatch = matches.IdMatch
@@ -42,7 +43,7 @@ for($i=0; $i<count($comp); $i++)
 	");	
 	
 	// remplacant
-	$bilan[$competition]["rmp"] = DBAccess::query
+	$bilan[$comp]["rmp"] = DBAccess::query
 	("
 		SELECT
       joueurs.IdJoueur as id,
@@ -54,7 +55,7 @@ for($i=0; $i<count($comp); $i++)
       Poste as poste
 		FROM joue, matches, joueurs, competitions
 		WHERE Saison = '$idSaison'
-			AND competitions.TypeCompetition = '" . $comp[$i] . "'
+			AND competitions.TypeCompetition = '$sqlComp'
 			AND Ordre IS NULL
 			AND matches.Competition = competitions.NomCompetition
 			AND joue.IdMatch = matches.IdMatch
@@ -63,7 +64,7 @@ for($i=0; $i<count($comp); $i++)
 	");	
 	
 	// buts
-	$bilan[$competition]["buts"] = DBAccess::query
+	$bilan[$comp]["buts"] = DBAccess::query
 	("
 		SELECT
       joueurs.IdJoueur as id,
@@ -75,7 +76,7 @@ for($i=0; $i<count($comp); $i++)
       Poste as poste
 		FROM buteursom, matches, joueurs, competitions
 		WHERE Saison = '$idSaison'
-			AND competitions.TypeCompetition = '" . $comp[$i] . "'
+			AND competitions.TypeCompetition = '$sqlComp'
 			AND matches.Competition = competitions.NomCompetition
 			AND buteursom.IdMatch = matches.IdMatch
 			AND buteursom.IdJoueur = joueurs.IdJoueur
@@ -260,9 +261,9 @@ function ordonnerBilan($iJoueursArray, $iBilan)
 	
 	$aNewTotalJoueur = array();
 	$aNewTotalJoueur["total"] = $aBilanCompetition;
-	$aNewTotalJoueur["Championnat"] = $aBilanCompetition;
-	$aNewTotalJoueur["Coupe Nationale"] = $aBilanCompetition;
-	$aNewTotalJoueur["Coupe d''Europe"] = $aBilanCompetition;
+	$aNewTotalJoueur["ch"] = $aBilanCompetition;
+	$aNewTotalJoueur["cn"] = $aBilanCompetition;
+	$aNewTotalJoueur["ce"] = $aBilanCompetition;
 		
 	for($aCurrentJoueurCnt = 0; $aCurrentJoueurCnt < count($iJoueursArray); ++$aCurrentJoueurCnt)
 	{

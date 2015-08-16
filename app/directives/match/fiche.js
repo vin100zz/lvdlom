@@ -7,6 +7,7 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter) {
     templateUrl: 'app/directives/match/fiche.html',
     controller: function ($scope) {
       $scope.Picture = Picture;
+      $scope.Formatter = Formatter;
       
       // render
       var render = function () {

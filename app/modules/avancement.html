@@ -2,7 +2,7 @@
   
   <div class="pure-u-1">
 
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="avancement in avancements">
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block overview" ng-repeat="avancement in avancements" ng-click="switchView($index)">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
       <div>
         <div class="g-row" style="color: {{avancement.color}}">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="pure-u-1 g-block" ng-repeat="avancement in avancements">
+    <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="currentView == $index">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Documents - {{avancement.title}}</div>
       <div>
         <ul class="detail-completion">
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="avancement.showIdData">
+  <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="avancement.showIdData && currentView == $index">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Identité - {{avancement.title}}</div>
       <div>
         <ul class="detail-completion">

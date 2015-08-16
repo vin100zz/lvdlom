@@ -12,6 +12,7 @@ app.service('Maillots', function() {
   var config = {
     1: {template: 48, color1: "F9D614", color2: "000000", color3: "000000"}, // AEK ATHÈNES
     27: {template: 54, color1: "172983", color2: "E22219", color3: "172983"}, // BOLOGNE
+    99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},

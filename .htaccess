@@ -2,7 +2,7 @@ RewriteEngine On
 RewriteBase /www/lvdlom/
 
 RewriteCond %{REQUEST_URI} /id_joueurs/ [OR]
-RewriteCond %{REQUEST_URI} /id_dirigeants/ [OR]
+RewriteCond %{REQUEST_URI} /id_dirigeants/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) style/img/default-person.png [L,R]

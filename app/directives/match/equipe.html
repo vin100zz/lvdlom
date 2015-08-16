@@ -5,7 +5,7 @@
       <li ng-repeat="joueur in joueurs" ng-class="{remplacant: joueur.isRemplacant}">
         <div>
           <span ng-show="joueur.isRemplacant" class="remplacant g-remark">{{joueur.minuteRmp}}'</span>
-          <span ng-bind-html="joueur.poste | format:'poste'"></span><span>{{joueur.prenom}} {{joueur.nom}}</span>
+          <span ng-bind-html="joueur.poste | format:'poste'"></span><span ng-bind-html="Formatter.nomJoueur(joueur)"></span>
           <span ng-show="joueur.minuteOut" class="remplacant g-remark">{{joueur.minuteOut}}'</span>
         </div>
         <div ng-bind-html="Formatter.butsPerJoueur(joueur.id, match.buteurs.om)"></div>
@@ -18,7 +18,7 @@
     <ul>
      <li ng-repeat="entraineur in match.entraineurs">
        <div>
-         <span ng-bind-html="'E' | format:'fonction'"></span><span>{{entraineur.prenom}} {{entraineur.nom}}</span>
+         <span ng-bind-html="'E' | format:'fonction'"></span><span ng-bind-html="Formatter.nomDirigeant(entraineur)"></span>
        </div>
      </li>
     </ul>

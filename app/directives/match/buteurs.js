@@ -1,10 +1,11 @@
-app.directive('lvdlomButeursMatch', function (Bom) {
+app.directive('lvdlomButeursMatch', function (Bom, Formatter) {
   return {
     scope: {
       match: '='
     },
     templateUrl: 'app/directives/match/buteurs.html',
     controller: function ($scope) {
+      $scope.Formatter = Formatter;
       
       var hasMinute = function (but) {
         return !!but.minute;
@@ -33,6 +34,7 @@ app.directive('lvdlomButeursMatch', function (Bom) {
             but.left = !but.right;
             but.first = index === 0 || array[index-1].adv !== but.adv;
             but.last = index === array.length -1 || array[index+1].adv !== but.adv;
+            but.link = !but.adv && but.note !== 'csc';
             return but;
           });
       };

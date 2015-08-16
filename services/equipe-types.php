@@ -29,7 +29,8 @@ for($i=0; $i<count($saisons); $i++)
       COUNT(*) as nbMatches,
       Nom as nom,
       Prenom AS prenom,
-      Poste as poste
+      Poste as poste,
+      AuClub as auClub
 		FROM joue, matches, joueurs
 		WHERE Saison = '$id'
 			AND joue.IdMatch = matches.IdMatch

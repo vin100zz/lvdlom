@@ -1,4 +1,4 @@
-app.directive('lvdlomPalmaresJoueur', function () {
+app.directive('lvdlomPalmaresJoueur', function (Formatter) {
   return {
     scope: {
       joueur: '='
@@ -6,7 +6,7 @@ app.directive('lvdlomPalmaresJoueur', function () {
     },
     templateUrl: 'app/directives/joueur/palmares.html',
     controller: function ($scope) {
-
+      $scope.Formatter = Formatter;
     }
   };
 });

@@ -27,7 +27,7 @@
       
       <tbody>
         <tr class="stats-comp" ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'">
-          <td class="saison g-remark">{{saison}}</td>
+        <td ng-bind-html="Formatter.saison(saison)" class="saison g-remark"></div>
           
           <!-- total -->
           <td>{{row.total.tit + row.total.rmp}}</td>

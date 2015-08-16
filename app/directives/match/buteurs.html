@@ -12,7 +12,8 @@
         <span class="g-remark" ng-if="but.left && but.score" >{{but.score}}</span>
         <span class="g-remark" ng-if="but.right && but.minute" >{{but.minute}}'</span>
         
-        <span>{{but.prenom}} {{but.nom}}</span>
+        <span ng-bind-html="Formatter.nomJoueur(but)" ng-if="but.link"></span>
+        <span ng-if="!but.link">{{but.nom}}</span>
         <span ng-if="but.note" >{{but.note}}</span>
         
         <span class="g-remark" ng-if="but.left && but.minute" >{{but.minute}}'</span>

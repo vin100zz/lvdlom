@@ -10,7 +10,8 @@
   });
   
   // controller
-  app.controller('EquipeTypesCtrl', function($scope, $routeParams, EquipeTypes, Sorter) {
+  app.controller('EquipeTypesCtrl', function($scope, $routeParams, EquipeTypes, Sorter, Formatter) {
+    $scope.Formatter = Formatter;
     
     $scope.saisons = [];
 

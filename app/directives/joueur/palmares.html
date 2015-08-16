@@ -3,7 +3,7 @@
   <div class="g-row" ng-if="joueur.palmares.length > 0">
     <ul>
       <li ng-repeat="row in joueur.palmares">
-        <div class="g-remark">{{row.saison}}</div>
+        <div ng-bind-html="Formatter.saison(row.saison)" class="g-remark"></div>
         <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.competition}}</span></div>
         <div class="g-remark trophy-{{row.titre}}"><span class="fa fa-trophy g-fa-left"></span>{{row.bilan}}</div>
       </li>

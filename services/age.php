@@ -17,7 +17,8 @@ $listeJoueurs = DBAccess::query
 	SELECT
     IdJoueur AS id,
     Prenom as prenom,
-    Nom as nom
+    Nom as nom,
+    AuClub as auClub
 	FROM joueurs
   WHERE DateNaissance IS NOT NULL and DateNaissance > '1900-01-01'
 ");

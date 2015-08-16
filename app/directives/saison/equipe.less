@@ -1,10 +1,40 @@
 @import "style/variables";
 
 .dir-equipe-saison {
-	text-align: center;
-	
-	li > div:first-child {
-	  text-align: left;
-	}
+
+  .entraineurs {
+    border-bottom: 1px dashed @tableBorder;
+    padding: 0 0 10px 10px;
+  }
+
+  table {
+  	text-align: center;
+
+    th {
+      vertical-align: middle;
+    }
+  	
+  	td {
+      padding: 0 10px;
+
+      &:first-child {
+        width: 220px;
+  	    text-align: left;
+      }
+  	}
+
+    td:nth-child(4),
+    td:nth-child(5),
+    td:nth-child(8),
+    td:nth-child(9),
+    tr:first-child th:nth-child(4),
+    tr:first-child th:nth-child(6),
+    tr:last-child th:nth-child(1),
+    tr:last-child th:nth-child(2),
+    tr:last-child th:nth-child(5),
+    tr:last-child th:nth-child(6) {     
+      background: @alternateBackground;
+    }
+  }
 
 }

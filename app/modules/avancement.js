@@ -15,6 +15,12 @@
     
     $scope.avancements = [];
 
+    $scope.currentView = null;
+
+    $scope.switchView = function (view) {
+      $scope.currentView = view;
+    };
+
     var getChartCfg = function (nbDone, nbTotal, colorDone, colorNotDone) {
       return {
         main: {

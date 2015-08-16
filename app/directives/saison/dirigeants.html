@@ -3,7 +3,7 @@
   <div class="g-row">
     <ul>
       <li ng-repeat="dirigeant in saison.dirigeants">
-        <div>{{dirigeant.prenom}} {{dirigeant.nom}}</div>
+        <div ng-bind-html="Formatter.nomDirigeant(dirigeant)"></div>
         <div class="g-remark">{{dirigeant.titre}}</div>
       </li>
     </ul>

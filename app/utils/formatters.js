@@ -18,7 +18,8 @@ app.service('Formatter', function (Bom, $filter) {
   };
   
   this._nom = function (personne, link) {
-    return '<a href="#' + link + '/' + personne.id + '">' + personne.prenom + ' ' + personne.nom + '</a>';
+    var prenom = personne.prenom.trim();
+    return '<a href="#' + link + '/' + personne.id + '">' + (prenom ? prenom + ' ' : '') + personne.nom + '</a>';
   };
   
   this.nomJoueur = function (joueur) {
@@ -183,6 +184,10 @@ app.service('Formatter', function (Bom, $filter) {
     var right = Bom.domicile(match.lieu) ? match.nomAdv : _this.nomOm(match.saison);
     return left + '-' + right;
   };
+
+  this.matchLink = function (match) {
+    return '<a href="#/match/' + match.id + '">' + _this.match(match) + '</a>';
+  };
   
   this.matchTitle = function (match) {
     var left = Bom.domicile(match.fiche.lieu) ? _this.nomOm(match.fiche.saison) : match.adversaire.nom;
@@ -208,8 +213,8 @@ app.service('Formatter', function (Bom, $filter) {
     return res;
   };
   
-  this.saison = function (saison) {
-    return '<a href="#/saison/' + saison + '">' + saison + '</a>';
+  this.saison = function (saison, prefix) {
+    return '<a href="#/saison/' + saison + '">' + ((prefix ? prefix + ' ' : '') + saison)+ '</a>';
   };
 });
 

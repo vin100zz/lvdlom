@@ -1,4 +1,4 @@
-app.directive('lvdlomEquipeSaison', function (Bom) {
+app.directive('lvdlomEquipeSaison', function (Bom, Formatter) {
   return {
     scope: {
       saison: '='
@@ -6,6 +6,7 @@ app.directive('lvdlomEquipeSaison', function (Bom) {
     templateUrl: 'app/directives/saison/equipe.html',
     controller: function ($scope) {
       $scope.Bom = Bom;
+      $scope.Formatter = Formatter;
       
       $scope.joueurs = $scope.saison.bilan.sort(function (row1, row2) {
           return parseInt(row2.total.tit, 10) + parseInt(row2.total.rmp, 10) - (parseInt(row1.total.tit, 10) + parseInt(row1.total.rmp, 10));

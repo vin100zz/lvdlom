@@ -13,7 +13,7 @@
               <div class="g-remark stat">Buts</div>
             </li>
             <li ng-repeat="joueur in saison.joueurs">
-              <div><span ng-bind-html="joueur.poste | format:'poste'"></span><span>{{joueur.prenom}} {{joueur.nom}}</span></div>
+              <div><span ng-bind-html="joueur.poste | format:'poste'"></span><span ng-bind-html="Formatter.nomJoueur(joueur)"></span></div>
               <div class="stat">{{joueur.nbMatches}}</div>
               <div class="stat">{{joueur.nbButs}}</div>
             </li>
