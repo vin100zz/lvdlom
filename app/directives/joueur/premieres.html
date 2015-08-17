@@ -5,6 +5,7 @@
     <ul>
       <li class="g-remark">Premier match</li>
       <li>
+        <span ng-bind-html="Formatter.date(joueur.premierMatch.date)" class="g-remark"></span>
         <span ng-bind-html="joueur.premierMatch.sousTypeCompetition | format:'sousTypeCompetition'"></span>
         <span ng-bind-html="Formatter.matchLink(joueur.premierMatch)"></span>
         <span class="g-remark">à l'âge de {{formatAge(joueur.premierMatch.age)}} ans</span>
@@ -14,6 +15,7 @@
     <ul ng-if="joueur.premierBut.id">
       <li class="g-remark">Premier but</li>
       <li>
+        <span ng-bind-html="Formatter.date(joueur.premierBut.date)" class="g-remark"></span>
         <span ng-bind-html="joueur.premierBut.sousTypeCompetition | format:'sousTypeCompetition'"></span>
         <span ng-bind-html="Formatter.matchLink(joueur.premierBut)"></span>
         <span class="g-remark">pour son {{joueur.premierBut.card}}{{joueur.premierBut.card == 1 ? 'er' : 'ème'}} match</span>

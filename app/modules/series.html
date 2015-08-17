@@ -1,0 +1,35 @@
+<div class="pure-g" id="page-series">
+
+  <div class="pure-u-1 g-block">
+    <div class="g-topbar"><span class="fa fa-filter"></span>Filtres</div>
+    <div>
+      <lvdlom-filters cfg="filters"></lvdlom-filters>
+    </div>
+  </div>
+
+  <div class="pure-u-1">
+  
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="meta in metaData">
+      <div class="g-topbar">
+        <span class="fa fa-ellipsis-h"></span>
+        <span>{{meta.label}} [{{series[meta.key].length}}]</span>
+      </div>
+      <div>
+        <div class="g-row">
+          <ul>
+            <li ng-repeat="match in series[meta.key]">
+              <div>
+                <span ng-bind-html="Formatter.date(match.date)" class="g-remark"></span>
+                <span ng-bind-html="Formatter.sousTypeCompetition(match.sousTypeCompetition)"></span>
+                <span ng-bind-html="Formatter.matchLink(match)"></span>
+                <span ng-bind-html="Formatter.score(Formatter.$Score.complete, match)" class="g-remark"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</div>

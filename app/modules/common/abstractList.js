@@ -8,7 +8,7 @@ var AbstractListCtrl = function ($scope, Loading, Filter) {
   $scope.data = {list: []};
   $scope.fetchData = function (filters) {};
   
-  // data change
+  // filters change
   $scope.$watch('filters', function (newValue, oldValue) {
     if (newValue !== oldValue) {
       Loading.silent();

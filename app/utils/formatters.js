@@ -147,7 +147,8 @@ app.service('Formatter', function (Bom, $filter) {
   
   this.$Score = {
     table: 'table',
-    big: 'big'
+    big: 'big',
+    complete: 'complete'
   };
   this.score = function (formatting, match) {
     var butsOM = parseInt(match.butsOM, 10) || 0;
@@ -167,10 +168,16 @@ app.service('Formatter', function (Bom, $filter) {
       } else if (match.rqScore) {
         out += '<span class="g-remark">' + match.rqScore + '</span>';
       }
-    } else if (formatting === _this.$Score.big) {
+    } else if (formatting === _this.$Score.big || formatting === _this.$Score.complete) {
       var left = domicile ? match.butsOM : match.butsAdv;
       var right = domicile ? match.butsAdv : match.butsOM;
-      out = left + "-" + right;
+      out = left + '-' + right;
+
+      if (formatting === _this.$Score.complete && (tabOM || tabAdv)) {
+        var left = domicile ? match.tabOM : match.tabAdv;
+        var right = domicile ? match.tabAdv : match.tabOM;
+        out += ' (' + left + '-' + right + ' tab)';
+      }
     }
     return out;
   };
