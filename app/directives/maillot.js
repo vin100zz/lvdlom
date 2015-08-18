@@ -148,7 +148,7 @@ app.directive('lvdlomMaillot', function (Maillots) {
         
         if ($scope.cfg.nomClub !== 'OM') {
 
-          $scope.canvasCfg = JSON.parse(JSON.stringify(Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub)));
+          $scope.canvasCfg = $scope.cfg.debug ? $scope.cfg.debug : JSON.parse(JSON.stringify(Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub)));
           
           loadImgInCanvas('template', 'style/maillots/effect.png', function (tplCanvas, tplContext, tplImg) {
             
@@ -167,7 +167,7 @@ app.directive('lvdlomMaillot', function (Maillots) {
               img.onload = null;
               img.src = canvas.toDataURL();
               
-              // blue image
+              // blur image
               stackBlurCanvasRGB($scope.canvasCfg.canvasId, 0, 0, 210, 210, 3);
               
               // superimpose template

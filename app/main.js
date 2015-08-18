@@ -29,7 +29,8 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/series', {templateUrl: 'app/modules/series.html', controller: 'SeriesCtrl', resolve: dependencies})
   .when('/stats-entraineurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsEntraineursCtrl', resolve: dependencies})
   .when('/stats-joueurs', {templateUrl: 'app/modules/common/abstractList.html', controller: 'StatsJoueursCtrl', resolve: dependencies})
-  .when('/debug/maillots', {templateUrl: 'app/modules/debug/maillots.html', controller: 'DebugMaillotsCtrl', resolve: dependencies})
+  .when('/debug/maillots-design', {templateUrl: 'app/modules/debug/maillots-design.html', controller: 'DebugMaillotsDesignCtrl', resolve: dependencies})
+  .when('/debug/maillots-all/:index', {templateUrl: 'app/modules/debug/maillots-all.html', controller: 'DebugMaillotsAllCtrl', resolve: dependencies})
   .otherwise({redirectTo: '/anniversaire'});
 }]);
 

@@ -3,11 +3,13 @@
   'use strict';
   
   // controller
-  app.controller('DebugMaillotsCtrl', function($scope, Adversaires) {
+  app.controller('DebugMaillotsAllCtrl', function($scope, $routeParams, Adversaires) {
     
     Adversaires.get([], function (adversaires) {
-      
-      $scope.adversaires = adversaires.slice(0, 30);
+
+      var index = parseInt($routeParams.index, 10);
+    
+      $scope.adversaires = adversaires.slice(index, index + 30);
       
       $scope.maillots = $scope.adversaires.map(function (adv) {
         return {

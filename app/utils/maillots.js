@@ -12,7 +12,14 @@ app.service('Maillots', function() {
   var config = {
     1: {template: 48, color1: "F9D614", color2: "000000", color3: "000000"}, // AEK ATHÈNES
     27: {template: 54, color1: "172983", color2: "E22219", color3: "172983"}, // BOLOGNE
+    45: {template: 1, color1: "C1DDF3", color2: "ffffff", color3: "ffffff"}, // CELTA VIGO
+    49: {template: 37, color1: "005BAB", color2: "ED1847", color3: "ffffff"}, // CHÂTEAUROUX
+    50: {template: 1, color1: "034694", color2: "ffffff", color3: "ffffff"}, // CHELSEA
+    61: {template: 11, color1: "D91521", color2: "293383", color3: "F1C600"}, // CSKA MOSCOU
+    72: {template: 37, color1: "CE000C", color2: "ffffff", color3: "CE000C"}, // ETOILE ROUGE BELGRADE
     99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
+    184: {template: 5, color1: "F92400", color2: "FFFFFF", color3: "ffffff"}, // SION,
+    200: {template: 10, color1: "ffffff", color2: "0097DB", color3: "0097DB"}, // ST-PÉTERSBOURG
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},

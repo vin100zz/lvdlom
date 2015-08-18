@@ -1,0 +1,48 @@
+<div id="page-debug-maillots-design">
+
+  <div class="pure-u-1 g-block">
+    <div>
+
+      <div class="g-row editor">
+        <div>
+          <div>
+            <select ng-model="selectedAdvId" ng-change="selectAdv()">
+              <option ng-repeat="adv in adversaires" value="{{adv.idAdv}}">{{adv.nomAdv}}</option> 
+            </select>
+          </div>
+
+          <div>
+            <input type="color" ng-model="color1"></input>
+            <input type="text" ng-model="color1"></input>
+          </div>
+
+          <div>
+            <input type="color" ng-model="color2"></input>
+            <input type="text" ng-model="color2"></input>
+          </div>
+
+          <div>
+            <input type="color" ng-model="color3"></input>
+            <input type="text" ng-model="color3"></input>
+          </div>
+        </div>
+
+        <div>
+          <div class="logo" style="background-image: url({{Picture.club(adversaire.id)}})"></div>
+        </div>
+      </div>
+
+      <div class="g-row code">
+        <span>{{adversaire.id}}: {template: {{selectedTemplate}}, color1: "{{color1.substr(1)}}", color2: "{{color2.substr(1)}}", color3: "{{color3.substr(1)}}"}, // {{adversaire.nomAdv}}</span>
+      </div>
+
+      <div class="g-row">
+        <div ng-repeat="maillot in maillots" class="club">
+          <lvdlom-maillot cfg="maillot" ng-click="selectTemplate(maillot.debug.template)"></lvdlom-maillot>
+          {{maillot.debug.template}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
