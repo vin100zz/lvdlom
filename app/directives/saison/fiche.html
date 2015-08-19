@@ -1,6 +1,10 @@
 <div class="dir-fiche-saison" ng-if="saison.id">
 
   <div class="g-row">
+    <div class="image-equipe" style="background-image: url({{Picture.saison(saison.id)}})"></div> 
+  </div>
+
+  <div class="g-row">
     <ul>
       <li ng-repeat="row in saison.palmares">
         <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.nomCompetition}}</span></div>

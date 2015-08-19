@@ -11,3 +11,8 @@ RewriteCond %{REQUEST_URI} /clubs/large/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*) style/img/default-club-large.png [L,R]
+
+RewriteCond %{REQUEST_URI} /id_saisons/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) style/img/default-saison.png [L,R]

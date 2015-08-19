@@ -8,7 +8,7 @@
       <li ng-repeat="entraineur in entraineurs">
         <div><span ng-bind-html="'E' | format:'fonction'"></span><span ng-bind-html="Formatter.nomDirigeant(entraineur)"></span></div>
         <div>
-          <span class="g-remark" ng-if="!$last || $index > 0"> {{entraineur.nbMatches}} match<span ng-if="entraineur.nbMatches > 0">es</span></span>
+          <span class="g-remark" ng-if="!$last || $index > 0"> {{entraineur.nbMatches}} match<span ng-if="parseInt(entraineur.nbMatches, 10) > 1">es</span></span>
           <span class="g-remark" ng-if="!$last">(jusqu'au {{entraineur.fin | format:'dateLong'}})</span>
         </div>
       </li>

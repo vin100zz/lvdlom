@@ -4,8 +4,8 @@ app.directive('lvdlomFicheSaison', function () {
       saison: '='
     },
     templateUrl: 'app/directives/saison/fiche.html',
-    controller: function ($scope) {
-
+    controller: function ($scope, Picture) {
+      $scope.Picture = Picture;
     }
   };
 });

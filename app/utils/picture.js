@@ -11,5 +11,9 @@ app.service('Picture', function () {
   this.club = function (id) {
     return 'style/clubs/large/' + id + '.png';
   };
+
+  this.saison = function (id) {
+    return 'documents/id_saisons/' + id + '.jpg';
+  };
   
 });
