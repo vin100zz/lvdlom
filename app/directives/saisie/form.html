@@ -1,0 +1,27 @@
+<div class="dir-saisie-form">
+
+  <form class="g-row">
+
+    <ul>
+      <li ng-repeat="input in cfg.inputs">
+        <div>{{input.label}}</div>
+        <div>
+          <!-- text, date, checkbox -->
+          <input ng-if="showInputElement(input.type)" ng-model="data[input.name]" type="{{input.type}}" ng-required="input.required" placeholder="{{input.placeholder}}"></input>
+
+          <!-- select -->
+          <select ng-if="input.type == 'select'" ng-model="data[input.name]" ng-required="input.required">
+            <option ng-value=""></option>
+            <option ng-repeat="option in input.options" ng-value="option.value">{{option.label}}</option>
+          </select>
+        </div>
+      </li>
+    </ul>
+
+    <input type="submit" value="Go!" ng-click="submit(data)"></input>
+
+    <pre>{{data | json}}</pre>
+
+  </form>
+  
+</div>
