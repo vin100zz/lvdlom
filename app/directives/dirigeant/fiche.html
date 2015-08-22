@@ -8,7 +8,7 @@
       <div ng-if="dirigeant.fiche.villeNaissance"><span class="g-remark">à</span>{{dirigeant.fiche.villeNaissance}}<span ng-if="dirigeant.fiche.territoireNaissance"> ({{dirigeant.fiche.territoireNaissance}})</span></div>
     </div>
     <div>
-      <div ng-bind-html="dirigeant.fiche.nationalite | format:'flag'"></div>
+      <div ng-bind-html="dirigeant.fiche.nationalite | format:'flagFullNat'"></div>
       <div ng-if="dirigeant.fiche.dateDeces"><span class="g-fa">&#x271d;</span>{{dirigeant.fiche.dateDeces | format:'dateLong'}}</div>
     </div>
   </div>

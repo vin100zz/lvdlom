@@ -17,6 +17,11 @@ class General
 		return ( isset($_REQUEST[$param]) ? $_REQUEST[$param] : null);
 	}
 //=========================================================================	
+	public static function payload()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}	
+//=========================================================================	
 	public static function stripAccents($string)
 	{
 		return strtr($string, 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',

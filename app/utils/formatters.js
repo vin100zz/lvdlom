@@ -1,4 +1,4 @@
-app.service('Formatter', function (Bom, $filter) {
+app.service('Formatter', function (Bom, Dictionary, $filter) {
   var _this = this;
   
   var removeDuplicates = function (result, item, index) {
@@ -48,6 +48,10 @@ app.service('Formatter', function (Bom, $filter) {
   
   this.flag = function (pays) {
     return '<div class="icon-flag flag-' + pays + '">' + pays + '</div>';
+  };
+
+  this.flagFullNat = function (pays) {
+    return '<div class="icon-flag flag-' + pays + '">' + Dictionary.getNationalite(pays) + '</div>';
   };
   
   this.date = function (date) {

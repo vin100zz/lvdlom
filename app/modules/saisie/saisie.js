@@ -4,13 +4,21 @@
   
   // API
   app.factory('Saisie', function ($resource) {
-    return $resource('services/age.php', {type: 'min'}, {
-      get: {method: 'GET', isArray: true, cache: true}
+    return $resource('services/saisie.php', {type: 'joueur'}, {
+      saveJoueur: {method: 'POST', isArray: false, cache: false}
     });
   });
   
   // controller
-  app.controller('SaisieCtrl', function($scope, Saisie) {
+  app.controller('SaisieCtrl', function($scope, $routeParams, Saisie) {
+
+    $scope.action = $routeParams.action || 'new';
+    $scope.type = $routeParams.type || 'joueur';
+    $scope.id = $routeParams.id || null;
+
+    $scope.cfg = {
+      id: $scope.id
+    };
     
   });
   

@@ -2,7 +2,7 @@
 
   <div class="g-row">
   
-    <ul>
+    <ul ng-if="joueur.premierMatch.id">
       <li class="g-remark">Premier match</li>
       <li>
         <span ng-bind-html="Formatter.date(joueur.premierMatch.date)" class="g-remark"></span>

@@ -72,7 +72,7 @@ app.service('Filter', function (Dictionary) {
   this.poste = {
     criterion: 'poste',
     label: 'Poste',
-    options: [{key: 'GA', label: 'Gardien'}, {key: 'DE', label: 'Défenseur'}, {key: 'MI', label: 'Milieu'}, {key: 'AV', label: 'Attaquant'}],
+    options: Dictionary.postes(),
     value: 'GA',
     active: false
   };

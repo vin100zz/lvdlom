@@ -24,7 +24,8 @@ $joueur = DBAccess::singleRow
     Selections AS selections,
     ClubPrecedent AS clubPrecedent,
     ClubSuivant AS clubSuivant,
-    DateDeces AS dateDeces
+    DateDeces AS dateDeces,
+    AuClub AS auClub
 	FROM joueurs
 	WHERE IdJoueur = " . $idJoueur
 );
