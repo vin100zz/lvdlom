@@ -1,7 +1,7 @@
 // API
 app.factory('Carriere', function ($resource) {
   return $resource('tools/om1899/mapping.json', {}, {
-    get: {method: 'GET', isArray: false, cache: true}
+    get: {method: 'GET', isArray: false, cache: false}
   });
 });
   

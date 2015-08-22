@@ -5,7 +5,7 @@
   // API
   app.factory('Saison', function ($resource) {
     return $resource('services/saison.php', {}, {
-      get: {method: 'GET', isArray: false, cache: true}
+      get: {method: 'GET', isArray: false, cache: false}
     });
   });
   

@@ -5,7 +5,7 @@
   // API
   app.factory('AgeJoueurs', function ($resource) {
     return $resource('services/age.php', {type: 'min'}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

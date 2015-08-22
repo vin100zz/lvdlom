@@ -27,8 +27,6 @@ app.directive('lvdlomSaisieForm', function () {
         });
 
         $scope.data.id = $scope.cfg.id;
-
-        console.log($scope.data);
       }
 
       $scope.showInputElement = function (type) {
@@ -36,8 +34,15 @@ app.directive('lvdlomSaisieForm', function () {
       };
 
       $scope.submit = function () {
-        Saisie.saveJoueur($scope.data);
+        Saisie.saveJoueur($scope.data, function (dbResult) {
+          window.location.hash = '#/joueur/' + $scope.cfg.id;
+        });
       };
+
+      $scope.reset = function (evt) {
+        evt.preventDefault();
+        $scope.data = {};
+      }
 
       // watch
       $scope.$watch('cfg', function (newValue, oldValue) {

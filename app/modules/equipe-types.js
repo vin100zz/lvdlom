@@ -5,7 +5,7 @@
   // API
   app.factory('EquipeTypes', function ($resource) {
     return $resource('services/equipe-types.php', {}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

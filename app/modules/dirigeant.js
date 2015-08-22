@@ -5,7 +5,7 @@
   // API
   app.factory('Dirigeant', function ($resource) {
     return $resource('services/dirigeant.php', {}, {
-      get: {method: 'GET', isArray: false, cache: true}
+      get: {method: 'GET', isArray: false, cache: false}
     });
   });
   

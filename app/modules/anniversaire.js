@@ -6,7 +6,7 @@
   // API
   app.factory('Day', function ($resource) {
     return $resource('services/date.php', {}, {
-      get: {method: 'GET', isArray: false, cache: true}
+      get: {method: 'GET', isArray: false, cache: false}
     });
   });
   

@@ -4,7 +4,10 @@
   
   <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
     <div class="pure-u-1 g-block">
-      <div class="g-topbar g-main-topbar">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</div>
+      <div class="g-topbar g-main-topbar">
+        <span>{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</span>
+        <a href="#/saisie/edit/joueur/{{joueur.id}}" class="g-edit-data"><span class="fa fa-pencil"></span></a>
+      </div>
       <div>
         <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-match>
       </div>

@@ -5,7 +5,7 @@
   // API
   app.factory('StatsEntraineurs', function ($resource) {
     return $resource('services/stats-entraineurs.php', {}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

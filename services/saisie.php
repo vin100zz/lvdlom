@@ -91,7 +91,6 @@ if ($type == "joueur")
   $terrNaissFrancais = getParam("territoireNaissanceFrancais");
   $terrNaiss = ($terrNaissEtranger != null && preg_match("/\w{3}/", $terrNaissEtranger)) ? $terrNaissEtranger : $terrNaissFrancais;
 
-
   $query = array();
   insertForSql($query, "Nom", getParam("nom"));
   insertForSql($query, "Prenom", getParam("prenom"));

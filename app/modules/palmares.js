@@ -5,7 +5,7 @@
   // API
   app.factory('Palmares', function ($resource) {
     return $resource('services/palmares.php', {}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

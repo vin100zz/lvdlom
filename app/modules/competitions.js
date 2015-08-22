@@ -5,7 +5,7 @@
   // API
   app.factory('Competitions', function ($resource) {
     return $resource('services/competitions.php', {}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

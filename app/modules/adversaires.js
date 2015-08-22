@@ -5,7 +5,7 @@
   // API
   app.factory('Adversaires', function ($resource) {
     return $resource('services/adversaires.php', {}, {
-      get: {method: 'GET', isArray: true, cache: true}
+      get: {method: 'GET', isArray: true, cache: false}
     });
   });
   

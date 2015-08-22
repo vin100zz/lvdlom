@@ -18,7 +18,13 @@
     </div>
 
     <div class="g-row">
-      <input type="submit" class="g-button" value="Valider"></input>
+      <button type="reset" class="g-button" ng-click="reset($event)">
+        <span class="fa fa-undo"></span> Réinitaliser
+      </button>
+
+      <button type="submit" class="g-button">
+        <span class="fa fa-check"></span> Valider
+      </button>
     </div>
 
     <!--
