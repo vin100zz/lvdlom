@@ -35,7 +35,7 @@ app.directive('lvdlomSaisieForm', function () {
 
       $scope.submit = function () {
         Saisie.saveJoueur($scope.data, function (dbResult) {
-          window.location.hash = '#/joueur/' + $scope.cfg.id;
+          window.location.hash = '#/joueur/' + dbResult.id;
         });
       };
 

@@ -13,7 +13,7 @@ function getParam($param) {
 }
 
 function insertForSql(&$array, $key, $value) {
-  if ($value != null && $value != "")
+  if ($value !== null)
     $array[$key] = General::corrigeDisplayPourSQL($value);
 }
 
@@ -23,6 +23,9 @@ function getBoolean($param) {
 }
 
 function getDateStr($param) {
+  if (!getParam($param)) {
+    return null;
+  }
   return date('Y-m-d', strtotime(getParam($param)));
 }
 
@@ -48,7 +51,8 @@ function sqlInsert($array, $table) {
 
   return array(
     "query" => $queryStr,
-    "res" => $dbRes ? "ok" : "ko"
+    "res" => $dbRes ? "ok" : "ko",
+    "id" => DBAccess::getLastInsertedLastRow()
   );
 }
 
@@ -68,7 +72,8 @@ function sqlUpdate($array, $table, $id, $idColumnName) {
 
   return array(
     "query" => $queryStr,
-    "res" => $dbRes ? "ok" : "ko"
+    "res" => $dbRes ? "ok" : "ko",
+    "id" => $id
   );
 }
 
