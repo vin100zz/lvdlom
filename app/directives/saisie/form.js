@@ -4,7 +4,7 @@ app.directive('lvdlomSaisieForm', function () {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/form.html',
-    controller: function ($scope, Saisie) {
+    controller: function ($scope, $rootScope, Saisie) {
 
       $scope.data = {};
 
@@ -27,6 +27,7 @@ app.directive('lvdlomSaisieForm', function () {
         });
 
         $scope.data.id = $scope.cfg.id;
+        $scope.data.type = $scope.cfg.type;
       }
 
       $scope.showInputElement = function (type) {
@@ -34,14 +35,21 @@ app.directive('lvdlomSaisieForm', function () {
       };
 
       $scope.submit = function () {
-        Saisie.saveJoueur($scope.data, function (dbResult) {
-          window.location.hash = '#/joueur/' + dbResult.id;
+        Saisie.save($scope.data, function (dbResult) {
+          $scope.cfg.cb($scope.data, dbResult);
+
+          if (dbResult.res === 'ok') {
+            $rootScope.$broadcast('alert.new', 'success', 'Base de données mise à jour !');
+          }
         });
       };
 
       $scope.reset = function (evt) {
         evt.preventDefault();
-        $scope.data = {};
+        $scope.data = {
+          id: $scope.cfg.id,
+          type: $scope.cfg.type
+        };
       }
 
       // watch
@@ -50,7 +58,6 @@ app.directive('lvdlomSaisieForm', function () {
           prepareInput();
         }
       }, true);
-      
     }
   };
 });

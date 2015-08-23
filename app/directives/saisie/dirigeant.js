@@ -1,16 +1,16 @@
-app.directive('lvdlomSaisieJoueur', function () {
+app.directive('lvdlomSaisieDirigeant', function () {
   return {
     scope: {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/abstract.html',
-    controller: function ($scope, Joueur, Dictionary) {
+    controller: function ($scope, Dirigeant, Dictionary) {
 
-      $scope.joueur = {};
+      $scope.dirigeant = {};
 
       if ($scope.cfg.id) {
-        Joueur.get({id: $scope.cfg.id}, function (joueur) {
-          $scope.joueur = joueur.fiche;
+        Dirigeant.get({id: $scope.cfg.id}, function (dirigeant) {
+          $scope.dirigeant = dirigeant.fiche;
           $scope.formCfg = getFormCfg();
         });
       } else {
@@ -18,73 +18,65 @@ app.directive('lvdlomSaisieJoueur', function () {
       }
 
       function cb (data, dbResult) {
-        console.log(arguments);
-        window.location.hash = '#/joueur/' + dbResult.id;
+        window.location.hash = '#/dirigeant/' + dbResult.id;
       };
 
       function getFormCfg() {
         return {
           id: $scope.cfg.id,
-          type: 'joueur',
+          type: 'dirigeant',
           cb: cb,
           inputs: [{
             name: 'nom',
             label: 'Nom',
-            value: $scope.joueur.nom,
+            value: $scope.dirigeant.nom,
             type: 'text',
             placeholder: 'En majuscules',
             required: true
           }, {
             name: 'prenom',
             label: 'Prénom',
-            value: $scope.joueur.prenom,
+            value: $scope.dirigeant.prenom,
             type: 'text'
-          }, {
-            name: 'poste',
-            label: 'Poste',
-            value: $scope.joueur.poste,
-            type: 'select',
-            options: Dictionary.postes(),
-            required: true
           }, {
             name: 'dateNaissance',
             label: 'Date de naissance',
-            value: $scope.joueur.dateNaissance,
+            value: $scope.dirigeant.dateNaissance,
             type: 'date'
           }, {
             name: 'nationalite',
             label: 'Nationalité',
-            value: $scope.joueur.nationalite,
+            value: $scope.dirigeant.nationalite,
             type: 'select',
             options: Dictionary.allNationalites(),
             required: true
           }, {
             name: 'villeNaissance',
             label: 'Ville de naissance',
-            value: $scope.joueur.villeNaissance,
+            value: $scope.dirigeant.villeNaissance,
             type: 'text'
           }, {
             name: 'territoireNaissanceEtranger',
             label: 'Territoire de naissance (si étranger)',
-            value: $scope.joueur.territoireNaissance,
+            value: $scope.dirigeant.territoireNaissance,
             type: 'select',
             options: Dictionary.allNationalites()
           }, {
             name: 'territoireNaissanceFrancais',
             label: 'Territoire de naissance (si en France)',
-            value: $scope.joueur.territoireNaissance,
+            value: $scope.dirigeant.territoireNaissance,
             type: 'text',
             placeholder: 'Numéro de département'
           }, {
             name: 'dateDeces',
             label: 'Date de décès',
-            value: $scope.joueur.dateDeces,
+            value: $scope.dirigeant.dateDeces,
             type: 'date'
           }, {
-            name: 'auClub',
-            label: 'Actuellement au club ?',
-            value: $scope.joueur.auClub,
-            type: 'checkbox'
+            name: 'idJoueur',
+            label: 'Id joueur',
+            value: $scope.dirigeant.idJoueur,
+            type: 'text'
           }]
         };
       };

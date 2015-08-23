@@ -4,8 +4,8 @@
   
   // API
   app.factory('Saisie', function ($resource) {
-    return $resource('services/saisie.php', {type: 'joueur'}, {
-      saveJoueur: {method: 'POST', isArray: false, cache: false}
+    return $resource('services/saisie.php', null, {
+      save: {method: 'POST', isArray: false, cache: false}
     });
   });
   
@@ -13,7 +13,7 @@
   app.controller('SaisieCtrl', function($scope, $routeParams, Saisie) {
 
     $scope.action = $routeParams.action || 'new';
-    $scope.type = $routeParams.type || 'joueur';
+    $scope.type = $routeParams.type || null;
     $scope.id = $routeParams.id || null;
 
     $scope.cfg = {

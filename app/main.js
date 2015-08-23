@@ -36,7 +36,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 // controller
-app.controller('MainCtrl', function ($scope, Loading, $http) {
+app.controller('MainCtrl', function ($scope, $timeout, $http, Loading) {
   $scope.loading = Loading.isLoading();
 
   $scope.$on('loading.update', function () {
@@ -73,5 +73,25 @@ app.controller('MainCtrl', function ($scope, Loading, $http) {
     }
     $scope.$broadcast('click', evt);
   };
+
+  // alert
+  $scope.alert = {
+    show: false,
+    type: null,
+    message: null
+  };
+
+  $scope.closeAlert = function () {
+    $scope.alert.show = false;
+  };
+
+  $scope.$on('alert.new', function (evt, type, message) {
+    $scope.alert.message = message;
+    $scope.alert.type = type;
+    $scope.alert.show = true;
+    $timeout(function () {
+      $scope.closeAlert();
+    }, 4000);
+  });
 
 });

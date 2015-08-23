@@ -24,7 +24,7 @@ function getBoolean($param) {
 
 function getDateStr($param) {
   if (!getParam($param)) {
-    return null;
+    return "";
   }
   return date('Y-m-d', strtotime(getParam($param)));
 }
@@ -82,16 +82,14 @@ function sqlUpdate($array, $table, $id, $idColumnName) {
 // ******* SQL **********************************************
 // **********************************************************
 
-$type = General::request("type");
 $payload = General::payload();
 $id = getParam("id");
-
+$type = getParam("type");
 
 /*
  * Joueur
  */
-if ($type == "joueur")
-{
+if ($type == "joueur") {
   $terrNaissEtranger = getParam("territoireNaissanceEtranger");
   $terrNaissFrancais = getParam("territoireNaissanceFrancais");
   $terrNaiss = ($terrNaissEtranger != null && preg_match("/\w{3}/", $terrNaissEtranger)) ? $terrNaissEtranger : $terrNaissFrancais;
@@ -113,6 +111,71 @@ if ($type == "joueur")
     $out = sqlInsert($query, "joueurs");
   }
 }
+
+/*
+ * Dirigeant
+ */
+else if ($type == "dirigeant") {
+  $terrNaissEtranger = getParam("territoireNaissanceEtranger");
+  $terrNaissFrancais = getParam("territoireNaissanceFrancais");
+  $terrNaiss = ($terrNaissEtranger != null && preg_match("/\w{3}/", $terrNaissEtranger)) ? $terrNaissEtranger : $terrNaissFrancais;
+
+  $query = array();
+  insertForSql($query, "Nom", getParam("nom"));
+  insertForSql($query, "Prenom", getParam("prenom"));
+  insertForSql($query, "DateNaissance", getDateStr("dateNaissance"));
+  insertForSql($query, "VilleNaissance", getParam("villeNaissance"));
+  insertForSql($query, "TerritoireNaissance", $terrNaiss);   
+  insertForSql($query, "DateDeces", getDateStr("dateDeces"));
+  insertForSql($query, "Nationalite", getParam("nationalite"));
+  insertForSql($query, "IdJoueur", getParam("idJoueur"));
+
+  if ($id) {  
+    $out = sqlUpdate($query, "dirigeants", $id, "IdDirigeant");
+  } else {
+    $out = sqlInsert($query, "dirigeants");
+  }
+}
+
+
+/*
+ * Dirige
+ */
+else if ($type == "dirige") {
+  $query = array();
+  insertForSql($query, "IdDirigeant", getParam("idDirigeant"));
+  insertForSql($query, "IdFonction", getParam("idFonction"));
+  insertForSql($query, "Debut", getDateStr("debut"));
+  insertForSql($query, "Fin", getParam("fin"));
+
+  if ($id) {  
+    $out = sqlUpdate($query, "dirige", $id, "IdDirige");
+  } else {
+    $out = sqlInsert($query, "dirige");
+  }
+}
+
+
+/*
+ * Adversaire
+ */
+else if ($type == "adversaire") {
+  $query = array();
+  insertForSql($query, "NomAdversaire", getParam("nom"));
+  insertForSql($query, "Pays", getParam("pays"));
+
+  if ($id) {  
+    $out = sqlUpdate($query, "adversaires", $id, "IdAdversaire");
+  } else {
+    $out = sqlInsert($query, "adversaires");
+  }
+}
+
+else {
+  $out = "Type not supported: $type";
+}
+
+
 
 print json_encode($out, JSON_PRETTY_PRINT);
 

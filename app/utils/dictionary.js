@@ -251,11 +251,13 @@ app.service('Dictionary', function ($http) {
       {key: 'TUV', label: 'Tuvalu'},
       {key: 'UKR', label: 'Ukraine'},
       {key: 'URU', label: 'Uruguay'},
+      {key: 'URS', label: 'URSS'},
       {key: 'VAN', label: 'Vanuatu'},
       {key: 'VEN', label: 'Venezuela'},
       {key: 'VIE', label: 'Viêt Nam'},
       {key: 'YEM', label: 'Yémen'},
       {key: 'YUG', label: 'Yougoslavie'},
+      {key: 'ZAI', label: 'Zaïre'},
       {key: 'ZAM', label: 'Zambie'},
       {key: 'ZIM', label: 'Zimbabwe'}
      ];

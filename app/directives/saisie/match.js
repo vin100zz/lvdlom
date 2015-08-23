@@ -1,9 +1,9 @@
-app.directive('lvdlomSaisieJoueur', function () {
+app.directive('lvdlomSaisieMatch', function () {
   return {
     scope: {
       cfg: '='
     },
-    templateUrl: 'app/directives/saisie/abstract.html',
+    templateUrl: 'app/directives/saisie/match.html',
     controller: function ($scope, Joueur, Dictionary) {
 
       $scope.joueur = {};
@@ -17,16 +17,9 @@ app.directive('lvdlomSaisieJoueur', function () {
         $scope.formCfg = getFormCfg();
       }
 
-      function cb (data, dbResult) {
-        console.log(arguments);
-        window.location.hash = '#/joueur/' + dbResult.id;
-      };
-
       function getFormCfg() {
         return {
           id: $scope.cfg.id,
-          type: 'joueur',
-          cb: cb,
           inputs: [{
             name: 'nom',
             label: 'Nom',

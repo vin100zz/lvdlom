@@ -7,9 +7,30 @@
         <span class="fa fa-pencil"></span>
         <span>Saisie</span>
       </div>
+
       <div>
-        <lvdlom-saisie-joueur ng-if="type == 'joueur'" cfg="cfg"></lvdlom-saisie-joueur>
+
+        <div class="g-row select-action">
+          <div class="g-button-group">
+            <label ng-model="type" btn-radio="'document'">Document</label>
+            <label ng-model="type" btn-radio="'match'">Match</label>
+            <label ng-model="type" btn-radio="'joueur'">Joueur</label>
+            <label ng-model="type" btn-radio="'dirigeant'">Dirigeant</label>
+            <label ng-model="type" btn-radio="'dirige'">Dirige</label>
+            <label ng-model="type" btn-radio="'adversaire'">Adversaire</label>            
+          </div>
+        </div>
+
+        <div class="g-row" ng-if="type">
+          <lvdlom-saisie-document ng-if="type == 'document'" cfg="cfg"></lvdlom-saisie-document>
+          <lvdlom-saisie-match ng-if="type == 'match'" cfg="cfg"></lvdlom-saisie-match>
+          <lvdlom-saisie-joueur ng-if="type == 'joueur'" cfg="cfg"></lvdlom-saisie-joueur>
+          <lvdlom-saisie-dirigeant ng-if="type == 'dirigeant'" cfg="cfg"></lvdlom-saisie-dirigeant>
+          <lvdlom-saisie-dirige ng-if="type == 'dirige'" cfg="cfg"></lvdlom-saisie-dirige>
+          <lvdlom-saisie-adversaire ng-if="type == 'adversaire'" cfg="cfg"></lvdlom-saisie-adversaire>
+        </div>
       </div>
+
     </div>
 
 </div>

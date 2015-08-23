@@ -1,4 +1,4 @@
-app.directive('lvdlomSaisieJoueur', function () {
+app.directive('lvdlomSaisieDocument', function () {
   return {
     scope: {
       cfg: '='
@@ -17,16 +17,9 @@ app.directive('lvdlomSaisieJoueur', function () {
         $scope.formCfg = getFormCfg();
       }
 
-      function cb (data, dbResult) {
-        console.log(arguments);
-        window.location.hash = '#/joueur/' + dbResult.id;
-      };
-
       function getFormCfg() {
         return {
           id: $scope.cfg.id,
-          type: 'joueur',
-          cb: cb,
           inputs: [{
             name: 'nom',
             label: 'Nom',

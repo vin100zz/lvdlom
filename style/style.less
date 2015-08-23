@@ -253,7 +253,7 @@ form {
 
 /* Button */
 .g-button {
-  background: @button;
+  background: #00c853;
   color: @iconText;
   padding: 8px 20px;
   border-radius: 3px;
@@ -278,6 +278,39 @@ form {
     margin-right: 5px;
   }
 }
+
+
+/* Button group */
+.g-button-group {
+  height: 40px;
+  padding-top: 10px !important;
+
+  label {
+    background: @button;
+    color: @iconText;
+    padding: 8px 20px;
+    border: none;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    cursor: pointer;
+    opacity: 0.85;
+    margin: 0 -2px;
+    border: 1px solid @button;
+
+    &:hover,
+    &.active {
+      opacity: 1;
+    }
+
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
+
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+}
+
 
 /* Edit link */
 .g-edit-data {
