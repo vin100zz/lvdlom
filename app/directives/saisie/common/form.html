@@ -12,10 +12,13 @@
         <select ng-if="input.type == 'select'" ng-model="data[input.name]" ng-options="option.key as option.label for option in input.options" ng-required="input.required">
           <option ng-value=""></option>
         </select>
+
+        <!-- documents -->
+        <lvdlom-saisie-documents ng-if="input.type === 'documents'" cfg="documentsCfg"></lvdlom-saisie-documents>
       </div>
     </div>
 
-    <div class="g-row">
+    <div class="g-row actions">
       <button type="reset" class="g-button" ng-click="reset($event)">
         <span class="fa fa-undo"></span> Réinitaliser
       </button>
@@ -25,9 +28,9 @@
       </button>
     </div>
 
-    <!--
+    
       <pre>{{data | json}}</pre>
-    -->
+    
 
   </form>
   

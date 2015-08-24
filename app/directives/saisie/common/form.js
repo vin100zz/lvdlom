@@ -3,7 +3,7 @@ app.directive('lvdlomSaisieForm', function () {
     scope: {
       cfg: '='
     },
-    templateUrl: 'app/directives/saisie/form.html',
+    templateUrl: 'app/directives/saisie/common/form.html',
     controller: function ($scope, $rootScope, Saisie) {
 
       $scope.data = {};
@@ -17,12 +17,24 @@ app.directive('lvdlomSaisieForm', function () {
         $scope.cfg.inputs.filter(function (input) {
           return !!input.value;
         }).forEach(function (input) {
+          // default
           var value = input.value;
+
+          // date
           if (input.type === 'date') {
             value = new Date(input.value);
-          } else if (input.type === 'checkbox') {
+          }
+
+          // checkbox
+          else if (input.type === 'checkbox') {
             value = !!input.type;
           }
+
+          // documents
+          else if (input.type === 'documents') {
+            value = [];            
+          }
+
           $scope.data[input.name] = value;
         });
 
@@ -56,6 +68,15 @@ app.directive('lvdlomSaisieForm', function () {
       $scope.$watch('cfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           prepareInput();
+        }
+      }, true);
+
+      // documents
+      $scope.documentsCfg = {data: ''};
+
+      $scope.$watch('documentsCfg', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.data.documents = newValue.data;
         }
       }, true);
     }

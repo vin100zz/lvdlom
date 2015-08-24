@@ -60,6 +60,13 @@ $matches = DBAccess::query
   ORDER BY DateMatch
 ");
 
+$sources = DBAccess::query
+("
+  SELECT DISTINCT Source AS key, Source AS label
+  FROM documents
+  ORDER BY Source
+");
+
 
 // ********************************************************
 // ******* JSON *******************************************
@@ -72,7 +79,8 @@ $dict = array(
   "fonctions" => $fonctions,
   "joueurs" => $joueurs,
   "dirigeants" => $dirigeants,
-  "matches" => $matches
+  "matches" => $matches,
+  "sources" => $sources
 );
 respond($dict);
 

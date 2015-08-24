@@ -48,6 +48,10 @@ app.service('Dictionary', function ($http) {
     return dictionary.matches;
   };
 
+  this.sources = function () {
+    return dictionary.sources;
+  };
+
   this.getNationalite = function (key) {
     var nationalite = this.allNationalites().find(function (nationalite) {
       return nationalite.key === key;

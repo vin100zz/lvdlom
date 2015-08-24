@@ -3,7 +3,7 @@ app.directive('lvdlomSaisieAdversaire', function () {
     scope: {
       cfg: '='
     },
-    templateUrl: 'app/directives/saisie/abstract.html',
+    templateUrl: 'app/directives/saisie/common/abstract.html',
     controller: function ($scope, Adversaire, Dictionary) {
 
       $scope.adversaire = {};
