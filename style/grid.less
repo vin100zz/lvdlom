@@ -49,7 +49,6 @@
 		
 		/* Bottom bar */
 		&.g-bottombar {
-		  position: relative;
 		  height: 22px;
       line-height: 22px;
       text-align: center;
@@ -59,10 +58,18 @@
       
       .g-link {
 		    position: absolute;
-		    bottom: 4px;
-		    right: 5px;
+        top: 10px;
+		    bottom: 10px;
+        left: 10px;
+        right: 10px;
 		    color: white;
 		    opacity: 0.5;
+
+        &:before {
+          position: absolute;
+          bottom: 4px;
+          right: 5px;
+        }
 		  }
 		  .g-link:hover {
 		    opacity: 1;
