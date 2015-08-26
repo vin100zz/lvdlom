@@ -9,7 +9,7 @@ app.directive('lvdlomSaisieDirige', function () {
       $scope.formCfg = getFormCfg();
 
       function cb (data, dbResult) {
-        window.location.hash = '#/dirigeant/' + data.idDirigeant;
+        window.location.hash = '#/dirigeant/' + dbResult[0].id;
       };
 
       function getFormCfg() {

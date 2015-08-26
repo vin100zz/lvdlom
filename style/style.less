@@ -262,8 +262,15 @@ form {
   cursor: pointer;
   opacity: 0.85;
 
+  /* colors */
   &[type=reset] {
     background: #ff9800;
+  }
+  &.g-button-action {
+    background: @button;
+  }
+  &.g-button-danger {
+    background: #f44336;
   }
 
   &:not(:first-child) {
@@ -276,6 +283,16 @@ form {
 
   > .fa {
     margin-right: 5px;
+  }
+
+  &.g-icon-button {
+    padding: 3px 6px;
+    margin-left: 5px;
+
+    > .fa {
+      margin-right: 0;
+    }
+
   }
 }
 

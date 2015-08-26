@@ -9,7 +9,24 @@ app.directive('lvdlomSaisieDocument', function () {
       $scope.formCfg = getFormCfg();
 
       function cb (data, dbResult) {
-        //window.location.hash = '#/dirigeant/' + data.idDirigeant;
+        data.associations.forEach(function (association, index) {
+          var linkObject = '';
+          if (association.type === 'M') {
+            linkObject = 'match';
+          } else if (association.type === 'J') {
+            linkObject = 'joueur';
+          } else if (association.type === 'D') {
+            linkObject = 'dirigeant';
+          } else if (association.type === 'S') {
+            linkObject = 'saison';
+          }
+          var link = '#/' + linkObject + '/' + association.id;
+          if (index === 0) {
+            window.location.hash = link;
+          } else {
+            window.open(link, '_blank');
+          }
+        });
       };
 
       function getFormCfg() {
@@ -18,8 +35,8 @@ app.directive('lvdlomSaisieDocument', function () {
           type: 'document',
           cb: cb,
           inputs: [{
-            name: 'nomFicher',
-            label: 'Nom',
+            name: 'file',
+            label: 'Nom du fichier',
             type: 'text',
             required: true
           }, {
@@ -36,9 +53,9 @@ app.directive('lvdlomSaisieDocument', function () {
             label: 'Legende',
             type: 'text'
           }, {
-            name: 'documents',
-            label: 'Documents',
-            type: 'documents'
+            name: 'associations',
+            label: 'Associations',
+            type: 'associations'
           }]
         };
       };

@@ -19,7 +19,7 @@ app.factory('IoInterceptor', function ($rootScope, Loading) {
     },
     responseError: function (rejection) {
       Loading.decreaseNbQueriesInProgress();
-      $rootScope.$broadcast('alert.new', 'error', 'Oups, y\'a un bug...');
+      $rootScope.$broadcast('alert.new', 'error', 'Oups, y\'a un blème...');
       return rejection;
     }
   };

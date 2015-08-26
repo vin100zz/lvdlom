@@ -171,10 +171,53 @@ else if ($type == "adversaire") {
   }
 }
 
+
+/*
+ * Document
+ */
+else if ($type == "document") {
+  $out = array();
+
+  // documents
+  $query = array();
+  insertForSql($query, "Fichier", getParam("file"));
+  insertForSql($query, "DateDoc", getParam("date"));
+  insertForSql($query, "Source", getParam("source"));
+  insertForSql($query, "Legende", getParam("legende"));
+
+  if ($id) {  
+    $dbRes = sqlUpdate($query, "documents", $id, "IdDoc");
+  } else {
+    $dbRes = sqlInsert($query, "documents");
+    $id = $dbRes['id'];
+  }
+  $out[] = $dbRes;
+
+
+  // documentsAssoc
+  $associations = getParam("associations");
+  foreach ($associations as $association) {
+    $query = array();
+    insertForSql($query, "IdDoc", $id);
+    insertForSql($query, "AssocType", $association["type"]);
+    insertForSql($query, "IdObjet", $association["id"]);
+
+    // TODO: handle UPDATE
+    $out[] = sqlInsert($query, "documentsAssoc");
+  }
+}
+
 else {
   $out = "Type not supported: $type";
 }
 
+
+function is_associative_array (array $array) {
+  return (bool)count(array_filter(array_keys($array), 'is_string'));
+}
+
+// convert to sequential array
+$out = is_associative_array($out) ? array($out) : $out;
 
 
 print json_encode($out, JSON_PRETTY_PRINT);

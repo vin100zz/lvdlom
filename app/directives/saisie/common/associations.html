@@ -1,0 +1,32 @@
+<div class="dir-saisie-associations">
+
+  <div ng-repeat="association in cfg.data">
+
+    <!-- type -->
+    <select ng-model="association.type" ng-options="option.key as option.label for option in docTypes" required="true">
+      <option ng-value=""></option>
+    </select>
+
+    <!-- id -->
+    <select ng-model="association.id" ng-if="association.type == 'M'" ng-options="option.key as option.label for option in dictionary.matches" required="true">
+      <option ng-value=""></option>
+    </select>
+
+    <select ng-model="association.id" ng-if="association.type == 'J'" ng-options="option.key as option.label for option in dictionary.joueurs" required="true">
+      <option ng-value=""></option>
+    </select>
+
+    <select ng-model="association.id" ng-if="association.type == 'D'" ng-options="option.key as option.label for option in dictionary.dirigeants" required="true">
+      <option ng-value=""></option>
+    </select>
+
+    <select ng-model="association.id" ng-if="association.type == 'S'" ng-options="option.key as option.label for option in dictionary.saisons" required="true">
+      <option ng-value=""></option>
+    </select>
+
+    <button class="g-button g-icon-button g-button-danger" ng-if="!$first" ng-click="deleteRow($event, $index)"><span class="fa fa-times"></span></button>
+    <button class="g-button g-icon-button g-button-action" ng-if="$last" ng-click="addRow($event)"><span class="fa fa-plus"></span></button>
+
+  </div>
+  
+</div>

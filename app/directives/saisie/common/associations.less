@@ -1,0 +1,16 @@
+@import "style/variables";
+
+.dir-saisie-associations {
+
+  > div {
+    margin-bottom: 5px;
+
+    select:first-of-type {
+      width: 90px;
+    }
+
+    select:last-of-type:not(:first-of-type) {
+      width: calc(~"100% - 92px");
+    }
+  }
+}

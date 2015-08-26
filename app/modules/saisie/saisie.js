@@ -5,7 +5,7 @@
   // API
   app.factory('Saisie', function ($resource) {
     return $resource('services/saisie.php', null, {
-      save: {method: 'POST', isArray: false, cache: false}
+      save: {method: 'POST', isArray: true, cache: false}
     });
   });
   
@@ -13,7 +13,7 @@
   app.controller('SaisieCtrl', function($scope, $routeParams, Saisie) {
 
     $scope.action = $routeParams.action || 'new';
-    $scope.type = $routeParams.type || null;
+    $scope.type = $routeParams.type || 'document';
     $scope.id = $routeParams.id || null;
 
     $scope.cfg = {

@@ -30,8 +30,8 @@ app.directive('lvdlomSaisieForm', function () {
             value = !!input.type;
           }
 
-          // documents
-          else if (input.type === 'documents') {
+          // associations
+          else if (input.type === 'associations') {
             value = [];            
           }
 
@@ -71,12 +71,12 @@ app.directive('lvdlomSaisieForm', function () {
         }
       }, true);
 
-      // documents
-      $scope.documentsCfg = {data: ''};
+      // associations
+      $scope.associationsCfg = {data: ''};
 
-      $scope.$watch('documentsCfg', function (newValue, oldValue) {
+      $scope.$watch('associationsCfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          $scope.data.documents = newValue.data;
+          $scope.data.associations = newValue.data;
         }
       }, true);
     }

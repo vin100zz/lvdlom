@@ -18,7 +18,7 @@ app.directive('lvdlomSaisieDirigeant', function () {
       }
 
       function cb (data, dbResult) {
-        window.location.hash = '#/dirigeant/' + dbResult.id;
+        window.location.hash = '#/dirigeant/' + dbResult[0].id;
       };
 
       function getFormCfg() {
