@@ -262,6 +262,10 @@ form {
   cursor: pointer;
   opacity: 0.85;
 
+  > span {
+    display: inline-block;
+  }
+
   /* colors */
   &[type=reset] {
     background: #ff9800;
@@ -271,6 +275,9 @@ form {
   }
   &.g-button-danger {
     background: #f44336;
+  }
+  &.g-button-neutral {
+    background: #ddd;
   }
 
   &:not(:first-child) {

@@ -15,10 +15,10 @@ app.directive('lvdlomSaisieForm', function () {
       function prepareInput () {
         // init datamodel
         $scope.cfg.inputs.filter(function (input) {
-          return !!input.value;
+          return !!input.value || input.localStorage;
         }).forEach(function (input) {
           // default
-          var value = input.value;
+          var value = input.value || (input.localStorage ? getFromLocalStorage(input.name) : null);
 
           // date
           if (input.type === 'date') {
@@ -27,7 +27,7 @@ app.directive('lvdlomSaisieForm', function () {
 
           // checkbox
           else if (input.type === 'checkbox') {
-            value = !!input.type;
+            value = !!input.value;
           }
 
           // associations
@@ -47,6 +47,12 @@ app.directive('lvdlomSaisieForm', function () {
       };
 
       $scope.submit = function () {
+        $scope.cfg.inputs.forEach(function (input) {
+          if (input.localStorage) {
+            saveAsLocalStorage(input.name);
+          }
+        });
+
         Saisie.save($scope.data, function (dbResult) {
           $scope.cfg.cb($scope.data, dbResult);
 
@@ -62,7 +68,20 @@ app.directive('lvdlomSaisieForm', function () {
           id: $scope.cfg.id,
           type: $scope.cfg.type
         };
-      }
+      };
+
+      // local storage
+      function getLocalStorageKey (name) {
+        return 'lvdlom.saisie.' + $scope.cfg.type + '.' + name;
+      };
+
+      function saveAsLocalStorage (name) {
+        localStorage.setItem(getLocalStorageKey(name), $scope.data[name]);
+      };
+
+      function getFromLocalStorage (name) {
+        return localStorage.getItem(getLocalStorageKey(name));
+      };
 
       // watch
       $scope.$watch('cfg', function (newValue, oldValue) {
@@ -72,11 +91,20 @@ app.directive('lvdlomSaisieForm', function () {
       }, true);
 
       // associations
-      $scope.associationsCfg = {data: ''};
+      $scope.associationsCfg = {data: null};
 
       $scope.$watch('associationsCfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           $scope.data.associations = newValue.data;
+        }
+      }, true);
+
+      // source
+      $scope.sourceCfg = {data: null};
+
+      $scope.$watch('sourceCfg', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.data.source = newValue.data;
         }
       }, true);
     }

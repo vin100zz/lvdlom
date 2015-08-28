@@ -38,7 +38,8 @@ app.directive('lvdlomSaisieDocument', function () {
             name: 'file',
             label: 'Nom du fichier',
             type: 'text',
-            required: true
+            required: true,
+            localStorage: true
           }, {
             name: 'date',
             label: 'Date',
@@ -46,8 +47,7 @@ app.directive('lvdlomSaisieDocument', function () {
           }, {
             name: 'source',
             label: 'Source',
-            type: 'select',
-            options: Dictionary.sources()
+            type: 'source'
           }, {
             name: 'legende',
             label: 'Legende',

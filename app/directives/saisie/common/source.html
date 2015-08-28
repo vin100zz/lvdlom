@@ -1,0 +1,10 @@
+<div class="dir-saisie-source">
+
+  <select ng-model="cfg.data" ng-options="option.key as option.label for option in sources" required="true">
+    <option ng-value=""></option>
+  </select>
+
+  <button class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'La Provence')"><span class="icon-source source-laprovence"></span></button>
+  <button class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'L\'Équipe')"><span class="icon-source source-lequipe"></span></button>
+  
+</div>

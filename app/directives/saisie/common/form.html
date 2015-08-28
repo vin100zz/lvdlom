@@ -13,7 +13,8 @@
           <option ng-value=""></option>
         </select>
 
-        <!-- associations -->
+        <!-- specials -->
+        <lvdlom-saisie-source ng-if="input.type === 'source'" cfg="sourceCfg"></lvdlom-saisie-source>
         <lvdlom-saisie-associations ng-if="input.type === 'associations'" cfg="associationsCfg"></lvdlom-saisie-associations>
       </div>
     </div>
