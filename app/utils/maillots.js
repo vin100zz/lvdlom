@@ -18,8 +18,27 @@ app.service('Maillots', function() {
     61: {template: 11, color1: "D91521", color2: "293383", color3: "F1C600"}, // CSKA MOSCOU
     72: {template: 37, color1: "CE000C", color2: "ffffff", color3: "CE000C"}, // ETOILE ROUGE BELGRADE
     99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
+    132: {template: 1, color1: "F8E520", color2: "ffffff", color3: "0652BD"}, // MONTAUBAN
     184: {template: 5, color1: "F92400", color2: "FFFFFF", color3: "ffffff"}, // SION,
     200: {template: 10, color1: "ffffff", color2: "0097DB", color3: "0097DB"}, // ST-PÉTERSBOURG
+    219: {template: 36, color1: "ffffff", color2: "ff8000", color3: "000000"}, // VALENCE CF
+    224: {template: 2, color1: "1D9053", color2: "ffffff", color3: "ff8000"}, // WERDER BRÊME
+    225: {template: 12, color1: "F3C62C", color2: "0C0904", color3: "0C0904"}, // YOUNG BOYS BERNE
+    226: {template: 1, color1: "1854C0", color2: "1854C0", color3: "ffffff"}, // ZAGREB CROATIA
+    227: {template: 1, color1: "009157", color2: "FFFFFF", color3: "ffffff"}, // CARQUEFOU
+    228: {template: 10, color1: "FF1A0F", color2: "FFFFFF", color3: "ffffff"}, // BERGEN
+    230: {template: 37, color1: "ED1C24", color2: "FFFFFF", color3: "000000"}, // PSV EINDHOVEN
+    235: {template: 1, color1: "F7E704", color2: "000000", color3: "000000"}, // QUEVILLY
+    247: {template: 1, color1: "FEE200", color2: "009537", color3: "009537"}, // ZILINA
+    250: {template: 2, color1: "FFFF00", color2: "000000", color3: "000000"}, // BORUSSIA DORTMUND
+    252: {template: 1, color1: "0363AB", color2: "FFFFFF", color3: "ffffff"}, // BOURG-PÉRONNAS
+    259: {template: 2, color1: "ED1248", color2: "2E6ABD", color3: "ffffff"}, // BAYERN MUNICH
+    266: {template: 37, color1: "D23A4D", color2: "3D3B3E", color3: "3D3B3E"}, // ESKISEHIRSPOR
+    267: {template: 25, color1: "FDDC03", color2: "000000", color3: "000000"}, // SHERIFF TIRASPOL
+    268: {template: 3, color1: "FBEE00", color2: "004482", color3: "004482"}, // FENERBAHCE
+    269: {template: 36, color1: "FFDC00", color2: "024A8B", color3: "024A8B"}, // LIMASSOL
+    270: {template: 49, color1: "33898B", color2: "FFFFFF", color3: "000000"}, // MÖNCHENGLADBACH
+    274: {template: 1, color1: "6BBEE9", color2: "FFFFFF", color3: "ffffff"}, // NAPLES
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
@@ -55,7 +74,6 @@ app.service('Maillots', function() {
     "NICE": {template: 3, color1: "CD1E25", color2: "231F20", color3: "231F20"},
     "NÎMES": {template: 1, color1: "ED1C24", color2: "FFFFFF", color3: "FFFFFF"},
     "PARIS SG": {template: 56, color1: "002561", color2: "ED1C24", color3: "FFFFFF"},
-    "PSV EINDHOVEN": {template: 11, color1: "ED1C24", color2: "FFFFFF", color3: "000000"},
     "RACING CLUB PARIS": {template: 4, color1: "FFFFFF", color2: "82B1D8", color3: "FFFFFF"},
     "REAL MADRID": {template: 1, color1: "FFFFFF", color2: "004799", color3: "004799"},
     "RED STAR": {template: 25, color1: "0C6646", color2: "FFFFFF", color3: "FFFFFF"},

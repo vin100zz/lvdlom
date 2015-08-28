@@ -11,691 +11,715 @@ Icon classes can be used entirely standalone. They are named after their origina
 */
 .icon-club.club-1 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -18px;
+  background-position: -105px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-10 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -72px;
+  background-position: -205px -18px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-100 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -179px;
+  background-position: -108px -180px;
   width: 18px;
   height: 12px;
 }
 .icon-club.club-102 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -108px;
+  background-position: -36px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-103 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -126px;
+  background-position: -205px -162px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-105 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -177px -193px;
+  background-position: -127px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-106 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -18px;
+  background-position: -72px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-108 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -193px;
+  background-position: -205px -144px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-11 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px 0px;
+  background-position: -18px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-110 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -18px;
+  background-position: -36px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-111 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -162px -179px;
+  background-position: -126px -180px;
   width: 18px;
   height: 12px;
 }
 .icon-club.club-112 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -126px;
+  background-position: -118px -126px;
   width: 18px;
   height: 15px;
 }
 .icon-club.club-114 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -90px;
+  background-position: -160px -18px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-115 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -26px -193px;
+  background-position: -205px -90px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-116 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -126px;
+  background-position: -126px 0px;
   width: 18px;
   height: 17px;
 }
 .icon-club.club-119 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -72px;
+  background-position: -160px 0px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-12 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -144px -179px;
+  background-position: -144px -180px;
   width: 18px;
   height: 12px;
 }
 .icon-club.club-121 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -165px -193px;
+  background-position: -151px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-123 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -54px;
+  background-position: -36px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-125 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -108px;
+  background-position: -15px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-126 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -153px -193px;
+  background-position: -139px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-127 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -90px;
+  background-position: -30px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-128 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -18px;
+  background-position: -219px -18px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-129 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px 0px;
+  background-position: -54px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-13 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -18px;
+  background-position: -126px -71px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-130 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -180px;
+  background-position: -219px -126px;
   width: 10px;
   height: 18px;
 }
+.icon-club.club-132 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: 0px -212px;
+  width: 18px;
+  height: 10px;
+}
 .icon-club.club-134 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -18px;
+  background-position: -160px -90px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-135 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -54px;
+  background-position: -18px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-137 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -18px;
+  background-position: -144px -90px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-138 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -134px -161px;
+  background-position: -205px 0px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-14 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -176px -161px;
+  background-position: -147px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-140 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -39px -193px;
+  background-position: 0px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-141 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -72px;
+  background-position: -72px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-142 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -144px;
+  background-position: -197px -194px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-144 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -54px;
+  background-position: -160px -36px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-145 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -15px -143px;
+  background-position: -176px -72px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-146 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px 0px;
+  background-position: -72px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-147 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -18px;
+  background-position: 0px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-148 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -72px;
+  background-position: -191px -18px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-149 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -143px;
+  background-position: -160px -54px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-15 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -54px;
+  background-position: -191px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-150 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -36px;
+  background-position: -18px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-153 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -162px -161px;
+  background-position: -133px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-154 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -108px;
+  background-position: -160px -126px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-156 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -54px;
+  background-position: -36px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-16 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -72px;
+  background-position: -54px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-161 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -36px;
+  background-position: -191px 0px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-163 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -52px -193px;
+  background-position: -13px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-164 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -90px;
+  background-position: -90px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-165 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -90px;
+  background-position: -90px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-166 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -72px;
+  background-position: -90px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-168 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -65px -193px;
+  background-position: -26px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-169 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -90px;
+  background-position: -90px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-17 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -54px;
+  background-position: -219px -72px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-170 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -18px;
+  background-position: -90px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-172 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px 0px;
+  background-position: -176px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-175 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -150px -143px;
+  background-position: 0px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-176 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px 0px;
+  background-position: -191px -108px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-178 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -72px;
+  background-position: 0px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-18 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -120px -143px;
+  background-position: -15px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-180 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -90px;
+  background-position: -18px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-182 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -143px;
+  background-position: -160px -72px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-184 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -108px;
+  background-position: 0px -126px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-186 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -36px;
+  background-position: -219px -108px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-187 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -18px;
+  background-position: -161px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-188 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px 0px;
+  background-position: -144px -36px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-189 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -18px;
+  background-position: -144px -18px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-19 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -108px;
+  background-position: -72px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-190 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -179px;
+  background-position: 0px -180px;
   width: 18px;
   height: 14px;
 }
 .icon-club.club-193 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -144px;
+  background-position: -191px -90px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-196 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -108px;
+  background-position: -90px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-197 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -78px -193px;
+  background-position: -78px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-2 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -211px;
+  background-position: -36px -212px;
   width: 18px;
   height: 10px;
 }
 .icon-club.club-20 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -179px;
+  background-position: -72px -180px;
   width: 18px;
   height: 12px;
 }
 .icon-club.club-200 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -179px;
+  background-position: -36px -180px;
   width: 18px;
   height: 13px;
 }
 .icon-club.club-201 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -60px -143px;
+  background-position: -176px -54px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-202 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -108px;
+  background-position: -108px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-204 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -108px;
+  background-position: -108px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-208 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px 0px;
+  background-position: -219px -54px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-209 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -36px;
+  background-position: -144px -54px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-21 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -54px;
+  background-position: -108px -90px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-210 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -36px;
+  background-position: 0px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-212 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -90px;
+  background-position: -18px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-213 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -161px;
+  background-position: -30px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-214 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -30px -161px;
+  background-position: -45px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-215 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -36px;
+  background-position: -126px -35px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-216 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px 0px;
+  background-position: -36px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-219 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -91px -193px;
+  background-position: -205px -72px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-22 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px 0px;
+  background-position: -54px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-220 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -30px -143px;
+  background-position: -160px -108px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-221 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -129px -193px;
+  background-position: -103px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-224 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -117px -193px;
+  background-position: -115px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-225 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -72px;
+  background-position: -90px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-226 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -108px;
+  background-position: -126px -106px;
   width: 18px;
   height: 17px;
 }
+.icon-club.club-227 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: -54px -212px;
+  width: 18px;
+  height: 9px;
+}
 .icon-club.club-228 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -211px;
+  background-position: -72px -212px;
   width: 18px;
   height: 5px;
 }
 .icon-club.club-229 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -90px;
+  background-position: -191px -36px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-23 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -108px;
+  background-position: -191px -72px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-230 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -179px;
+  background-position: -54px -180px;
   width: 18px;
   height: 12px;
 }
+.icon-club.club-235 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: -50px -126px;
+  width: 16px;
+  height: 18px;
+}
 .icon-club.club-236 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -126px;
+  background-position: -191px -126px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-24 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px 0px;
+  background-position: -66px -126px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-240 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -126px;
+  background-position: -219px 0px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-242 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -36px;
+  background-position: -144px 0px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-243 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -126px;
+  background-position: -230px 0px;
   width: 16px;
   height: 11px;
 }
 .icon-club.club-245 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -180px;
+  background-position: -230px -11px;
   width: 13px;
   height: 13px;
 }
 .icon-club.club-246 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -13px -193px;
+  background-position: -205px -126px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-247 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -36px;
+  background-position: -176px 0px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-248 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -162px;
+  background-position: -205px -108px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-249 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -54px;
+  background-position: -176px -36px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-25 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -90px;
+  background-position: -126px -53px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-250 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -54px;
+  background-position: -54px -90px;
   width: 18px;
+  height: 18px;
+}
+.icon-club.club-252 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: -176px -90px;
+  width: 15px;
   height: 18px;
 }
 .icon-club.club-259 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -54px;
+  background-position: -72px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-26 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -54px;
+  background-position: -54px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-266 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -36px;
+  background-position: -36px -54px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-267 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px -54px;
+  background-position: -191px -54px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-268 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -18px;
+  background-position: 0px -54px;
   width: 18px;
   height: 18px;
 }
@@ -707,343 +731,343 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-club.club-27 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -189px -193px;
+  background-position: -91px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-270 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -162px;
+  background-position: -219px -90px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-274 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -36px;
+  background-position: -18px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-28 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -201px -193px;
+  background-position: -208px -194px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-29 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -60px -161px;
+  background-position: -75px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-3 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -75px -161px;
+  background-position: -90px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-33 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -36px;
+  background-position: -205px -36px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-34 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -161px;
+  background-position: 0px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-37 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -135px -143px;
+  background-position: -60px -162px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-39 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -211px;
+  background-position: -18px -212px;
   width: 18px;
   height: 10px;
 }
 .icon-club.club-4 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -72px;
+  background-position: 0px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-40 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -36px;
+  background-position: -18px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-42 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -15px -161px;
+  background-position: -176px -18px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-43 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -148px -161px;
+  background-position: -119px -162px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-45 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -108px;
+  background-position: -219px -36px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-47 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -120px -161px;
+  background-position: -205px -54px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-49 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -126px;
+  background-position: -120px -144px;
   width: 18px;
   height: 15px;
 }
 .icon-club.club-5 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -36px;
+  background-position: -108px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-50 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -72px;
+  background-position: -108px -72px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-51 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -179px;
+  background-position: -18px -180px;
   width: 18px;
   height: 13px;
 }
 .icon-club.club-52 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -105px -161px;
+  background-position: -60px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-54 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -105px -143px;
+  background-position: -45px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-57 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -72px;
+  background-position: -34px -126px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-6 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -72px;
+  background-position: -72px -108px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-61 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -104px -193px;
+  background-position: -39px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-62 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -126px;
+  background-position: -126px -89px;
   width: 18px;
   height: 17px;
 }
 .icon-club.club-63 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px 0px;
+  background-position: -126px -17px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-64 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -45px -143px;
+  background-position: -105px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-65 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -36px -126px;
+  background-position: -82px -126px;
   width: 18px;
   height: 16px;
 }
 .icon-club.club-66 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -211px;
+  background-position: -162px -180px;
   width: 18px;
   height: 11px;
 }
 .icon-club.club-67 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -141px -193px;
+  background-position: -163px -194px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-68 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -54px -108px;
+  background-position: -108px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-7 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -72px;
+  background-position: -17px -126px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-72 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -108px;
+  background-position: -52px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-73 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -75px -143px;
+  background-position: -176px -108px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-74 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px 0px;
+  background-position: -90px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-75 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -90px;
+  background-position: 0px 0px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-76 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -108px -179px;
+  background-position: -90px -180px;
   width: 18px;
   height: 12px;
 }
 .icon-club.club-77 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -90px;
+  background-position: -72px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-78 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -90px;
+  background-position: -144px -72px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-8 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -143px -108px;
+  background-position: -144px -108px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-80 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -18px;
+  background-position: -54px -36px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-81 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -159px -54px;
+  background-position: -144px -126px;
   width: 16px;
   height: 18px;
 }
 .icon-club.club-82 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -190px 0px;
+  background-position: -191px -144px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-83 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -72px -126px;
+  background-position: -138px -144px;
   width: 18px;
   height: 15px;
 }
 .icon-club.club-86 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -126px;
+  background-position: -176px -126px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-88 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -90px -126px;
+  background-position: -100px -126px;
   width: 18px;
   height: 15px;
 }
 .icon-club.club-89 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -180px -179px;
+  background-position: -180px -180px;
   width: 18px;
   height: 11px;
 }
 .icon-club.club-9 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -36px;
+  background-position: -36px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-90 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -18px -18px;
+  background-position: 0px -18px;
   width: 18px;
   height: 18px;
 }
 .icon-club.club-91 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -126px -54px;
+  background-position: -108px -108px;
   width: 17px;
   height: 18px;
 }
 .icon-club.club-93 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -144px;
+  background-position: -65px -194px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-94 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -72px;
+  background-position: -186px -194px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-95 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -218px -90px;
+  background-position: -175px -194px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-96 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -45px -161px;
+  background-position: -75px -144px;
   width: 15px;
   height: 18px;
 }
 .icon-club.club-99 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -179px;
+  background-position: -156px -144px;
   width: 18px;
   height: 14px;
 }
 .icon-club.club-OM {
   background-image: url(clubs/sprites/small.png);
-  background-position: -204px -90px;
+  background-position: -175px -162px;
   width: 14px;
   height: 18px;
 }
