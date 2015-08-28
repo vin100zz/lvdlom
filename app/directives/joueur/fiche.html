@@ -4,15 +4,15 @@
 
   <div class="g-row row-info" ng-if="!cfg.mini">
     <div>
+      <div>
+        <span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>
+        <span>{{Bom.poste(joueur.fiche.poste)}}</span>
+      </div>
       <div ng-if="joueur.fiche.dateNaissance">
         <span class="g-remark">né le</span>
         <span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</span>
       </div>
-      <div ng-if="joueur.fiche.villeNaissance">
-        <span class="g-remark">à</span>
-        <span>{{joueur.fiche.villeNaissance}}</span>
-        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance">{{joueur.fiche.territoireNaissance}}</span>
-      </div>
+      
       <div ng-if="joueur.fiche.dateDeces">
         <span class="g-remark">décédé le</span>
         <span>{{joueur.fiche.dateDeces | format:'dateLong'}}</span>
@@ -21,13 +21,14 @@
     <div>
       <div ng-bind-html="joueur.fiche.nationalite | format:'flagFullNat'">
       </div>
+      <div ng-if="joueur.fiche.villeNaissance">
+        <span class="g-remark">à</span>
+        <span>{{joueur.fiche.villeNaissance}}</span>
+        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance">{{joueur.fiche.territoireNaissance}}</span>
+      </div>
       <div ng-if="joueur.fiche.selections">
         <span>{{joueur.fiche.selections}}</span>
         <span class="g-remark">sélections</span>
-      </div>
-      <div>
-        <span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>
-        <span>{{Bom.poste(joueur.fiche.poste)}}</span>
       </div>
     </div>
   </div>
