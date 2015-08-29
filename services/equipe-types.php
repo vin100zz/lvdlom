@@ -26,18 +26,37 @@ for($i=0; $i<count($saisons); $i++)
 	("
 		SELECT
       joueurs.IdJoueur as id,
-      COUNT(*) as nbMatches,
       Nom as nom,
       Prenom AS prenom,
       Poste as poste,
-      AuClub as auClub
-		FROM joue, matches, joueurs
-		WHERE Saison = '$id'
-			AND joue.IdMatch = matches.IdMatch
-			AND joue.IdJoueur = joueurs.IdJoueur
+      AuClub as auClub,
+      nbTit,
+      nbMatches
+
+		FROM joueurs
+
+    LEFT JOIN (
+      SELECT joueurs.IdJoueur AS id, COUNT(*) as nbTit
+      FROM joueurs, joue, matches
+      WHERE Saison = '$id'
+      AND joue.IdMatch = matches.IdMatch
+      AND joue.IdJoueur = joueurs.IdJoueur
       AND Ordre IS NOT NULL
-		GROUP BY joueurs.IdJoueur
-    ORDER BY nbMatches DESC
+      GROUP BY joueurs.IdJoueur
+    ) AS table_tit ON joueurs.IdJoueur = table_tit.id
+
+    LEFT JOIN (
+      SELECT joueurs.IdJoueur AS id, COUNT(*) as nbMatches
+      FROM joueurs, joue, matches
+      WHERE Saison = '$id'
+      AND joue.IdMatch = matches.IdMatch
+      AND joue.IdJoueur = joueurs.IdJoueur
+      GROUP BY joueurs.IdJoueur
+    ) AS table_matches ON joueurs.IdJoueur = table_matches.id  
+
+    WHERE nbMatches > 0
+
+    ORDER BY nbTit DESC
 	");	
 	
 	// buteurs

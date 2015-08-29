@@ -23,7 +23,7 @@
         
         res.joueurs = saison.joueurs
         .sort(function (joueur1, joueur2) {
-          return parseInt(joueur2.nbMatches, 10) - parseInt(joueur1.nbMatches, 10);
+          return (parseInt(joueur2.nbTit, 10) || 0) - (parseInt(joueur1.nbTit, 10) || 0);
         })
         .slice(0, 11)
         .sort(function (joueur1, joueur2) {
