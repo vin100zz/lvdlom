@@ -43,15 +43,18 @@ app.directive('lvdlomSaisieDocument', function () {
           }, {
             name: 'date',
             label: 'Date',
-            type: 'date'
+            type: 'date',
+            localStorage: true
           }, {
             name: 'source',
             label: 'Source',
-            type: 'source'
+            type: 'source',
+            localStorage: true
           }, {
             name: 'legende',
             label: 'Legende',
-            type: 'text'
+            type: 'text',
+            localStorage: true
           }, {
             name: 'associations',
             label: 'Associations',

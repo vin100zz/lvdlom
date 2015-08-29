@@ -8,7 +8,7 @@ app.directive('lvdlomSaisieSource', function () {
 
       $scope.sources = Dictionary.sources();
 
-      $scope.cfg.data = null;
+      $scope.cfg.data = $scope.cfg.data || null;
 
       $scope.setValue = function (evt, value) {
         evt.preventDefault();

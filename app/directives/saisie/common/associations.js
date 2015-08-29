@@ -24,9 +24,10 @@ app.directive('lvdlomSaisieAssociations', function () {
 
       function formatMatches (matches) {
         return matches.map(function (match) {
-          var data = match.label.split(',');
-          match.label = '[' + Formatter.dateLong(data[1]) + '] ' + data[0] + ' ' + data[2] + '-' + data[3];
-          return match;
+          var item = JSON.parse(JSON.stringify(match));
+          var data = item.label.split(',');
+          item.label = '[' + Formatter.dateLong(data[1]) + '] ' + data[0] + ' ' + data[2] + '-' + data[3];
+          return item;
         }).reverse();
       };
 

@@ -4,7 +4,7 @@ app.directive('lvdlomSaisieForm', function () {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/common/form.html',
-    controller: function ($scope, $rootScope, Saisie) {
+    controller: function ($scope, $rootScope, $filter, Saisie) {
 
       $scope.data = {};
 
@@ -22,12 +22,12 @@ app.directive('lvdlomSaisieForm', function () {
 
           // date
           if (input.type === 'date') {
-            value = new Date(input.value);
+            value = new Date(value);
           }
 
           // checkbox
           else if (input.type === 'checkbox') {
-            value = !!input.value;
+            value = !!value;
           }
 
           // associations
@@ -46,13 +46,22 @@ app.directive('lvdlomSaisieForm', function () {
         return ['text', 'date', 'checkbox'].indexOf(type) >= 0;
       };
 
+      $scope.changeInputData = function (name) {
+        $scope.data[name] = name + '123';
+      };
+
       $scope.submit = function () {
+        // prepare data
         $scope.cfg.inputs.forEach(function (input) {
           if (input.localStorage) {
             saveAsLocalStorage(input.name);
           }
+          if (input.type === 'date') {
+            $scope.data[input.name] = $filter('date')($scope.data[input.name], 'yyyy-MM-dd');
+          }
         });
 
+        // save
         Saisie.save($scope.data, function (dbResult) {
           $scope.cfg.cb($scope.data, dbResult);
 
@@ -100,7 +109,7 @@ app.directive('lvdlomSaisieForm', function () {
       }, true);
 
       // source
-      $scope.sourceCfg = {data: null};
+      $scope.sourceCfg = {data: $scope.data.source};
 
       $scope.$watch('sourceCfg', function (newValue, oldValue) {
         if (newValue !== oldValue) {
