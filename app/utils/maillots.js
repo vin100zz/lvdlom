@@ -11,10 +11,24 @@ app.service('Maillots', function() {
   
   var config = {
     1: {template: 48, color1: "F9D614", color2: "000000", color3: "000000"}, // AEK ATHÈNES
+    5: {template: 2, color1: "BA0100", color2: "281D72", color3: "F7B001"}, // AJACCIO GFC
+    9: {template: 1, color1: "ffffff", color2: "DEDEDD", color3: "000000"}, // AMIENS
+    14: {template: 15, color1: "3D347E", color2: "ffffff", color3: "ffffff"}, // AUSTRIA VIENNE
+    19: {template: 7, color1: "E30512", color2: "ffffff", color3: "ffffff"}, // BEAUVAIS
+    23: {template: 48, color1: "000000", color2: "ffffff", color3: "000000"}, // BESIKTAS ISTANBUL
     27: {template: 54, color1: "172983", color2: "E22219", color3: "172983"}, // BOLOGNE
+    28: {template: 10, color1: "ffffff", color2: "EE3F34", color3: "003876"}, // BOLTON
+    34: {template: 18, color1: "ffffff", color2: "ED1C24", color3: "ED1C24"}, // BREST
+    37: {template: 2, color1: "FFF200", color2: "004B85", color3: "004B85"}, // BRÖNDBY
+    43: {template: 42, color1: "FFF200", color2: "005BAB", color3: "005BAB"}, // CARL ZEISS IENA
     45: {template: 1, color1: "C1DDF3", color2: "ffffff", color3: "ffffff"}, // CELTA VIGO
+    47: {template: 48, color1: "ffffff", color2: "0000FF", color3: "0000FF"}, // CHARLEVILLE
     49: {template: 37, color1: "005BAB", color2: "ED1847", color3: "ffffff"}, // CHÂTEAUROUX
     50: {template: 1, color1: "034694", color2: "ffffff", color3: "ffffff"}, // CHELSEA
+    51: {template: 36, color1: "1B3B8E", color2: "ffffff", color3: "ffffff"}, // CHERBOURG
+    52: {template: 33, color1: "C60C46", color2: "002C69", color3: "002C69"}, // CLERMONT
+    57: {template: 19, color1: "ED1C23", color2: "ffffff", color3: "ffffff"}, // COLOGNE
+    60: {template: 33, color1: "2E5E9F", color2: "D2293D", color3: "007861"}, // CRÉTEIL
     61: {template: 11, color1: "D91521", color2: "293383", color3: "F1C600"}, // CSKA MOSCOU
     72: {template: 37, color1: "CE000C", color2: "ffffff", color3: "CE000C"}, // ETOILE ROUGE BELGRADE
     99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
