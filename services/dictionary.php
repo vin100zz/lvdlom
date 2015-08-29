@@ -68,7 +68,32 @@ $sources = DBAccess::query
 ("
   SELECT DISTINCT Source AS key, Source AS label
   FROM documents
+  WHERE Source <> ''
   ORDER BY Source
+");
+
+$lieux = DBAccess::query
+("
+  SELECT DISTINCT Lieu AS key, Lieu AS label
+  FROM matches
+  WHERE Lieu <> ''
+  ORDER BY Lieu
+");
+
+$competitions = DBAccess::query
+("
+  SELECT DISTINCT Competition AS key, Competition AS label
+  FROM matches
+  WHERE Competition <> ''
+  ORDER BY Competition
+");
+
+$niveaux = DBAccess::query
+("
+  SELECT DISTINCT Niveau AS key, Niveau AS label
+  FROM matches
+  WHERE Niveau <> ''
+  ORDER BY Niveau
 ");
 
 
@@ -84,7 +109,10 @@ $dict = array(
   "joueurs" => $joueurs,
   "dirigeants" => $dirigeants,
   "matches" => $matches,
-  "sources" => $sources
+  "sources" => $sources,
+  "lieux" => $lieux,
+  "competitions" => $competitions,
+  "niveaux" => $niveaux
 );
 respond($dict);
 

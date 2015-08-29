@@ -350,3 +350,36 @@ form {
     opacity: 1;
   }
 }
+
+
+/* Autocomplete */
+.g-autocomplete {
+
+  + ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 10;
+    border: 1px solid @tableBorder;
+    width: 275px;
+
+    > li {
+      padding: 2px 15px 2px 10px;
+      cursor: pointer;
+
+      strong {
+        font-weight: bold;
+        color: @importantText;
+      }
+
+      &:hover {
+        background: #eee;
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

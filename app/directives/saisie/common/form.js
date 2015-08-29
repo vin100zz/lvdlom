@@ -116,6 +116,15 @@ app.directive('lvdlomSaisieForm', function () {
           $scope.data.source = newValue.data;
         }
       }, true);
+
+      // match
+      $scope.matchCfg = {data: null};
+
+      $scope.$watch('matchCfg', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          $scope.data = newValue.data;
+        }
+      }, true);
     }
   };
 });

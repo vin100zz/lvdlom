@@ -1,4 +1,4 @@
-app.directive('lvdlomSaisieSource', function () {
+app.directive('lvdlomSaisieCommonSource', function () {
   return {
     scope: {
       cfg: '='

@@ -1,0 +1,145 @@
+<div class="dir-saisie-common-match">
+
+  <div>
+
+  <!-- saison -->
+    <div class="g-row">
+      <div class="g-remark">Saison</div>
+      <div>
+        <select ng-model="cfg.data.saison" ng-options="option.key as option.label for option in dictionary.saisons" required="true">
+          <option ng-value=""></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- date -->
+    <div class="g-row">
+      <div class="g-remark">Date</div>
+      <div>
+        <input ng-model="cfg.data.date" type="date" required="true"></input>
+      </div>
+    </div>
+
+    <!-- lieu -->
+    <div class="g-row">
+      <div class="g-remark">Lieu</div>
+      <div>
+        <input ng-model="cfg.data.lieu" type="text" typeahead="option.key as option.label for option in dictionary.lieux | filter:$viewValue | limitTo:8" required="true" class="g-autocomplete"></input>
+      </div>
+    </div>
+
+    <!-- competition -->
+    <div class="g-row">
+      <div class="g-remark">Compétition</div>
+      <div>
+        <select ng-model="cfg.data.competition" ng-options="option.key as option.label for option in dictionary.competitions" required="true">
+          <option ng-value=""></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- niveau -->
+    <div class="g-row">
+      <div class="g-remark">Niveau</div>
+      <div>
+        <select ng-model="cfg.data.niveau" ng-options="option.key as option.label for option in dictionary.niveaux" required="true">
+          <option ng-value=""></option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div>
+
+    <table>
+
+      <!-- adversaire -->
+      <tr>
+        <td>OM</td>
+        <td>
+          <select ng-model="cfg.data.adversaire" ng-options="option.key as option.label for option in dictionary.adversaires" required="true">
+            <option ng-value=""></option>
+          </select>          
+        </td>
+      </tr>
+
+      <!-- score -->
+      <tr>
+        <td>
+          <input ng-model="cfg.data.butsOM" type="number" min="0" required="true" ng-change="changeButsOM()"></input>
+        </td>
+        <td>
+          <input ng-model="cfg.data.butsAdv" type="number" min="0" required="true" ng-change="changeButsAdv()"></input>
+        </td>
+      </tr>
+
+      <!-- rq score -->
+      <tr>
+        <td colspan="2">
+
+          <select ng-model="cfg.data.rqScore" ng-options="rq for rq in dictionary.rqScore">
+            <option ng-value=""></option>
+          </select>
+
+          <!-- tab -->
+          <input ng-model="cfg.data.tabOM" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true"></input>
+          <input ng-model="cfg.data.tabAdv" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true"></input>
+        </td>
+      </tr>
+
+      <!-- buteurs -->
+      <tr>
+
+        <!-- buteurs OM -->
+        <td>
+          <ul>
+            <li ng-repeat="buteur in cfg.data.buteursOM">
+
+              <!-- minute -->
+              <input ng-model="buteur.minute" type="number" min="0" required="true"></input>
+
+              <!-- csc -->
+              <input ng-model="buteur.csc" type="checkbox"></input>
+
+              <!-- joueur -->
+              <input ng-model="buteur.joueur" ng-if="!buteur.csc" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(buteur, 'joueur', dictionary.joueurs)" class="g-autocomplete"></input>
+
+              <!-- nom csc -->
+              <input ng-model="buteur.nomCsc" ng-if="buteur.csc" type="text" required="true"></input>
+
+              <!-- penalty -->
+              <input ng-model="buteur.penalty" type="checkbox"></input>
+
+            </li>
+          </ul>
+        </td>
+
+        <!-- buteurs adv -->
+        <td>
+          <ul>
+            <li ng-repeat="buteur in cfg.data.buteursAdv">
+
+              <!-- minute -->
+              <input ng-model="buteur.minute" type="number" min="0" required="true"></input>
+
+              <!-- csc -->
+              <input ng-model="buteur.csc" type="checkbox"></input>
+
+              <!-- nom -->
+              <input ng-model="buteur.nomCsc" ng-if="buteur.csc" type="text" required="true"></input>
+
+              <!-- penalty -->
+              <input ng-model="buteur.penalty" type="checkbox"></input>
+
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+  
+</div>

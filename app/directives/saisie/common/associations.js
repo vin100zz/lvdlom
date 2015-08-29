@@ -1,4 +1,4 @@
-app.directive('lvdlomSaisieAssociations', function () {
+app.directive('lvdlomSaisieCommonAssociations', function () {
   return {
     scope: {
       cfg: '='

@@ -2,6 +2,9 @@
 
   <form ng-submit="submit()">
 
+    <!-- match -->
+    <lvdlom-saisie-common-match ng-if="cfg.inputs[0].type === 'match'" cfg="matchCfg"></lvdlom-saisie-common-match>
+
     <div class="g-row" ng-repeat="input in cfg.inputs">
       <div class="g-remark">{{input.label}}</div>
       <div>
@@ -14,8 +17,8 @@
         </select>
 
         <!-- specials -->
-        <lvdlom-saisie-source ng-if="input.type === 'source'" cfg="sourceCfg"></lvdlom-saisie-source>
-        <lvdlom-saisie-associations ng-if="input.type === 'associations'" cfg="associationsCfg"></lvdlom-saisie-associations>
+        <lvdlom-saisie-common-source ng-if="input.type === 'source'" cfg="sourceCfg"></lvdlom-saisie-common-source>
+        <lvdlom-saisie-common-associations ng-if="input.type === 'associations'" cfg="associationsCfg"></lvdlom-saisie-common-associations>
       </div>
     </div>
 

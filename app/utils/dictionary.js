@@ -52,6 +52,18 @@ app.service('Dictionary', function ($http) {
     return dictionary.sources;
   };
 
+  this.lieux = function () {
+    return dictionary.lieux;
+  };
+
+  this.competitions = function () {
+    return dictionary.competitions;
+  };
+
+  this.niveaux = function () {
+    return dictionary.niveaux;
+  };
+
   this.getNationalite = function (key) {
     var nationalite = this.allNationalites().find(function (nationalite) {
       return nationalite.key === key;
