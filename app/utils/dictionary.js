@@ -77,7 +77,7 @@ app.service('Dictionary', function ($http) {
       return nationalite.key === key;
     });
     if (!nationalite) {
-      console.error('Label not found for nationalité ' + key);
+      window.console.error('Label not found for nationalité ' + key);
       return '';
     }
     return nationalite.label;

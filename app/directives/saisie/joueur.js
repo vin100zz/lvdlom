@@ -19,7 +19,7 @@ app.directive('lvdlomSaisieJoueur', function () {
 
       function cb (data, dbResult) {
         window.location.hash = '#/joueur/' + dbResult[0].id;
-      };
+      }
 
       function getFormCfg() {
         return {
@@ -86,7 +86,7 @@ app.directive('lvdlomSaisieJoueur', function () {
             type: 'checkbox'
           }]
         };
-      };
+      }
 
     }
   };

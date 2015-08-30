@@ -19,7 +19,7 @@ app.directive('lvdlomSaisieDirigeant', function () {
 
       function cb (data, dbResult) {
         window.location.hash = '#/dirigeant/' + dbResult[0].id;
-      };
+      }
 
       function getFormCfg() {
         return {
@@ -79,7 +79,7 @@ app.directive('lvdlomSaisieDirigeant', function () {
             type: 'text'
           }]
         };
-      };
+      }
 
     }
   };

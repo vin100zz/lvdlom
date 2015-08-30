@@ -47,7 +47,7 @@ module.exports = function(grunt) {
     jshint: {
       files: ['app/**/*.js'],
       options: {
-        curly: true, eqeqeq: true, forin: true, funcscope: true, futurehostile: true, latedef: true, nocomma: true, nonbsp: true, nonew: true, notypeof: true, undef: true, unused: 'vars',
+        curly: true, eqeqeq: true, forin: true, funcscope: true, futurehostile: true, latedef: 'nofunc', nocomma: true, nonbsp: true, nonew: true, notypeof: true, undef: true, unused: 'vars',
         browser: true,
         globals: {
           AbstractListCtrl: true,

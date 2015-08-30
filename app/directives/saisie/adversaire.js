@@ -19,7 +19,7 @@ app.directive('lvdlomSaisieAdversaire', function () {
 
       function cb (data, dbResult) {
         // do nothing
-      };
+      }
 
       function getFormCfg() {
         return {
@@ -42,7 +42,7 @@ app.directive('lvdlomSaisieAdversaire', function () {
             required: true
           }]
         };
-      };
+      }
 
     }
   };

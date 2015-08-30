@@ -178,8 +178,8 @@ app.service('Formatter', function (Bom, Dictionary, $filter) {
       out = left + '-' + right;
 
       if (formatting === _this.$Score.complete && (tabOM || tabAdv)) {
-        var left = domicile ? match.tabOM : match.tabAdv;
-        var right = domicile ? match.tabAdv : match.tabOM;
+        left = domicile ? match.tabOM : match.tabAdv;
+        right = domicile ? match.tabAdv : match.tabOM;
         out += ' (' + left + '-' + right + ' tab)';
       }
     }

@@ -85,15 +85,15 @@ app.directive('lvdlomSaisieForm', function () {
       // local storage
       function getLocalStorageKey (name) {
         return 'lvdlom.saisie.' + $scope.cfg.type + '.' + name;
-      };
+      }
 
       function saveAsLocalStorage (name) {
         localStorage.setItem(getLocalStorageKey(name), $scope.data[name]);
-      };
+      }
 
       function getFromLocalStorage (name) {
         return localStorage.getItem(getLocalStorageKey(name));
-      };
+      }
 
       // watch
       $scope.$watch('cfg', function (newValue, oldValue) {

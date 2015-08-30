@@ -49,7 +49,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
 
         // remplacants
         $scope.cfg.data.remplacants = [];
-        for (var i=0; i<3; ++i) {
+        for (i=0; i<3; ++i) {
           $scope.cfg.data.remplacants.push({
             joueur: null,
             carton: '',
@@ -60,7 +60,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
 
         // classement
         $scope.cfg.data.classement = [];
-        for (var i=0; i<4; ++i) {
+        for (i=0; i<4; ++i) {
           $scope.cfg.data.classement.push({
             equipe: null,
             pts: null
@@ -119,21 +119,21 @@ app.directive('lvdlomSaisieCommonMatch', function () {
             return;
           }
         }
-        for (var i=0; i<$scope.cfg.data.titulaires.length; ++i) {
-          var joueur = $scope.cfg.data.titulaires[i];
+        for (i=0; i<$scope.cfg.data.titulaires.length; ++i) {
+          joueur = $scope.cfg.data.titulaires[i];
           if (!joueur.joueur || !joueur.joueur.key) {
             joueur.joueur = selectedJoueur;
             return;
           }
         }
-        for (var i=0; i<$scope.cfg.data.remplacants.length; ++i) {
-          var joueur = $scope.cfg.data.remplacants[i];
+        for (i=0; i<$scope.cfg.data.remplacants.length; ++i) {
+          joueur = $scope.cfg.data.remplacants[i];
           if (!joueur.joueur || !joueur.joueur.key) {
             joueur.joueur = selectedJoueur;
             return;
           }
         }
-      }
+      };
     }
   };
 });

@@ -27,7 +27,7 @@ app.directive('lvdlomSaisieDocument', function () {
             window.open(link, '_blank');
           }
         });
-      };
+      }
 
       function getFormCfg() {
         return {
@@ -61,7 +61,7 @@ app.directive('lvdlomSaisieDocument', function () {
             type: 'associations'
           }]
         };
-      };
+      }
 
     }
   };

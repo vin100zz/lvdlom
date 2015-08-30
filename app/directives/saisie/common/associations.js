@@ -30,11 +30,11 @@ app.directive('lvdlomSaisieCommonAssociations', function () {
           item.label = '[' + Formatter.dateLong(data[1]) + '] ' + data[0] + ' ' + data[2] + '-' + data[3];
           return item;
         }).reverse();
-      };
+      }
 
       function getNewAssociation () {
         return {type: null, id: null};
-      };
+      }
 
       $scope.addRow = function (evt) {
         evt.preventDefault();

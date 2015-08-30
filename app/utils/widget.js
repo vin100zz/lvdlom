@@ -1,5 +1,4 @@
 app.service('Widget', function() {
-  var _this = this;
   
   this.restrictTypeahead = function (container, node, dictionary) {
     var valid = true;

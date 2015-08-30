@@ -94,7 +94,7 @@
 
       // saisons
       computeAvancement(4, 'saisons', data.saisons, data.idSaisons, 'history', 'Saisons', 'saison', '#4CAF50', '#E8F5E9',
-                        function (saison, groups) {return (groups['saisons'] || []).length > 50 ? 'saisonsbis' : 'saisons';},
+                        function (saison, groups) {return (groups.saisons || []).length > 50 ? 'saisonsbis' : 'saisons';},
                         function (key) {return '';},
                         function (saison) {return saison.id;});
 

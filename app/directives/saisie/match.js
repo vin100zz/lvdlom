@@ -12,7 +12,7 @@ app.directive('lvdlomSaisieMatch', function () {
 
       function cb (data, dbResult) {
         window.location.hash = '#/match/' + dbResult[0].id;
-      };
+      }
 
       function getFormCfg() {
         return {
@@ -24,7 +24,7 @@ app.directive('lvdlomSaisieMatch', function () {
             type: 'match'
           }]
         };
-      };
+      }
 
     }
   };
