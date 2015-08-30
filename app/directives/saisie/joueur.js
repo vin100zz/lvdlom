@@ -18,7 +18,6 @@ app.directive('lvdlomSaisieJoueur', function () {
       }
 
       function cb (data, dbResult) {
-        console.log(arguments);
         window.location.hash = '#/joueur/' + dbResult[0].id;
       };
 

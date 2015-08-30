@@ -5,12 +5,13 @@
   > div {
     margin-bottom: 5px;
 
-    select:first-of-type {
+    .assoc-type {
       width: 90px;
-    }
 
-    select:last-of-type:not(:first-of-type) {
-      width: calc(~"100% - 92px");
+      + select,
+      + input {
+        width: calc(~"100% - 92px") !important;
+      }
     }
   }
 }

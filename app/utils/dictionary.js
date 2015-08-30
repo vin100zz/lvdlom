@@ -39,6 +39,10 @@ app.service('Dictionary', function ($http) {
   this.joueurs = function () {
     return dictionary.joueurs;
   };
+
+  this.joueursAuClub = function () {
+    return dictionary.joueursAuClub;
+  };
   
   this.dirigeants = function () {
     return dictionary.dirigeants;
@@ -62,6 +66,10 @@ app.service('Dictionary', function ($http) {
 
   this.niveaux = function () {
     return dictionary.niveaux;
+  };
+
+  this.jyEtais = function () {
+    return dictionary.jyEtais;
   };
 
   this.getNationalite = function (key) {

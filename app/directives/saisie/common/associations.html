@@ -3,7 +3,7 @@
   <div ng-repeat="association in cfg.data">
 
     <!-- type -->
-    <select ng-model="association.type" ng-options="option.key as option.label for option in docTypes" required="true">
+    <select ng-model="association.type" ng-options="option.key as option.label for option in docTypes" required="true" class="assoc-type">
       <option ng-value=""></option>
     </select>
 
@@ -12,13 +12,9 @@
       <option ng-value=""></option>
     </select>
 
-    <select ng-model="association.id" ng-if="association.type == 'J'" ng-options="option.key as option.label for option in dictionary.joueurs" required="true">
-      <option ng-value=""></option>
-    </select>
+    <input ng-model="association.personne" ng-if="association.type == 'J'" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(association, 'personne', dictionary.joueurs)" class="g-autocomplete"></input>
 
-    <select ng-model="association.id" ng-if="association.type == 'D'" ng-options="option.key as option.label for option in dictionary.dirigeants" required="true">
-      <option ng-value=""></option>
-    </select>
+    <input ng-model="association.personne" ng-if="association.type == 'D'" type="text" typeahead="option as option.label for option in dictionary.dirigeants | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(association, 'personne', dictionary.dirigeants)" class="g-autocomplete"></input>
 
     <select ng-model="association.id" ng-if="association.type == 'S'" ng-options="option.key as option.label for option in dictionary.saisons" required="true">
       <option ng-value=""></option>

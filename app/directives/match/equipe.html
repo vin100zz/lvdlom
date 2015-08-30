@@ -4,7 +4,7 @@
     <ul>
       <li ng-repeat="joueur in joueurs" ng-class="{remplacant: joueur.isRemplacant}">
         <div>
-          <span ng-show="joueur.isRemplacant" class="remplacant g-remark">{{joueur.minuteRmp}}'</span>
+          <span ng-show="joueur.isRemplacant" class="remplacant g-remark"><span ng-if="joueur.minuteRmp">{{joueur.minuteRmp}}'</span></span>
           <span ng-bind-html="joueur.poste | format:'poste'"></span><span ng-bind-html="Formatter.nomJoueur(joueur)"></span>
           <span ng-show="joueur.minuteOut" class="remplacant g-remark">{{joueur.minuteOut}}'</span>
         </div>

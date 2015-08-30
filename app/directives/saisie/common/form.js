@@ -4,7 +4,7 @@ app.directive('lvdlomSaisieForm', function () {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/common/form.html',
-    controller: function ($scope, $rootScope, $filter, Saisie) {
+    controller: function ($scope, $rootScope, Saisie) {
 
       $scope.data = {};
 
@@ -56,17 +56,20 @@ app.directive('lvdlomSaisieForm', function () {
           if (input.localStorage) {
             saveAsLocalStorage(input.name);
           }
-          if (input.type === 'date') {
-            $scope.data[input.name] = $filter('date')($scope.data[input.name], 'yyyy-MM-dd');
-          }
         });
 
         // save
         Saisie.save($scope.data, function (dbResult) {
-          $scope.cfg.cb($scope.data, dbResult);
+          var allDbUpdatesOk = dbResult.length > 0 && dbResult.every(function (dbRes) {
+            return dbRes.res === 'ok';
+          });
 
-          if (dbResult.res === 'ok') {
+          if (allDbUpdatesOk) {
+            $scope.cfg.cb($scope.data, dbResult);
             $rootScope.$broadcast('alert.new', 'success', 'Base de données mise à jour !');
+          }
+          else {
+            $rootScope.$broadcast('alert.new', 'error', 'Erreur base de données...');
           }
         });
       };

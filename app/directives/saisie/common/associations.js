@@ -4,7 +4,8 @@ app.directive('lvdlomSaisieCommonAssociations', function () {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/common/associations.html',
-    controller: function ($scope, $rootScope, Dictionary, Formatter) {
+    controller: function ($scope, $rootScope, Dictionary, Formatter, Widget) {
+      $scope.Widget = Widget;
 
       $scope.docTypes = [
         {key: 'M', label: 'Match'},

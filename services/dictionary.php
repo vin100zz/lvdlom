@@ -49,6 +49,14 @@ $joueurs = DBAccess::query
   ORDER BY Nom
 ");
 
+$joueursAuClub = DBAccess::query
+("
+  SELECT DISTINCT IdJoueur AS key, (" . handleNullStrings("Prenom") . " || Nom) AS label
+  FROM joueurs
+  WHERE AuClub = 1
+  ORDER BY Nom
+");
+
 $dirigeants = DBAccess::query
 ("
 	SELECT DISTINCT	IdDirigeant AS key, (" . handleNullStrings("Prenom") . " || Nom) AS label
@@ -96,6 +104,14 @@ $niveaux = DBAccess::query
   ORDER BY Niveau
 ");
 
+$jyEtais = DBAccess::query
+("
+  SELECT DISTINCT JYEtais AS key, JYEtais AS label
+  FROM matches
+  WHERE JYEtais <> ''
+  ORDER BY JYEtais
+");
+
 
 // ********************************************************
 // ******* JSON *******************************************
@@ -107,12 +123,14 @@ $dict = array(
   "adversaires" => $adversaires,
   "fonctions" => $fonctions,
   "joueurs" => $joueurs,
+  "joueursAuClub" => $joueursAuClub,
   "dirigeants" => $dirigeants,
   "matches" => $matches,
   "sources" => $sources,
   "lieux" => $lieux,
   "competitions" => $competitions,
-  "niveaux" => $niveaux
+  "niveaux" => $niveaux,
+  "jyEtais" => $jyEtais
 );
 respond($dict);
 

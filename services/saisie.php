@@ -181,7 +181,7 @@ else if ($type == "document") {
   // documents
   $query = array();
   insertForSql($query, "Fichier", getParam("file"));
-  insertForSql($query, "DateDoc", getParam("date"));
+  insertForSql($query, "DateDoc", getDateStr("date"));
   insertForSql($query, "Source", getParam("source"));
   insertForSql($query, "Legende", getParam("legende"));
 
@@ -200,15 +200,131 @@ else if ($type == "document") {
     $query = array();
     insertForSql($query, "IdDoc", $id);
     insertForSql($query, "AssocType", $association["type"]);
-    insertForSql($query, "IdObjet", $association["id"]);
+
+    $idObjet = (isset($association["personne"]) && isset($association["personne"]["key"]) ? $association["personne"]["key"] : $association["id"]);
+    insertForSql($query, "IdObjet", $idObjet);
 
     // TODO: handle UPDATE
     $out[] = sqlInsert($query, "documentsAssoc");
   }
 }
 
+
+
+/*
+ * Match
+ */
+else if ($type == "match") {
+  $out = array();
+
+  // matches
+  $query = array();
+  insertForSql($query, "Saison", getParam("saison"));
+  insertForSql($query, "Lieu", getParam("lieu"));
+  insertForSql($query, "DateMatch", getDateStr("date"));
+  insertForSql($query, "Competition", getParam("competition"));
+  insertForSql($query, "Niveau", getParam("niveau"));
+  insertForSql($query, "Adversaire", getParam("adversaire"));
+  insertForSql($query, "ButsOM", getParam("butsOM"));
+  insertForSql($query, "ButsAdv", getParam("butsAdv"));
+  insertForSql($query, "RqScore", getParam("rqScore"));
+  insertForSql($query, "TABOM", getParam("tabOM"));
+  insertForSql($query, "TABAdv", getParam("tabAdv"));
+  insertForSql($query, "Spectateurs", getParam("spectateurs"));
+  insertForSql($query, "JYEtais", getParam("jyEtais"));
+  insertForSql($query, "Comm1", getParam("commentaire"));
+
+  $classement = getParam("classement");
+  foreach ($classement as $index => $row) {
+    insertForSql($query, "Class" . ($index+1), $row["equipe"]);
+    insertForSql($query, "ClassPts" . ($index+1), $row["pts"]);
+  }
+
+  if ($id) {  
+    $dbRes = sqlUpdate($query, "matches", $id, "IdMatch");
+  } else {
+    $dbRes = sqlInsert($query, "matches");
+    $id = $dbRes['id'];
+  }
+  $out[] = $dbRes;
+
+
+  // buts OM
+  $buteursOM = getParam("buteursOM");
+  foreach ($buteursOM as $buteur) {
+    $query = array();
+    insertForSql($query, "IdMatch", $id);
+    insertForSql($query, "MinuteBut", $buteur["minute"]);
+
+    // buteursomautres
+    if ($buteur["csc"] == "true") {
+      insertForSql($query, "NomJoueur", $buteur["nomCsc"]);
+      insertForSql($query, "NoteBut", "csc");
+
+      $out[] = sqlInsert($query, "buteursomautres");
+    }
+
+    // buteursom
+    else {
+      insertForSql($query, "IdJoueur", $buteur["joueur"]["key"]);
+      insertForSql($query, "NoteBut", ($buteur["penalty"] == "true" ? "pen" : null));
+
+      $out[] = sqlInsert($query, "buteursom");
+    }
+  }
+
+  // buteursadv
+  $buteursAdv = getParam("buteursAdv");
+  foreach ($buteursAdv as $buteur) {
+    $query = array();
+    insertForSql($query, "IdMatch", $id);
+    insertForSql($query, "MinuteBut", $buteur["minute"]);
+    insertForSql($query, "NomJoueur", $buteur["nom"]);
+    insertForSql($query, "NoteBut", ($buteur["penalty"] == "true" ? "pen" : ($buteur["csc"] == "true" ? "csc" : null)));
+
+    $out[] = sqlInsert($query, "buteursadv");
+  }
+
+  // titulaires
+  $titulaires = getParam("titulaires");
+  foreach ($titulaires as $index => $joueur) {
+    $query = array();
+    insertForSql($query, "IdMatch", $id);
+    insertForSql($query, "Ordre", $index+1);
+    insertForSql($query, "IdJoueur", $joueur["joueur"]["key"]);
+    insertForSql($query, "MinuteRmp", $joueur["minuteRemplacement"]);
+    insertForSql($query, "NumRmp", $joueur["remplacement"]);
+    insertForSql($query, "Carton", $joueur["carton"] . $joueur["minuteCarton"]);
+
+    $out[] = sqlInsert($query, "joue");
+  }
+
+  // remplacants
+  $remplacants = getParam("remplacants");
+  foreach ($remplacants as $index => $joueur) {
+    $query = array();
+
+    $idJoueur = $joueur["joueur"]["key"];
+    if ($idJoueur) {
+      insertForSql($query, "IdMatch", $id);
+      insertForSql($query, "IdJoueur", $idJoueur);
+      insertForSql($query, "Carton", $joueur["carton"] . $joueur["minuteCarton"]);
+
+      $minuteRmp = null;
+      foreach ($titulaires as $joueur) {
+        if ($joueur["remplacement"] === $index+1) {
+          $minuteRmp = $joueur["minuteRemplacement"];
+        }
+      }
+      insertForSql($query, "MinuteRmp", $minuteRmp);
+
+      $out[] = sqlInsert($query, "joue");
+    }
+  }
+}
+
 else {
-  $out = "Type not supported: $type";
+  print "Type not supported: $type";
 }
 
 

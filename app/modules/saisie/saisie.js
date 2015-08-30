@@ -13,7 +13,7 @@
   app.controller('SaisieCtrl', function($scope, $routeParams, Saisie) {
 
     $scope.action = $routeParams.action || 'new';
-    $scope.type = $routeParams.type || 'match';
+    $scope.type = $routeParams.type || 'document';
     $scope.id = $routeParams.id || null;
 
     $scope.cfg = {
