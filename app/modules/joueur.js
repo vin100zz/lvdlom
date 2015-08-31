@@ -13,15 +13,19 @@
   app.controller('JoueurCtrl', function($scope, $routeParams, Joueur) {
     $scope.joueur = Joueur.get({id: $routeParams.id}, function () {
 
+      var prev = !$scope.joueur.navigation.prev.id ? null : {
+        label: $scope.joueur.navigation.prev.prenom + ' ' + $scope.joueur.navigation.prev.nom,
+        link: '#/joueur/' + $scope.joueur.navigation.prev.id
+      };
+
+      var next = !$scope.joueur.navigation.next.id ? null : {
+        label: $scope.joueur.navigation.next.prenom + ' ' + $scope.joueur.navigation.next.nom,
+        link: '#/joueur/' + $scope.joueur.navigation.next.id
+      };
+
       $scope.breadcrumb = {
-        prev: {
-          label: $scope.joueur.navigation.prev.prenom + ' ' + $scope.joueur.navigation.prev.nom,
-          link: '#/joueur/' + $scope.joueur.navigation.prev.id
-        },
-        next: {
-          label: $scope.joueur.navigation.next.prenom + ' ' + $scope.joueur.navigation.next.nom,
-          link: '#/joueur/' + $scope.joueur.navigation.next.id
-        }
+        prev: prev,
+        next: next
       };
       
     });

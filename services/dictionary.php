@@ -7,10 +7,6 @@ require_once 'utils/service.php';
 // ******* SQL ********************************************
 // ********************************************************
 
-function handleNullStrings ($column) {
-  return "(case when $column is null then '' else $column || ' ' end)";
-};
-
 // SQL
 $nationalites = DBAccess::query
 ("
@@ -42,16 +38,18 @@ $fonctions = DBAccess::query
   ORDER BY Titre
 ");
 
+$concatPrenomNom = "(" . General::handleNullStringsInSqlConcat("Prenom") . " || ' ' || Nom)";
+
 $joueurs = DBAccess::query
 ("
-	SELECT DISTINCT	IdJoueur AS key, (" . handleNullStrings("Prenom") . " || Nom) AS label
+	SELECT DISTINCT	IdJoueur AS key, $concatPrenomNom AS label
 	FROM joueurs
   ORDER BY Nom
 ");
 
 $joueursAuClub = DBAccess::query
 ("
-  SELECT DISTINCT IdJoueur AS key, (" . handleNullStrings("Prenom") . " || Nom) AS label
+  SELECT DISTINCT IdJoueur AS key, $concatPrenomNom AS label
   FROM joueurs
   WHERE AuClub = 1
   ORDER BY Nom
@@ -59,7 +57,7 @@ $joueursAuClub = DBAccess::query
 
 $dirigeants = DBAccess::query
 ("
-	SELECT DISTINCT	IdDirigeant AS key, (" . handleNullStrings("Prenom") . " || Nom) AS label
+	SELECT DISTINCT	IdDirigeant AS key, $concatPrenomNom AS label
 	FROM dirigeants
   ORDER BY Nom
 ");

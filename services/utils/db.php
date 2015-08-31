@@ -2,17 +2,23 @@
 
 class DBAccessor extends SQLite3
 {
-	function __construct()
-    {
-        $this->open("om.db3");
-    }
+	private static $_file = "../om.db3";
+
+	function __construct()  {
+    $this->open(self::$_file);
+  }
+
+  function getDbFile()  {
+    return self::$_file;
+  }
 }
 
 class DBAccess
 {  
     // singleton
     private static $_dbAccessor = null;
-    
+
+//=========================================================================     
     private static function getDbAccessor()
     {
     	if(self::$_dbAccessor == null)
@@ -20,6 +26,11 @@ class DBAccess
     		
     	return self::$_dbAccessor;
     }
+//=========================================================================     
+	public static function getDbFile()
+	{
+		return self::getDbAccessor()->getDbFile();
+	}
 //=========================================================================
 	public static function getLastInsertedLastRow()
 	{

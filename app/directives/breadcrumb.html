@@ -1,11 +1,11 @@
 <div class="dir-breadcrumb">
 
   <div>
-    <div class="prev">
+    <div class="prev" ng-if="cfg.prev">
       <span class="fa fa-chevron-left"></span>
       <a href="{{cfg.prev.link}}">{{cfg.prev.label}}</a>
     </div>
-    <div class="next">
+    <div class="next" ng-if="cfg.next">
       <a href="{{cfg.next.link}}">{{cfg.next.label}}</a>
       <span class="fa fa-chevron-right"></span>
     </div>

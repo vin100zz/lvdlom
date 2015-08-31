@@ -178,6 +178,10 @@ class General
 		
 		return $aStats;
 	}
+//=========================================================================
+	public static function handleNullStringsInSqlConcat ($column) {
+	  return "(case when $column is null then '' else $column end)";
+	}
 
 }
 

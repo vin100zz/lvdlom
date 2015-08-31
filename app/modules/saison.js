@@ -13,15 +13,19 @@
   app.controller('SaisonCtrl', function($scope, $routeParams, Saison) {
     $scope.saison = Saison.get({id: $routeParams.id}, function () {
       
-      $scope.breadcrumb = {
-        prev: {
-          label: $scope.saison.navigation.prev,
+      var prev = !$scope.saison.navigation.prev ? null : {
+        label: $scope.saison.navigation.prev,
           link: '#/saison/' + $scope.saison.navigation.prev
-        },
-        next: {
-          label: $scope.saison.navigation.next,
-          link: '#/saison/' + $scope.saison.navigation.next
-        }
+      };
+
+      var next = !$scope.saison.navigation.next ? null : {
+        label: $scope.saison.navigation.next,
+        link: '#/saison/' + $scope.saison.navigation.next
+      };
+
+      $scope.breadcrumb = {
+        prev: prev,
+        next: next
       };
       
     });

@@ -1,6 +1,8 @@
 <?php
 
-$lastUpdate = filemtime("om.db3") * 1000;
+require_once 'utils/db.php';
+
+$lastUpdate = filemtime(DBAccess::getDbFile()) * 1000;
 
 if (file_exists("_cache.json")) {
   $contents = file_get_contents("_cache.json");
@@ -28,7 +30,6 @@ if (isset($cache[$url]) && isset($cache["lastUpdate"]) && $cache["lastUpdate"] =
 // dependencies
 require_once 'utils/headers.php';
 require_once 'utils/general.php';
-require_once 'utils/db.php';
 require_once 'utils/document.php';
 require_once 'filtres/main.php';
 

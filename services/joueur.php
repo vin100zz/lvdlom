@@ -211,8 +211,10 @@ $dirigeant = DBAccess::singleValue
 $nom = $joueur["nom"]; 
 $prenom = $joueur["prenom"]; 
 
-$concatNomPrenom = $nom . " " . $prenom;
-$concatNomPrenom = utf8_decode(str_replace("'", "''", $concatNomPrenom));
+$concatNomPrenomRef = $nom . " " . $prenom;
+$concatNomPrenomRef = utf8_decode(str_replace("'", "''", $concatNomPrenomRef));
+
+$concatNomPrenomSql = "(Nom || ' ' || " . General::handleNullStringsInSqlConcat("Prenom") . ")";
 
 $prev = DBAccess::singleRow
 (
@@ -221,7 +223,7 @@ $prev = DBAccess::singleRow
     Prenom AS prenom,
     Nom AS nom
 	FROM joueurs
-	WHERE (Nom || ' ' || Prenom) = (SELECT MAX(Nom || ' ' || Prenom) FROM joueurs WHERE (Nom || ' ' || Prenom) < '$concatNomPrenom')"
+	WHERE $concatNomPrenomSql = (SELECT MAX($concatNomPrenomSql) FROM joueurs WHERE $concatNomPrenomSql < '$concatNomPrenomRef')"
 );
 
 $next = DBAccess::singleRow
@@ -231,7 +233,7 @@ $next = DBAccess::singleRow
     Prenom AS prenom,
     Nom AS nom
 	FROM joueurs
-	WHERE (Nom || ' ' || Prenom) = (SELECT MIN(Nom || ' ' || Prenom) FROM joueurs WHERE (Nom || ' ' || Prenom) > '$concatNomPrenom')"
+	WHERE $concatNomPrenomSql = (SELECT MIN($concatNomPrenomSql) FROM joueurs WHERE $concatNomPrenomSql > '$concatNomPrenomRef')"
 );
 
 
