@@ -1,4 +1,4 @@
-app.directive('lvdlomSearch', function (Dictionary, Formatter) {
+app.directive('lvdlomSearch', function (Dictionary, Formatter, Diacritics) {
   
   return {
     scope: {
@@ -8,46 +8,83 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter) {
     controller: function ($scope) {
       
       $scope.expanded = true;
-      
-      $scope.test = function (regex, item) {
-        return regex.test(item.label.toLowerCase());
-      };
-      
-      $scope.format = function (remark, link, item) {
-        var index = item.label.toLowerCase().indexOf($scope.cfg.pattern.toLowerCase());
-        
-        return {
-          preMatch: item.label.substr(0, index),
-          match: item.label.substr(index, $scope.cfg.pattern.length),
-          postMatch: item.label.substr(index + $scope.cfg.pattern.length),
-          link: '#/' + link + '/' + item.key,
-          remark: remark
+
+      var dictionary = {};
+
+      Dictionary.whenReady(function () {
+        dictionary = {
+          joueurs: prepareData(Dictionary.joueurs(), sanitizePerson, formatPerson.bind(this, 'Joueur', 'joueur')),
+          dirigeants: prepareData(Dictionary.dirigeants(), sanitizePerson, formatPerson.bind(this, 'Dirigeant', 'dirigeant')),
+          matches: prepareData(Dictionary.matches(), sanitizeMatch, formatMatch)
         };
-      };
-      
-      $scope.formatMatch = function (item) {
-        item = JSON.parse(JSON.stringify(item));
-        var data = item.label.split(',');
-        item.label = data[0] + ' ' + data[2] + '-' + data[3];
-        return $scope.format(Formatter.dateLong(data[1]), 'match', item); 
-      };
-      
-      $scope.search = function () {
+      });
+
+      function prepareData (data, sanitizeFn, formatFn) {
+        return data.map(function (item) {
+          return {
+            key: item.key,
+            search: sanitizeFn(item),
+            display: formatFn(item)
+          };
+        });
+      }
+
+     function search () {
         if ($scope.cfg.pattern.length > 2) {
-          var regex = new RegExp($scope.cfg.pattern, 'i');
-          var test = $scope.test.bind(this, regex);
-          $scope.results = Dictionary.joueurs().filter(test).map($scope.format.bind(this, 'Joueur', 'joueur'))
-          .concat(Dictionary.dirigeants().filter(test).map($scope.format.bind(this, 'Dirigeant', 'dirigeant')))
-          .concat(Dictionary.matches().filter(test).map($scope.formatMatch.bind(this)));
+          var searchPattern = Diacritics.removeDiacritics($scope.cfg.pattern).toLowerCase();
+          var compareFn = compare.bind(this, searchPattern);
+          $scope.results = dictionary.joueurs.map(compareFn)
+                          .concat(dictionary.dirigeants.map(compareFn))
+                          .concat(dictionary.matches.map(compareFn))
+                          .filter(function (item) {return !!item;});
         } else {
           $scope.results = [];
         }
-      };
+      }
+
+      function sanitizePerson (person) {
+        return Diacritics.removeDiacritics(person.label).toLowerCase();
+      }
+
+      function sanitizeMatch (match) {
+        return Diacritics.removeDiacritics(match.label).toLowerCase();
+      }
+      
+      function formatPerson (remark, link, item) {        
+        return {
+          label: item.label,
+          link: '#/' + link + '/' + item.key,
+          remark: remark
+        };
+      }
+      
+      function formatMatch (item) {
+        var data = item.label.split(',');
+        return {
+          label: data[0] + ' ' + data[2] + '-' + data[3],
+          link: '#/match/' + item.key,
+          remark: Formatter.dateLong(data[1])
+        };
+      }
+      
+      function compare (searchPattern, item) {
+        var index = item.search.indexOf(searchPattern);
+        if (index !== -1) {
+          return {
+            preMatch: item.display.label.substr(0, index),
+            match: item.display.label.substr(index, searchPattern.length),
+            postMatch: item.display.label.substr(index + searchPattern.length),
+            link: item.display.link,
+            remark: item.display.remark
+          };
+        }
+        return null;
+      }
       
       // watch
       $scope.$watch('cfg.pattern', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          $scope.search();
+          search();
         }
       }, true);
       

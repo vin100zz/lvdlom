@@ -1,4 +1,4 @@
-app.service('Formatter', function (Bom, Dictionary, $filter) {
+app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   var _this = this;
   
   var removeDuplicates = function (result, item, index) {
@@ -46,12 +46,12 @@ app.service('Formatter', function (Bom, Dictionary, $filter) {
     return fonctions.split(',').reduce(removeDuplicates, []).map(_this.fonction).join(' ');
   };
   
-  this.flag = function (pays) {
-    return '<div class="icon-flag flag-' + pays + '">' + pays + '</div>';
+  this.flag = function (country) {
+    return '<div class="icon-flag flag-' + country + '">' + country + '</div>';
   };
 
-  this.flagFullNat = function (pays) {
-    return '<div class="icon-flag flag-' + pays + '">' + Dictionary.getNationalite(pays) + '</div>';
+  this.flagFullNat = function (country) {
+    return '<div class="icon-flag flag-' + country + '">' + Countries.getLabel(country) + '</div>';
   };
   
   this.date = function (date) {

@@ -80,7 +80,7 @@ app.service('Filter', function (Dictionary) {
   this.nationalite = {
     criterion: 'nationalite',
     label: 'Nationalité',
-    options: Dictionary.nationalites(),
+    options: Dictionary.countries(),
     value: 'FRA',
     active: false
   };
