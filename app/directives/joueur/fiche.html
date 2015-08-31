@@ -2,20 +2,20 @@
   
   <div class="g-row g-photo-id" style="background-image: url({{Picture.joueur(joueur.id)}});"></div>
 
-  <div class="g-row row-info" ng-if="!cfg.mini">
+  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
     <div>
       <div>
         <span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>
         <span>{{Bom.poste(joueur.fiche.poste)}}</span>
       </div>
-      <div ng-if="joueur.fiche.dateNaissance">
+      <div ng-if="dateNaissance">
         <span class="g-remark">né le</span>
-        <span>{{joueur.fiche.dateNaissance | format:'dateLong'}}</span>
+        <span>{{dateNaissance}}</span>
       </div>
       
-      <div ng-if="joueur.fiche.dateDeces">
+      <div ng-if="dateDeces">
         <span class="g-remark">décédé le</span>
-        <span>{{joueur.fiche.dateDeces | format:'dateLong'}}</span>
+        <span>{{dateDeces}}</span>
       </div>
     </div>
     <div>

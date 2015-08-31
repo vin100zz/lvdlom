@@ -1,4 +1,4 @@
-app.directive('lvdlomFicheJoueur', function (Bom, Picture) {
+app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter) {
   return {
     scope: {
       joueur: '=',
@@ -8,6 +8,9 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture) {
     controller: function ($scope) {
       $scope.Bom = Bom;
       $scope.Picture = Picture;
+
+      $scope.dateNaissance = Formatter.dateLong($scope.joueur.fiche.dateNaissance);
+      $scope.dateDeces = Formatter.dateLong($scope.joueur.fiche.dateDeces);
     }
   };
 });

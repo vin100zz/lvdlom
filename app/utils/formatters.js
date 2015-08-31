@@ -55,15 +55,21 @@ app.service('Formatter', function (Bom, Dictionary, $filter) {
   };
   
   this.date = function (date) {
-    return $filter('date')(date, 'dd.MM.yyyy');
+    if (date && date.length === 10) {
+      return $filter('date')(date, 'dd.MM.yyyy');
+    }
+    return '';
   };
   
   this.dateLong = function (date) {
-    var d = $filter('date')(date, 'd MMMM yyyy');
-    if (d && d.indexOf('1 ') === 0) {
-      d = '1er ' + d.substr(2);
+    if (date && date.length === 10) {
+      var d = $filter('date')(date, 'd MMMM yyyy');
+      if (d && d.indexOf('1 ') === 0) {
+        d = '1er ' + d.substr(2);
+      }
+      return d;
     }
-    return d;
+    return '';
   };
   
   this.dateNaissance = function (dateNaissance) {
