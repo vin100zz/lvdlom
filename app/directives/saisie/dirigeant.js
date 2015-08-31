@@ -48,7 +48,7 @@ app.directive('lvdlomSaisieDirigeant', function () {
             label: 'Nationalité',
             value: $scope.dirigeant.nationalite,
             type: 'select',
-            options: Dictionary.allNationalites(),
+            options: Dictionary.countries(),
             required: true
           }, {
             name: 'villeNaissance',
@@ -60,7 +60,7 @@ app.directive('lvdlomSaisieDirigeant', function () {
             label: 'Territoire de naissance (si étranger)',
             value: $scope.dirigeant.territoireNaissance,
             type: 'select',
-            options: Dictionary.allNationalites()
+            options: Dictionary.countries()
           }, {
             name: 'territoireNaissanceFrancais',
             label: 'Territoire de naissance (si en France)',

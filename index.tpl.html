@@ -36,13 +36,17 @@
 <body ng-controller="MainCtrl" ng-click="onClick($event)">
 
  <div id="header">
-  <div class="dernier">
+
+  <lvdlom-mini-loading ng-if="!actu"></lvdlom-mini-loading>
+
+  <div class="dernier" ng-if="actu">
    <span>Dernier match :</span> <span class="caret"></span> <a
     href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}}
     - {{actu.dernierMatch.clubDroite}} :
     {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
   </div>
-  <div class="prochain">
+  
+  <div class="prochain" ng-if="actu">
    <span>Prochains matches :</span>
    <ul>
     <li ng-repeat="prochainMatch in actu.prochainsMatches"><span

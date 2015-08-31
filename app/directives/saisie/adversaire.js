@@ -38,7 +38,7 @@ app.directive('lvdlomSaisieAdversaire', function () {
             label: 'Pays',
             value: $scope.adversaire.pays,
             type: 'select',
-            options: Dictionary.allNationalites(),
+            options: Dictionary.countries(),
             required: true
           }]
         };

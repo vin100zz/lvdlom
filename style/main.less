@@ -48,6 +48,21 @@
     margin-left: 5px;
     font-style: italic;
   }
+
+  .mini-loading {
+    position: absolute;
+    top: 8px;
+    zoom: 0.75;
+
+    .outer-ball {
+      border-right-color: @secondaryReversedText;
+      border-bottom-color: @secondaryReversedText;
+    }
+    .inner-ball {
+      border-right-color: @primaryReversedText;
+      border-bottom-color: @primaryReversedText;
+    }
+  }
 }
 
 #mini-header {

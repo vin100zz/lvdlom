@@ -55,7 +55,7 @@ app.directive('lvdlomSaisieJoueur', function () {
             label: 'Nationalité',
             value: $scope.joueur.nationalite,
             type: 'select',
-            options: Dictionary.allNationalites(),
+            options: Dictionary.countries(),
             required: true
           }, {
             name: 'villeNaissance',
@@ -67,7 +67,7 @@ app.directive('lvdlomSaisieJoueur', function () {
             label: 'Territoire de naissance (si étranger)',
             value: $scope.joueur.territoireNaissance,
             type: 'select',
-            options: Dictionary.allNationalites()
+            options: Dictionary.countries()
           }, {
             name: 'territoireNaissanceFrancais',
             label: 'Territoire de naissance (si en France)',

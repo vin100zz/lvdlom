@@ -1,7 +1,7 @@
 // interceptor
 app.factory('IoInterceptor', function ($rootScope, Loading) {
   var isServiceQuery = function (config) {
-    return config.url.indexOf('services/') === 0;
+    return config.url.indexOf('services/') === 0 && config.url.indexOf('actu.php') === -1;
   };
   
   return {
