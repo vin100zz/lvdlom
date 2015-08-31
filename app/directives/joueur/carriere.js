@@ -32,19 +32,18 @@ app.directive('lvdlomCarriereJoueur', function (Carriere) {
               row.saison = row.saison.substr(0, 4) + '-' + row.saison.substr(7, 2);
 
               // reformat prêts
-              var pret = /prêt à (.*)/.exec(row.club);
-              if (pret && pret.length > 0) {
-                row.club = pret[1];
-                row.remark = 'prêt';
-              }
-              pret = /prêt (.*)/.exec(row.club);
-              if (pret && pret.length > 0) {
-                row.club = pret[1];
-                row.remark = 'prêt';
+              var regexes = [/prêt à (.*)/, /prêt (.*)/, /pret à (.*)/, /pret (.*)/];
+              for (var i=0; i<regexes.length; ++i) {
+                var pret = regexes[i].exec(row.club);
+                if (pret && pret.length > 0) {
+                  row.club = pret[1];
+                  row.remark = 'prêt';
+                  break;
+                }                
               }
 
               // remove dates
-              row.club = row.club.replace(/(.*)\(\d+\w* \w+ \d+\)(.*)/, '$1$2');
+              row.club = row.club.replace(/(.*)\(\d+\w* [a-zA-Z\u00C0-\u017F]+ \d+\)(.*)/, '$1$2');
 
               // trim
               row.club = row.club.trim();

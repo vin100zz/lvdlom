@@ -50,10 +50,10 @@ app.get('/scrape', function(req, res) {
     });
   };
   
-  var i=0; // 1785
+  var i=0;
   var next = function () {
     ++i;
-    if (i<=4) {
+    if (i<=1792) {
       work(i, next);
     } else {
       fs.writeFile('output.json', JSON.stringify(result), function (err){
