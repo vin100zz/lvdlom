@@ -389,3 +389,20 @@ form {
     }
   }
 }
+
+
+/* First-last */
+.g-highlight-first,
+.g-highlight-last {
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+.g-highlight-first {
+  background-color: #b2ebf2;
+}
+.g-highlight-last {
+  background-color: #ffecb3;
+}
+.g-highlight-first.g-highlight-last {
+  background: linear-gradient(135deg, #b2ebf2 0%, #b2ebf2 50%, #ffecb3 50%, #ffecb3 100%);
+}

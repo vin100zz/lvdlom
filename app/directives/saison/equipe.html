@@ -6,7 +6,10 @@
         <div class="g-remark">Entraîneur<span ng-if="entraineurs.length > 1">s</span></div>
       </li>
       <li ng-repeat="entraineur in entraineurs">
-        <div><span ng-bind-html="'E' | format:'fonction'"></span><span ng-bind-html="Formatter.nomDirigeant(entraineur)"></span></div>
+        <div>
+          <span ng-bind-html="'E' | format:'fonction'"></span>
+          <span ng-bind-html="Formatter.nomDirigeant(entraineur)" ng-class="{'g-highlight-first': entraineur.firstSaison, 'g-highlight-last': entraineur.lastSaison}"></span>
+        </div>
         <div>
           <span class="g-remark" ng-if="!$last || $index > 0"> {{entraineur.nbMatches}} match<span ng-if="entraineur.nbMatches > 1">es</span></span>
           <span class="g-remark" ng-if="!$last">(jusqu'au {{entraineur.fin | format:'dateLong'}})</span>
@@ -41,7 +44,10 @@
       </thead>
       <tbody>
         <tr ng-repeat="row in joueurs">
-          <td><span ng-bind-html="row.joueur.poste | format:'poste'"></span><span ng-bind-html="Formatter.nomJoueur(row.joueur)"></span></td>
+          <td>
+            <span ng-bind-html="row.joueur.poste | format:'poste'"></span>
+            <span ng-bind-html="Formatter.nomJoueur(row.joueur)" ng-class="{'g-highlight-first': row.joueur.firstSaison, 'g-highlight-last': row.joueur.lastSaison}"></span>
+          </td>
           <td>{{Bom.age(row.joueur.age)}}</td>
           <td ng-bind-html="row.joueur.nationalite | format:'flag'"></td>
           <td><span>{{row.total.tit + row.total.rmp}}</span></td>

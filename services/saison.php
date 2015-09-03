@@ -208,6 +208,50 @@ for($i=0; $i<count($documents); ++$i)
   $documents[$i]['path'] = Document::findPath($document['fichier']);
 }
 
+// first-last saison
+function decorateJoueurWithFirstLastSaison ($joueur, $saison, $lastSaison) {
+
+  $saisons = DBAccess::singleRow
+  ("
+    SELECT Min(Saison) as first, Max(Saison) as last
+    FROM matches, joue
+    WHERE matches.IdMatch = joue.IdMatch AND joue.IdJoueur = " . $joueur["joueur"]["id"]
+  );
+  $joueur["joueur"]["firstSaison"] = $saisons["first"] == $saison;
+  $joueur["joueur"]["lastSaison"] = $saisons["last"] == $saison && $saison != $lastSaison;
+
+ return $joueur;
+}
+
+$lastSaison = DBAccess::singleValue("SELECT Max(Saison) FROM Saisons");
+
+for ($i=0; $i<count($bilanOrdonne); ++$i) {
+  $bilanOrdonne[$i] = decorateJoueurWithFirstLastSaison($bilanOrdonne[$i], $idSaison, $lastSaison);
+}
+
+
+function decorateEntraineurWithFirstLastSaison ($entraineur, $saison, $dateLastMatch) {
+
+  $saisons = DBAccess::singleRow
+  ("
+    SELECT Min(Saison) as first, Max(Saison) as last, Fin as fin
+    FROM matches, dirige 
+    WHERE dirige.IdDirigeant = " . $entraineur["id"] . "
+          AND DateMatch >= Debut AND DateMatch <= Fin"
+  );
+  $entraineur["firstSaison"] = $saisons["first"] == $saison;
+  $entraineur["lastSaison"] = $saisons["last"] == $saison && $dateLastMatch > $saisons["fin"];
+
+ return $entraineur;
+}
+
+$dateLastMatch = DBAccess::singleValue("SELECT Max(DateMatch) FROM Matches");
+
+foreach ($entraineurs as $key => $entraineur) {
+  $entraineurs[$key] = decorateEntraineurWithFirstLastSaison($entraineur, $idSaison, $dateLastMatch);
+}
+
+
 // ********************************************************
 // ******* HTML *******************************************
 // ********************************************************  
