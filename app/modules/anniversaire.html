@@ -4,6 +4,13 @@
   
   <div class="pure-u-1">
 
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block agenda">
+      <div>
+        <span>{{currentDay}}</span>
+        <span>{{currentMonth}}</span>
+      </div>
+    </div>
+
     <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="fiche in fiches">
       <div class="g-topbar g-main-topbar">{{fiche.title}}</div>
       <div class="uniformized">
@@ -15,12 +22,6 @@
         <span>{{fiche.date | format:'dateLong'}}</span>
         <span class="g-remark">il y a {{Bom.ageSince(fiche.date)}} ans</span>
         <a href="{{fiche.link}}" class="fa fa-mail-forward g-link"></a>
-      </div>
-    </div>
-
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-if="fiches.length === 0">
-      <div>
-        <span>Pas d'événement le {{current}} dans la vie de l'OM !</span>
       </div>
     </div>
     

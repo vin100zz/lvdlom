@@ -71,7 +71,8 @@
       var prev = new Date(date.getTime() - 1000 * 60 * 60 * 24);
       var next = new Date(date.getTime() + 1000 * 60 * 60 * 24);
       
-      $scope.current = DateTime.format(date, 'd MMMM');
+      $scope.currentDay = DateTime.format(date, 'd');
+      $scope.currentMonth = DateTime.format(date, 'MMMM');
       
       $scope.breadcrumb = {
         prev: {

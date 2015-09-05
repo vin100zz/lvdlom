@@ -10,11 +10,11 @@
   });
   
   // controller
-  app.controller('JoueurCtrl', function($scope, $routeParams, Joueur) {
+  app.controller('JoueurCtrl', function($scope, $injector, $routeParams, Joueur) {
 
     $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: null});
 
-    $scope.joueur = Joueur.get({id: $routeParams.id}, function () {
+    $scope.joueur = Joueur.get({id: $routeParams.id}, function (joueur) {
 
       $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
