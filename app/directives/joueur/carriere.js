@@ -32,7 +32,7 @@ app.directive('lvdlomCarriereJoueur', function (Carriere) {
               row.saison = row.saison.substr(0, 4) + '-' + row.saison.substr(7, 2);
 
               // reformat prêts
-              var regexes = [/prêt à (.*)/, /prêt (.*)/, /pret à (.*)/, /pret (.*)/];
+              var regexes = [/prêt à (.*)/i, /prêt (.*)/i, /pret à (.*)/i, /pret (.*)/i];
               for (var i=0; i<regexes.length; ++i) {
                 var pret = regexes[i].exec(row.club);
                 if (pret && pret.length > 0) {
