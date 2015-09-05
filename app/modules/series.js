@@ -29,11 +29,11 @@
 
     // filters
     $scope.filters = [
-      Filter.periode,
-      Filter.competition,
-      Filter.lieu,
-      Filter.adversaire,
-      Filter.jyEtais
+      Filter.periode(),
+      Filter.competition(),
+      Filter.lieu(),
+      Filter.adversaire(),
+      Filter.jyEtais()
     ];
 
     // data

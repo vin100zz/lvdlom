@@ -18,6 +18,12 @@
 
       $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
+      if (joueur.dirigeant) {
+        $scope.links = [
+          {url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'}
+        ];
+      };
+
       var prev = !$scope.joueur.navigation.prev.id ? null : {
         label: $scope.joueur.navigation.prev.prenom + ' ' + $scope.joueur.navigation.prev.nom,
         link: '#/joueur/' + $scope.joueur.navigation.prev.id

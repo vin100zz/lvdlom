@@ -150,9 +150,17 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     var domicile = Bom.domicile(lieu) ? 'D' : 'E';
     return '<span class="icon-lieu ' + domicile + '"></span>' + lieu;
   };
+
+  this._club  = function (match, name) {
+    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + name;
+  };
   
   this.club = function (match) {
-    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + match.nomAdv;
+    return _this._club(match, match.nomAdv);
+  };
+
+  this.clubLink = function (match) {
+    return _this._club(match, '<a href="#/matches/adversaire/' + match.idAdv + '">' + match.nomAdv + '</a>');
   };
   
   this.$Score = {

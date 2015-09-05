@@ -55,14 +55,6 @@ $documents = DBAccess::query
 	ORDER BY OrdreAffichage ASC, DateDoc ASC
 ");
 
-// joueur
-$joueur = DBAccess::singleValue
-(
-	"SELECT IdJoueur AS id
-	FROM joueurs
-	WHERE IdJoueur = $idDirigeant
-");
-
 // navigation
 $nom = $dirigeant["nom"]; 
 $prenom = $dirigeant["prenom"]; 
@@ -113,7 +105,6 @@ $out['id'] = $idDirigeant;
 $out['fiche'] = $dirigeant;
 $out['fonctions'] = $fonctions;
 $out['documents'] = $documents;
-$out['joueur'] = $joueur;
 $out['navigation'] = array(
   'prev' => $prev,
   'next' => $next);

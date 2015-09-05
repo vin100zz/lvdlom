@@ -10,19 +10,22 @@
   });
   
   // controller
-  app.controller('MatchesCtrl', function($scope, $injector, Matches, Formatter, Sorter, Filter, Bom) {
+  app.controller('MatchesCtrl', function($scope, $injector, $routeParams, Matches, Formatter, Sorter, Filter, Bom) {
     
     $injector.invoke(AbstractListCtrl, this, {$scope: $scope, pageTitle: 'Matches'});
     
     // filters
     $scope.filters = [
-      Filter.periode,
-      Filter.saison,
-      Filter.competition,
-      Filter.lieu,
-      Filter.adversaire,
-      Filter.jyEtais
+      Filter.periode(),
+      Filter.saison($routeParams.filter === 'saison' ? $routeParams.id : null),
+      Filter.competition(),
+      Filter.lieu(),
+      Filter.adversaire($routeParams.filter === 'adversaire' ? $routeParams.id : null),
+      Filter.jyEtais()
     ];
+    if ($routeParams.filter === 'adversaire') {
+      $scope.filters[1].active = false;
+    }
     
     // data
     $scope.fetchData = function (filters) {

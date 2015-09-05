@@ -16,8 +16,8 @@
     
     // filters
     $scope.filters = [
-      Filter.periode,
-      Filter.fonction   
+      Filter.periode(),
+      Filter.fonction()  
     ];
     
     // data

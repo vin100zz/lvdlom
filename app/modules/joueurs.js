@@ -16,11 +16,11 @@
     
     // filters
     $scope.filters = [
-      Filter.poste,
-      Filter.nationalite,
-      Filter.lieuNaissance,
-      Filter.formeAuClub,
-      Filter.auClub   
+      Filter.poste(),
+      Filter.nationalite(),
+      Filter.lieuNaissance(),
+      Filter.formeAuClub(),
+      Filter.auClub()   
     ];
     
     // data

@@ -16,10 +16,10 @@
     
     // filters
     $scope.filters = [
-      Filter.periode,
-      Filter.competition,
-      Filter.lieu,
-      Filter.jyEtais
+      Filter.periode(),
+      Filter.competition(),
+      Filter.lieu(),
+      Filter.jyEtais()
     ];
     
     // data
@@ -30,13 +30,14 @@
     
     // selection
     $scope.selectionTpl = 'app/directives/mini/miniadversaire.html';
+    $scope.selectionLink = '#/matches/adversaire/';
     
     // table 
     $scope.tableCfg = {
       data: $scope.data,
       columns: [{
         title: 'Club',
-        formatter: Formatter.club,
+        formatter: Formatter.clubLink,
         sorter: Sorter.club
       }, {
         title: 'Pays',

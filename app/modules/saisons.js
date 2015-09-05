@@ -16,10 +16,10 @@
     
     // filters
     $scope.filters = [
-      Filter.adversaire,
-      Filter.competition,
-      Filter.lieu,
-      Filter.jyEtais
+      Filter.adversaire(),
+      Filter.competition(),
+      Filter.lieu(),
+      Filter.jyEtais()
     ];
     
     // data

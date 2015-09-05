@@ -14,6 +14,10 @@
 
     $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Saison ' + $routeParams.id});
 
+    $scope.links = [
+      {url: '#/matches/saison/' + $routeParams.id, label: 'Matches'}
+    ];
+
     $scope.saison = Saison.get({id: $routeParams.id}, function () {
 
       var prev = !$scope.saison.navigation.prev ? null : {

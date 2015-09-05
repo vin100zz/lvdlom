@@ -16,7 +16,7 @@
     
     // filters
     $scope.filters = [
-      Filter.jyEtais
+      Filter.jyEtais()
     ];
     
     // data
