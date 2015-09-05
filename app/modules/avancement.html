@@ -18,6 +18,9 @@
           </div>
         </div>
       </div>
+      <div class="g-bottombar">
+        <a href="javascript:;" class="fa fa-info g-link"></a>
+      </div>
     </div>
 
     <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="currentView == $index">
@@ -36,17 +39,16 @@
   </div>
 
   <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="avancement.showIdData && currentView == $index">
-      <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Identité - {{avancement.title}}</div>
-      <div>
-        <ul class="detail-completion">
-          <li ng-repeat="(key, items) in avancement.groups">
-            <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
-            <div ng-repeat="item in items" ng-class="{'with-doc': item.hasIdDoc}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
-              <a href="#/{{avancement.link}}/{{item.id}}">&nbsp;</a>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Identité - {{avancement.title}}</div>
+    <div>
+      <ul class="detail-completion">
+        <li ng-repeat="(key, items) in avancement.groups">
+          <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
+          <div ng-repeat="item in items" ng-class="{'with-doc': item.hasIdDoc}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
+            <a href="#/{{avancement.link}}/{{item.id}}">&nbsp;</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
