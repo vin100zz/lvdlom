@@ -11,7 +11,9 @@
   });
   
   // controller
-  app.controller('AvancementCtrl', function($scope, $routeParams, Avancement) {
+  app.controller('AvancementCtrl', function($scope, $injector, $routeParams, Avancement) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Avancement'});
     
     $scope.avancements = [];
 

@@ -10,7 +10,9 @@
   });
   
   // controller
-  app.controller('PalmaresCtrl', function($scope, $routeParams, Palmares) {
+  app.controller('PalmaresCtrl', function($scope, $injector, $routeParams, Palmares) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Palmarès'});
     
     $scope.chartCfg = [
       {title: 'Championnat', icon: 'flag-o', height: 800},

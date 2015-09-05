@@ -10,7 +10,10 @@
   });
   
   // controller
-  app.controller('SeriesCtrl', function($scope, $routeParams, Series, Filter, Loading, Formatter) {
+  app.controller('SeriesCtrl', function($scope, $injector, $routeParams, Series, Filter, Loading, Formatter) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Séries'});
+
     $scope.Formatter = Formatter;
 
     $scope.metaData = [

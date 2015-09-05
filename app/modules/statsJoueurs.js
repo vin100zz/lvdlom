@@ -12,7 +12,7 @@
   // controller
   app.controller('StatsJoueursCtrl', function($scope, $injector, StatsJoueurs, Formatter, Sorter, Filter) {
     
-    $injector.invoke(AbstractListCtrl, this, {$scope: $scope});
+    $injector.invoke(AbstractListCtrl, this, {$scope: $scope, pageTitle: 'Stats Joueurs'});
     
     // filters
     $scope.filters = [

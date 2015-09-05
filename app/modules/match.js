@@ -10,10 +10,15 @@
   });
   
   // controller
-  app.controller('MatchCtrl', function($scope, $routeParams, Match, Bom, Formatter) {
+  app.controller('MatchCtrl', function($scope, $injector, $routeParams, Match, Bom, Formatter) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: null});
+
     $scope.Formatter = Formatter;
     
     $scope.match = Match.get({id: $routeParams.id}, function () {
+
+      $scope.setPageTitle(Formatter.matchTitle($scope.match) + ' ' +  Formatter.score(Formatter.$Score.big, $scope.match.fiche));
 
       var prev = !$scope.match.navigation.prev.id ? null : {
         label: Formatter.match($scope.match.navigation.prev) + ' ' + Formatter.score(Formatter.$Score.big, $scope.match.navigation.prev),

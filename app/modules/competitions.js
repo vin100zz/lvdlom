@@ -12,7 +12,7 @@
   // controller
   app.controller('CompetitionsCtrl', function($scope, $injector, Competitions, Formatter, Sorter, Filter, Bom) {
     
-    $injector.invoke(AbstractListCtrl, this, {$scope: $scope});
+    $injector.invoke(AbstractListCtrl, this, {$scope: $scope, pageTitle: 'Compétitions'});
     
     // filters
     $scope.filters = [

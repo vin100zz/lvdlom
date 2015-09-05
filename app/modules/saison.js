@@ -10,9 +10,12 @@
   });
   
   // controller
-  app.controller('SaisonCtrl', function($scope, $routeParams, Saison) {
+  app.controller('SaisonCtrl', function($scope, $injector, $routeParams, Saison) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Saison ' + $routeParams.id});
+
     $scope.saison = Saison.get({id: $routeParams.id}, function () {
-      
+
       var prev = !$scope.saison.navigation.prev ? null : {
         label: $scope.saison.navigation.prev,
           link: '#/saison/' + $scope.saison.navigation.prev

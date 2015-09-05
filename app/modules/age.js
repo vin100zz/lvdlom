@@ -10,7 +10,10 @@
   });
   
   // controller
-  app.controller('AgeCtrl', function($scope, AgeJoueurs) {
+  app.controller('AgeCtrl', function($scope, $injector, AgeJoueurs) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Âges Joueurs'});
+
     $scope.joueursMin = AgeJoueurs.get({type: 'match', sort: 'min'});
     $scope.joueursMax = AgeJoueurs.get({type: 'match', sort: 'max'});
     $scope.buteursMin = AgeJoueurs.get({type: 'but', sort: 'min'});

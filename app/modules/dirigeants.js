@@ -12,7 +12,7 @@
   // controller
   app.controller('DirigeantsCtrl', function($scope, $injector, Dirigeants, Formatter, Sorter, Filter) {
     
-    $injector.invoke(AbstractListCtrl, this, {$scope: $scope});
+    $injector.invoke(AbstractListCtrl, this, {$scope: $scope, pageTitle: 'Dirigeants'});
     
     // filters
     $scope.filters = [

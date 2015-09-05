@@ -10,7 +10,10 @@
   });
   
   // controller
-  app.controller('EquipeTypesCtrl', function($scope, $routeParams, EquipeTypes, Sorter, Formatter) {
+  app.controller('EquipeTypesCtrl', function($scope, $injector, $routeParams, EquipeTypes, Sorter, Formatter) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Équipe-types'});
+
     $scope.Formatter = Formatter;
     
     $scope.saisons = [];

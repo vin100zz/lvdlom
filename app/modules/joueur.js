@@ -11,7 +11,12 @@
   
   // controller
   app.controller('JoueurCtrl', function($scope, $routeParams, Joueur) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: null});
+
     $scope.joueur = Joueur.get({id: $routeParams.id}, function () {
+
+      $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
       var prev = !$scope.joueur.navigation.prev.id ? null : {
         label: $scope.joueur.navigation.prev.prenom + ' ' + $scope.joueur.navigation.prev.nom,

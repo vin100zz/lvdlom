@@ -11,7 +11,10 @@
   });
   
   // controller
-  app.controller('DayCtrl', function($scope, $routeParams, Day, Match, Joueur, Dirigeant, Bom, Formatter, DateTime) {
+  app.controller('DayCtrl', function($scope, $injector, $routeParams, Day, Match, Joueur, Dirigeant, Bom, Formatter, DateTime) {
+
+    $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Anniversaires'});
+
     $scope.Formatter = Formatter;
     $scope.Bom = Bom;
     

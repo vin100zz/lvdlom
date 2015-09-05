@@ -1,5 +1,7 @@
 /* exported AbstractListCtrl */
-var AbstractListCtrl = function ($scope, Loading, Filter) {
+var AbstractListCtrl = function ($scope, $injector, Loading, Filter, pageTitle) {
+
+  $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: pageTitle});
   
   // filters
   $scope.filters = [];
