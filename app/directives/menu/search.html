@@ -1,6 +1,6 @@
 <ul id="search-results" ng-class="{visible: cfg.pattern.length > 2 && expanded}">
   <li ng-repeat="result in results">
-    <a href="{{result.link}}">
+    <a href="{{result.link}}" ng-click="resetSearchField()">
       <div><span>{{result.preMatch}}</span><span class="match">{{result.match}}</span><span>{{result.postMatch}}</span></div>
       <div class="g-remark">{{result.remark}}</div>
     </a>

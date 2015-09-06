@@ -19,6 +19,10 @@ app.directive('lvdlomSearch', function (Dictionary, Formatter, Diacritics) {
         };
       });
 
+      $scope.resetSearchField = function () {
+        $scope.cfg.pattern = '';
+      };
+
       function prepareData (data, sanitizeFn, formatFn) {
         return data.map(function (item) {
           return {
