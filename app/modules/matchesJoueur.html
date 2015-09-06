@@ -1,0 +1,47 @@
+<div class="pure-g" id="page-matches-joueur" ng-if="joueur.id">
+
+  <div class="pure-u-1">
+  
+    <div class="pure-u-1 pure-u-xl-1-2">
+      <div class="pure-u-1 g-block">
+        <div class="g-topbar g-main-topbar">
+          <span>{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</span>
+        </div>
+        <div>
+          <table>
+            <thead>
+            </thead>
+            <tbody>
+              <tr ng-repeat="match in matches" ng-class="{'new-season': match.displaySaison}">
+                <td>
+                  <a ng-if="match.displaySaison" href="#/saison/{{match.saison}}" class="g-remark">{{match.saison}}</a>
+                </td>
+                <td>
+                  <a href="#/match/{{match.id}}">
+                    <span ng-bind-html="Formatter.match(match)"></span>
+                    <span>{{Formatter.score(Formatter.$Score.big, match)}}</span>
+                  </a>
+                </td>
+                <td>
+                  <div class="match-out" style="width:{{match.pcIn}}%"></div>
+                  <div class="match-in" ng-class="{titu: match.pcIn === 0, 'not-played': match.pcOut === 0}" style="width:{{match.pcOut - match.pcIn}}%"></div>
+                  <div class="match-out" style="width:{{match.pcEnd - match.pcOut}}%"></div>
+                </td>
+                <td>
+                  <span ng-if="match.buts" ng-bind-html="Formatter.buts(match.buts)"></span>
+                </td>
+                <td>
+                  <span ng-if="match.carton" ng-bind-html="match.carton | format:'carton'"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+   
+</div>
+  

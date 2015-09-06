@@ -1,0 +1,74 @@
+@import "style/variables";
+
+#page-matches-joueur {
+  text-align: center;
+
+  table {
+    margin-left: 20px;
+
+    tr {
+
+      &.new-season > td {
+        padding-top: 25px;
+      }
+
+      td {
+        vertical-align: middle;
+        padding: 0 5px;
+
+        &:first-child {
+          width: 60px;
+        }
+        &:nth-child(2) {
+          min-width: 180px;
+          text-align: left;
+        }
+        &:nth-child(3) {
+          width: 280px;
+        }
+        &:nth-child(4) {
+          min-width: 40px;
+          text-align: left;
+        }
+        &:last-child {
+          width: 40px;
+          padding: 0;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .match-out {
+    float: left;
+    height: 12px;
+    background: #eee;
+  }
+  .match-in {
+    float: left;
+    height: 12px;
+    background: repeating-linear-gradient(
+      135deg,
+      fade(#4DB6AC, 65%),
+      fade(#4DB6AC, 65%) 10px,
+      fade(#4DB6AC, 75%) 10px,
+      fade(#4DB6AC, 75%) 20px
+    );
+
+    &:not(.not-played) {
+      border: 1px solid fade(#4DB6AC, 75%);
+    }
+  }
+  .match-in.titu {
+    background: repeating-linear-gradient(
+      135deg,
+      fade(@mainBackground, 75%),
+      fade(@mainBackground, 75%) 10px,
+      fade(@mainBackground, 85%) 10px,
+      fade(@mainBackground, 85%) 20px
+    );
+    &:not(.not-played) {
+      border: 1px solid fade(@mainBackground, 85%);
+    }
+  }
+}

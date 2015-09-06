@@ -25,7 +25,7 @@ $matches = DBAccess::query
     SousTypeCompetition AS sousTypeCompetition,
     Niveau AS niveau,
     Lieu AS lieu,
-	  Pays AS pays,
+	Pays AS pays,
     IdAdversaire AS idAdv,
     NomAdversaire AS nomAdv,
     ButsOM AS butsOM,

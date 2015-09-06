@@ -231,6 +231,10 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     var nbButs = (buteurs || []).reduce(function (previous, buteur) {
       return previous + (buteur.id === idJoueur ? 1 : 0);
     }, 0);
+    return _this.buts(nbButs);
+  };
+
+  this.buts = function (nbButs) {
     var res = '';
     for (var i=0; i<nbButs; ++i) {
       res += '<div class="icon-but"></div>';

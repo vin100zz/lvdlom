@@ -76,12 +76,12 @@ class DBAccess
 		$dbResult = self::getDbAccessor()->query($sqlQuery);
 		if(!$dbResult) return null;
 		
-		$aReturn = array();
+		$out = array();
 		while($dbRow = $dbResult->fetchArray(SQLITE3_NUM))
 		{
-			$aReturn[] = utf8_encode($dbRow[0]);
+			$out[] = utf8_encode($dbRow[0]);
 		}
-		return $aReturn;
+		return $out;
 	}
 //=========================================================================
 	public static function singleValue($sqlQuery)
@@ -94,12 +94,32 @@ class DBAccess
 		$dbResult = self::getDbAccessor()->query($sqlQuery);
 		if(!$dbResult) return null;
 		
-		$aReturn = array();
+		$out = array();
 		while($dbRow = $dbResult->fetchArray(SQLITE3_NUM))
 		{
-			$aReturn[$dbRow[0]] = utf8_encode($dbRow[1]);
+			$out[$dbRow[0]] = utf8_encode($dbRow[1]);
 		}
-		return $aReturn;
+		return $out;
+	}
+//=========================================================================
+	public static function keyObj($sqlQuery)
+	{
+		$dbResult = self::getDbAccessor()->query($sqlQuery);
+		if(!$dbResult) return null;
+		
+		$out = array();
+		while($dbRow = $dbResult->fetchArray(SQLITE3_BOTH))
+		{
+			$key = $dbRow[0];
+			$obj = array();
+			foreach ($dbRow as $name => $value) {
+				if (!is_int($name)) {
+					$obj[$name] = utf8_encode($value);
+				}
+			}
+			$out[$key] = $obj;
+		}
+		return $out;
 	}
 }
 

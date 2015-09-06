@@ -18,10 +18,11 @@
 
       $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
+      $scope.links = [
+        {url: '#/matches-joueur/' + joueur.id, label: 'Matches'}
+      ];
       if (joueur.dirigeant) {
-        $scope.links = [
-          {url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'}
-        ];
+        $scope.links.push({url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'});
       };
 
       var prev = !$scope.joueur.navigation.prev.id ? null : {
