@@ -2,10 +2,16 @@
 
   <div class="g-row" ng-if="joueur.palmares.length > 0">
     <ul>
-      <li ng-repeat="row in joueur.palmares">
+      <li ng-repeat="row in joueur.palmares" class="trophy-{{row.titre}}">
         <div ng-bind-html="Formatter.saison(row.saison)" class="g-remark"></div>
-        <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.competition}}</span></div>
-        <div class="g-remark trophy-{{row.titre}}"><span class="fa fa-trophy g-fa-left"></span>{{row.bilan}}</div>
+        <div>
+          <span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span>
+          <span>{{row.competition}}</span>
+        </div>
+        <div class="g-remark">
+          <span ng-if="row.titre == 1" class="fa fa-trophy g-fa-left"></span>
+          <span>{{row.bilan}}</span>
+        </div>
       </li>
     </ul>
   </div>
