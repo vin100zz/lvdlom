@@ -75,7 +75,7 @@ $sources = DBAccess::query
   SELECT DISTINCT Source AS key, Source AS label
   FROM documents
   WHERE Source <> ''
-  ORDER BY Source
+  ORDER BY Source COLLATE NOCASE ASC
 ");
 
 $lieux = DBAccess::query

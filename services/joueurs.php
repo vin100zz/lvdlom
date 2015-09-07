@@ -18,7 +18,7 @@ $filtres = array(new FiltrePeriode(),
 // SQL
 $joueurs = DBAccess::query
 ("
-	SELECT DISTINCT
+	SELECT
     joueurs.IdJoueur AS id,
     Nom AS nom,
     Prenom AS prenom,
@@ -37,17 +37,17 @@ $joueurs = DBAccess::query
     
   FROM joueurs
 		  
-	LEFT JOIN
-	 (SELECT IdObjet, COUNT(*) as nbDocs
-	  FROM documentsAssoc
-	  WHERE AssocType = 'J'
-	  GROUP BY IdObjet) AS table_docs ON joueurs.IdJoueur = table_docs.IdObjet	 
+  LEFT JOIN
+    (SELECT IdObjet, COUNT(*) as nbDocs
+    FROM documentsAssoc
+    WHERE AssocType = 'J'
+    GROUP BY IdObjet) AS table_docs ON joueurs.IdJoueur = table_docs.IdObjet	 
     
   LEFT JOIN
    (SELECT joueurs.IdJoueur, (strftime('%Y', Min(DateMatch)) || '-' || strftime('%Y', Max(DateMatch))) as periode
     FROM joueurs, joue, matches
     WHERE joue.IdJoueur = joueurs.IdJoueur AND joue.IdMatch = matches.IdMatch
-    GROUP BY joueurs.IdJoueur) AS table_periode ON joueurs.IdJoueur = table_periode.IdJoueur	 
+    GROUP BY joueurs.IdJoueur) AS table_periode ON joueurs.IdJoueur = table_periode.IdJoueur
 	  
 	WHERE " . Filters::getClause($filtres) . "
 ");

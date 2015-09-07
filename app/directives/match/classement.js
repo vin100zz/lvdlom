@@ -33,12 +33,6 @@ app.directive('lvdlomClassementMatch', function () {
             }
           }
         }
-        
-        $scope.commentaire = [$scope.match.fiche.comm1, $scope.match.fiche.comm2, $scope.match.fiche.comm3]
-        .filter(function (comm) {
-          return !!comm;
-        })
-        .join(' ');
       };
       
       render();
