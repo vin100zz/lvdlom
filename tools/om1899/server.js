@@ -68,11 +68,14 @@ app.get('/scrape', function(req, res) {
 });
 
 
+
+var updateIndex = 0;
+
 app.get('/parse', function(req, res) {
 
-  fs.readFile('joueurs.json', function (myErr, myData) {
-    if (myErr) throw myErr;
-    myData = JSON.parse(myData);
+  request('http://localhost:8082/www/lvdlom/services/joueurs.php', function (error, response, html) {
+
+    var myData = JSON.parse(html.trim());
   
     fs.readFile('output.json', function (err, data) {
       if (err) throw err;
@@ -94,7 +97,8 @@ app.get('/parse', function(req, res) {
       var out = '<table>';
       myData.forEach(function (myJoueur) {
         out += '<tr>';
-        out += '<td>' + myJoueur.id + ' ' + myJoueur.nom + '<td/>';
+        out += '<td>' + myJoueur.id + ' ' + myJoueur.prenom + ' ' + myJoueur.nom + '<td/>';
+        out += '<td>' + myJoueur.idOm1899 + '<td/>';
         
         var minDist = {ids: [], value: 99999};
         var lastMatch = null;
@@ -103,21 +107,33 @@ app.get('/parse', function(req, res) {
             var distance = levenshtein.get(d.extractedNom, myJoueur.nom);
             if (distance < minDist.value) {
               minDist.value = distance;
-              minDist.ids = [d.id + ' ' + d.nom];
+              minDist.ids = [d.id];
+              minDist.names = [d.id + ' ' + d.nom];
               lastMatch = d;
             } else if (distance === minDist.value) {
-              minDist.ids.push(d.id + ' ' + d.nom);
+              minDist.ids.push(d.id);
+              minDist.names.push(d.id + ' ' + d.nom);
               lastMatch = d;
             }
           }
         });
-        var css = minDist.ids.length > 1 ? 'lightcoral' : (minDist.value > 1 ? 'gold' : 'greenyellow');
-        out += '<td style="background: ' + css + ';">[' + minDist.value + '] ' + minDist.ids.join(', ') + '</td>';
+        var css = myJoueur.idOm1899 ? 'lightblue' : (minDist.ids.length > 1 ? 'lightcoral' : (minDist.value > 1 ? 'gold' : 'greenyellow'));
+        out += '<td style="background: ' + css + ';">[' + minDist.value + '] ' + minDist.names.join(', ') + '</td>';
         
         out += '</tr>';
         
-        if (minDist.ids.length === 1) {
+        if (minDist.ids.length === 1 || myJoueur.idOm1899) {
           mapping[myJoueur.id] = lastMatch;
+
+          if (!myJoueur.idOm1899) {
+            ++updateIndex;
+            var url = 'http://localhost:8082/www/lvdlom/services/om1899-id-db-update.php?idJoueur=' + myJoueur.id + '&idOm1899=' + minDist.ids[0];
+            setTimeout(function () {
+              request(url, function(error, response, html) {
+                console.log(myJoueur.id, html);
+              });
+            }, 100*updateIndex);
+          }
         }
       });
 
@@ -126,11 +142,10 @@ app.get('/parse', function(req, res) {
       
       fs.writeFile('mapping.json', JSON.stringify(mapping), function (err){
         if (err) throw err;
-      });
+      });      
     });
     
   });
-
 });
 
 app.listen('8083');

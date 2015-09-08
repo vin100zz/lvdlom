@@ -32,6 +32,7 @@ $joueurs = DBAccess::query
     ClubSuivant AS clubSuivant,
     DateDeces AS dateDeces,
     AuClub AS auClub,
+    IdOm1899 AS idOm1899,
     nbDocs,
     periode
     
