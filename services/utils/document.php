@@ -11,7 +11,7 @@ class Document
         return $filePath;
       }
     }
-    return "NOT_FOUND";
+    return "style/img/doc_not_found.png";
   }
 
 }

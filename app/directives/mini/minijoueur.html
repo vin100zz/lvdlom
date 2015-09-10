@@ -1,10 +1,10 @@
 <div ng-controller="MiniJoueurCtrl">
 
-  <lvdlom-mini-loading ng-show="loading"></lvdlom-mini-loading>
+  <lvdlom-mini-loading ng-if="loading"></lvdlom-mini-loading>
 
-  <div ng-show="!loading && !joueur">Aucun joueur sélectionné</div>
+  <div ng-if="!loading && !joueur">Aucun joueur sélectionné</div>
   
-  <div ng-show="!loading && joueur">
+  <div ng-if="!loading && joueur">
     <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-joueur>
   </div>
   
