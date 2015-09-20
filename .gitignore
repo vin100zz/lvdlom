@@ -2,8 +2,6 @@
 node_modules/
 tmp/
 
-index.html
 om.db3
 documents/
 services/_cache.json
-style/minified.min.css

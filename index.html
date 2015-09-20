@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" ng-app="lvdlom">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+
+<link rel='shortcut icon' type='image/gif' href='style/favicon.ico' />
+<title>La Vie de l'OM</title>
+
+<link rel="stylesheet" href="lib/reset/reset.css">
+<link rel="stylesheet" href="lib/pure-release-0.5.0/grids-min.css">
+<link rel="stylesheet" href="lib/pure-release-0.5.0/grids-responsive-min.css">
+<link rel="stylesheet" href="lib/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style/minified.min.css">
+
+<script src="//localhost:35729/livereload.js"></script>
+
+<script src='https://www.google.com/jsapi'></script>
+<script>google.load('visualization', '1', {packages:['corechart']});</script>
+
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.min.js"></script>
+<script src="lib/angular/angular-locale_fr-fr.js"></script>
+<script src="lib/angular/angular-resource.min.js"></script>
+<script src="lib/angular/angular-sanitize.min.js"></script>
+<script src="lib/chartjs/chart.min.js"></script>
+<script src="lib/stackblur/stackblur.js"></script>
+
+<script src="lib/angular-ui/ui-bootstrap-tpls-0.13.0.min.js"></script>
+
+<script src="app/main.js"></script>
+<script src="app/directives/breadcrumb.js"></script>
+<script src="app/directives/charts.js"></script>
+<script src="app/directives/documents.js"></script>
+<script src="app/directives/filters.js"></script>
+<script src="app/directives/format.js"></script>
+<script src="app/directives/links.js"></script>
+<script src="app/directives/liste-age.js"></script>
+<script src="app/directives/maillot.js"></script>
+<script src="app/directives/miniloading.js"></script>
+<script src="app/directives/table.js"></script>
+<script src="app/directives/dirigeant/fiche.js"></script>
+<script src="app/directives/dirigeant/fonctions.js"></script>
+<script src="app/directives/joueur/carriere.js"></script>
+<script src="app/directives/joueur/fiche.js"></script>
+<script src="app/directives/joueur/palmares.js"></script>
+<script src="app/directives/joueur/premieres.js"></script>
+<script src="app/directives/joueur/stats.js"></script>
+<script src="app/directives/match/buteurs.js"></script>
+<script src="app/directives/match/classement.js"></script>
+<script src="app/directives/match/equipe.js"></script>
+<script src="app/directives/match/fiche.js"></script>
+<script src="app/directives/menu/menu.js"></script>
+<script src="app/directives/menu/search.js"></script>
+<script src="app/directives/mini/miniadversaire.js"></script>
+<script src="app/directives/mini/minidirigeant.js"></script>
+<script src="app/directives/mini/minijoueur.js"></script>
+<script src="app/directives/mini/minimatch.js"></script>
+<script src="app/directives/mini/minisaison.js"></script>
+<script src="app/directives/saisie/adversaire.js"></script>
+<script src="app/directives/saisie/dirige.js"></script>
+<script src="app/directives/saisie/dirigeant.js"></script>
+<script src="app/directives/saisie/document.js"></script>
+<script src="app/directives/saisie/joueur.js"></script>
+<script src="app/directives/saisie/match.js"></script>
+<script src="app/directives/saisie/common/associations.js"></script>
+<script src="app/directives/saisie/common/form.js"></script>
+<script src="app/directives/saisie/common/match.js"></script>
+<script src="app/directives/saisie/common/source.js"></script>
+<script src="app/directives/saison/dirigeants.js"></script>
+<script src="app/directives/saison/equipe.js"></script>
+<script src="app/directives/saison/fiche.js"></script>
+<script src="app/modules/adversaire.js"></script>
+<script src="app/modules/adversaires.js"></script>
+<script src="app/modules/age.js"></script>
+<script src="app/modules/anniversaire.js"></script>
+<script src="app/modules/avancement.js"></script>
+<script src="app/modules/competitions.js"></script>
+<script src="app/modules/dirigeant.js"></script>
+<script src="app/modules/dirigeants.js"></script>
+<script src="app/modules/equipe-types.js"></script>
+<script src="app/modules/joueur.js"></script>
+<script src="app/modules/joueurs.js"></script>
+<script src="app/modules/match.js"></script>
+<script src="app/modules/matches.js"></script>
+<script src="app/modules/matchesJoueur.js"></script>
+<script src="app/modules/palmares.js"></script>
+<script src="app/modules/saison.js"></script>
+<script src="app/modules/saisons.js"></script>
+<script src="app/modules/series.js"></script>
+<script src="app/modules/statsEntraineurs.js"></script>
+<script src="app/modules/statsJoueurs.js"></script>
+<script src="app/modules/common/abstractList.js"></script>
+<script src="app/modules/common/abstractModule.js"></script>
+<script src="app/modules/debug/maillots-all.js"></script>
+<script src="app/modules/debug/maillots-design.js"></script>
+<script src="app/modules/saisie/saisie.js"></script>
+<script src="app/utils/bom.js"></script>
+<script src="app/utils/countries.js"></script>
+<script src="app/utils/datetime.js"></script>
+<script src="app/utils/diacritics.js"></script>
+<script src="app/utils/dictionary.js"></script>
+<script src="app/utils/filters.js"></script>
+<script src="app/utils/formatters.js"></script>
+<script src="app/utils/interceptor.js"></script>
+<script src="app/utils/loading.js"></script>
+<script src="app/utils/maillots.js"></script>
+<script src="app/utils/picture.js"></script>
+<script src="app/utils/polyfill.js"></script>
+<script src="app/utils/sorters.js"></script>
+<script src="app/utils/widget.js"></script>
+
+</head>
+
+<body ng-controller="MainCtrl" ng-click="onClick($event)">
+
+ <div id="header">
+
+  <lvdlom-mini-loading ng-if="!actu"></lvdlom-mini-loading>
+
+  <div class="dernier" ng-if="actu">
+   <span>Dernier match :</span> <span class="caret"></span> <a
+    href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}}
+    - {{actu.dernierMatch.clubDroite}} :
+    {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
+  </div>
+  
+  <div class="prochain" ng-if="actu">
+   <span>Prochains matches :</span>
+   <ul>
+    <li ng-repeat="prochainMatch in actu.prochainsMatches"><span
+     class="caret"></span>
+     <div class="match">
+      {{prochainMatch.match}}<span class="tele">{{prochainMatch.date}},
+       {{prochainMatch.tele}}</span>
+     </div></li>
+   </ul>
+  </div>
+ </div>
+
+ <a href="#/saisie/new" id="add-data">
+  <span class="fa fa-plus"></span>
+ </a>
+
+ <div id="mini-header">
+  <span id="hamburger" class="fa fa-2x fa-bars hamburger" ng-click="toggleMenu()"></span>
+ </div>
+
+ <div id="content">
+  <ng-view id="payload" ng-show="!loading"></ng-view>
+ </div>
+
+ <lvdlom-search cfg="searchCfg"></lvdlom-search>
+ <lvdlom-menu cfg="menuCfg" search-cfg="searchCfg"></lvdlom-menu>
+
+ <div id="mask" ng-show="loading">
+  <div class="anim">
+   <div class="outer-ball"></div>
+   <div class="inner-ball"></div>
+  </div>
+ </div>
+
+  <div id="alert" ng-class="{show: alert.show}">
+    <span class="fa fa-check status success" ng-if="alert.type == 'success'"></span>
+    <span class="fa fa-exclamation status error" ng-if="alert.type == 'error'"></span>
+    <span>{{alert.message}}</span>
+    <span class="fa fa-times close" ng-click="closeAlert()"></span>
+  </div>
+
+</body>
+
+</html>
