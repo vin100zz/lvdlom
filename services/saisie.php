@@ -232,7 +232,7 @@ else if ($type == "match") {
   insertForSql($query, "TABAdv", getParam("tabAdv"));
   insertForSql($query, "Spectateurs", getParam("spectateurs"));
   insertForSql($query, "JYEtais", getParam("jyEtais"));
-  insertForSql($query, "Comm1", getParam("commentaire"));
+  insertForSql($query, "Commentaire", getParam("commentaire"));
 
   $classement = getParam("classement");
   foreach ($classement as $index => $row) {

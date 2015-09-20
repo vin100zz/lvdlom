@@ -53,6 +53,7 @@ app.service('Maillots', function() {
     269: {template: 36, color1: "FFDC00", color2: "024A8B", color3: "024A8B"}, // LIMASSOL
     270: {template: 49, color1: "33898B", color2: "FFFFFF", color3: "000000"}, // MÖNCHENGLADBACH
     274: {template: 1, color1: "6BBEE9", color2: "FFFFFF", color3: "ffffff"}, // NAPLES
+    279: {template: 33, color1: "FFFFFF", color2: "008A57", color3: "008A57"}, // GRONINGUE
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},

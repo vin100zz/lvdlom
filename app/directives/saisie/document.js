@@ -20,7 +20,7 @@ app.directive('lvdlomSaisieDocument', function () {
           } else if (association.type === 'S') {
             linkObject = 'saison';
           }
-          var link = '#/' + linkObject + '/' + (association.personne.key || association.id);
+          var link = '#/' + linkObject + '/' + ((association.personne ? association.personne.key : null) || association.id);
           if (index === 0) {
             window.location.hash = link;
           } else {

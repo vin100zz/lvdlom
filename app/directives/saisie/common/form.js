@@ -92,7 +92,7 @@ app.directive('lvdlomSaisieForm', function () {
       }
 
       function getFromLocalStorage (name) {
-        return localStorage.getItem(getLocalStorageKey(name));
+        return localStorage.getItem(getLocalStorageKey(name)) || '';
       }
 
       // watch
