@@ -32,6 +32,7 @@ $listeMatches = DBAccess::query("
   ORDER BY DateMatch ASC
 ");
 
+
 // ********************************************************
 // ******* BOM ********************************************
 // ********************************************************
@@ -148,25 +149,28 @@ function calculateSerie($matches, $filterClause, $criterion)
   
   for($i=0; $i<count($matches); ++$i)
   {
-    $aMatch = $matches[$i];
+    $match = $matches[$i];
+
+    $criterionTrue = $criterion->isTrue($match);
     
-    if($criterion->isTrue($aMatch))
+    if($criterionTrue)
     {
       if($serieOngoing) // serie en cours
       {
-        $currentSerieEndDate = $aMatch["DateMatch"];
+        $currentSerieEndDate = $match["DateMatch"];
         ++$currentSerieNbMatches;
       }
       else // serie commence
       {
-        $currentSerieBeginDate = $aMatch["DateMatch"];
-        $currentSerieEndDate = $aMatch["DateMatch"];
+        $currentSerieBeginDate = $match["DateMatch"];
+        $currentSerieEndDate = $match["DateMatch"];
         $currentSerieNbMatches = 1;
       }
       
       $serieOngoing = true;
     }
-    else
+
+    if (!$criterionTrue || $i == count($matches)-1)
     {
       if($serieOngoing) // fin de serie
       {
