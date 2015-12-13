@@ -73,7 +73,7 @@ var updateIndex = 0;
 
 app.get('/parse', function(req, res) {
 
-  request('http://localhost:8082/www/lvdlom/services/joueurs.php', function (error, response, html) {
+  request('http://localhost:8082/lvdlom/services/joueurs.php', function (error, response, html) {
 
     var myData = JSON.parse(html.trim());
   
@@ -122,7 +122,9 @@ app.get('/parse', function(req, res) {
         
         out += '</tr>';
         
-        if (minDist.ids.length === 1 || myJoueur.idOm1899) {
+        if (myJoueur.idOm1899) {
+          mapping[myJoueur.id] = data.find(function (d) {return d.id + '' === myJoueur.idOm1899 + '';});
+        } else if (minDist.ids.length === 1) {
           mapping[myJoueur.id] = lastMatch;
 
           if (!myJoueur.idOm1899) {
