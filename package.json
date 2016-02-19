@@ -12,6 +12,7 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-include-source": "^0.6.0",
-    "grunt-responsive-images": "^0.1.6"
+    "grunt-responsive-images": "^0.1.6",
+    "grunt-spritesmith": "^6.3.0"
   }
 }
