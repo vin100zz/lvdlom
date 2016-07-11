@@ -19,7 +19,7 @@ $nationalites = DBAccess::query
 $saisons = DBAccess::query
 ("
 	SELECT DISTINCT	Saison AS key, Saison AS label
-	FROM matches
+	FROM saisons
   WHERE Saison IS NOT NULL AND Saison <> ''
   ORDER BY Saison DESC
 ");
