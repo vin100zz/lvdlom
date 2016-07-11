@@ -28,7 +28,7 @@ app.directive('lvdlomClassementMatch', function () {
               club: club,
               pts: $scope.match.fiche['classPts' + i]
             });
-            if (i === 4 && pos && parseInt(pos, 10) > 4) {
+            if (i === 4 && pos && parseInt(pos, 10) > 4 && $scope.classement.length >= 2) {
               $scope.classement[$scope.classement.length-2].separator = true;
             }
           }
