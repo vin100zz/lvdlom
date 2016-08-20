@@ -40,6 +40,8 @@ $fonctions = DBAccess::query
 
 $concatPrenomNom = "(" . General::handleNullStringsInSqlConcat("Prenom") . " || ' ' || Nom)";
 
+$concatPrenomNomReverse = "(Nom || ' ' || " . General::handleNullStringsInSqlConcat("Prenom") . ")";
+
 $joueurs = DBAccess::query
 ("
 	SELECT DISTINCT	IdJoueur AS key, $concatPrenomNom AS label
@@ -49,9 +51,9 @@ $joueurs = DBAccess::query
 
 $joueursAuClub = DBAccess::query
 ("
-  SELECT DISTINCT IdJoueur AS key, $concatPrenomNom AS label
+  SELECT DISTINCT IdJoueur AS key, $concatPrenomNomReverse AS label
   FROM joueurs
-  WHERE AuClub = 1
+  WHERE (AuClub = 1 OR AuClub='Y')
   ORDER BY Nom
 ");
 
