@@ -23,7 +23,7 @@ app.service('Bom', function() {
   };
   
   this.domicile = function (lieu) {
-    return (lieu === 'Huveaune' || lieu === 'Stade Vél\'');
+    return (lieu === 'Huveaune' || lieu === 'Stade Vél\'' || lieu === 'Orange Vélodrome');
   };
   
   this.poste = function (poste) {

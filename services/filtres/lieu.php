@@ -19,7 +19,7 @@ class FiltreLieu
 	{
 		if($this->_selection == "DOM")
 		{
-			return "(Lieu='Stade Vél''' OR Lieu='Huveaune')";
+			return "(Lieu='Stade Vél''' OR Lieu='Huveaune' OR Lieu='Orange Vélodrome')";
 		}
 		else if($this->_selection == "HUV")
 		{
@@ -31,7 +31,7 @@ class FiltreLieu
 		}
 		else if($this->_selection == "EXT")
 		{
-			return "(Lieu<>'Stade Vél''' AND Lieu<>'Huveaune')";
+			return "(Lieu<>'Stade Vél''' AND Lieu<>'Huveaune' AND Lieu<>'Orange Vélodrome')";
 		}
 		else
 		{
