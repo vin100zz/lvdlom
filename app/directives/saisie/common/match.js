@@ -104,7 +104,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
       };
       $scope.setStadeVel = function (evt) {
         evt.preventDefault();
-        $scope.cfg.data.lieu = 'Stade Vél\'';
+        $scope.cfg.data.lieu = 'Orange Vélodrome';
       };
       $scope.setLigue1 = function (evt) {
         evt.preventDefault();
