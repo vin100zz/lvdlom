@@ -33,7 +33,7 @@ class General
 		if(!isset($iMatch["Lieu"])) return false;
 		$aLieu = $iMatch["Lieu"];
 		if($aLieu == null) return false;
-		if(strncmp($aLieu, "Stade V", 7) == 0 || $aLieu == "Huveaune")
+		if(strncmp($aLieu, "Stade V", 7) == 0 || $aLieu == "Huveaune" || strncmp($aLieu, "Orange V", 8) == 0)
 		{
 			return true;
 		}		

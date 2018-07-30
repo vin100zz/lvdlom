@@ -17,6 +17,11 @@ app.directive('lvdlomEquipeSaison', function (Bom, Formatter, Sorter) {
       });
         
       $scope.entraineurs = $scope.saison.entraineurs.sort(function (entraineur1, entraineur2) {
+		if (!entraineur1.fin) {
+		  return 1;
+		} else if (!entraineur2.fin) {
+	      return -1;
+		}
         return entraineur1.fin.localeCompare(entraineur2.fin);
       });
     }

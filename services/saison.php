@@ -109,7 +109,7 @@ $dirigeants = DBAccess::query
     Debut as debut,
     Fin as fin
 	FROM dirige, dirigeants, fonctions
-	WHERE Fin >= '$firstMatch' AND Debut <= '$lastMatch'
+	WHERE (Fin is NULL OR Fin >= '$firstMatch') AND Debut <= '$lastMatch'
 		AND fonctions.IdFonction<>1
 		AND dirigeants.IdDirigeant = dirige.IdDirigeant
 		AND dirige.IdFonction = fonctions.IdFonction
@@ -124,13 +124,13 @@ $entraineurs = DBAccess::query
     dirigeants.IdDirigeant as id,
     Prenom as prenom,
     Nom as nom,
-    MAX(DateMatch) as fin,
+	Fin as fin,
     count(*) as nbMatches
 	FROM dirige, matches, dirigeants
-	WHERE Fin >= '$firstMatch' AND Debut <= '$lastMatch'
+	WHERE (Fin is NULL OR Fin >= '$firstMatch') AND Debut <= '$lastMatch'
 		AND Saison = '$idSaison'
 		AND IdFonction=1
-		AND DateMatch >= Debut AND DateMatch <= Fin
+		AND DateMatch >= Debut AND (Fin is NULL OR DateMatch <= Fin)
 		AND dirigeants.IdDirigeant = dirige.IdDirigeant
 	GROUP BY dirigeants.IdDirigeant
 ");
