@@ -30,8 +30,15 @@ app.service('Maillots', function() {
     57: {template: 19, color1: "ED1C23", color2: "ffffff", color3: "ffffff"}, // COLOGNE
     60: {template: 33, color1: "2E5E9F", color2: "D2293D", color3: "007861"}, // CRÉTEIL
     61: {template: 11, color1: "D91521", color2: "293383", color3: "F1C600"}, // CSKA MOSCOU
+    63: {template: 1, color1: "C11929", color2: "FFFFFF", color3: "ffffff"}, // DIJON
     72: {template: 37, color1: "CE000C", color2: "ffffff", color3: "CE000C"}, // ETOILE ROUGE BELGRADE
     99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
+    105: {template: 1, color1: "0E447B", color2: "FFFFFF", color3: "FFFFFF"}, // LECH POZNAN
+    117: {template: 2, color1: "FCDC4F", color2: "E32219", color3: "E32219"}, // LOUHANS-CUISEAUX
+    123: {template: 1, color1: "E20E0E", color2: "FFFFFF", color3: "FFFFFF"}, // MANCHESTER UTD
+    125: {template: 37, color1: "FDE531", color2: "DE0021", color3: "000000"}, // MARTIGUES
+    126: {template: 51, color1: "8DAABB", color2: "FFFFFF", color3: "FFFFFF"}, // MATRA RACING
+    129: {template: 1, color1: "ffffff", color2: "009EE0", color3: "009EE0"}, // MLADA BOLESLAV
     132: {template: 1, color1: "F8E520", color2: "ffffff", color3: "0652BD"}, // MONTAUBAN
     184: {template: 5, color1: "F92400", color2: "FFFFFF", color3: "ffffff"}, // SION,
     200: {template: 10, color1: "ffffff", color2: "0097DB", color3: "0097DB"}, // ST-PÉTERSBOURG
@@ -58,6 +65,11 @@ app.service('Maillots', function() {
     281: {template: 2, color1: "E80300", color2: "FFFFFF", color3: "FFFFFF"}, // BRAGA
     282: {template: 3, color1: "E31818", color2: "FFFFFF", color3: "1A171B"}, // BILBAO ATHLETIC
     283: {template: 1, color1: "ffffff", color2: "ffffff", color3: "00AFE3"}, // GRANVILLE
+    284: {template: 10, color1: "E40714", color2: "439F3A", color3: "FEDF00"}, // OSTENDE
+    285: {template: 10, color1: "FFE500", color2: "11006F", color3: "11006F"}, // DOMZALE
+    286: {template: 37, color1: "24946D", color2: "ffffff", color3: "24946D"}, // KONYASPOR
+    287: {template: 1, color1: "ffffff", color2: "E41349", color3: "E41349"}, // SALZBOURG
+    288: {template: 1, color1: "ffffff", color2: "000000", color3: "000000"}, // GUIMARAES
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
