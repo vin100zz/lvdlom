@@ -49,7 +49,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
 
         // remplacants
         $scope.cfg.data.remplacants = [];
-        for (i=0; i<3; ++i) {
+        for (i=0; i<4; ++i) {
           $scope.cfg.data.remplacants.push({
             joueur: null,
             carton: '',
