@@ -91,6 +91,7 @@
 <script src="app/modules/series.js"></script>
 <script src="app/modules/statsEntraineurs.js"></script>
 <script src="app/modules/statsJoueurs.js"></script>
+<script src="app/modules/timeline.js"></script>
 <script src="app/modules/common/abstractList.js"></script>
 <script src="app/modules/common/abstractModule.js"></script>
 <script src="app/modules/debug/maillots-all.js"></script>
@@ -121,7 +122,8 @@
 
   <div class="dernier" ng-if="actu">
    <span>Dernier match :</span> <span class="caret"></span> <a
-    href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}} - {{actu.dernierMatch.clubDroite}}
+    href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}}
+    - {{actu.dernierMatch.clubDroite}} :
     {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
   </div>
   

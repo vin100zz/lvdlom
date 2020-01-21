@@ -1,0 +1,109 @@
+@import "style/variables";
+
+#page-timeline {
+
+  .timeline {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 10000px;
+    padding-left: 120px;
+    background: #ddd;
+
+    .legend {
+      position: absolute;
+      left: 0;
+
+      > * {
+        position: absolute;
+        width: 110px;
+        text-align: right;
+      }
+
+      :nth-child(1) {
+        top: 60px;
+      }
+      :nth-child(2) {
+        top: 110px;
+      }
+      :nth-child(3) {
+        top: 160px;
+      }
+    }
+
+    .saison {
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      height: 1800px;
+      padding-top: 10px;
+      border: 1px solid #aaa;
+      text-align: center;
+      
+      .title {
+        margin-bottom: 20px;
+
+        > a {
+          font-size: 13pt;
+          font-weight: bold;
+        }
+        
+      }
+
+      .ranking {
+        width: 60px;
+        height: 40px;
+        padding: 10px;
+        border: 1px solid #aaa;
+        border-radius: 10px;
+        font-size: 13pt;
+        margin: 10px 20px;
+        color: #666;
+
+        &.niveau-1 {
+          color: #fff;
+          background: #d1a231;
+          border-color: #bf942c;
+        }
+        &.niveau-2 {
+          color: #fff;
+          background: #b0b3ae;
+          border-color: #aaa;
+        }
+        &.niveau-D2 {
+          font-size: 11pt;
+          padding: 10px 0;
+        }
+      }
+    }
+
+    .joueur {
+      position: absolute;
+      text-align: center;
+      background: white;
+      box-shadow: 1px 1px 2px 1px rgba(100,100,100,0.75);
+      border-left: 5px solid;
+      padding: 5px;
+
+      a {
+        display: block;
+        font-size: 10pt;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 115%;
+      }
+
+      .stats {
+        font-size: 9pt;
+        color: #aaa;
+
+        > div {
+          position: absolute;
+          top: 40px;
+          width: 100px;
+        }
+      }
+    }
+  }
+}

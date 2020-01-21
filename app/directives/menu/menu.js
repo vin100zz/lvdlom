@@ -18,7 +18,8 @@ app.directive('lvdlomMenu', function () {
         {title: 'Adversaires', hash: 'adversaires'},
         {title: 'Séries', hash: 'series', last: true},
         {title: 'Saisons', hash: 'saisons'},
-        {title: 'Équipe-types', hash: 'equipe-types', last: true},
+        {title: 'Équipe-types', hash: 'equipe-types'},
+        {title: 'Timeline', hash: 'timeline', last: true},
         {title: 'Compétitions', hash: 'competitions'},
         {title: 'Palmarès', hash: 'palmares', last: true},
         {title: 'Avancement', hash: 'avancement'}

@@ -1,0 +1,27 @@
+<div id="page-timeline">
+
+  <div class="timeline">
+
+    <div class="legend">
+      <div>Championnat</div>
+      <div>Coupe de France</div>
+      <div>Coupe d'Europe</div>
+    </div>
+
+    <div class="saison" ng-repeat="saison in saisons">
+      <div class="title" ng-bind-html="Formatter.saison(saison.id)"></div>
+      <div class="ranking niveau-{{palmares.championnat[saison.id].niveau}}">{{palmares.championnat[saison.id].label || '-'}}</div>
+      <div class="ranking niveau-{{palmares.coupeFrance[saison.id].niveau}}">{{palmares.coupeFrance[saison.id].label || '-'}}</div>
+      <div class="ranking niveau-{{palmares.coupeEurope[saison.id].niveau}}">{{palmares.coupeEurope[saison.id].label || '-'}}</div>
+    </div>
+
+    <div class="joueur" ng-repeat="joueur in joueurs" ng-style="{{joueur.style}}">
+      <div ng-bind-html="Formatter.nomJoueurOnTwoLines(joueur)"></div>
+      <div class="stats">
+        <div ng-repeat="stat in joueur.stats" ng-style="{{stat.style}}">{{stat.value}}</div>
+      </div>
+    </div>
+      
+  </div>
+
+</div>

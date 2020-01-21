@@ -34,6 +34,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   .when('/debug/maillots-design', {templateUrl: 'app/modules/debug/maillots-design.html', controller: 'DebugMaillotsDesignCtrl', resolve: dependencies})
   .when('/debug/maillots-all/:index', {templateUrl: 'app/modules/debug/maillots-all.html', controller: 'DebugMaillotsAllCtrl', resolve: dependencies})
   .when('/saisie/:action/:type?/:id?', {templateUrl: 'app/modules/saisie/saisie.html', controller: 'SaisieCtrl', resolve: dependencies})
+  .when('/timeline', {templateUrl: 'app/modules/timeline.html', controller: 'TimelineCtrl', resolve: dependencies})
   .otherwise({redirectTo: '/anniversaire'});
 }]);
 

@@ -29,6 +29,11 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     }
     return out;
   };
+
+  this.nomJoueurOnTwoLines = function (joueur) {
+    var prenom = joueur.prenom.trim();
+    return '<a href="#joueur/' + joueur.id + '">' + (prenom ? prenom + ' ' : '') + '<br/>' + joueur.nom + '</a>';
+  };
   
   this.nomDirigeant = function (dirigeant) {
     return _this._nom(dirigeant, 'dirigeant');
