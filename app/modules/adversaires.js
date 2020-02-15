@@ -46,7 +46,7 @@
       }, {
         title: 'Bilan',
         formatter: Formatter.bilanMatchesVictoires.bind(this, $scope.maxData),
-        sorter: Sorter.bilan,
+        sorter: Sorter.bilanMatchesVictoires,
         defaultOrderDescending: true
       }, {
         title: 'M',

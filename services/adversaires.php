@@ -47,7 +47,7 @@ $adversaires = DBAccess::query
 	FROM matches
 	LEFT JOIN adversaires ON matches.Adversaire = adversaires.IdAdversaire
 	LEFT JOIN competitions ON matches.Competition = competitions.NomCompetition
-	WHERE (ButsOM = ButsAdv AND TABOM IS NULL) AND $filtresClause
+	WHERE (ButsOM = ButsAdv AND (TABOM IS NULL OR (TABOM=0 AND TABAdv=0))) AND $filtresClause
 	GROUP BY IdAdversaire) as table_nul ON table_total.IdAdversaire = table_nul.IdAdversaire
 	
 	LEFT JOIN (SELECT IdAdversaire, SUM(ButsOM) as bp, SUM(ButsAdv) as bc

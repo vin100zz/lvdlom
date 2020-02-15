@@ -58,7 +58,7 @@ $competitions = DBAccess::query
 		SELECT NomCompetition, count(*) as nbNuls
 		FROM matches, competitions
 		WHERE matches.Competition = competitions.NomCompetition
-			AND (ButsOM = ButsAdv AND TABOM IS NULL)
+			AND (ButsOM = ButsAdv AND (TABOM IS NULL OR (TABOM=0 AND TABAdv=0)))
 			AND " . Filters::getClause($filtres) . "
 		GROUP BY competitions.NomCompetition
 	) as table_nuls ON competitions.NomCompetition = table_nuls.NomCompetition

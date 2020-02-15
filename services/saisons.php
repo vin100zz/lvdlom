@@ -41,7 +41,7 @@ $saisons = DBAccess::query
 	LEFT JOIN (SELECT Saison, COUNT(*) as nbNuls
 	FROM matches
 	LEFT JOIN competitions ON matches.Competition = competitions.NomCompetition
-	WHERE (ButsOM = ButsAdv AND TABOM IS NULL) AND $filtresClause
+	WHERE (ButsOM = ButsAdv AND (TABOM IS NULL OR (TABOM=0 AND TABAdv=0))) AND $filtresClause
 	GROUP BY Saison) as table_nul ON matches.Saison = table_nul.Saison
 	
 	LEFT JOIN (SELECT Saison, COUNT(*) as nbJoueurs

@@ -64,7 +64,7 @@ $entraineurs = DBAccess::query
 		LEFT JOIN matches
 		WHERE DateMatch >= Debut AND DateMatch <= Fin
 			AND " . Filters::getClause($filtres) . "
-			AND (ButsOM = ButsAdv AND TABOM IS NULL)
+			AND (ButsOM = ButsAdv AND (TABOM IS NULL OR (TABOM=0 AND TABAdv=0)))
 			AND IdFonction=1
 		GROUP BY IdDirigeant
 	) as table_nuls ON dirigeants.IdDirigeant = table_nuls.IdDirigeant
