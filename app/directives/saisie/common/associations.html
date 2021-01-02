@@ -12,7 +12,7 @@
       <option ng-value=""></option>
     </select>
 
-    <input ng-model="association.personne" ng-if="association.type == 'J'" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(association, 'personne', dictionary.joueurs)" class="g-autocomplete"></input>
+    <input ng-model="association.personne" ng-if="association.type == 'J'" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:20" required="true" ng-blur="Widget.restrictTypeahead(association, 'personne', dictionary.joueurs)" class="g-autocomplete"></input>
 
     <input ng-model="association.personne" ng-if="association.type == 'D'" type="text" typeahead="option as option.label for option in dictionary.dirigeants | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(association, 'personne', dictionary.dirigeants)" class="g-autocomplete"></input>
 
