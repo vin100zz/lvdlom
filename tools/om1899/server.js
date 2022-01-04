@@ -53,7 +53,7 @@ app.get('/scrape', function(req, res) {
   var i=0;
   var next = function () {
     ++i;
-    if (i<=1792) {
+    if (i<=2380) {
       work(i, next);
     } else {
       fs.writeFile('output.json', JSON.stringify(result), function (err){
@@ -73,7 +73,7 @@ var updateIndex = 0;
 
 app.get('/parse', function(req, res) {
 
-  request('http://localhost:8082/lvdlom/services/joueurs.php', function (error, response, html) {
+  request('http://127.0.0.1/edsa-www/lvdlom/services/joueurs.php', function (error, response, html) {
 
     var myData = JSON.parse(html.trim());
   
@@ -129,7 +129,7 @@ app.get('/parse', function(req, res) {
 
           if (!myJoueur.idOm1899) {
             ++updateIndex;
-            var url = 'http://localhost:8082/www/lvdlom/services/om1899-id-db-update.php?idJoueur=' + myJoueur.id + '&idOm1899=' + minDist.ids[0];
+            var url = 'http://127.0.0.1/edsa-www/lvdlom/services/om1899-id-db-update.php?idJoueur=' + myJoueur.id + '&idOm1899=' + minDist.ids[0];
             setTimeout(function () {
               request(url, function(error, response, html) {
                 console.log(myJoueur.id, html);
