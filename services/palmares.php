@@ -32,7 +32,7 @@ $eur = array(
 );
 $eur_series = array("'12', '18'" => array("C1", "'Coupe des Clubs Champions', 'Ligue des Champions'"),
 					"'13'" => array("C2", "'Coupe des Vainqueurs de Coupe'"),
-					"'11', '21'" => array("C3", "'Coupe de l''UEFA', 'Ligue Europa'"),
+					"'11', '21', '26'" => array("C3/C4", "'Coupe de l''UEFA', 'Ligue Europa'"),
 					"'14'" => array("Coupe des Villes de Foire", "'Coupe des Villes de Foire'"));
 
 $cdf = array(

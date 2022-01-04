@@ -70,6 +70,14 @@ app.service('Maillots', function() {
     286: {template: 37, color1: "24946D", color2: "ffffff", color3: "24946D"}, // KONYASPOR
     287: {template: 1, color1: "ffffff", color2: "E41349", color3: "E41349"}, // SALZBOURG
     288: {template: 1, color1: "ffffff", color2: "000000", color3: "000000"}, // GUIMARAES
+    289: {template: 1, color1: "000000", color2: "E00914", color3: "E00914"}, // FRANCFORT EINTRACHT
+    290: {template: 1, color1: "BE0E1C", color2: "BE0E1C", color3: "BE0E1C"}, // ANDRÉZIEUX
+    291: {template: 1, color1: "A1CAEA", color2: "ffffff", color3: "ffffff"}, // MANCHESTER CITY
+    292: {template: 1, color1: "012267", color2: "ffffff", color3: "ffffff"}, // CANET
+    293: {template: 1, color1: "008E38", color2: "ff001e", color3: "ff001e"}, // LOKOMOTIV MOSCOU
+    294: {template: 5, color1: "EDD900", color2: "ff001e", color3: "ff001e"}, // GALATASARAY
+    295: {template: 1, color1: "3B8344", color2: "ffffff", color3: "ffffff"}, // CANNET-ROCHEVILLE
+    296: {template: 1, color1: "F40506", color2: "FBFF00", color3: "FBFF00"}, // CHAUVIGNY
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},

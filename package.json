@@ -14,5 +14,8 @@
     "grunt-include-source": "^0.6.0",
     "grunt-responsive-images": "^0.1.9",
     "grunt-spritesmith": "^6.3.0"
+  },
+  "dependencies": {
+    "gm": "^1.23.1"
   }
 }

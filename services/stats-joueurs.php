@@ -105,15 +105,16 @@ $joueurs = DBAccess::query
         WHEN 'C1' THEN 0
         WHEN 'C2' THEN 1
         WHEN 'C3' THEN 2
-        WHEN 'IN' THEN 3
-        WHEN 'FO' THEN 4
-        WHEN 'L1' THEN 5
-        WHEN 'D1' THEN 6
-        WHEN 'D2' THEN 7
-        WHEN 'CH' THEN 8
-        WHEN 'CF' THEN 9
-        WHEN 'CL' THEN 10
-        WHEN 'TC' THEN 11
+        WHEN 'C4' THEN 3
+        WHEN 'IN' THEN 4
+        WHEN 'FO' THEN 5
+        WHEN 'L1' THEN 6
+        WHEN 'D1' THEN 7
+        WHEN 'D2' THEN 8
+        WHEN 'CH' THEN 9
+        WHEN 'CF' THEN 10
+        WHEN 'CL' THEN 11
+        WHEN 'TC' THEN 12
       END
     )
 		GROUP BY IdJoueur

@@ -2,20 +2,20 @@
 
 .dir-maillot {
   position: relative;
+  transform: scale(.75);
+  margin-left: -20px;
+  margin-top: -25px;
+  margin-bottom: -25px;
 
   > div > canvas:first-of-type {
     display: none;
   }
   
-  > div > canvas:last-of-type,
-  > img {
-    zoom: 0.5;
-  }
-  
   .ecusson {
     position: absolute;
-    top: 270px;
-    left: calc(~"50% + 80px");
-    zoom: 0.1;
+    left: 120px;
+    top: 55px;
+    max-width: 35px;
+    max-height: 35px;
   }
 }

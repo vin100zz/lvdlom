@@ -53,6 +53,10 @@ class FiltreCompetition
 		{ 
 			return "SousTypeCompetition = 'C3'";
 		}
+		else if($this->_selection == "C4")
+		{ 
+			return "SousTypeCompetition = 'C4'";
+		}
 		else if($this->_selection == "CEX")
 		{ 
 			return "(TypeCompetition = 'Coupe d''Europe' AND SousTypeCompetition NOT IN ('C1', 'C2', 'C3'))";

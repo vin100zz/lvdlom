@@ -158,11 +158,12 @@ $palmares = DBAccess::query
 	    WHEN 'C1' THEN 4
 	    WHEN 'C2' THEN 5
 	    WHEN 'C3' THEN 6
-	    WHEN 'FO' THEN 7
-	    WHEN 'IN' THEN 8
-	    WHEN 'CF' THEN 9
-	    WHEN 'CL' THEN 10
-	    WHEN 'TC' THEN 11
+	    WHEN 'C4' THEN 7
+	    WHEN 'FO' THEN 8
+	    WHEN 'IN' THEN 9
+	    WHEN 'CF' THEN 10
+	    WHEN 'CL' THEN 11
+	    WHEN 'TC' THEN 12
 	  END
 ");
 
