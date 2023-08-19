@@ -255,6 +255,7 @@ else if ($type == "match") {
     $query = array();
     insertForSql($query, "IdMatch", $id);
     insertForSql($query, "MinuteBut", $buteur["minute"]);
+    insertForSql($query, "MinuteButExtra", $buteur["minuteExtra"]);
 
     // buteursomautres
     if ($buteur["csc"] == "true") {
@@ -279,6 +280,7 @@ else if ($type == "match") {
     $query = array();
     insertForSql($query, "IdMatch", $id);
     insertForSql($query, "MinuteBut", $buteur["minute"]);
+    insertForSql($query, "MinuteButExtra", $buteur["minuteExtra"]);
     insertForSql($query, "NomJoueur", $buteur["nom"]);
     insertForSql($query, "NoteBut", ($buteur["penalty"] == "true" ? "pen" : ($buteur["csc"] == "true" ? "csc" : null)));
 

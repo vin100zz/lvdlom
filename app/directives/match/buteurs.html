@@ -9,14 +9,18 @@
     <ul>
       <li ng-repeat="but in buts" ng-class="{left: but.left, right: but.right, adv: but.adv, first: but.first, last: but.last}">
         <span class="icon-but" ng-if="but.left"></span>
-        <span class="g-remark" ng-if="but.left && but.score" >{{but.score}}</span>
-        <span class="g-remark" ng-if="but.right && but.minute" >{{but.minute}}'</span>
-        
+        <span class="g-remark" ng-if="but.left && but.score">{{but.score}}</span>
+        <span class="g-remark no-margin" ng-if="but.left && but.minute">{{but.minute}}</span>
+        <span class="g-remark no-margin" ng-if="but.left && but.minuteExtra"> +{{but.minuteExtra}}</span>
+        <span class="g-remark" ng-if="but.left && but.minute">'</span>
+
         <span ng-bind-html="Formatter.nomJoueur(but)" ng-if="but.link"></span>
         <span ng-if="!but.link">{{but.nom}}</span>
         <span ng-if="but.note" class="g-remark">{{but.note}}</span>
         
-        <span class="g-remark" ng-if="but.left && but.minute" >{{but.minute}}'</span>
+        <span class="g-remark no-margin" ng-if="but.right && but.minute" >{{but.minute}}</span>
+        <span class="g-remark no-margin" ng-if="but.right && but.minuteExtra"> +{{but.minuteExtra}}</span>
+        <span class="g-remark" ng-if="but.right && but.minute">'</span>
         <span class="g-remark" ng-if="but.right && but.score" >{{but.score}}</span>
         <span class="icon-but" ng-if="but.right"></span>
      </li>

@@ -21,7 +21,7 @@ app.directive('lvdlomButeursMatch', function (Bom, Formatter) {
         var score = {om: 0, adv: 0};
         return $scope.match.buteurs.om.concat($scope.match.buteurs.omAutres).concat($scope.match.buteurs.adv)
           .sort(function (but1, but2) {
-            return parseInt(but1.minute, 10) - parseInt(but2.minute, 10);
+            return parseInt(but1.minute, 10) + (but1.minuteExtra ? parseInt(but1.minuteExtra, 10) : 0) - parseInt(but2.minute, 10) - (but2.minuteExtra ? parseInt(but2.minuteExtra, 10) : 0);
           })
           .map(function (but, index, array) {
             if (but.adv) {

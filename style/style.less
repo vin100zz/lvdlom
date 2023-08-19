@@ -33,8 +33,11 @@
 .g-remark,
 .g-remark a {
   color: @secondaryText;
-  margin: 0 5px;
   font-size: 8pt;
+
+  &:not(.no-margin) {
+    margin: 0 5px;
+  }
   
   &:first-child {
     margin-left: 0;

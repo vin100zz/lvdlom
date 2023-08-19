@@ -73,6 +73,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
         for (var i=0; i<$scope.cfg.data.butsOM; ++i) {
           $scope.cfg.data.buteursOM.push({
             minute: null,
+            minuteExtra: null,
             csc: false,
             joueur: null,
             nomCsc: '',
@@ -86,6 +87,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
         for (var i=0; i<$scope.cfg.data.butsAdv; ++i) {
           $scope.cfg.data.buteursAdv.push({
             minute: null,
+            minuteExtra: null,
             csc: false,
             nom: '',
             penalty: false

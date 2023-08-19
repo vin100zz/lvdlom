@@ -74,6 +74,7 @@ $buteursOM = DBAccess::query
     joueurs.Prenom AS prenom,
     joueurs.Nom AS nom,
     buteursom.MinuteBut AS minute,
+    buteursom.MinuteButExtra AS minuteExtra,
     buteursom.NoteBut AS note
   FROM matches, buteursom, joueurs
   WHERE buteursom.IdMatch = matches.IdMatch AND buteursom.IdJoueur = joueurs.IdJoueur AND buteursom.IdMatch = $idMatch
@@ -86,6 +87,7 @@ $buteursOMAutres = DBAccess::query
   SELECT
     buteursomautres.NomJoueur AS nom,
     buteursomautres.MinuteBut AS minute,
+    buteursomautres.MinuteButExtra AS minuteExtra,
     buteursomautres.NoteBut AS note
   FROM matches, buteursomautres
   WHERE matches.IdMatch = buteursomautres.IdMatch AND buteursomautres.IdMatch = $idMatch
@@ -98,6 +100,7 @@ $buteursAdv = DBAccess::query
   SELECT
     buteursadv.NomJoueur AS nom,
     buteursadv.MinuteBut AS minute,
+    buteursadv.MinuteButExtra AS minuteExtra,
     buteursadv.NoteBut AS note
   FROM matches, buteursadv
   WHERE matches.IdMatch = buteursadv.IdMatch AND buteursadv.IdMatch = $idMatch
