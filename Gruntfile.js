@@ -93,7 +93,7 @@ module.exports = function(grunt) {
     },
     sprite: {
       clubs: {
-        src: 'tmp/style/clubs/large/*.png',
+        src: 'style/clubs/small/*.png',
         dest: 'style/clubs/sprites/small.png',
         imgPath: 'clubs/sprites/small.png',
         destCss: 'style/clubs/sprites/small.css',
@@ -145,6 +145,6 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat', 'beep']);
-  grunt.registerTask('clubs', ['clean', 'responsive_images:clubs', 'sprite:clubs', 'default']);
+  grunt.registerTask('clubs', ['clean', 'sprite:clubs', 'default']);
   grunt.registerTask('sources', ['clean', 'responsive_images:sources', 'sprite:sources', 'default']);
 };

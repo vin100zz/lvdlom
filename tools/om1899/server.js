@@ -28,7 +28,7 @@ app.get('/scrape', function(req, res) {
           scrapped.nom = $(this).text().trim();
         });
         
-        $('.carriere').filter(function () {
+        $('.carriere tbody').filter(function () {
           $(this).children().each(function (row) {
             scrapped.carriere.push({
               saison: $($(this).children()[1]).text().trim(),
@@ -36,7 +36,7 @@ app.get('/scrape', function(req, res) {
             });
           });
         });
-        
+              
         result.push(scrapped);
         
         cb();
@@ -53,7 +53,7 @@ app.get('/scrape', function(req, res) {
   var i=0;
   var next = function () {
     ++i;
-    if (i<=2380) {
+    if (i<=2431) {
       work(i, next);
     } else {
       fs.writeFile('output.json', JSON.stringify(result), function (err){
@@ -73,7 +73,7 @@ var updateIndex = 0;
 
 app.get('/parse', function(req, res) {
 
-  request('http://127.0.0.1/edsa-www/lvdlom/services/joueurs.php', function (error, response, html) {
+  request('http://127.0.0.1/edsa-messites/lvdlom/services/joueurs.php', function (error, response, html) {
 
     var myData = JSON.parse(html.trim());
   
@@ -129,7 +129,7 @@ app.get('/parse', function(req, res) {
 
           if (!myJoueur.idOm1899) {
             ++updateIndex;
-            var url = 'http://127.0.0.1/edsa-www/lvdlom/services/om1899-id-db-update.php?idJoueur=' + myJoueur.id + '&idOm1899=' + minDist.ids[0];
+            var url = 'http://127.0.0.1/edsa-messites/lvdlom/services/om1899-id-db-update.php?idJoueur=' + myJoueur.id + '&idOm1899=' + minDist.ids[0];
             setTimeout(function () {
               request(url, function(error, response, html) {
                 console.log(myJoueur.id, html);
