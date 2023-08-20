@@ -147,4 +147,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['clean', 'less', 'cssmin', 'concat', 'beep']);
   grunt.registerTask('clubs', ['clean', 'sprite:clubs', 'default']);
   grunt.registerTask('sources', ['clean', 'responsive_images:sources', 'sprite:sources', 'default']);
+
+  // resize images (from 'large' folder):
+  // find -name '*.png' -exec magick {} -resize 18x18 ../small/{} \;
+  // grunt clubs
 };
