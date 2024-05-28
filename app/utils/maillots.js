@@ -84,6 +84,10 @@ app.service('Maillots', function() {
     300: {template: 1, color1: "FFFFFF", color2: "FFFFFF", color3: "002156"}, // TOTTENHAM
     301: {template: 4, color1: "008863", color2: "FFFFFF", color3: "FFFFFF"}, // SPORTING PORTUGAL
     302: {template: 1, color1: "00793F", color2: "FFFFFF", color3: "FFFFFF"}, // PANATHINAIKOS
+	303: {template: 33, color1: "005DAA", color2: "FFFFFF", color3: "FFFFFF"}, // BRIGHTON
+	304: {template: 1, color1: "79B1E2", color2: "FFFFFF", color3: "FFFFFF"}, // THIONVILLE
+	305: {template: 1, color1: "FCE100", color2: "1F4774", color3: "1F4774"}, // VILLARREAL
+	306: {template: 3, color1: "0067B2", color2: "000000", color3: "000000"}, // ATALANTA BERGAME
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 55, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
