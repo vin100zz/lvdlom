@@ -122,7 +122,7 @@
       $scope.saisons.forEach(saison => {
         saison.joueurs
         .sort((joueur1, joueur2) => (parseInt(joueur2.nbTit, 10) || 0) - (parseInt(joueur1.nbTit, 10) || 0))
-        .slice(0, 13)
+        .slice(0, 15)
         .forEach(joueur => {
           var knownJoueur = titulaires.find(j => j.id === joueur.id && j.lastSaison === previousSaison);
           if (!knownJoueur) {
