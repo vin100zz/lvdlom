@@ -30,9 +30,10 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return out;
   };
 
-  this.nomJoueurOnTwoLines = function (joueur) {
-    var prenom = joueur.prenom.trim();
-    return '<a href="#joueur/' + joueur.id + '">' + (prenom ? prenom + ' ' : '') + '<br/>' + joueur.nom + '</a>';
+  this.nomJoueurOrDirigeantOnTwoLines = function (personne) {
+    var link = personne.titre ? 'dirigeant' : 'joueur';
+    var prenom = personne.prenom.trim();
+    return '<a href="#' + link + '/' + personne.id + '">' + (prenom ? prenom + ' ' : '') + '<br/>' + personne.nom + '</a>';
   };
   
   this.nomDirigeant = function (dirigeant) {

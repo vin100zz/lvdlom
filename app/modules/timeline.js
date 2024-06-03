@@ -10,7 +10,7 @@
     $scope.Formatter = Formatter;
     
     $scope.saisons = [];
-    $scope.joueurs = [];
+    $scope.personnes = [];
     $scope.palmares = {championnat: [], coupeFrance: [], coupeEurope: []};
 
     var FIRST_SAISON = "1923-24";
@@ -19,7 +19,8 @@
     var Y_OFFSET = 230;
 
     var SAISON_WIDTH = 100;
-    var COLORS = {GA: '#3f51b5', DE: '#009688', MI: '#ff9800', AV: '#e91e63'};
+    var COLORS = {GA: '#3f51b5', DE: '#009688', MI: '#ff9800', AV: '#e91e63', EN: '#457596', PR: '#333'};
+    var BACKGROUND_COLORS = {GA: 'white', DE: 'white', MI: 'white', AV: 'white', EN: '#BCD2E0', PR: '#BCD2E0'};
 
     var BLOCK_X_MARGIN = 3;
     var BLOCK_Y_MARGIN = 10;
@@ -53,11 +54,11 @@
       return parseInt(saisonEnd.substr(0, 4), 10) - parseInt(saisonStart.substr(0, 4), 10);
     };
 
-    var buildTimeline = function (joueurs, poste, offset) {
+    var buildTimeline = function (joueurs, filterFn, poste, offset) {
       var rows = [];
 
       joueurs = joueurs
-      .filter(joueur => joueur.poste === poste)
+      .filter(filterFn)
       .map(joueur => {
         var rowIndex = 0;
         while (rowIndex < rows.length) {
@@ -77,7 +78,8 @@
           width: ((computeNbSaisons(joueur.firstSaison, joueur.lastSaison)+1)*SAISON_WIDTH - 2*BLOCK_X_MARGIN) + 'px',
           top: ((offset.firstRow + rowIndex)*(BLOCK_HEIGHT+BLOCK_Y_MARGIN) + Y_OFFSET)+ 'px',
           height: BLOCK_HEIGHT + 'px',
-          'border-color': COLORS[poste]
+          'border-color': COLORS[poste],
+          'background-color': BACKGROUND_COLORS[poste]
         };
 
         joueur.stats = Object.values(joueur.stats).map((stat, index) => {
@@ -118,13 +120,14 @@
 
       var previousSaison = null;
       var titulaires = [];
+      var dirigeants = [];
 
       $scope.saisons.forEach(saison => {
         saison.joueurs
         .sort((joueur1, joueur2) => (parseInt(joueur2.nbTit, 10) || 0) - (parseInt(joueur1.nbTit, 10) || 0))
         .slice(0, 15)
         .forEach(joueur => {
-          var knownJoueur = titulaires.find(j => j.id === joueur.id && j.lastSaison === previousSaison);
+          var knownJoueur = titulaires.find(j => j.id === joueur.id && (j.lastSaison === previousSaison || j.lastSaison === saison.id));
           if (!knownJoueur) {
             titulaires.push(joueur);
             titulaires[titulaires.length-1].firstSaison = saison.id;
@@ -146,6 +149,19 @@
           }
         });
 
+        saison.dirigeants
+        .filter(dirigeant => ['1', '2', '5', '6', '7', '8', '10', '12'].includes(dirigeant.idFonction))
+        .forEach(dirigeant => {
+          var knownDirigeant = dirigeants.find(d => d.id === dirigeant.id && (d.lastSaison === previousSaison || d.lastSaison === saison.id));
+          if (!knownDirigeant) {
+            dirigeants.push(dirigeant);
+            dirigeants[dirigeants.length-1].firstSaison = saison.id;
+            dirigeants[dirigeants.length-1].stats = {};
+            knownDirigeant = dirigeants[dirigeants.length-1];
+          }
+          knownDirigeant.lastSaison = saison.id;        
+        });
+
         previousSaison = saison.id;
       });
 
@@ -155,19 +171,15 @@
                         return joueur1.firstSaison - joueur2.firstSaison;
                       } 
                       return joueur1.id - joueur2.id;
-                    })
-                    .map(joueur => {
-                      var statsDisplay = Object.keys(joueur.stats).map(saison => {
-
-                      }); 
-                      return joueur;
                     });
 
       var offest = {firstRow: 0};
-      $scope.joueurs = buildTimeline(titulaires, 'GA', offest)
-                       .concat(buildTimeline(titulaires, 'DE', offest))
-                       .concat(buildTimeline(titulaires, 'MI', offest))
-                       .concat(buildTimeline(titulaires, 'AV', offest));
+      $scope.personnes = buildTimeline(titulaires, (joueur) => joueur.poste === 'GA', 'GA', offest)
+                       .concat(buildTimeline(titulaires, (joueur) => joueur.poste === 'DE', 'DE', offest))
+                       .concat(buildTimeline(titulaires, (joueur) => joueur.poste === 'MI', 'MI', offest))
+                       .concat(buildTimeline(titulaires, (joueur) => joueur.poste === 'AV', 'AV', offest))
+                       .concat(buildTimeline(dirigeants, (dirigeant) => ['1'].includes(dirigeant.idFonction), 'EN', offest))
+                       .concat(buildTimeline(dirigeants, (dirigeant) => ['2', '5', '6', '7', '8', '10', '12'].includes(dirigeant.idFonction), 'PR', offest));
 
     });
   });

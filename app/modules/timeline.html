@@ -15,10 +15,10 @@
       <div class="ranking niveau-{{palmares.coupeEurope[saison.id].niveau}}">{{palmares.coupeEurope[saison.id].label || '-'}}</div>
     </div>
 
-    <div class="joueur" ng-repeat="joueur in joueurs" ng-style="{{joueur.style}}">
-      <div ng-bind-html="Formatter.nomJoueurOnTwoLines(joueur)"></div>
+    <div class="joueur" ng-repeat="personne in personnes" ng-style="{{personne.style}}">
+      <div ng-bind-html="Formatter.nomJoueurOrDirigeantOnTwoLines(personne)"></div>
       <div class="stats">
-        <div ng-repeat="stat in joueur.stats" ng-style="{{stat.style}}">{{stat.value}}</div>
+        <div ng-repeat="stat in personne.stats" ng-style="{{stat.style}}">{{stat.value}}</div>
       </div>
     </div>
       

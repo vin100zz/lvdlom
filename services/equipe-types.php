@@ -71,11 +71,27 @@ for($i=0; $i<count($saisons); $i++)
 			AND buteursom.IdJoueur = joueurs.IdJoueur
 		GROUP BY joueurs.IdJoueur
 	");
+
+  // dirigeants
+  $yearDebut = substr($id, 0, 4);
+  $debut = $yearDebut . "-08-01";
+  $fin = (intval($yearDebut)+1) . "-06-01";
+
+  $dirigeants = DBAccess::query
+  ("
+    SELECT
+      dirigeants.IdDirigeant as id, dirigeants.Prenom as prenom, dirigeants.Nom as nom, dirige.IdFonction as idFonction, fonctions.Titre as titre
+    FROM dirigeants, dirige, fonctions
+    WHERE (Debut <= '$fin' AND (Fin IS NULL OR Fin >= '$debut'))
+      AND dirigeants.IdDirigeant = dirige.IdDirigeant
+      AND dirige.IdFonction = fonctions.IdFonction
+  ");
   
   $out[] = array(
     "id" => $id,
     "joueurs" => $joueurs,
-    "buteurs" => $buteurs
+    "buteurs" => $buteurs,
+    "dirigeants" => $dirigeants
   );
 }
 
