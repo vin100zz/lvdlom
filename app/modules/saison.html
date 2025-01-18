@@ -3,7 +3,7 @@
   <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
   
   <div class="pure-u-1 pure-u-xl-1-2">
-  
+
     <div class="pure-u-1 pure-u-lg-1-2 g-block">
       <div class="g-topbar g-main-topbar">{{saison.id}}</div>
       <div>
@@ -41,6 +41,13 @@
     <div>
       <lvdlom-documents documents="saison.documents"></lvdlom-documents>
     </div>
- </div>
+  </div>
+
+  <div ng-if="saison.commentaires" class="pure-u-1 pure-u-xl-1-1 g-block g-fixed-block g-scroll-block commentaires">
+    <div class="g-topbar"><span class="fa fa-comment"></span>Commentaires</div>
+    <div>
+      <div ng-bind-html="saison.commentaires"></div>
+    </div>
+  </div>
 
 </div>
