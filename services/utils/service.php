@@ -4,12 +4,12 @@ require_once 'utils/db.php';
 
 $lastUpdate = filemtime(DBAccess::getDbFile()) * 1000;
 
-if (file_exists("_cache.json")) {
-  $contents = file_get_contents("_cache.json");
-  $cache = json_decode($contents, true);
-} else {
+//if (file_exists("_cache.json")) {
+//  $contents = file_get_contents("_cache.json");
+//  $cache = json_decode($contents, true);
+//} else {
   $cache = array();
-}
+//}
 
 // cache invalidation
 if (!isset($cache["lastUpdate"]) || $cache["lastUpdate"] != $lastUpdate) {

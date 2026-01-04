@@ -255,7 +255,7 @@ foreach ($entraineurs as $key => $entraineur) {
 
 // ********************************************************
 // ******* HTML *******************************************
-// ********************************************************  
+// ******************************************************** 
 
 $out = array(
   "id" => $idSaison,
@@ -268,6 +268,15 @@ $out = array(
     "prev" => $prev,
     "next" => $next)
 );
+
+$text = "../documents/commentaires/saison/$idSaison/index.html";
+if (is_file($text) && $desc = implode(file($text)))
+{
+	$desc = utf8_encode($desc);
+	$desc = str_replace("@PATH@", "documents/commentaires/saison/$idSaison", $desc);
+	$out['commentaires'] = $desc;
+}
+
 respond($out);
 
 

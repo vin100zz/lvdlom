@@ -8,6 +8,7 @@ app.directive('lvdlomMenu', function () {
     templateUrl: 'app/directives/menu/menu.html',
     controller: function ($scope, $location) {
       $scope.menu = [
+        {title: 'Origines', hash: 'origines'},
         {title: 'Anniversaires', hash: 'date', last: true},
         {title: 'Joueurs', hash: 'joueurs'},
         {title: 'Stats Joueurs', hash: 'stats-joueurs'},
