@@ -1,8 +1,8 @@
 /* =============================================
-   Overlay modal
+   Overlay modal (générique — lvdlom-modal)
    ============================================= */
 
-.bio-modal-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +16,7 @@
   padding: 30px;
 }
 
-.bio-modal {
+.modal-dialog {
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
@@ -28,12 +28,12 @@
   overflow: hidden;
   letter-spacing: normal;
 }
-.bio-modal strong {
+.modal-dialog strong {
   font-weight: bold;
   color: #009ddc;
 }
 
-.bio-modal-header {
+.modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,15 +43,15 @@
   flex-shrink: 0;
 }
 
-.bio-modal-title {
+.modal-title {
   font-size: 1.05em;
 }
-.bio-modal-title .fa {
+.modal-title .fa {
   opacity: 0.7;
   margin-right: 7px;
 }
 
-.bio-modal-close {
+.modal-close {
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.7);
@@ -61,11 +61,11 @@
   padding: 0 2px;
   transition: color 0.15s;
 }
-.bio-modal-close:hover {
+.modal-close:hover {
   color: #fff;
 }
 
-.bio-modal-body {
+.modal-body {
   overflow-y: auto;
   padding: 18px 20px;
   flex: 1;

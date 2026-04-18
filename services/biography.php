@@ -5,27 +5,11 @@ set_time_limit(0); // pas de limite d'exécution PHP
 require_once 'utils/db.php';
 require_once 'utils/headers.php';
 require_once 'utils/general.php';
+require_once 'utils/ai.php';
 
-// Clé API Anthropic
 $configFile = __DIR__ . '/config.php';
 if (file_exists($configFile)) {
   require_once $configFile;
-}
-
-$provider = defined('AI_PROVIDER') ? AI_PROVIDER : 'anthropic';
-
-if ($provider === 'openai') {
-  if (!defined('OPENAI_API_KEY') || OPENAI_API_KEY === 'YOUR_OPENAI_KEY_HERE') {
-    http_response_code(500);
-    print json_encode(['error' => 'Clé API OpenAI non configurée. Modifiez services/config.php.'], JSON_UNESCAPED_UNICODE);
-    exit;
-  }
-} else {
-  if (!defined('ANTHROPIC_API_KEY') || ANTHROPIC_API_KEY === 'YOUR_API_KEY_HERE') {
-    http_response_code(500);
-    print json_encode(['error' => 'Clé API Anthropic non configurée. Modifiez services/config.php.'], JSON_UNESCAPED_UNICODE);
-    exit;
-  }
 }
 
 $idJoueur = intval(General::request('id'));
@@ -134,158 +118,18 @@ $prompt = "Tu es un expert en histoire du football et de l'Olympique de Marseill
 "Réponds UNIQUEMENT avec du JSON valide, sans texte avant ni après, au format :\n" .
 "{\n  \"biographie\": \"texte HTML\"\n}";
 
-// Appel API selon le fournisseur configuré
-if ($provider === 'openai') {
-  $model   = defined('OPENAI_MODEL') ? OPENAI_MODEL : 'gpt-4o';
-  $payload = json_encode([
-    'model'       => $model,
-    'max_completion_tokens'  => AI_MAX_TOKENS,
-    'messages'    => [
-      ['role' => 'user', 'content' => $prompt]
-    ],
-    'response_format' => ['type' => 'json_object']
-  ], JSON_UNESCAPED_UNICODE);
-
-  $headers = [
-    'Content-Type: application/json',
-    'Authorization: Bearer ' . OPENAI_API_KEY,
-    'Content-Length: ' . strlen($payload)
-  ];
-  $apiUrl  = 'https://api.openai.com/v1/chat/completions';
-  $apiName = 'OpenAI';
-} else {
-  $model   = defined('ANTHROPIC_MODEL') ? ANTHROPIC_MODEL : 'claude-opus-4-5';
-  $payload = json_encode([
-    'model'      => $model,
-    'max_tokens' => AI_MAX_TOKENS,
-    'messages'   => [
-      ['role' => 'user', 'content' => $prompt]
-    ]
-  ], JSON_UNESCAPED_UNICODE);
-
-  $headers = [
-    'Content-Type: application/json',
-    'x-api-key: ' . ANTHROPIC_API_KEY,
-    'anthropic-version: 2023-06-01',
-    'Content-Length: ' . strlen($payload)
-  ];
-  $apiUrl  = 'https://api.anthropic.com/v1/messages';
-  $apiName = 'Anthropic';
-}
-
-$timeout = defined('AI_TIMEOUT') ? AI_TIMEOUT : 180;
-
-if (function_exists('curl_init')) {
-  // Utilisation de cURL (ne dépend pas de allow_url_fopen)
-  $ch = curl_init($apiUrl);
-  curl_setopt_array($ch, [
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => $payload,
-    CURLOPT_HTTPHEADER     => $headers,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => $timeout,
-    CURLOPT_SSL_VERIFYPEER => true,
-    CURLOPT_SSL_VERIFYHOST => 2,
-  ]);
-  $response = curl_exec($ch);
-  $httpCode = intval(curl_getinfo($ch, CURLINFO_HTTP_CODE));
-  $curlError = curl_error($ch);
-  curl_close($ch);
-
-  if ($response === false || $curlError) {
-    http_response_code(500);
-    print json_encode(['error' => "Impossible de contacter l'API $apiName via cURL : $curlError"], JSON_UNESCAPED_UNICODE);
-    exit;
-  }
-} else {
-  // Fallback : file_get_contents (nécessite allow_url_fopen)
-  $context = stream_context_create([
-    'http' => [
-      'method'        => 'POST',
-      'header'        => implode("\r\n", $headers),
-      'content'       => $payload,
-      'timeout'       => $timeout,
-      'ignore_errors' => true
-    ],
-    'ssl' => [
-      'verify_peer'      => true,
-      'verify_peer_name' => true
-    ]
-  ]);
-  $response = @file_get_contents($apiUrl, false, $context);
-
-  if ($response === false) {
-    http_response_code(500);
-    print json_encode(['error' => "Impossible de contacter l'API $apiName. cURL est désactivé et allow_url_fopen est désactivé dans php.ini."], JSON_UNESCAPED_UNICODE);
-    exit;
-  }
-
-  $httpCode = 0;
-  if (isset($http_response_header)) {
-    foreach ($http_response_header as $h) {
-      if (preg_match('#HTTP/\d+\.\d+\s+(\d+)#', $h, $m)) {
-        $httpCode = intval($m[1]);
-      }
-    }
-  }
-}
-
-if ($httpCode !== 200) {
+// Appel AI générique
+try {
+  $aiResult = AI::call($prompt, ['biographie']);
+} catch (RuntimeException $e) {
   http_response_code(500);
-  print json_encode(['error' => "Erreur API $apiName (HTTP $httpCode) : $response"], JSON_UNESCAPED_UNICODE);
+  print json_encode(['error' => $e->getMessage()], JSON_UNESCAPED_UNICODE);
   exit;
 }
 
-$apiData = json_decode($response, true);
-
-// Détecter une troncature
-$truncated = false;
-if ($provider === 'openai') {
-  $finishReason = isset($apiData['choices'][0]['finish_reason']) ? $apiData['choices'][0]['finish_reason'] : '';
-  $truncated = ($finishReason === 'length');
-  $content = (isset($apiData['choices'][0]['message']['content'])) ? $apiData['choices'][0]['message']['content'] : '';
-} else {
-  $stopReason = isset($apiData['stop_reason']) ? $apiData['stop_reason'] : '';
-  $truncated = ($stopReason === 'max_tokens');
-  $content = (isset($apiData['content'][0]['text'])) ? $apiData['content'][0]['text'] : '';
-}
-
-// Si la réponse est tronquée, tenter de réparer le JSON en fermant la chaîne et l'objet
-if ($truncated) {
-  // Fermer la valeur de chaîne JSON ouverte et l'objet
-  $content = rtrim($content);
-  // Si la chaîne se termine sans guillemet fermant, ajouter "…" et fermer
-  if (substr($content, -1) !== '"' && substr($content, -1) !== '}') {
-    // Échapper les éventuels guillemets non échappés en fin de chaîne tronquée
-    // On termine proprement avec une ellipse
-    $content .= '…"}';;
-  } elseif (substr($content, -1) === '"') {
-    $content .= '}';
-  }
-}
-
-// Extraire le JSON de la réponse (au cas où Claude ajoute des backticks)
-if (preg_match('/```(?:json)?\s*(\{[\s\S]*\})\s*```/s', $content, $matches)) {
-  $content = $matches[1];
-} else {
-  // Chercher le premier { jusqu'au dernier }
-  $start = strpos($content, '{');
-  $end   = strrpos($content, '}');
-  if ($start !== false && $end !== false) {
-    $content = substr($content, $start, $end - $start + 1);
-  }
-}
-
-$biographyData = json_decode($content, true);
-
-// Si le JSON reste invalide après réparation, retourner le texte brut tronqué
-if (!is_array($biographyData) || !isset($biographyData['biographie'])) {
-  $biographyData = ['biographie' => strip_tags($content)];
-}
-
 $result = [];
-$result['biographie'] = $biographyData['biographie'];
-if ($truncated) {
+$result['biographie'] = $aiResult['data']['biographie'];
+if ($aiResult['truncated']) {
   $result['warning'] = 'La réponse a été tronquée (limite de tokens atteinte). Augmentez AI_MAX_TOKENS dans config.php.';
 }
 $result['prompt'] = $prompt; // pour debug

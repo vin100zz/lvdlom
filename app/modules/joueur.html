@@ -57,20 +57,11 @@
   </div>
 
   <!-- Modal biographie IA -->
-  <div class="bio-modal-overlay" ng-if="biographieVisible" ng-click="closeBiographie()">
-    <div class="bio-modal" ng-click="$event.stopPropagation()">
-      <div class="bio-modal-header">
-        <span class="bio-modal-title">
-          Biographie — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}
-        </span>
-        <button class="bio-modal-close" ng-click="closeBiographie()" title="Fermer">
-          <span class="fa fa-times"></span>
-        </button>
-      </div>
-      <div class="bio-modal-body">
-        <lvdlom-biographie-joueur joueur="joueur"></lvdlom-biographie-joueur>
-      </div>
-    </div>
-  </div>
+  <lvdlom-modal
+    is-open="biographieVisible"
+    title="Biographie — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}"
+    on-close="closeBiographie()">
+    <lvdlom-biographie-joueur joueur="joueur"></lvdlom-biographie-joueur>
+  </lvdlom-modal>
 
 </div>
