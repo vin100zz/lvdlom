@@ -19,7 +19,8 @@
       $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
       $scope.links = [
-        {url: '#/matches-joueur/' + joueur.id, label: 'Matches'}
+        {url: '#/matches-joueur/' + joueur.id, label: 'Matches'},
+        {fn: $scope.openBiographie, label: 'Biographie', icon: 'style/img/AI.png'}
       ];
       if (joueur.dirigeant) {
         $scope.links.push({url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'});
@@ -39,9 +40,17 @@
         prev: prev,
         next: next
       };
-      
+
     });
-   
+
+    $scope.biographieVisible = false;
+    $scope.openBiographie = function () {
+      $scope.biographieVisible = true;
+    };
+    $scope.closeBiographie = function () {
+      $scope.biographieVisible = false;
+    };
+
   });
 
 }) ();

@@ -1,0 +1,44 @@
+<div class="dir-biographie-joueur">
+
+  <!-- Génération en cours -->
+  <div class="bio-generating" ng-if="generating">
+    <span class="fa fa-spinner fa-spin"></span> Génération en cours…
+  </div>
+
+  <!-- Erreur -->
+  <div class="bio-error" ng-if="error && !generating">
+    <span class="fa fa-exclamation-triangle"></span> {{error}}
+    <button class="g-button g-button-action bio-retry-btn" ng-click="generate()">
+      <span class="fa fa-refresh"></span> Réessayer
+    </button>
+  </div>
+
+  <!-- Contenu -->
+  <div class="bio-content" ng-if="biography && !generating">
+
+    <div class="bio-text" ng-bind-html="biography.biographieHtml"></div>
+
+    <div class="bio-sources" ng-if="biography.sources && biography.sources.length">
+      <div class="bio-sources-title">
+        <span class="fa fa-book"></span> Sources
+      </div>
+      <ul>
+        <li ng-repeat="source in biography.sources">
+          <a ng-if="source.url" href="{{source.url}}" target="_blank" rel="noopener">{{source.label || source.url}}</a>
+          <span ng-if="!source.url">{{source.label || source}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="bio-footer">
+      <span class="bio-disclaimer">
+        <span class="fa fa-info-circle"></span> Biographie générée par IA — peut contenir des inexactitudes.
+      </span>
+      <button class="g-button g-button-neutral bio-regenerate-btn" ng-click="generate()">
+        <span class="fa fa-refresh"></span> Régénérer
+      </button>
+    </div>
+
+  </div>
+
+</div>

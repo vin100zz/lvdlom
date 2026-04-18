@@ -1,7 +1,7 @@
 <div class="pure-g" id="page-joueur" ng-if="joueur.id">
 
   <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-  
+
   <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
     <div class="pure-u-1 g-block">
       <div class="g-topbar g-main-topbar">
@@ -25,10 +25,12 @@
       </div>
     </div>
   </div>
-    
+
   <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
     <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-history"></span>Carrière</div>
+      <div class="g-topbar">
+        <span class="fa fa-history"></span>Carrière
+      </div>
       <div>
         <lvdlom-carriere-joueur joueur="joueur"></lvdlom-carriere-joueur>
       </div>
@@ -46,7 +48,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="pure-u-1 pure-u-xl-1-2 g-block g-fixed-block g-scroll-block">
     <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
     <div>
@@ -54,6 +56,21 @@
     </div>
   </div>
 
-   
+  <!-- Modal biographie IA -->
+  <div class="bio-modal-overlay" ng-if="biographieVisible" ng-click="closeBiographie()">
+    <div class="bio-modal" ng-click="$event.stopPropagation()">
+      <div class="bio-modal-header">
+        <span class="bio-modal-title">
+          Biographie — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}
+        </span>
+        <button class="bio-modal-close" ng-click="closeBiographie()" title="Fermer">
+          <span class="fa fa-times"></span>
+        </button>
+      </div>
+      <div class="bio-modal-body">
+        <lvdlom-biographie-joueur joueur="joueur"></lvdlom-biographie-joueur>
+      </div>
+    </div>
+  </div>
+
 </div>
-  

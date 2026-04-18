@@ -2,8 +2,9 @@
   
   <ul>
     <li ng-repeat="link in links">
-      <a href="{{link.url}}" style="background-image: url(style/img/link.png)"></a>
-      <div class="g-remark">{{link.label}}</div>      
+      <a ng-if="!link.fn && !link.action" href="{{link.url}}" style="background-image: url(style/img/link.png)"></a>
+      <a ng-if="link.fn" ng-click="link.fn()" href="" style="background-image: url({{link.icon}}); background-size: contain; background-color: transparent"></a>
+      <div class="g-remark">{{link.label}}</div>
     </li>
     
   </ul>

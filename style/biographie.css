@@ -1,0 +1,185 @@
+/* =============================================
+   Overlay modal
+   ============================================= */
+
+.bio-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(1, 19, 31, 0.75);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.bio-modal {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  letter-spacing: normal;
+}
+.bio-modal strong {
+  font-weight: bold;
+  color: #009ddc;
+}
+
+.bio-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #01131f;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.bio-modal-title {
+  font-size: 1.05em;
+}
+.bio-modal-title .fa {
+  opacity: 0.7;
+  margin-right: 7px;
+}
+
+.bio-modal-close {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 13pt;
+  line-height: 1;
+  padding: 0 2px;
+  transition: color 0.15s;
+}
+.bio-modal-close:hover {
+  color: #fff;
+}
+
+.bio-modal-body {
+  overflow-y: auto;
+  padding: 18px 20px;
+  flex: 1;
+}
+
+/* =============================================
+   Contenu biographie
+   ============================================= */
+
+.dir-biographie-joueur {
+  min-height: 60px;
+}
+
+.bio-generating {
+  text-align: center;
+  padding: 30px 0;
+  color: #999;
+  font-style: italic;
+}
+.bio-generating .fa-spinner {
+  color: #0769ad;
+  margin-right: 7px;
+  font-size: 1.3em;
+}
+
+.bio-error {
+  padding: 10px 12px;
+  color: #c62828;
+  background: #ffebee;
+  border-left: 3px solid #f44336;
+  border-radius: 2px;
+}
+.bio-error .fa {
+  margin-right: 6px;
+}
+.bio-retry-btn {
+  display: block !important;
+  margin: 10px 0 0 0 !important;
+}
+
+.bio-text {
+  line-height: 1.75em;
+  font-size: 10pt;
+  color: #333;
+}
+.bio-text p {
+  margin: 0 0 11px 0;
+}
+.bio-text p:last-child {
+  margin-bottom: 0;
+}
+.bio-text a {
+  color: #0769ad;
+  text-decoration: underline;
+}
+.bio-text a:hover {
+  color: #054f82;
+}
+
+/* Sources */
+.bio-sources {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #e7e7e7;
+}
+.bio-sources-title {
+  font-size: 9pt;
+  color: #aaa;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.bio-sources-title .fa {
+  margin-right: 5px;
+}
+.bio-sources ul {
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: disc;
+}
+.bio-sources ul li {
+  font-size: 9pt;
+  color: #666;
+  line-height: 2em;
+}
+.bio-sources ul li a {
+  color: #0769ad;
+  text-decoration: underline;
+}
+.bio-sources ul li a:hover {
+  color: #054f82;
+}
+
+/* Footer */
+.bio-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #e7e7e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bio-disclaimer {
+  font-size: 8pt;
+  color: #bbb;
+  font-style: italic;
+}
+.bio-disclaimer .fa {
+  margin-right: 4px;
+}
+.bio-regenerate-btn {
+  font-size: 9pt;
+  padding: 4px 12px !important;
+  margin-left: 0 !important;
+}

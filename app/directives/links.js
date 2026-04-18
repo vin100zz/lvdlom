@@ -6,7 +6,6 @@ app.directive('lvdlomLinks', function () {
     },
     templateUrl: 'app/directives/links.html',
     controller: function ($scope) {
-
     }
   };
 });
