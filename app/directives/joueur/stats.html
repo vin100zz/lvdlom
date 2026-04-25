@@ -34,7 +34,7 @@
           <td>{{row.total.buts || '-'}}</td>
           
           <!-- per competition -->
-          <td ng-repeat-start="comp in ['ch', 'cn', 'ce']">
+          <td ng-repeat-start="comp in ['ch', 'cn', 'ce'] track by $index">
             <span>{{row[comp].tit || '-'}}</span>
             <span class="g-remark" ng-if="row[comp].rmp > 0">({{row[comp].rmp}})</span>
           </td>
@@ -51,7 +51,7 @@
           <td>{{joueur.bilan['total'].total.buts || '-'}}</td>
           
           <!-- per competition -->
-          <td ng-repeat-start="comp in ['ch', 'cn', 'ce']">{{joueur.bilan['total'][comp].tit + joueur.bilan['total'][comp].rmp || '-'}}</td>
+          <td ng-repeat-start="comp in ['ch', 'cn', 'ce'] track by $index">{{joueur.bilan['total'][comp].tit + joueur.bilan['total'][comp].rmp || '-'}}</td>
           <td ng-repeat-end>{{joueur.bilan['total'][comp].buts || '-'}}</td>
         </tr>
       </tfoot>

@@ -17,7 +17,7 @@ $listeComp = array();
 $listeComp["ch"] = "Championnat";
 $listeComp["cn"] = "Coupe Nationale";
 $listeComp["ce"] = "Coupe d''Europe";
-$bilan = array(); // tit, rmp et buts pour chaque compétition 
+$bilan = array(); // tit, rmp et buts pour chaque compï¿½tition 
 
 foreach($listeComp as $comp => $sqlComp)
 {	
@@ -84,19 +84,15 @@ foreach($listeComp as $comp => $sqlComp)
 	");	
 }
 
-// premier et dernier match
-$firstMatch = DBAccess::singleValue
+// premier et dernier match (une seule requÃªte au lieu de deux)
+$matchRange = DBAccess::singleRow
 ("
-	SELECT MIN(DateMatch)
+	SELECT MIN(DateMatch) AS firstMatch, MAX(DateMatch) AS lastMatch
 	FROM matches
 	WHERE Saison = '$idSaison'
 ");
-$lastMatch = DBAccess::singleValue
-("
-	SELECT MAX(DateMatch)
-	FROM matches
-	WHERE Saison = '$idSaison'
-");
+$firstMatch = $matchRange['firstMatch'];
+$lastMatch  = $matchRange['lastMatch'];
 
 // dirigeants
 $dirigeants = DBAccess::query
@@ -117,7 +113,7 @@ $dirigeants = DBAccess::query
 	ORDER BY fonctions.IdFonction ASC
 ");
 
-// entraîneurs
+// entraï¿½neurs
 $entraineurs = DBAccess::query
 ("
 	SELECT
@@ -135,7 +131,7 @@ $entraineurs = DBAccess::query
 	GROUP BY dirigeants.IdDirigeant
 ");
 
-// palmarès
+// palmarï¿½s
 $palmares = DBAccess::query
 ("
 	SELECT
@@ -209,47 +205,57 @@ for($i=0; $i<count($documents); ++$i)
   $documents[$i]['path'] = Document::findPath($document['fichier']);
 }
 
-// first-last saison
-function decorateJoueurWithFirstLastSaison ($joueur, $saison, $lastSaison) {
-
-  $saisons = DBAccess::singleRow
-  ("
-    SELECT Min(Saison) as first, Max(Saison) as last
-    FROM matches, joue
-    WHERE matches.IdMatch = joue.IdMatch AND joue.IdJoueur = " . $joueur["joueur"]["id"]
-  );
-  $joueur["joueur"]["firstSaison"] = $saisons["first"] == $saison;
-  $joueur["joueur"]["lastSaison"] = $saisons["last"] == $saison && $saison != $lastSaison;
-
- return $joueur;
-}
-
 $lastSaison = DBAccess::singleValue("SELECT Max(Saison) FROM Saisons");
 
-for ($i=0; $i<count($bilanOrdonne); ++$i) {
-  $bilanOrdonne[$i] = decorateJoueurWithFirstLastSaison($bilanOrdonne[$i], $idSaison, $lastSaison);
-}
-
-
-function decorateEntraineurWithFirstLastSaison ($entraineur, $saison, $dateLastMatch) {
-
-  $saisons = DBAccess::singleRow
+// batch : first/last saison pour tous les joueurs en une seule requÃªte
+$joueurIds = array_map(function($j) { return intval($j["joueur"]["id"]); }, $bilanOrdonne);
+if (!empty($joueurIds)) {
+  $idsStr   = implode(',', $joueurIds);
+  $rows     = DBAccess::query
   ("
-    SELECT Min(Saison) as first, Max(Saison) as last, Fin as fin
-    FROM matches, dirige 
-    WHERE dirige.IdDirigeant = " . $entraineur["id"] . "
-          AND DateMatch >= Debut AND DateMatch <= Fin"
-  );
-  $entraineur["firstSaison"] = $saisons["first"] == $saison;
-  $entraineur["lastSaison"] = $saisons["last"] == $saison && $dateLastMatch > $saisons["fin"];
-
- return $entraineur;
+    SELECT joue.IdJoueur AS id, Min(Saison) AS first, Max(Saison) AS last
+    FROM matches
+    JOIN joue ON matches.IdMatch = joue.IdMatch
+    WHERE joue.IdJoueur IN ($idsStr)
+    GROUP BY joue.IdJoueur
+  ");
+  $saisonsMap = array();
+  foreach ($rows as $row) {
+    $saisonsMap[$row["id"]] = $row;
+  }
+  for ($i = 0; $i < count($bilanOrdonne); ++$i) {
+    $id = $bilanOrdonne[$i]["joueur"]["id"];
+    $bilanOrdonne[$i]["joueur"]["firstSaison"] = isset($saisonsMap[$id]) && $saisonsMap[$id]["first"] == $idSaison;
+    $bilanOrdonne[$i]["joueur"]["lastSaison"]  = isset($saisonsMap[$id]) && $saisonsMap[$id]["last"]  == $idSaison && $idSaison != $lastSaison;
+  }
 }
 
 $dateLastMatch = DBAccess::singleValue("SELECT Max(DateMatch) FROM Matches");
 
-foreach ($entraineurs as $key => $entraineur) {
-  $entraineurs[$key] = decorateEntraineurWithFirstLastSaison($entraineur, $idSaison, $dateLastMatch);
+// batch : first/last saison pour tous les entraÃ®neurs en une seule requÃªte
+$entraineurIds = array_map(function($e) { return intval($e["id"]); }, $entraineurs);
+if (!empty($entraineurIds)) {
+  $entrIdsStr = implode(',', $entraineurIds);
+  $entrRows   = DBAccess::query
+  ("
+    SELECT dirige.IdDirigeant AS id,
+           Min(Saison)        AS first,
+           Max(Saison)        AS last,
+           Max(dirige.Fin)    AS fin
+    FROM matches
+    JOIN dirige ON DateMatch >= dirige.Debut AND DateMatch <= dirige.Fin
+    WHERE dirige.IdDirigeant IN ($entrIdsStr)
+    GROUP BY dirige.IdDirigeant
+  ");
+  $entrsaisonsMap = array();
+  foreach ($entrRows as $row) {
+    $entrsaisonsMap[$row["id"]] = $row;
+  }
+  foreach ($entraineurs as $key => $entraineur) {
+    $id = $entraineur["id"];
+    $entraineurs[$key]["firstSaison"] = isset($entrsaisonsMap[$id]) && $entrsaisonsMap[$id]["first"] == $idSaison;
+    $entraineurs[$key]["lastSaison"]  = isset($entrsaisonsMap[$id]) && $entrsaisonsMap[$id]["last"]  == $idSaison && $dateLastMatch > $entrsaisonsMap[$id]["fin"];
+  }
 }
 
 
@@ -325,7 +331,7 @@ function ordonnerBilan($iJoueursArray, $iBilan)
 				
 		$aTotalJoueur = $aNewTotalJoueur;
 		
-		// détail saison
+		// dï¿½tail saison
 		foreach($iBilan as $competition => $aStatsCompetition)
 		{
 			foreach($aStatsCompetition as $aStatType => $aStatsPerJoueur)

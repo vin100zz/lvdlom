@@ -12,7 +12,7 @@
             <thead>
             </thead>
             <tbody>
-              <tr ng-repeat="match in matches" ng-class="{'new-season': match.displaySaison}">
+              <tr ng-repeat="match in matches track by match.id" ng-class="{'new-season': match.displaySaison}">
                 <td>
                   <a ng-if="match.displaySaison" href="#/saison/{{match.saison}}" class="g-remark">{{match.saison}}</a>
                 </td>

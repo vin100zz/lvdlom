@@ -1,0 +1,33 @@
+<div class="dir-documents-resume">
+
+  <!-- Génération en cours -->
+  <div class="bio-generating" ng-if="generating">
+    <span class="fa fa-spinner fa-spin"></span> Génération en cours…
+  </div>
+
+  <!-- Erreur -->
+  <div class="bio-error" ng-if="error && !generating">
+    <span class="fa fa-exclamation-triangle"></span> {{error}}
+    <button class="g-button g-button-action bio-retry-btn" ng-click="generate()">
+      <span class="fa fa-refresh"></span> Réessayer
+    </button>
+  </div>
+
+  <!-- Contenu -->
+  <div class="bio-content" ng-if="result && !generating">
+
+    <div class="bio-text" ng-bind-html="result.resumeHtml"></div>
+
+    <div class="bio-footer">
+      <span class="bio-disclaimer">
+        <span class="fa fa-info-circle"></span> Résumé généré par IA — peut contenir des inexactitudes.
+      </span>
+      <button class="g-button g-button-neutral bio-regenerate-btn" ng-click="generate()">
+        <span class="fa fa-refresh"></span> Régénérer
+      </button>
+    </div>
+
+  </div>
+
+</div>
+

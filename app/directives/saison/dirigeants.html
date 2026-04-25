@@ -2,7 +2,7 @@
 
   <div class="g-row">
     <ul>
-      <li ng-repeat="dirigeant in saison.dirigeants">
+      <li ng-repeat="dirigeant in saison.dirigeants track by dirigeant.id">
         <div ng-bind-html="Formatter.nomDirigeant(dirigeant)"></div>
         <div class="g-remark">{{dirigeant.titre}}</div>
       </li>

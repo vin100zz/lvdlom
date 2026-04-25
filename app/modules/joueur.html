@@ -64,4 +64,12 @@
     <lvdlom-biographie-joueur joueur="joueur"></lvdlom-biographie-joueur>
   </lvdlom-modal>
 
+  <!-- Modal résumé documents IA -->
+  <lvdlom-modal
+    is-open="documentsResumeVisible"
+    title="Documents — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}"
+    on-close="closeDocumentsResume()">
+    <lvdlom-documents-resume-joueur joueur="joueur"></lvdlom-documents-resume-joueur>
+  </lvdlom-modal>
+
 </div>

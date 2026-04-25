@@ -91,18 +91,18 @@ app.directive('lvdlomTable', function() {
       };
       
       // watch
-      $scope.$watch('cfg.data.list', function (newValue, oldValue) {
+      $scope.$watchCollection('cfg.data.list', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           $scope.cfg.selected.id = null;
           $scope.cfg.selected.rowIndex = null;
         }
-      }, true);
-      
+      });
+
       $scope.$watch('cfg.selected.rowIndex', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           $scope.cfg.selected.id = $scope.sortedItems[$scope.cfg.selected.rowIndex];
         }
-      }, true);
+      });
     }
   };
 });

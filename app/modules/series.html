@@ -9,7 +9,7 @@
 
   <div class="pure-u-1">
   
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="meta in metaData">
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="meta in metaData track by $index">
       <div class="g-topbar">
         <span class="fa fa-ellipsis-h"></span>
         <span>{{meta.label}} [{{series[meta.key].length}}]</span>
@@ -17,7 +17,7 @@
       <div>
         <div class="g-row">
           <ul>
-            <li ng-repeat="match in series[meta.key]">
+            <li ng-repeat="match in series[meta.key] track by match.id">
               <div>
                 <span ng-bind-html="Formatter.date(match.date)" class="g-remark"></span>
                 <span ng-bind-html="Formatter.sousTypeCompetition(match.sousTypeCompetition)"></span>

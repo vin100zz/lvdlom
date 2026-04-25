@@ -22,10 +22,12 @@ class AI {
    *
    * @param  string        $prompt   Le prompt à envoyer (doit demander une réponse JSON).
    * @param  string[]|null $keys     Clés JSON attendues dans la réponse (validation optionnelle).
+   * @param  array|null    $images   Tableau d'images à envoyer : chaque entrée est
+   *                                 ['data' => <base64>, 'media_type' => 'image/jpeg'|'image/png'|...].
    * @return array  ['data' => array, 'truncated' => bool]
    * @throws RuntimeException en cas d'erreur de configuration ou d'API.
    */
-  public static function call($prompt, $keys = null) {
+  public static function call($prompt, $keys = null, $images = null) {
     $provider = defined('AI_PROVIDER') ? AI_PROVIDER : 'anthropic';
     $timeout  = defined('AI_TIMEOUT')    ? AI_TIMEOUT    : 180;
     $maxTokens = defined('AI_MAX_TOKENS') ? AI_MAX_TOKENS : 1024;
@@ -36,10 +38,23 @@ class AI {
         throw new RuntimeException('Clé API OpenAI non configurée. Modifiez services/config.php.');
       }
       $model   = defined('OPENAI_MODEL') ? OPENAI_MODEL : 'gpt-4o';
+      // Construction du contenu (texte + images éventuelles)
+      if (!empty($images)) {
+        $contentParts = [];
+        foreach ($images as $img) {
+          $contentParts[] = [
+            'type'      => 'image_url',
+            'image_url' => ['url' => 'data:' . $img['media_type'] . ';base64,' . $img['data']]
+          ];
+        }
+        $contentParts[] = ['type' => 'text', 'text' => $prompt];
+      } else {
+        $contentParts = $prompt;
+      }
       $payload = json_encode([
         'model'                 => $model,
         'max_completion_tokens' => $maxTokens,
-        'messages'              => [['role' => 'user', 'content' => $prompt]],
+        'messages'              => [['role' => 'user', 'content' => $contentParts]],
         'response_format'       => ['type' => 'json_object']
       ], JSON_UNESCAPED_UNICODE);
       $headers = [
@@ -54,10 +69,27 @@ class AI {
         throw new RuntimeException('Clé API Anthropic non configurée. Modifiez services/config.php.');
       }
       $model   = defined('ANTHROPIC_MODEL') ? ANTHROPIC_MODEL : 'claude-opus-4-5';
+      // Construction du contenu (texte + images éventuelles)
+      if (!empty($images)) {
+        $contentParts = [];
+        foreach ($images as $img) {
+          $contentParts[] = [
+            'type'   => 'image',
+            'source' => [
+              'type'       => 'base64',
+              'media_type' => $img['media_type'],
+              'data'       => $img['data']
+            ]
+          ];
+        }
+        $contentParts[] = ['type' => 'text', 'text' => $prompt];
+      } else {
+        $contentParts = $prompt;
+      }
       $payload = json_encode([
         'model'      => $model,
         'max_tokens' => $maxTokens,
-        'messages'   => [['role' => 'user', 'content' => $prompt]]
+        'messages'   => [['role' => 'user', 'content' => $contentParts]]
       ], JSON_UNESCAPED_UNICODE);
       $headers = [
         'Content-Type: application/json',

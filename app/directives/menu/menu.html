@@ -9,7 +9,7 @@
   </div>
   
   <ul class="navigation">
-    <li ng-repeat="item in menu" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
+    <li ng-repeat="item in menu track by item.hash" ng-class="{'sep': item.last == true, 'selected': isCurrentHash(item.hash)}">
       <a href="{{'#' + item.hash}}" ng-click="hideMenu()">{{item.title}}</a>
     </li>
   </ul>

@@ -7,7 +7,7 @@
    
   <div class="g-row row-buteurs">
     <ul>
-      <li ng-repeat="but in buts" ng-class="{left: but.left, right: but.right, adv: but.adv, first: but.first, last: but.last}">
+      <li ng-repeat="but in buts track by $index" ng-class="{left: but.left, right: but.right, adv: but.adv, first: but.first, last: but.last}">
         <span class="icon-but" ng-if="but.left"></span>
         <span class="g-remark" ng-if="but.left && but.score">{{but.score}}</span>
         <span class="g-remark no-margin" ng-if="but.left && but.minute">{{but.minute}}</span>

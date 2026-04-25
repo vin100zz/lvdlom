@@ -115,6 +115,7 @@ $prompt = "Tu es un expert en histoire du football et de l'Olympique de Marseill
 "carrière à l'OM avec saisons importantes, style de jeu, moments marquants, palmarès, " .
 "et parcours après l'OM (si connu). Enrichis avec tes connaissances générales sur ce joueur si tu en as. " .
 "Sois précis, factuel, et évite la spéculation excessive.\n\n" .
+"Utilise des balises <strong> pour quelques mots/concepts clés les plus importants.\n" .
 "Réponds UNIQUEMENT avec du JSON valide, sans texte avant ni après, au format :\n" .
 "{\n  \"biographie\": \"texte HTML\"\n}";
 

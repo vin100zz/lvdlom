@@ -6,7 +6,7 @@
 
   <div class="g-row">
     <ul>
-      <li ng-repeat="row in saison.palmares">
+      <li ng-repeat="row in saison.palmares track by $index">
         <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.nomCompetition}}</span></div>
         <div class="g-remark">{{row.bilan}}</div>
       </li>

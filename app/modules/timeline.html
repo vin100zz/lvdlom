@@ -8,17 +8,17 @@
       <div>Coupe d'Europe</div>
     </div>
 
-    <div class="saison" ng-repeat="saison in saisons">
+    <div class="saison" ng-repeat="saison in saisons track by saison.id">
       <div class="title" ng-bind-html="Formatter.saison(saison.id)"></div>
       <div class="ranking niveau-{{palmares.championnat[saison.id].niveau}}">{{palmares.championnat[saison.id].label || '-'}}</div>
       <div class="ranking niveau-{{palmares.coupeFrance[saison.id].niveau}}">{{palmares.coupeFrance[saison.id].label || '-'}}</div>
       <div class="ranking niveau-{{palmares.coupeEurope[saison.id].niveau}}">{{palmares.coupeEurope[saison.id].label || '-'}}</div>
     </div>
 
-    <div class="joueur" ng-repeat="personne in personnes" ng-style="{{personne.style}}">
+    <div class="joueur" ng-repeat="personne in personnes track by $index" ng-style="{{personne.style}}">
       <div ng-bind-html="Formatter.nomJoueurOrDirigeantOnTwoLines(personne)"></div>
       <div class="stats">
-        <div ng-repeat="stat in personne.stats" ng-style="{{stat.style}}">{{stat.value}}</div>
+        <div ng-repeat="stat in personne.stats track by $index" ng-style="{{stat.style}}">{{stat.value}}</div>
       </div>
     </div>
       

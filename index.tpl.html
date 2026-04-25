@@ -51,7 +51,7 @@
   <div class="prochain" ng-if="actu">
    <span>Prochains matches :</span>
    <ul>
-    <li ng-repeat="prochainMatch in actu.prochainsMatches"><span
+    <li ng-repeat="prochainMatch in actu.prochainsMatches track by prochainMatch.id"><span
      class="caret"></span>
      <div class="match">
       {{prochainMatch.match}}<span class="tele">{{prochainMatch.date}},

@@ -5,7 +5,7 @@
       <li>
         <div class="g-remark">Entraîneur<span ng-if="entraineurs.length > 1">s</span></div>
       </li>
-      <li ng-repeat="entraineur in entraineurs">
+      <li ng-repeat="entraineur in entraineurs track by entraineur.id">
         <div>
           <span ng-bind-html="'E' | format:'fonction'"></span>
           <span ng-bind-html="Formatter.nomDirigeant(entraineur)" ng-class="{'g-highlight-first': entraineur.firstSaison, 'g-highlight-last': entraineur.lastSaison}"></span>
@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in joueurs">
+        <tr ng-repeat="row in joueurs track by row.joueur.id">
           <td>
             <span ng-bind-html="row.joueur.poste | format:'poste'"></span>
             <span ng-bind-html="Formatter.nomJoueur(row.joueur)" ng-class="{'g-highlight-first': row.joueur.firstSaison, 'g-highlight-last': row.joueur.lastSaison}"></span>

@@ -20,8 +20,10 @@ function htmlToUtf8 ($input) {
 
 $prochainsMatches = array();
 
-$htmlSource = file_get_contents('http://www.footmarseille.com');
-preg_match_all("/div class=\"affichematch\">(.*?)div/", $htmlSource, $htmlNextGame, PREG_SET_ORDER);
+$context = stream_context_create(['http' => ['timeout' => 5]]);
+$htmlSource = @file_get_contents('http://www.footmarseille.com', false, $context);
+if ($htmlSource) {
+  preg_match_all("/div class=\"affichematch\">(.*?)div/", $htmlSource, $htmlNextGame, PREG_SET_ORDER);
 
 for($i = 1; $i < count($htmlNextGame); ++$i)
 {
@@ -41,6 +43,7 @@ for($i = 1; $i < count($htmlNextGame); ++$i)
     
     $prochainsMatches[] = array("match" => htmlToUtf8($equipes), "date" => $date, "tele" => htmlToUtf8($tele));
   }
+}
 }
 
 

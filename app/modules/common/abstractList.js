@@ -31,27 +31,29 @@ var AbstractListCtrl = function ($scope, $injector, Loading, Filter, pageTitle) 
   };
   $scope.maxData = {value: computeMax($scope.data.list)};
   
-  $scope.$watch('data.list', function (newValue, oldValue) {
+  $scope.$watchCollection('data.list', function (newValue, oldValue) {
     if (newValue !== oldValue) {
       $scope.maxData.value = computeMax(newValue);
     }
-  }, true);
-  
+  });
+
   // selection
   $scope.selected = {id: null, rowIndex: null};
   $scope.selectionTpl = '';
   $scope.selectionLink = null;
   
-  // keyboard shortcut
+  // keyboard shortcut — $apply uniquement quand la sélection change réellement
   window.onkeydown = function (evt) {
     if (evt.target.tagName.toLowerCase() !== 'input' ) {
-      evt.preventDefault();
       if (evt.which === 40 && $scope.selected.rowIndex < $scope.data.list.length - 1) {
+        evt.preventDefault();
         ++$scope.selected.rowIndex;
+        $scope.$apply();
       } else if (evt.which === 38 && $scope.selected.rowIndex > 0) {
+        evt.preventDefault();
         --$scope.selected.rowIndex;
+        $scope.$apply();
       }
-      $scope.$apply();
     }
   };
   

@@ -2,7 +2,7 @@
 
   <div class="g-row" ng-if="joueur.palmares.length > 0">
     <ul>
-      <li ng-repeat="row in joueur.palmares" class="trophy-{{row.titre}}">
+      <li ng-repeat="row in joueur.palmares track by $index" class="trophy-{{row.titre}}">
         <div ng-bind-html="Formatter.saison(row.saison)" class="g-remark"></div>
         <div>
           <span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span>

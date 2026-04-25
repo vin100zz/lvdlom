@@ -5,7 +5,7 @@
   // API
   app.factory('Matches', function ($resource) {
     return $resource('services/matches.php', {}, {
-      get: {method: 'GET', isArray: true, cache: false}
+      get: {method: 'GET', isArray: true, cache: true}
     });
   });
   
@@ -96,13 +96,13 @@
     };
     var totalsBpBc = {value: computeTotalsBpBc($scope.data.list)};
     
-    $scope.$watch('data.list', function (newValue, oldValue) {
+    $scope.$watchCollection('data.list', function (newValue, oldValue) {
       if (newValue !== oldValue) {
         totalsVnd.value = computeTotalsVnd(newValue);
         totalsBpBc.value = computeTotalsBpBc(newValue);
       }
-    }, true);
-    
+    });
+
     $scope.chartCfg = {
       main: {
         data: totalsVnd,

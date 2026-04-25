@@ -2,7 +2,7 @@
   
   <div class="pure-u-1">
 
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block overview" ng-repeat="avancement in avancements" ng-click="switchView($index)">
+    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block overview" ng-repeat="avancement in avancements track by $index" ng-click="switchView($index)">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>{{avancement.title}}</div>
       <div>
         <div class="g-row" style="color: {{avancement.color}}">
@@ -23,13 +23,13 @@
       </div>
     </div>
 
-    <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="currentView == $index">
+    <div class="pure-u-1 g-block" ng-repeat="avancement in avancements track by $index" ng-if="currentView == $index">
       <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Documents - {{avancement.title}}</div>
       <div>
         <ul class="detail-completion">
           <li ng-repeat="(key, items) in avancement.groups">
             <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
-            <div ng-repeat="item in items" ng-class="{'with-doc': item.nbDocs > 0}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
+            <div ng-repeat="item in items track by item.id" ng-class="{'with-doc': item.nbDocs > 0}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
               <a href="#/{{avancement.link}}/{{item.id}}">{{item.nbDocs || '-'}}</a>
             </div>
           </li>
@@ -38,13 +38,13 @@
     </div>
   </div>
 
-  <div class="pure-u-1 g-block" ng-repeat="avancement in avancements" ng-if="avancement.showIdData && currentView == $index">
+  <div class="pure-u-1 g-block" ng-repeat="avancement in avancements track by $index" ng-if="avancement.showIdData && currentView == $index">
     <div class="g-topbar"><span class="fa fa-{{avancement.icon}}"></span>Identité - {{avancement.title}}</div>
     <div>
       <ul class="detail-completion">
         <li ng-repeat="(key, items) in avancement.groups">
           <div class="g-remark key">{{avancement.keyDisplayFn(key)}}</div>
-          <div ng-repeat="item in items" ng-class="{'with-doc': item.hasIdDoc}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
+          <div ng-repeat="item in items track by item.id" ng-class="{'with-doc': item.hasIdDoc}" tooltip="{{item.tooltip}}" tooltip-append-to-body="true" tooltip-class="g-tooltip">
             <a href="#/{{avancement.link}}/{{item.id}}">&nbsp;</a>
           </div>
         </li>

@@ -15,10 +15,28 @@ $filtres = array(new FiltrePeriode(),
                  new FiltreFormeAuClub(),
                  new FiltreLieuNaissance());
 
-// SQL
+// clause calculée une seule fois
+$clause = Filters::getClause($filtres);
+
+// SQL — les CTEs filtered_joue et filtered_buts centralisent le filtrage
+// pour éviter de répéter la clause WHERE 5 fois dans la même requête
 $joueurs = DBAccess::query
 ("
-	SELECT
+  WITH filtered_joue AS (
+    SELECT joue.IdJoueur AS IdJoueur, joue.IdMatch AS IdMatch, matches.Saison AS Saison
+    FROM joue
+    JOIN matches ON joue.IdMatch = matches.IdMatch
+    JOIN joueurs ON joue.IdJoueur = joueurs.IdJoueur
+    WHERE $clause
+  ),
+  filtered_buts AS (
+    SELECT buteursom.IdJoueur AS IdJoueur
+    FROM buteursom
+    JOIN matches ON buteursom.IdMatch = matches.IdMatch
+    JOIN joueurs ON buteursom.IdJoueur = joueurs.IdJoueur
+    WHERE $clause
+  )
+  SELECT
     joueurs.IdJoueur AS id,
     Nom AS nom,
     Prenom AS prenom,
@@ -30,75 +48,56 @@ $joueurs = DBAccess::query
     nbButs,
     titres
   
-	FROM joueurs
-  
+  FROM joueurs
+
   LEFT JOIN
    (SELECT joueurs.IdJoueur AS id, (strftime('%Y', Min(DateMatch)) || '-' || strftime('%Y', Max(DateMatch))) as Periode
     FROM joueurs, joue, matches
     WHERE joue.IdJoueur = joueurs.IdJoueur AND joue.IdMatch = matches.IdMatch
-    GROUP BY joueurs.IdJoueur) AS table_periode ON joueurs.IdJoueur = table_periode.id	
-	
-	LEFT JOIN
-	(
-		SELECT joueurs.IdJoueur AS id, COUNT(*) as nbMatches
-		FROM joue
-		JOIN matches ON joue.IdMatch = matches.IdMatch 
-		JOIN joueurs ON joue.IdJoueur = joueurs.IdJoueur
-		WHERE " . Filters::getClause($filtres) . "
-		GROUP BY joueurs.IdJoueur
-	) as table_joue ON joueurs.IdJoueur = table_joue.id
-		
-	LEFT JOIN
-	(
-		SELECT joueurs.IdJoueur AS id, COUNT(*) as nbButs
-		FROM buteursom
-		JOIN matches ON buteursom.IdMatch = matches.IdMatch 
-		JOIN joueurs ON buteursom.IdJoueur = joueurs.IdJoueur
-		WHERE " . Filters::getClause($filtres) . "
-		GROUP BY joueurs.IdJoueur
-	) as table_buts ON joueurs.IdJoueur = table_buts.id
-	
-	LEFT JOIN
-	(
-		SELECT IdJoueur AS id, COUNT(*) as nbSaisons
-		FROM
-		(
-			SELECT DISTINCT joueurs.IdJoueur AS IdJoueur, Saison
-			FROM matches
-			JOIN joue ON joue.IdMatch = matches.IdMatch
-			JOIN joueurs ON joue.IdJoueur = joueurs.IdJoueur
-			WHERE " . Filters::getClause($filtres) . "
-		)
-		GROUP BY IdJoueur
-	) as table_saisons ON joueurs.IdJoueur = table_saisons.id
-	
-	LEFT JOIN
-	(
-		SELECT IdJoueur AS id, group_concat(SousTypeCompetition) as titres
-		FROM
+    GROUP BY joueurs.IdJoueur) AS table_periode ON joueurs.IdJoueur = table_periode.id
+
+  LEFT JOIN
+  (
+    SELECT IdJoueur as id, COUNT(*) as nbMatches
+    FROM filtered_joue
+    GROUP BY IdJoueur
+  ) as table_joue ON joueurs.IdJoueur = table_joue.id
+
+  LEFT JOIN
+  (
+    SELECT IdJoueur as id, COUNT(*) as nbButs
+    FROM filtered_buts
+    GROUP BY IdJoueur
+  ) as table_buts ON joueurs.IdJoueur = table_buts.id
+
+  LEFT JOIN
+  (
+    SELECT IdJoueur as id, COUNT(*) as nbSaisons
+    FROM (SELECT DISTINCT IdJoueur, Saison FROM filtered_joue)
+    GROUP BY IdJoueur
+  ) as table_saisons ON joueurs.IdJoueur = table_saisons.id
+
+  LEFT JOIN
+  (
+    SELECT IdJoueur AS id, group_concat(SousTypeCompetition) as titres
+    FROM
     (
       SELECT * FROM
       (
-        SELECT DISTINCT joueurs.IdJoueur, palmares.Saison, SousTypeCompetition
+        SELECT DISTINCT filtered_joue.IdJoueur, palmares.Saison, SousTypeCompetition
         FROM palmares
         JOIN competitions ON competitions.IdCompetition = palmares.IdCompetition
-        JOIN joue ON palmares.Match1 = joue.IdMatch
-        JOIN matches ON joue.IdMatch = matches.IdMatch
-        JOIN joueurs ON joue.IdJoueur = joueurs.IdJoueur
+        JOIN filtered_joue ON palmares.Match1 = filtered_joue.IdMatch
         WHERE palmares.titre = 1
-          AND " . Filters::getClause($filtres) . "
-        
+
         UNION
-        
-        SELECT DISTINCT joueurs.IdJoueur, palmares.Saison, SousTypeCompetition
+
+        SELECT DISTINCT filtered_joue.IdJoueur, palmares.Saison, SousTypeCompetition
         FROM palmares
         JOIN competitions ON competitions.IdCompetition = palmares.IdCompetition
-        JOIN matches ON matches.Saison = palmares.Saison
-        JOIN joue ON matches.IdMatch = joue.IdMatch
-        JOIN joueurs ON joue.IdJoueur = joueurs.IdJoueur
+        JOIN filtered_joue ON filtered_joue.Saison = palmares.Saison
         WHERE typecompetition='Championnat'
           AND palmares.titre = 1
-          AND " . Filters::getClause($filtres) . "
       )
       ORDER BY
         CASE SousTypeCompetition
@@ -115,12 +114,12 @@ $joueurs = DBAccess::query
         WHEN 'CF' THEN 10
         WHEN 'CL' THEN 11
         WHEN 'TC' THEN 12
-      END
+        END
     )
-		GROUP BY IdJoueur
-	) as table_palmares ON joueurs.IdJoueur = table_palmares.id
-	
-	WHERE nbMatches > 0
+    GROUP BY IdJoueur
+  ) as table_palmares ON joueurs.IdJoueur = table_palmares.id
+
+  WHERE nbMatches > 0
 ");
 
 

@@ -22,6 +22,9 @@
         {url: '#/matches-joueur/' + joueur.id, label: 'Matches'},
         {fn: $scope.openBiographie, label: 'Biographie', icon: 'style/img/AI.png'}
       ];
+      if (joueur.documents && joueur.documents.length) {
+        $scope.links.push({fn: $scope.openDocumentsResume, label: 'Documents', icon: 'style/img/AI.png'});
+      }
       if (joueur.dirigeant) {
         $scope.links.push({url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'});
       };
@@ -49,6 +52,14 @@
     };
     $scope.closeBiographie = function () {
       $scope.biographieVisible = false;
+    };
+
+    $scope.documentsResumeVisible = false;
+    $scope.openDocumentsResume = function () {
+      $scope.documentsResumeVisible = true;
+    };
+    $scope.closeDocumentsResume = function () {
+      $scope.documentsResumeVisible = false;
     };
 
   });
