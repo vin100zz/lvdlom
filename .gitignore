@@ -10,3 +10,5 @@ tmp/
 om.db3
 documents/
 services/_cache.json
+services/secrets.php
+
