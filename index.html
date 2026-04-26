@@ -137,11 +137,10 @@
   <div class="prochain" ng-if="actu">
    <span>Prochains matches :</span>
    <ul>
-    <li ng-repeat="prochainMatch in actu.prochainsMatches track by prochainMatch.id"><span
+    <li ng-repeat="prochainMatch in actu.prochainsMatches track by $index"><span
      class="caret"></span>
      <div class="match">
-      {{prochainMatch.match}}<span class="tele">{{prochainMatch.date}},
-       {{prochainMatch.tele}}</span>
+      <span class="tele">{{prochainMatch.date}}</span>
      </div></li>
    </ul>
   </div>
