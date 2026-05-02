@@ -1,50 +1,232 @@
 @import "style/variables";
 
 .dir-fiche-match {
-  text-align: center;
+  background: url('img/header_background.png') center center / cover no-repeat,
+              linear-gradient(150deg, #1e2e50 0%, #0f1b32 100%);
+  border-radius: 6px;
+  padding: 18px 16px 16px;
+  color: #fff;
 
-  .row-score {
-  
-    > div {
-      width: 33.33%;
-      height: 100px;
-      vertical-align: middle;
-    }
-  
-    .club {
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-    }
-    
-    .score-container {
-      width: 70px;
-      margin: auto;
-      color: @secondaryText;
-      border-radius: 5px;
-      border: 1px solid @lightBorder;
-      text-align: center;
-      
-      .plain {
-        line-height: 34px;
-        font-size: 22pt;
-      }
-      
-      .rq {
-        line-height: 20px;
-        border-top: 1px dashed @lightBorder;
-      }
-    }  
+  /* ─── Conteneur principal ─── */
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  
-  .row-equipes {
-    margin-top: 15px !important;
-    
-    > div {
-      width: 33%;
+
+  /* ─── Équipes ─── */
+  .hero-team {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .hero-team-visual {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Logo club */
+  .hero-club-logo {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  /* Nom club */
+  .hero-club-name {
+    font-family: "Lvdlom-Bold";
+    font-size: 15pt;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    text-align: center;
+  }
+
+  /* ─── Maillots ─── */
+  .hero-maillot-lg {
+    flex-shrink: 0;
+    width: 130px;
+    height: 130px;
+    position: relative;  /* contient l'ecusson absolu */
+    overflow: hidden;
+
+    /* AngularJS génère un élément custom inline → forcer block */
+    lvdlom-maillot {
+      display: block;
+      width: 130px;
+      height: 130px;
+    }
+
+    .dir-maillot {
+      margin-left: 0;
+      width: 130px;
+      height: 130px;
+      position: relative;
+
+      /* Template canvas (caché) + jersey canvas + OM img */
+      > div > canvas:first-of-type {
+        display: none;
+      }
+
+      canvas,
+      > img {
+        width: 130px;
+        height: 130px;
+        display: block;
+      }
+
+      /* Le logo est affiché séparément en grand →
+         un petit ecusson est superposé sur le maillot au niveau du cœur */
+      .ecusson {
+        display: block;
+        position: absolute;
+        left: 72px;
+        top: 32px;
+        width: 20px;
+        height: 20px;
+        max-width: 28px;
+        max-height: 28px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  /* ─── Centre ─── */
+  .hero-center {
+    flex: 0 0 auto;
+    min-width: 160px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .hero-comp-bar {
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    white-space: nowrap;
+
+    .g-badge {
+      margin-right: 5px;
+      vertical-align: middle;
+      opacity: 0.85;
+    }
+    .hero-comp-nom {
+      color: rgba(255,255,255,0.75);
+    }
+    a {
+      font-size: inherit;
+      color: rgba(255,255,255,0.5);
+      &:hover { color: rgba(255,255,255,0.8); text-decoration: none; }
+    }
+  }
+
+  .hero-score {
+    font-family: "Lvdlom-Bold";
+    font-size: 56pt;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+  .hero-score-sep {
+    font-size: 38pt;
+    opacity: 0.3;
+    margin: 0 15px;
+    letter-spacing: 0;
+  }
+
+  .hero-rq {
+    font-size: 13pt;
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-meta {
+    margin-top: 10px;
+    font-size: 9pt;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+
+    .fa { margin-right: 3px; }
+
+    & + .hero-meta {
+      margin-top: 2px;
+    }
+  }
+
+  .hero-saison {
+    margin-top: 5px;
+    font-size: 8pt;
+    color: rgba(255,255,255,0.3);
+
+    a {
+      color: rgba(255,255,255,0.35);
+      &:hover { color: rgba(255,255,255,0.7); text-decoration: none; }
     }
   }
 }
 
 
-  
+/* ─── Tablette ─── */
+@media (max-width: 1023px) {
+  .dir-fiche-match {
+    .hero-maillot-lg,
+    .hero-maillot-lg lvdlom-maillot,
+    .hero-maillot-lg .dir-maillot,
+    .hero-maillot-lg .dir-maillot > div > canvas:not(:first-of-type),
+    .hero-maillot-lg .dir-maillot > img {
+      width: 100px;
+      height: 100px;
+    }
+    .hero-club-logo { width: 52px; height: 52px; }
+    .hero-score { font-size: 42pt; }
+    .hero-score-sep { font-size: 28pt; }
+    .hero-center { padding: 0 12px; }
+  }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 767px) {
+  .dir-fiche-match {
+    padding: 14px 10px 12px;
+
+    .hero-inner {
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-team {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .hero-club-name { font-size: 10pt; }
+
+    .hero-maillot-lg,
+    .hero-maillot-lg lvdlom-maillot,
+    .hero-maillot-lg .dir-maillot,
+    .hero-maillot-lg .dir-maillot > div > canvas:not(:first-of-type),
+    .hero-maillot-lg .dir-maillot > img {
+      width: 80px;
+      height: 80px;
+    }
+    .hero-club-logo { width: 44px; height: 44px; }
+    .hero-score { font-size: 40pt; }
+    .hero-score-sep { font-size: 26pt; }
+    .hero-center { padding: 0; width: 100%; }
+    .hero-meta { white-space: normal; }
+  }
+}

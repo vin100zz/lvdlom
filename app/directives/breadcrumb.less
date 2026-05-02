@@ -1,18 +1,24 @@
 @import "style/variables";
 
-.dir-breadcrumb  {
-	padding: 0 10px 5px 10px;
+.dir-breadcrumb {
+  padding: 0 8px 6px 8px;
+  line-height: 30px;
 
   > div {
     position: relative;
-    height: 20px;
-    padding: 4px;
-    background: @breadcrumbBackground;
+    height: 24px;
+    padding: 4px 8px;
+    border-radius: 5px;
     text-align: center;
   }
   > div,
   > div a {
     color: @secondaryReversedText;
+    font-size: 9pt;
+  }
+  > div a:hover {
+    color: @menuBackground;;
+    text-decoration: none;
   }
   .prev,
   .next {
@@ -20,7 +26,7 @@
     top: 0;
     bottom: 0;
     padding: 4px 0;
-    
+
     .fa {
       margin: 0 5px;
       font-size: 0.75em;

@@ -1,31 +1,43 @@
 <div class="dir-fiche-match" ng-if="match.id">
+  <div class="hero-inner">
 
-  <div class="g-row row-score">
-    <div class="club" style="background-image: url({{Picture.club(left.id)}})"></div>
-    <div class="score">
-      <div class="score-container">
-        <div class="plain">{{left.buts}}-{{right.buts}}</div>
-        <div class="rq" ng-show="match.fiche.rqScore !== ''">{{rqScore}}</div>
+    <!-- Équipe gauche -->
+    <div class="hero-team">
+      <div class="hero-team-visual">
+        <div class="hero-maillot-lg"><lvdlom-maillot cfg="left.maillot"></lvdlom-maillot></div>
+        <div class="hero-club-logo" style="background-image: url({{Picture.club(left.id)}})"></div>
+      </div>
+      <div class="hero-club-name">{{left.nom}}</div>
+    </div>
+
+    <!-- Centre : compétition + score + meta -->
+    <div class="hero-center">
+      <div class="hero-comp-bar">
+        <span ng-bind-html="Formatter.sousTypeCompetition(match.competition.sousType)"></span>
+        <span class="hero-comp-nom">{{match.competition.nom}}</span>
+        <span ng-if="match.fiche.niveau"> · {{match.fiche.niveau}}</span>
+        <span ng-bind-html="' · ' + Formatter.saison(match.fiche.saison, 'Saison')"></span>
+      </div>
+      <div class="hero-score">{{left.buts}}<span class="hero-score-sep">-</span>{{right.buts}}</div>
+      <div class="hero-rq" ng-show="match.fiche.rqScore !== ''">{{rqScore}}</div>
+      <div class="hero-meta">
+        <span>{{match.fiche.date | format:'dateLong'}}</span>
+      </div>
+      <div class="hero-meta">
+        <span>{{match.fiche.lieu}}</span>
+        <span ng-if="match.fiche.spectateurs > 0"> · {{match.fiche.spectateurs | number}} spectateurs</span>
+        <span ng-if="match.fiche.jyEtais"> · <span class="fa fa-child"></span> {{match.fiche.jyEtais}}</span>
       </div>
     </div>
-    <div class="club" style="background-image: url({{Picture.club(right.id)}})"></div>
-  </div>
-  
-  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
-    <div>
-      <div>{{match.fiche.date | format:'dateLong'}}</div>
-      <div><span ng-bind-html="match.competition.sousType | format:'sousTypeCompetition'"></span><span>{{match.competition.nom}}</span></div>
-      <div>{{match.fiche.niveau}}</div>
+
+    <!-- Équipe droite -->
+    <div class="hero-team">
+      <div class="hero-team-visual">
+        <div class="hero-club-logo" style="background-image: url({{Picture.club(right.id)}})"></div>
+        <div class="hero-maillot-lg"><lvdlom-maillot cfg="right.maillot"></lvdlom-maillot></div>
+      </div>
+      <div class="hero-club-name">{{right.nom}}</div>
     </div>
-    <div>
-      <div ng-bind-html="Formatter.saison(match.fiche.saison, 'Saison')"></div>
-      <div>{{match.fiche.lieu}}</div>
-      <div ng-show="match.fiche.spectateurs > 0">{{match.fiche.spectateurs}} spectateurs</div>
-    </div>
+
   </div>
-  
-  <div class="g-row row-jyetais" ng-if="match.fiche.jyEtais" >
-    <div><span class="fa fa-lg g-fa fa-child"></span>{{match.fiche.jyEtais}}</div>
-  </div>
-  
 </div>

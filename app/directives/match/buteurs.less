@@ -2,36 +2,38 @@
 
 .dir-buteurs-match {
 
-  .row-maillots {    
+  .row-maillots {
     text-align: center;
 
     > div {
       display: table-cell;
     }
   }
-  
+
   .row-buteurs {
-    
+
     li {
-      padding: 0 5px;
+      padding: 1px 6px;
       display: block !important;
-      
+      line-height: 20px;
+
       &.right {
         text-align: right;
       }
       &.adv {
         background: @alternateBackground;
       }
-      
+
       &.first {
-        padding-top: 3px;
+        padding-top: 4px;
       }
       &.last {
-        padding-bottom: 3px;
+        padding-bottom: 4px;
       }
-      
+
       &.first.adv {
         border-top: 1px solid @tableBorder;
+        border-radius: 0;
       }
       &.last.adv {
         border-bottom: 1px solid @tableBorder;

@@ -3,7 +3,7 @@
 /* FIXME */
 .pure-u-1 {
   letter-spacing: inherit;
-  
+
   > * {
     letter-spacing: normal;
   }
@@ -16,91 +16,100 @@
 /* Blocks */
 .g-block {
   position: relative;
-  padding: 10px;
+  padding: 8px;
   line-height: 22px;
 
   > div {
     background: @boxBackground;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
+    border: 1px solid @tableBorder;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(26,39,68,0.06);
     padding: 10px;
     overflow-x: auto;
     overflow-y: hidden;
-    
+
     /* Top bar */
-		&.g-topbar {
-		  line-height: 26px;
-		  padding: 0 10px;
-		  background-color: @breadcrumbBackground;
-		  color: white;
+    &.g-topbar {
+      line-height: 28px;
+      padding: 0 12px;
+      background-color: @menuBackground;
+      color: @primaryReversedText;
       text-align: left;
-		}
-		&.g-topbar > .fa {
-		  font-size: 1.1em;
-		  opacity: 0.25;
-		  margin-right: 8px;
-		  vertical-align: text-bottom;
-		}
-		
-		&.g-main-topbar {
-		  font-size: 1.1em;
-		  text-align: center;
-		  line-height: 28px;
-		}
-		
-		/* Bottom bar */
-		&.g-bottombar {
-		  height: 22px;
+      border-radius: 6px 6px 0 0;
+      border-bottom: none;
+      letter-spacing: 0.03em;
+      font-size: 9pt;
+      text-transform: uppercase;
+    }
+    &.g-topbar > .fa {
+      font-size: 1em;
+      opacity: 0.5;
+      margin-right: 8px;
+      vertical-align: text-bottom;
+    }
+
+    &.g-main-topbar {
+      font-size: 1.1em;
+      text-align: center;
+      line-height: 28px;
+    }
+
+    /* Bottom bar */
+    &.g-bottombar {
+      height: 22px;
       line-height: 22px;
       text-align: center;
       padding: 0 10px;
-      background-color: @barBackground;
-      color: white;
-      
+      background-color: @alternateBackground;
+      border-top: 1px solid @tableBorder;
+      color: @secondaryText;
+      border-radius: 0 0 6px 6px;
+
       .g-link {
-		    position: absolute;
+        position: absolute;
         top: 10px;
-		    bottom: 10px;
+        bottom: 10px;
         left: 10px;
         right: 10px;
-		    color: white;
-		    opacity: 0.5;
+        color: @secondaryText;
+        opacity: 0.6;
 
         &:before {
           position: absolute;
           bottom: 4px;
           right: 5px;
         }
-		  }
-		  .g-link:hover {
-		    opacity: 1;
-		    text-decoration: none;
-		  }
+      }
+      .g-link:hover {
+        opacity: 1;
+        text-decoration: none;
+      }
     }
 
     /* Title */
     .g-block-title {
-      font-size: 16pt;
-      color: #999;
+      font-size: 14pt;
+      color: @secondaryText;
       text-align: center;
       margin-top: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
-    
+
     /* Row */
     .g-row {
       display: table;
       table-layout: fixed;
       width: 100%;
-      
+
       &:not(:first-of-type) {
         margin-top: 10px;
       }
-      
+
       > ul > li {
         display: table-row;
         width: 100%;
       }
-      
+
       > div,
       > ul > li > div {
         display: table-cell;
@@ -109,12 +118,23 @@
         text-overflow: ellipsis;
         padding: 0 5px;
       }
-      
+
       > div:first-child,
       > ul > li > div:first-child {
         padding-left: 0;
       }
     }
+  }
+}
+
+/* Hero block — supprime le fond blanc du wrapper g-block */
+.g-block-hero {
+  > div {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
   }
 }
 
@@ -125,10 +145,9 @@
 
 .g-scroll-block {
   height: 100%;
-  
+
   > div {
     max-height: calc(~"100% - 40px");
-	  overflow-y: auto;
+    overflow-y: auto;
   }
 }
-

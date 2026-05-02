@@ -10,7 +10,7 @@
     <img ng-src="style/clubs/large/{{cfg.idClub}}.png" class="ecusson"></img>
   </div>
   
-  <img src="style/maillots/om.png" ng-show="cfg.nomClub == 'OM'"></img>
-  
+  <canvas ng-show="cfg.nomClub == 'OM'" id="{{omCanvasId}}" width="130" height="130"></canvas>
+
 </div>
 

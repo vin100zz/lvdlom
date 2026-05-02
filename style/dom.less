@@ -15,14 +15,12 @@
 
 body {
   background: @mainBackground;
-  background-image: url(img/texture.png), linear-gradient(to bottom, @mainBackground 0%, @mainBackgroundGradientEnd 100%);
-  background-attachment: fixed;
 }
 
 html, a, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
   color: @primaryText;
-  font-family: Lvdlom;
+  font-family: 'Inter', Lvdlom, sans-serif;
   font-size: 10pt;
 }
 
@@ -30,22 +28,22 @@ a {
   text-decoration: none;
 }
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: @menuBackground;
+  width: 6px;
+  height: 6px;
+  background: @mainBackground;
 }
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  background: @mainBackground;
 }
 ::-webkit-scrollbar-thumb {
-  background: @mainBackground;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  background: #c5cfe0;
+  border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(7, 105, 173, 0.25); 
+::-webkit-scrollbar-thumb:hover {
+  background: #a0b0c8;
 }

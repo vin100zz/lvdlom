@@ -2,29 +2,32 @@
 
 #menu {
   position: fixed;
-  width: 160px;
-  top: 35px;
+  width: 220px;
+  top: 44px;
   bottom: 0;
   left: 0;
   overflow-y: auto;
   background: @menuBackground;
-  font-size: 11pt;
+  font-size: 10.5pt;
+  border-right: 1px solid @menuBorder;
 
   .title {
     width: 114px;
     height: 80px;
-    margin: 20px auto;
-    background: url(img/title.png) no-repeat;
+    margin: 18px auto 10px auto;
+    background: url(img/title.png) no-repeat center center;
+    background-size: contain;
   }
   .navigation {
     background: url(img/logo.png) no-repeat bottom 10px right 10px;
+    background-size: 60px auto;
     min-height: calc(~"100% - 160px");
     padding-bottom: 50px;
   }
   .navigation li {
-    height: 35px;
-    line-height: 35px;
-    padding-left: 10px;
+    height: 34px;
+    line-height: 34px;
+    padding-left: 16px;
 
     &.sep {
       border-bottom: 1px solid @menuBorder;
@@ -32,62 +35,84 @@
     &:hover {
       background: @menuHighlightBackground;
     }
-    
+
     a {
       display: block;
       width: 100%;
       height: 100%;
       color: @primaryReversedText;
       text-decoration: none;
+      font-size: 10pt;
+
+      .fa {
+        width: 18px;
+        margin-right: 6px;
+        opacity: 0.6;
+        text-align: center;
+      }
     }
     &.selected a {
       color: @selectedText;
+
+      .fa {
+        opacity: 1;
+      }
     }
   }
-  
-  #search-field {
-	  position: relative;
-	  margin: 10px 5px;
-	
-	  input {
-	    padding: 4px 20px 4px 25px;
-	    width: 100%;
-	    background: @menuBackground;
-	    border: 1px solid @menuBorder;
-	    color: @primaryReversedText;
-	    opacity: 0.5;
-	  }
-	  
-	  .fa {
-	    position: absolute;
-	    top: 5px;
-	    
-	    &.search {
-	      left: 5px;
-	    }
-	    &.clear {
-	      right: 5px;
-	      cursor: pointer;
-	      
-	      &:hover {
-	        opacity: 0.75;
-	      }
-	    }
-	  }
 
-	}
+  #search-field {
+    position: relative;
+    margin: 12px 10px;
+
+    input {
+      padding: 5px 24px 5px 28px;
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid @menuBorder;
+      border-radius: 5px;
+      color: @primaryReversedText;
+
+      &::placeholder {
+        color: @secondaryReversedText;
+        opacity: 1;
+      }
+      &:focus {
+        outline: none;
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(255,255,255,0.25);
+      }
+    }
+
+    .fa {
+      position: absolute;
+      top: 6px;
+      color: @secondaryReversedText;
+
+      &.search {
+        left: 8px;
+      }
+      &.clear {
+        right: 8px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
+  }
 }
 
-@media (max-width: 1279px) {
-	#menu {
-	  z-index: 9;
-	  transition: left 0.5s ease;
-	  
-	  &.offcanvas {
-	    left: -160px;
-	  }
-	  .title {
-	    display: none;
-	  }
-	}
+@media (max-width: 1023px) {
+  #menu {
+    z-index: 9;
+    transition: left 0.35s ease;
+
+    &.offcanvas {
+      left: -220px;
+    }
+    .title {
+      display: none;
+    }
+  }
 }

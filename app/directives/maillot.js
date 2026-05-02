@@ -134,8 +134,10 @@ app.directive('lvdlomMaillot', function (Maillots) {
       cfg: '='
     },
     templateUrl: 'app/directives/maillot.html',
-    controller: function ($scope) {
-      
+    controller: function ($scope, $timeout) {
+
+      $scope.omCanvasId = 'om-maillot-' + $scope.$id;
+
       var render = function () {
         if (!$scope.cfg) {
           return;
@@ -146,7 +148,22 @@ app.directive('lvdlomMaillot', function (Maillots) {
           oldCanvas.getContext('2d').clearRect(0, 0, oldCanvas.width, oldCanvas.height);
         }
         
-        if ($scope.cfg.nomClub !== 'OM') {
+        if ($scope.cfg.nomClub === 'OM') {
+
+          // Dessiner om.png directement à 130x130 dans le canvas (évite le rescaling CSS
+          // bilinéaire qui crée un halo blanc sur le fond transparent)
+          $timeout(function () {
+            var omCanvas = document.getElementById($scope.omCanvasId);
+            var ctx = omCanvas.getContext('2d');
+            var img = new Image();
+            img.onload = function () {
+              ctx.clearRect(0, 0, 130, 130);
+              ctx.drawImage(img, 0, 0, 130, 130);
+            };
+            img.src = 'style/maillots/om.png';
+          }, 0);
+
+        } else {
 
           $scope.canvasCfg = $scope.cfg.debug ? $scope.cfg.debug : JSON.parse(JSON.stringify(Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub)));
           
@@ -162,6 +179,13 @@ app.directive('lvdlomMaillot', function (Maillots) {
   
               // change colors
               changeColors(data, $scope.canvasCfg.color1, $scope.canvasCfg.color2, $scope.canvasCfg.color3);
+
+              // Sauvegarder le masque alpha avant le blur (pour éviter le "bave" sur les bords)
+              var alphaBackup = new Uint8Array(data.length / 4);
+              for (var i = 0; i < alphaBackup.length; i++) {
+                alphaBackup[i] = data[i * 4 + 3];
+              }
+
               context.putImageData(map, 0, 0);
               
               img.onload = null;
@@ -172,7 +196,15 @@ app.directive('lvdlomMaillot', function (Maillots) {
               
               // superimpose template
               superimposeTemplate($scope.canvasCfg.canvasId, tplData);
-            });           
+
+              // Restaurer le masque alpha original pour supprimer le débordement des bords
+              var finalMap = context.getImageData(0, 0, canvas.width, canvas.height);
+              var finalData = finalMap.data;
+              for (var j = 0; j < alphaBackup.length; j++) {
+                finalData[j * 4 + 3] = alphaBackup[j];
+              }
+              context.putImageData(finalMap, 0, 0);
+            });
           });
         }
       };

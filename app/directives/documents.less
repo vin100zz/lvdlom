@@ -1,13 +1,16 @@
 @import "style/variables";
 
 .dir-documents {
-	text-align: center;
-	
-	.container {
-	  display: inline-block;
-	  margin: 0 10px 25px 10px;
-	  box-shadow: 1px 1px 5px 1px @tableBorder;
-	}
+  text-align: center;
+
+  .container {
+    display: inline-block;
+    margin: 0 10px 20px 10px;
+    box-shadow: 0 2px 8px rgba(26,39,68,0.1);
+    border: 1px solid @tableBorder;
+    border-radius: 6px;
+    overflow: hidden;
+  }
 
   .document {
     display: block;
@@ -16,23 +19,26 @@
     background-position: center center;
     background-size: contain;
   }
-  
+
   .legend {
-    padding: 5px 5px 3px 5px;
-    
+    padding: 5px 6px 4px 6px;
+    border-top: 1px solid @tableBorder;
+    background: @alternateBackground;
+
     .commentaire {
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       line-height: 18px;
+      color: @primaryText;
     }
-    
+
     .g-remark {
       display: inline-block;
-      
+
       &:not(:first-child) {
         margin-left: 5px;
       }
     }
-    
+
     .date {
       .fa {
         margin-right: 5px;
@@ -43,12 +49,12 @@
       background-repeat: no-repeat;
       background-position: left 2px;
       background-size: 16px;
-      
+
       .icon-source {
         margin-right: 5px;
         display: inline-block;
         vertical-align: text-bottom;
       }
-    }    
+    }
   }
 }

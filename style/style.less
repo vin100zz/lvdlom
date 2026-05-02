@@ -2,7 +2,7 @@
 
 /* icons */
 .g-fa {
-	color: @secondaryText;
+  color: @secondaryText;
   margin: 0 5px;
 }
 .g-fa-left {
@@ -14,19 +14,18 @@
 
 /* Info block */
 .g-info-block {
-	background: @alternateBackground;
+  background: @alternateBackground;
   border-top: 1px solid @tableBorder;
   border-bottom: 1px solid @tableBorder;
   padding-top: 3px;
   padding-bottom: 3px;
   text-align: center;
-
 }
 
 /* Important text */
 .g-important {
-	font-family: "Lvdlom-Bold";
-	color: @importantText;
+  font-family: "Lvdlom-Bold";
+  color: @importantText;
 }
 
 /* Remark */
@@ -38,11 +37,11 @@
   &:not(.no-margin) {
     margin: 0 5px;
   }
-  
+
   &:first-child {
     margin-left: 0;
   }
-  
+
   + .g-remark {
     margin-left: 0;
   }
@@ -53,9 +52,9 @@
   width: 180px;
   height: 240px;
   background-repeat: no-repeat;
-	background-position: center center;
-	background-size: contain;
-	margin: auto;
+  background-position: center center;
+  background-size: contain;
+  margin: auto;
 }
 
 /* Badges */
@@ -64,10 +63,11 @@
   width: 16px;
   line-height: 17px;
   color: white;
-  border-radius: 2px;
+  border-radius: 3px;
   text-align: center;
   vertical-align: baseline;
   margin-right: 5px;
+  font-size: 8pt;
 
   /* Postes */
   &.poste {
@@ -84,11 +84,11 @@
       background: @poste_av;
     }
   }
-  
+
   /* Fonctions */
   &.fonction {
     background: @fonction_generic;
-    
+
     &.E {
       background: @fonction_entraineur;
     }
@@ -98,7 +98,7 @@
   &.competition {
     width: 21px;
     vertical-align: baseline;
-    
+
     &.C1, &.C2, &.C3, &.C4, &.IN, &.FO {
       background: @competition_europe;
     }
@@ -116,11 +116,11 @@
 
 /* Bars */
 .g-table-bilan {
-	width: 150px;
+  width: 150px;
 
   > div {
     display: inline-block;
-    
+
     &:first-child {
       width: 25px;
       padding: 0 10px 0 0;
@@ -128,17 +128,18 @@
     &:last-child {
       width: calc(~"100% - 35px");
     }
-    
+
     > div {
-			height: 5px;
-			margin: 1px 0;
-		}
-	}
+      height: 5px;
+      margin: 1px 0;
+      border-radius: 2px;
+    }
+  }
 }
 
 /* Au Club */
 .icon-au-club {
-	display: inline-block;
+  display: inline-block;
   width: 8px;
   height: 8px;
   border: 4px solid @auClub;
@@ -148,13 +149,14 @@
 
 /* Lieu */
 .icon-lieu {
-	display: inline-block;
-	margin-right: 5px;
+  display: inline-block;
+  margin-right: 5px;
 
   &.D {
     width: 8px;
     height: 8px;
     background: @domicile;
+    border-radius: 1px;
   }
   &.E {
     width: 0;
@@ -171,6 +173,7 @@
   margin-right: 5px;
   width: 8px;
   height: 8px;
+  border-radius: 2px;
 
   &.V {
     background: @resultat_v;
@@ -186,7 +189,8 @@
 /* Cartons */
 .icon-carton {
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 1px;
   width: 10px;
   height: 15px;
   vertical-align: middle;
@@ -217,10 +221,12 @@
   color: @primaryReversedText;
   margin-top: -10px;
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
+  font-size: 9pt;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 
   &.in {
     opacity: 1;
@@ -243,21 +249,31 @@
 form {
   input:not([type=checkbox]):not([type=submit]), select {
     width: 100%;
-    padding: 3px 5px;
+    padding: 4px 8px;
     border: 1px solid @tableBorder;
+    border-radius: 4px;
+    background: #fff;
+    color: @primaryText;
+
+    &:focus {
+      outline: none;
+      border-color: @importantText;
+    }
   }
 }
 
 /* Button */
 .g-button {
-  background: #00c853;
+  background: #2e7d32;
   color: @iconText;
-  padding: 8px 20px;
-  border-radius: 3px;
+  padding: 7px 18px;
+  border-radius: 5px;
   border: none;
-  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  box-shadow: 0 2px 4px rgba(0,0,0,.12);
   cursor: pointer;
-  opacity: 0.85;
+  opacity: 0.9;
+  font-size: 9.5pt;
+  transition: opacity 0.15s ease, box-shadow 0.15s ease;
 
   > span {
     display: inline-block;
@@ -265,25 +281,28 @@ form {
 
   /* colors */
   &[type=reset] {
-    background: #ff9800;
+    background: #e65100;
   }
   &.g-button-action {
     background: @button;
   }
   &.g-button-danger {
-    background: #f44336;
+    background: #c62828;
   }
   &.g-button-neutral {
     color: @primaryText;
-    background: #ddd;
+    background: @alternateBackground;
+    border: 1px solid @tableBorder;
+    box-shadow: none;
   }
 
   &:not(:first-child) {
-    margin-left: 15px;
+    margin-left: 12px;
   }
 
   &:hover {
     opacity: 1;
+    box-shadow: 0 3px 8px rgba(0,0,0,.18);
   }
 
   > .fa {
@@ -291,13 +310,12 @@ form {
   }
 
   &.g-icon-button {
-    padding: 3px 6px;
+    padding: 3px 7px;
     margin-left: 5px;
 
     > .fa {
       margin-right: 0;
     }
-
   }
 }
 
@@ -310,13 +328,13 @@ form {
   label {
     background: @button;
     color: @iconText;
-    padding: 8px 20px;
-    border: none;
-    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    padding: 7px 16px;
+    border: 1px solid darken(@button, 8%);
+    box-shadow: none;
     cursor: pointer;
     opacity: 0.85;
     margin: 0 -2px;
-    border: 1px solid @button;
+    font-size: 9.5pt;
 
     &:hover,
     &.active {
@@ -324,11 +342,11 @@ form {
     }
 
     &:first-child {
-      border-radius: 3px 0 0 3px;
+      border-radius: 5px 0 0 5px;
     }
 
     &:last-child {
-      border-radius: 0 3px 3px 0;
+      border-radius: 0 5px 5px 0;
     }
   }
 }
@@ -342,7 +360,7 @@ form {
   right: 20px;
   font-size: 12pt;
   color: @importantText;
-  opacity: 0.7;
+  opacity: 0.5;
 
   &:hover {
     opacity: 1;
@@ -360,11 +378,14 @@ form {
     background-color: #fff;
     z-index: 10;
     border: 1px solid @tableBorder;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(26,39,68,0.12);
     width: 275px;
+    overflow: hidden;
 
     > li {
       margin: 0;
-      padding: 2px 15px 2px 10px;
+      padding: 5px 15px 5px 10px;
       cursor: pointer;
       text-align: left;
 
@@ -374,7 +395,7 @@ form {
       }
 
       &:hover {
-        background: #eee;
+        background: @alternateBackground;
 
         a {
           text-decoration: none;
@@ -392,11 +413,11 @@ form {
   border-radius: 5px;
 }
 .g-highlight-first {
-  background-color: #b2ebf2;
+  background-color: #b3e5fc;
 }
 .g-highlight-last {
-  background-color: #ffecb3;
+  background-color: #fff9c4;
 }
 .g-highlight-first.g-highlight-last {
-  background: linear-gradient(135deg, #b2ebf2 0%, #b2ebf2 50%, #ffecb3 50%, #ffecb3 100%);
+  background: linear-gradient(135deg, #b3e5fc 0%, #b3e5fc 50%, #fff9c4 50%, #fff9c4 100%);
 }

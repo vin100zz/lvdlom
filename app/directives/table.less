@@ -1,62 +1,70 @@
 @import "style/variables";
 
 .dir-table {
-	
+
   table {
-	  width: 100%;
+    width: 100%;
     text-align: left;
     line-height: 18px;
   }
-	
-	/* Cells */
-	th, td {
-	  padding: 3px 5px;
-	  vertical-align: middle;
-	}
-	td.ranking {
-		color: @secondaryText;
-	}
-	
-	/* Rows */
-	tr {
-	  height: 24px;
-	}
-	tbody tr {
-	  border-bottom: 1px solid @tableBorder;
-	  cursor: pointer;
-	}
-	tbody tr:nth-child(even) {
-	  background: @alternateBackground;
-	}
-	tbody tr.selected {
-		background: @tableSelected;
-	}
-	
-	/* Footer */
-	tfoot td {
-	  text-align: right;
-	  color: @secondaryText;
-	  font-size: 9pt;
-	}
-	
-	/* Header */
-	th,
-	th.sorting.asc:after,
-	th.sorting.desc:after {
-		color: @secondaryText;
-	}
-	th:hover {
-	  text-decoration: underline;
-	  cursor: pointer;
-	}
-	th.sorting:after {
-		display: inline-block;
-		margin-left: 3px;
-		font-size: 8pt;
-		color: @boxBackground;
-		content: '\25b2';
-	}
-	th.sorting.desc:after {
-		content: '\25bc';
-	}
+
+  /* Cells */
+  th, td {
+    padding: 3px 6px;
+    vertical-align: middle;
+  }
+  td.ranking {
+    color: @secondaryText;
+  }
+
+  /* Rows */
+  tr {
+    height: 24px;
+  }
+  tbody tr {
+    border-bottom: 1px solid @tableBorder;
+    cursor: pointer;
+    transition: background 0.1s ease;
+  }
+  tbody tr:nth-child(even) {
+    background: @alternateBackground;
+  }
+  tbody tr:hover {
+    background: #edf2f8;
+  }
+  tbody tr.selected {
+    background: @tableSelected;
+  }
+
+  /* Footer */
+  tfoot td {
+    text-align: right;
+    color: @secondaryText;
+    font-size: 9pt;
+  }
+
+  /* Header */
+  th,
+  th.sorting.asc:after,
+  th.sorting.desc:after {
+    color: @secondaryText;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  th:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: @primaryText;
+  }
+  th.sorting:after {
+    display: inline-block;
+    margin-left: 3px;
+    font-size: 7pt;
+    color: @tableBorder;
+    content: '\25b2';
+  }
+  th.sorting.desc:after {
+    content: '\25bc';
+  }
 }
