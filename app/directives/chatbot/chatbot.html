@@ -1,0 +1,96 @@
+<!-- Bouton flottant -->
+<div class="chatbot-fab" ng-click="toggleOpen()" title="Poser une question sur l'OM">
+  <span class="fa fa-comments" ng-if="!open"></span>
+  <span class="fa fa-times"    ng-if="open"></span>
+</div>
+
+<!-- Panneau de conversation -->
+<div class="chatbot-panel" ng-class="{ open: open }">
+
+  <!-- En-tête -->
+  <div class="chatbot-header">
+    <span class="fa fa-comments"></span>
+    <span class="chatbot-title">Assistant OM</span>
+    <div class="chatbot-header-actions">
+      <span class="fa fa-trash-o" ng-click="clear()" title="Effacer la conversation"
+            ng-if="messages.length > 0"></span>
+      <span class="fa fa-code" ng-click="showSql = !showSql" title="Afficher/masquer le SQL"
+            ng-class="{ active: showSql }"></span>
+    </div>
+  </div>
+
+  <!-- Zone de messages -->
+  <div class="chatbot-messages">
+
+    <!-- Message de bienvenue (si conversation vide) -->
+    <div class="chatbot-welcome" ng-if="messages.length === 0">
+      <p>Posez une question sur l'histoire de l'OM ⚽</p>
+      <ul class="chatbot-suggestions">
+        <li ng-repeat="s in suggestions" ng-click="ask(s)">{{s}}</li>
+      </ul>
+    </div>
+
+    <!-- Messages -->
+    <div ng-repeat="msg in messages" class="chatbot-msg chatbot-msg--{{msg.role}}"
+         ng-class="{ error: msg.error }">
+
+      <!-- Bulle utilisateur -->
+      <div ng-if="msg.role === 'user'" class="chatbot-bubble chatbot-bubble--user">
+        {{msg.text}}
+      </div>
+
+      <!-- Bulle bot -->
+      <div ng-if="msg.role === 'bot'" class="chatbot-bubble chatbot-bubble--bot">
+
+        <!-- Question reformulée (contexte résolu) -->
+        <div class="chatbot-reformul" ng-if="msg.questionAutonome">
+          <span class="fa fa-magic"></span> <em>{{msg.questionAutonome}}</em>
+        </div>
+
+        <span ng-bind-html="msg.text"></span>
+
+        <!-- Indicateur nb résultats + toggle SQL -->
+        <div class="chatbot-meta" ng-if="msg.sql && showSql">
+          <span class="chatbot-nb" ng-if="msg.nbResultats !== undefined">
+            {{msg.nbResultats}} résultat(s)
+          </span>
+          <span class="chatbot-sql-toggle" ng-click="toggleSql(msg)">
+            <span class="fa" ng-class="msg.sqlOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+            SQL
+          </span>
+        </div>
+
+        <!-- SQL (mode debug) -->
+        <div class="chatbot-sql-block" ng-if="msg.sqlOpen && showSql">
+          <em ng-if="msg.explication">{{msg.explication}}</em>
+          <pre>{{msg.sql}}</pre>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Indicateur de chargement -->
+    <div class="chatbot-msg chatbot-msg--bot" ng-if="loading">
+      <div class="chatbot-bubble chatbot-bubble--bot chatbot-typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Zone de saisie -->
+  <div class="chatbot-input">
+    <textarea
+      placeholder="Posez votre question…"
+      ng-model="question"
+      ng-keydown="onKeyDown($event)"
+      rows="2"
+      ng-disabled="loading"
+    ></textarea>
+    <button ng-click="ask()" ng-disabled="!question.trim() || loading"
+            class="chatbot-send" title="Envoyer">
+      <span class="fa fa-paper-plane"></span>
+    </button>
+  </div>
+
+</div>
