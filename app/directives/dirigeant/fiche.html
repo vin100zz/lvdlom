@@ -1,6 +1,6 @@
 <div class="dir-fiche-dirigeant" ng-if="dirigeant.id">
   
-  <div class="g-row g-photo-id" style="background-image: url({{Picture.dirigeant(dirigeant.id)}});"></div>
+  <lvdlom-fullscreenable-photo src="{{Picture.dirigeant(dirigeant.id)}}" photo-class="g-photo-id"></lvdlom-fullscreenable-photo>
 
   <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
     <div>

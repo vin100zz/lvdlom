@@ -1,0 +1,13 @@
+<div class="lvdlom-fullscreenable-photo">
+  <div ng-class="photoClass"
+       style="background-image: url({{src}})"
+       ng-click="openFullscreen()"
+       title="Voir en plein écran"></div>
+
+  <div class="lvdlom-fullscreenable-photo-overlay" ng-if="ui.fullscreen" ng-click="closeFullscreen()">
+    <img ng-src="{{src}}" alt="" />
+    <span class="lvdlom-fullscreenable-photo-close fa fa-times"
+          ng-click="closeFullscreen(); $event.stopPropagation()"></span>
+  </div>
+</div>
+
