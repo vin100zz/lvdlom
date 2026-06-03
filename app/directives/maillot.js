@@ -1,5 +1,5 @@
-app.directive('lvdlomMaillot', function (Maillots) {
-  
+app.directive('lvdlomMaillot', function (Maillots, Picture) {
+
   // RGB -> HSV
   function rgb2hsv (r, g, b) {
     r = r/255; g = g/255; b = b/255;
@@ -135,7 +135,8 @@ app.directive('lvdlomMaillot', function (Maillots) {
     },
     templateUrl: 'app/directives/maillot.html',
     controller: function ($scope) {
-      
+      $scope.Picture = Picture;
+
       var render = function () {
         if (!$scope.cfg) {
           return;
