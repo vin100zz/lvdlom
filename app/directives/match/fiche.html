@@ -1,14 +1,14 @@
 <div class="dir-fiche-match" ng-if="match.id">
 
   <div class="g-row row-score">
-    <div class="club" style="background-image: url({{Picture.club(left.id)}})"></div>
+    <div class="club" style="background-image: url({{Picture.club(left.id, match.fiche.saison)}})"></div>
     <div class="score">
       <div class="score-container">
         <div class="plain">{{left.buts}}-{{right.buts}}</div>
         <div class="rq" ng-show="match.fiche.rqScore !== ''">{{rqScore}}</div>
       </div>
     </div>
-    <div class="club" style="background-image: url({{Picture.club(right.id)}})"></div>
+    <div class="club" style="background-image: url({{Picture.club(right.id, match.fiche.saison)}})"></div>
   </div>
   
   <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
