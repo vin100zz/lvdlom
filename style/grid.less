@@ -178,10 +178,17 @@
   gap: 14px;
 }
 
+/* titre et filtres sur la même ligne : les filtres passent dessous quand la place manque */
 .g-list-head {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+
+  lvdlom-filters {
+    flex: 1 1 480px;
+    min-width: 0;
+  }
 }
 
 .g-list-body {
@@ -226,6 +233,18 @@
   }
   .g-list-aside {
     position: static;
+  }
+}
+
+/* mobile : les filtres défilent sous le titre, sur toute la largeur */
+@media (max-width: 639px) {
+  .g-list-head {
+    flex-direction: column;
+    align-items: stretch;
+
+    lvdlom-filters {
+      flex: none;
+    }
   }
 }
 

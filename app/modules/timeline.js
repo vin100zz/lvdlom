@@ -3,7 +3,7 @@
   'use strict';
 
   // controller
-  app.controller('TimelineCtrl', function($scope, $injector, $routeParams, EquipeTypes, Palmares, Formatter) {
+  app.controller('TimelineCtrl', function($scope, $injector, $routeParams, $q, EquipeTypes, Palmares, Formatter) {
 
     $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Timeline'});
 
@@ -208,18 +208,18 @@
       });
     };
 
-    // les barres sont calculées une fois la police chargée, pour mesurer les noms
-    var policeChargee = window.document.fonts && window.document.fonts.ready ? window.document.fonts.ready : null;
+    // les barres sont calculées une fois leurs polices chargées, pour mesurer les noms :
+    // document.fonts.ready n'attend pas une police que la page n'affiche pas encore, et la mesure
+    // se faisait alors dans une police de secours plus large (« PAVARD » sans son initiale)
+    var fonts = window.document.fonts;
+    var policesChargees = fonts && fonts.load ? $q.all(['500 14px "Barlow Condensed"', '600 14px "Barlow Condensed"', '400 11px Barlow'].map(function (police) {
+      return fonts.load(police);
+    })) : $q.when();
     EquipeTypes.get(null, function (saisons) {
-      if (policeChargee) {
-        policeChargee.then(function () {
-          $scope.$applyAsync(function () {
-            construire(saisons);
-          });
-        });
-      } else {
+      var construction = function () {
         construire(saisons);
-      }
+      };
+      policesChargees.then(construction, construction);
     });
 
   });

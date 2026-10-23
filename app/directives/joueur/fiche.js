@@ -24,6 +24,12 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter, Countries)
         var deces = fiche.dateDeces ? {label: 'Décès', valeur: Formatter.dateLongue(fiche.dateDeces),
           sub: fiche.dateNaissance ? '· à ' + Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces)) : ''} : null;
         var age = !fiche.dateDeces && fiche.dateNaissance ? {label: 'Âge', valeur: Formatter.ans(Formatter.age(fiche.dateNaissance))} : null;
+        // hero : des phrases sans étiquette, « né le 22 février 2000 à Lyon »
+        var naissanceHero = fiche.dateNaissance || lieu ? {label: 'Naissance', sansLabel: true,
+          valeur: 'né' + (fiche.dateNaissance ? ' le ' + Formatter.dateLongue(fiche.dateNaissance) : '') + (lieu ? ' à ' + lieu : '')} : null;
+        var decesHero = fiche.dateDeces ? {label: 'Décès', sansLabel: true, valeur: 'décédé le ' + Formatter.dateLongue(fiche.dateDeces) +
+          (fiche.dateNaissance ? ' à ' + Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces)) : '')} : null;
+        var ageHero = age ? {label: age.label, sansLabel: true, valeur: age.valeur} : null;
         var selections = parseInt(fiche.selections, 10) > 0 ? {label: 'Sélections', valeur: fiche.selections} : null;
 
         var bilan = joueur.bilan || {};
@@ -32,7 +38,7 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter, Countries)
         var nbButs = parseInt(total.buts, 10) || 0;
         var periode = Formatter.periodeSaisons(Object.keys(bilan));
 
-        var faits = [poste, nationalite, naissance, deces || age, selections].filter(Boolean);
+        var faits = [poste, nationalite, naissanceHero, decesHero || ageHero, selections].filter(Boolean);
         var faitsSous = mini ?
           [poste, nationalite, naissance, deces || age, periode ? {label: 'Période', valeur: periode} : null] :
           [nationalite, deces || age, naissance, selections,

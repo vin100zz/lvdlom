@@ -2,7 +2,8 @@
 
 require_once 'utils/service.php';
 
-$out = array();
+// toujours un objet, même sans texte (un tableau vide fait échouer la ressource Angular)
+$out = array('commentaires' => null);
 
 $text = "../documents/commentaires/origines/index.html";
 if (is_file($text) && $desc = implode(file($text)))

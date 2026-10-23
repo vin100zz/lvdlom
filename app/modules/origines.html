@@ -4,6 +4,8 @@
 
   <div class="g-squelette" ng-if="!origines.$resolved" aria-label="Chargement"><span ng-repeat="i in [1, 2, 3, 4]"></span></div>
 
+  <p class="aucun" ng-if="origines.$resolved && !origines.commentaires">Aucun texte pour l'instant.</p>
+
   <section class="commentaires" ng-if="origines.commentaires" lvdlom-commentaires>
     <div ng-bind-html="origines.commentaires"></div>
   </section>
