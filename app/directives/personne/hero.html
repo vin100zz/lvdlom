@@ -13,22 +13,22 @@
 
       <div class="identite">
         <span class="poste-pill" ng-if="cfg.poste"><span ng-bind-html="cfg.poste.code | format:'poste'"></span>{{cfg.poste.label}}</span>
-        <div class="titre">
-          <h1 ng-if="!cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></h1>
-          <p class="nom-bloc" ng-if="cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></p>
-          <span class="badge" ng-if="cfg.badge && !cfg.mini"><span class="point" aria-hidden="true"></span>{{cfg.badge}}</span>
-        </div>
-        <dl class="faits faits-hero">
-          <div ng-repeat="fait in cfg.faits">
-            <dt ng-class="{'g-sr-only': fait.sansLabel}">{{fait.label}}</dt>
-            <dd>
-              <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
-              <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">
-              {{fait.valeur}}<span class="sub" ng-if="fait.sub">{{fait.sub}}</span>
-            </dd>
-          </div>
-        </dl>
+        <h1 ng-if="!cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></h1>
+        <p class="nom-bloc" ng-if="cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></p>
       </div>
+
+      <!-- la fiche passe à droite, devant les chiffres (sous le nom si le hero est étroit) -->
+      <dl class="faits faits-hero" ng-if="cfg.faits.length">
+        <div ng-repeat="fait in cfg.faits" class="fait-{{fait.cle}}">
+          <dt ng-class="{'g-sr-only': fait.sansLabel}">{{fait.label}}</dt>
+          <dd>
+            <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
+            <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">
+            <span class="phrase" ng-if="fait.mots"><span ng-repeat="mot in fait.mots" ng-class="{liaison: mot.liaison}">{{mot.texte}}{{$last ? '' : ' '}}</span></span>
+            <span ng-if="!fait.mots">{{fait.valeur}}</span><span class="sub" ng-if="fait.sub">{{fait.sub}}</span>
+          </dd>
+        </div>
+      </dl>
 
       <dl class="chiffres" ng-if="cfg.chiffres.length">
         <div ng-repeat="chiffre in cfg.chiffres" ng-class="{or: chiffre.or}">

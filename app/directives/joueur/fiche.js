@@ -16,21 +16,23 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter, Countries)
         var mini = !!($scope.cfg && $scope.cfg.mini);
 
         // la valeur suffit : pas d'étiquette « Poste » ni « Nationalité » à l'écran
-        var poste = fiche.poste ? {label: 'Poste', sansLabel: true, valeur: Bom.poste(fiche.poste), poste: fiche.poste} : null;
-        var nationalite = fiche.nationalite ? {label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
+        var poste = fiche.poste ? {cle: 'poste', label: 'Poste', sansLabel: true, valeur: Bom.poste(fiche.poste), poste: fiche.poste} : null;
+        var nationalite = fiche.nationalite ? {cle: 'nationalite', label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
         var lieu = fiche.villeNaissance ? fiche.villeNaissance + (fiche.territoireNaissance ? ' (' + fiche.territoireNaissance + ')' : '') : '';
         var naissance = fiche.dateNaissance ? {label: 'Naissance', valeur: Formatter.dateLongue(fiche.dateNaissance), sub: lieu ? '· ' + lieu : '', large: true} :
           (lieu ? {label: 'Naissance', valeur: lieu, large: true} : null);
         var deces = fiche.dateDeces ? {label: 'Décès', valeur: Formatter.dateLongue(fiche.dateDeces),
           sub: fiche.dateNaissance ? '· à ' + Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces)) : ''} : null;
         var age = !fiche.dateDeces && fiche.dateNaissance ? {label: 'Âge', valeur: Formatter.ans(Formatter.age(fiche.dateNaissance))} : null;
-        // hero : des phrases sans étiquette, « né le 22 février 2000 à Lyon »
-        var naissanceHero = fiche.dateNaissance || lieu ? {label: 'Naissance', sansLabel: true,
-          valeur: 'né' + (fiche.dateNaissance ? ' le ' + Formatter.dateLongue(fiche.dateNaissance) : '') + (lieu ? ' à ' + lieu : '')} : null;
-        var decesHero = fiche.dateDeces ? {label: 'Décès', sansLabel: true, valeur: 'décédé le ' + Formatter.dateLongue(fiche.dateDeces) +
-          (fiche.dateNaissance ? ' à ' + Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces)) : '')} : null;
-        var ageHero = age ? {label: age.label, sansLabel: true, valeur: age.valeur} : null;
-        var selections = parseInt(fiche.selections, 10) > 0 ? {label: 'Sélections', valeur: fiche.selections} : null;
+        // hero : des phrases sans étiquette, « né le 22 février 2000 à Lyon », les mots de liaison en plus fin
+        var naissanceHero = fiche.dateNaissance || lieu ? {cle: 'naissance', label: 'Naissance', sansLabel: true, mots: Formatter.phrase(
+          fiche.dateNaissance ? ['né le', Formatter.dateLongue(fiche.dateNaissance)] : ['né'],
+          lieu ? ['à', lieu] : [])} : null;
+        var decesHero = fiche.dateDeces ? {cle: 'deces', label: 'Décès', sansLabel: true, mots: Formatter.phrase(
+          ['décédé le', Formatter.dateLongue(fiche.dateDeces)],
+          fiche.dateNaissance ? ['à', Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces))] : [])} : null;
+        var ageHero = age ? {cle: 'age', label: age.label, sansLabel: true, valeur: age.valeur} : null;
+        var selections = parseInt(fiche.selections, 10) > 0 ? {cle: 'selections', label: 'Sélections', valeur: fiche.selections} : null;
 
         var bilan = joueur.bilan || {};
         var total = (bilan.total && bilan.total.total) || {tit: 0, rmp: 0, buts: 0};
@@ -54,7 +56,6 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter, Countries)
           initiales: (prenom ? prenom[0] : '') + (fiche.nom || '').substr(0, 1),
           prenom: prenom,
           nom: fiche.nom,
-          badge: fiche.auClub === '1' || fiche.auClub === 'Y' ? 'Au club' : '',
           poste: fiche.poste ? {code: fiche.poste, label: Bom.poste(fiche.poste)} : null,
           faits: faits,
           faitsSous: faitsSous.filter(Boolean),

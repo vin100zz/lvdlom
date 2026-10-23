@@ -122,6 +122,19 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return age === null || age === undefined ? '' : age + (age > 1 ? ' ans' : ' an');
   };
 
+  // phrase dont les mots de liaison sont affichés en plus fin : phrase(['né le', '3 mars 1990'], ['à', 'Lyon'])
+  this.phrase = function () {
+    var mots = [];
+    Array.prototype.forEach.call(arguments, function (groupe) {
+      groupe.forEach(function (texte, index) {
+        if (texte) {
+          mots.push({texte: texte, liaison: index % 2 === 0});
+        }
+      });
+    });
+    return mots;
+  };
+
   // période couverte par des saisons : « 2024 – 2026 »
   this.periodeSaisons = function (saisons) {
     var annees = (saisons || []).filter(function (s) {

@@ -38,13 +38,14 @@ app.directive('lvdlomFicheDirigeant', function (Bom, Picture, Formatter, Countri
         var mini = !!($scope.cfg && $scope.cfg.mini);
 
         // le drapeau suffit : pas d'étiquette « Nationalité » à l'écran
-        var nationalite = fiche.nationalite ? {label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
+        var nationalite = fiche.nationalite ? {cle: 'nationalite', label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
         var lieu = fiche.villeNaissance ? fiche.villeNaissance + (fiche.territoireNaissance ? ' (' + fiche.territoireNaissance + ')' : '') : '';
-        var naissance = fiche.dateNaissance ? {label: 'Naissance', valeur: Formatter.dateLongue(fiche.dateNaissance), sub: lieu ? '· ' + lieu : '', large: true} :
-          (lieu ? {label: 'Naissance', valeur: lieu, large: true} : null);
-        var deces = fiche.dateDeces ? {label: 'Décès', valeur: Formatter.dateLongue(fiche.dateDeces),
+        // étiquette « Naissance » plutôt que « né le » : la fiche ne dit pas s'il s'agit d'un homme ou d'une femme
+        var naissance = fiche.dateNaissance ? {cle: 'naissance', label: 'Naissance', valeur: Formatter.dateLongue(fiche.dateNaissance), sub: lieu ? '· ' + lieu : '', large: true} :
+          (lieu ? {cle: 'naissance', label: 'Naissance', valeur: lieu, large: true} : null);
+        var deces = fiche.dateDeces ? {cle: 'deces', label: 'Décès', valeur: Formatter.dateLongue(fiche.dateDeces),
           sub: fiche.dateNaissance ? '· à ' + Formatter.ans(Formatter.age(fiche.dateNaissance, fiche.dateDeces)) : ''} : null;
-        var age = !fiche.dateDeces && fiche.dateNaissance ? {label: 'Âge', valeur: Formatter.ans(Formatter.age(fiche.dateNaissance))} : null;
+        var age = !fiche.dateDeces && fiche.dateNaissance ? {cle: 'age', label: 'Âge', valeur: Formatter.ans(Formatter.age(fiche.dateNaissance))} : null;
         var titres = (dirigeant.fonctions || []).map(function (f) {
           return f.titre;
         }).filter(function (titre, index, all) {
