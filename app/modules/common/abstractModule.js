@@ -7,5 +7,6 @@ var AbstractModuleCtrl = function ($scope, pageTitle) {
   };
 
   $scope.setPageTitle(pageTitle);
+  $scope.pageTitle = pageTitle;
 
 };

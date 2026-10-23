@@ -1,38 +1,90 @@
 @import "style/variables";
 
+/* Classement après le match : 4 lignes zébrées, l'OM en marine */
 .dir-classement-match {
 
-  .row-classement {
-    padding: 0 15%;
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-variant-numeric: tabular-nums;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
 
-    li.separator > div {
-      border-bottom: 1px dashed @tableBorder;
-      padding-bottom: 3px;
+    &:nth-child(odd) {
+      background: @zebra;
     }
-    
-    li.separator + li > div {
-      padding-top: 3px;
-    }
-  
-    li > div:nth-child(1) {
-      width: 5%;
-      text-align: right;
-      padding-right: 5px;
-    }
-    
-    li > div:nth-child(2) {
-      width: 80%;
-    }
-    
-    li > div:nth-child(3) {
-      width: 10%;
+    &.separator {
+      margin-bottom: 6px;
     }
   }
-  
-  .row-commentaires {
-    text-align: center;
+  .pos {
+    width: 18px;
+    color: @slate;
+  }
+  .club {
+    font-weight: 500;
+  }
+  .buts {
+    font-size: 13px;
+    color: @slate;
+  }
+  .pts {
+    margin-left: auto;
+    color: @slate;
+  }
+  li.om {
+    height: 42px;
+    margin-top: 6px;
+    border-radius: 10px;
+    background: @navy;
+    color: @white;
+
+    .pos {
+      font-weight: 700;
+      color: @gold;
+    }
+    .club {
+      font-weight: 700;
+    }
+    .buts {
+      color: @onNavySoft;
+    }
+    .pts {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 20px;
+      color: @white;
+    }
+  }
+  li.om:first-child {
+    margin-top: 0;
+  }
+
+  .commentaire {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 12px 0 0;
+    padding: 0 12px;
+    font-size: 13.5px;
+    color: @slateDark;
+
+    .fa {
+      margin-top: 3px;
+      color: @blue;
+    }
+  }
+
+  @media (max-width: 639px) {
+    li {
+      height: 40px;
+    }
   }
 }
-
-
-  

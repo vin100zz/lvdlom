@@ -2,21 +2,15 @@
 
   <lvdlom-mini-loading ng-if="loading"></lvdlom-mini-loading>
 
-  <div ng-if="!loading && !adversaire">Aucun adversaire sélectionné</div>
-  
-  <div ng-if="!loading && adversaire">
-    
-    <div class="g-block-title">{{adversaire.nom}}</div>
-    
-    <div class="row">
-    
-      <div class="club" style="background-image: url({{Picture.club(adversaire.id)}})"></div>
-      
-      <div><lvdlom-maillot cfg="cfgMaillot"></lvdlom-maillot></div>
-    
-    </div>
-    
-  </div>
-  
+  <div class="g-empty" ng-if="!loading && !adversaire"><span class="fa fa-hand-pointer-o" aria-hidden="true"></span><b>Aucun adversaire sélectionné</b><span>Cliquez sur une ligne du tableau pour afficher son détail ici.</span></div>
+
+  <!-- carte aux couleurs du club : écusson, nom, maillot -->
+  <section class="carte-club" ng-if="!loading && adversaire" aria-label="{{adversaire.nom}}" ng-style="{'background-color': couleurs.bg, color: couleurs.fg}">
+    <div class="lisere" aria-hidden="true" ng-style="{'background-color': couleurs.accent}"></div>
+    <img class="ghost" ng-src="{{Picture.club(adversaire.id)}}" alt="" aria-hidden="true">
+    <img class="ecusson" ng-src="{{Picture.club(adversaire.id)}}" alt="Écusson {{adversaire.nom}}">
+    <span class="nom">{{adversaire.nom}}</span>
+    <span class="maillot"><lvdlom-maillot cfg="cfgMaillot"></lvdlom-maillot></span>
+  </section>
 
 </div>

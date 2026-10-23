@@ -1,10 +1,10 @@
 <div class="dir-saisie-common-source">
 
-  <select ng-model="cfg.data" ng-options="option.key as option.label for option in sources" required="true">
+  <select ng-model="cfg.data" ng-options="option.key as option.label for option in sources" required="true" aria-label="Source">
     <option ng-value=""></option>
   </select>
 
-  <button class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'La Provence')"><span class="icon-source source-laprovence"></span></button>
-  <button class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'L\'Équipe')"><span class="icon-source source-lequipe"></span></button>
-  
+  <button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'La Provence')"><span class="icon-source source-laprovence" aria-hidden="true"></span> La Provence</button>
+  <button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setValue($event, 'L\'Équipe')"><span class="icon-source source-lequipe" aria-hidden="true"></span> L'Équipe</button>
+
 </div>

@@ -2,18 +2,11 @@
 
   <lvdlom-mini-loading ng-if="loading"></lvdlom-mini-loading>
 
-  <div ng-if="!loading && !match">Aucun match sélectionné</div>
+  <div class="g-empty" ng-if="!loading && !match"><span class="fa fa-hand-pointer-o" aria-hidden="true"></span><b>Aucun match sélectionné</b><span>Cliquez sur une ligne du tableau pour afficher son détail ici.</span></div>
   
-  <div ng-if="!loading && match">
-    
-    <div class="g-row">
-      <lvdlom-fiche-match match="match" cfg="cfg"></lvdlom-fiche-match>
-    </div>
-    
-    <div class="g-row">
-      <lvdlom-equipe-match match="match" cfg="cfg"></lvdlom-equipe-match>
-    </div>
-    
+  <div class="mini-match" ng-if="!loading && match">
+    <lvdlom-fiche-match match="match" cfg="{mini: true}"></lvdlom-fiche-match>
+    <lvdlom-equipe-match match="match" cfg="{mini: true}"></lvdlom-equipe-match>
   </div>
   
 

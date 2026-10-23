@@ -1,62 +1,44 @@
-<div class="pure-g" id="page-joueur" ng-if="joueur.id">
+<div id="page-joueur" class="g-page g-fiche" ng-if="joueur.id">
 
-  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar g-main-topbar">
-        <span>{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</span>
-        <a href="#/saisie/edit/joueur/{{joueur.id}}" class="g-edit-data"><span class="fa fa-pencil"></span></a>
-      </div>
-      <div>
-        <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-match>
-      </div>
-    </div>
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-trophy"></span>Palmarès</div>
-      <div>
-        <lvdlom-palmares-joueur joueur="joueur"></lvdlom-palmares-joueur>
-      </div>
-    </div>
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-star"></span>Premières</div>
-      <div>
-        <lvdlom-premieres-joueur joueur="joueur"></lvdlom-premieres-joueur>
-      </div>
-    </div>
+  <div class="g-page-head">
+    <lvdlom-breadcrumb cfg="breadcrumb"></lvdlom-breadcrumb>
+    <lvdlom-fiche-joueur joueur="joueur"></lvdlom-fiche-joueur>
+    <lvdlom-links links="links"></lvdlom-links>
   </div>
 
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar">
-        <span class="fa fa-history"></span>Carrière
-      </div>
-      <div>
-        <lvdlom-carriere-joueur joueur="joueur"></lvdlom-carriere-joueur>
-      </div>
-    </div>
-    <div ng-if="links.length" class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-link"></span>Liens</div>
-      <div>
-        <lvdlom-links links="links"></lvdlom-links>
-      </div>
-    </div>
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-bar-chart"></span>Statistiques</div>
-      <div>
+  <!-- statistiques et premières · palmarès et carrière · revue de presse -->
+  <div class="fiche-body">
+
+    <div class="fiche-col-principale">
+      <section aria-labelledby="h-stats">
+        <h2 class="g-title" id="h-stats">Statistiques</h2>
         <lvdlom-stats-joueur joueur="joueur"></lvdlom-stats-joueur>
-      </div>
+      </section>
+      <section aria-labelledby="h-premieres">
+        <h2 class="g-title" id="h-premieres">Premières</h2>
+        <lvdlom-premieres-joueur joueur="joueur"></lvdlom-premieres-joueur>
+      </section>
     </div>
+
+    <div class="fiche-col-secondaire">
+      <section aria-labelledby="h-palmares">
+        <h2 class="g-title" id="h-palmares">Palmarès</h2>
+        <lvdlom-palmares-joueur joueur="joueur"></lvdlom-palmares-joueur>
+      </section>
+      <section aria-labelledby="h-carriere">
+        <h2 class="g-title" id="h-carriere">Carrière</h2>
+        <lvdlom-carriere-joueur joueur="joueur"></lvdlom-carriere-joueur>
+      </section>
+    </div>
+
+    <section class="fiche-col-presse" aria-labelledby="h-presse">
+      <h2 class="g-title" id="h-presse">Revue de presse</h2>
+      <lvdlom-documents documents="joueur.documents" cfg="{hauteur: 240}"></lvdlom-documents>
+    </section>
+
   </div>
 
-  <div class="pure-u-1 pure-u-xl-1-2 g-block g-fixed-block g-scroll-block">
-    <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
-    <div>
-      <lvdlom-documents documents="joueur.documents"></lvdlom-documents>
-    </div>
-  </div>
-
-  <!-- Modal biographie IA -->
+  <!-- Biographie générée par IA -->
   <lvdlom-modal
     is-open="biographieVisible"
     title="Biographie — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}"
@@ -64,7 +46,7 @@
     <lvdlom-biographie-joueur joueur="joueur"></lvdlom-biographie-joueur>
   </lvdlom-modal>
 
-  <!-- Modal résumé documents IA -->
+  <!-- Résumé des documents généré par IA -->
   <lvdlom-modal
     is-open="documentsResumeVisible"
     title="Documents — {{joueur.fiche.prenom}} {{joueur.fiche.nom}}"

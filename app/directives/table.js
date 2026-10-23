@@ -1,7 +1,8 @@
 app.directive('lvdlomTable', function() {
   return {
     scope: {
-      cfg: '='
+      cfg: '=',
+      lien: '='
     },
     templateUrl: 'app/directives/table.html',
     controller: function($scope, $element) {
@@ -44,8 +45,37 @@ app.directive('lvdlomTable', function() {
         descending: !!$scope.cfg.columns[$scope.cfg.defaultSort || 0].defaultOrderDescending
       };
       
-      $scope.sortBy = function (index) {
+      // petits écrans : lignes en cartes quand la liste en propose (cfg.mobile)
+      var media = window.matchMedia ? window.matchMedia('(max-width: 639px)') : null;
+      $scope.mobile = !!(media && media.matches);
+      $scope.limite = 200;
+      var onMedia = function (event) {
+        $scope.$applyAsync(function () {
+          $scope.mobile = event.matches;
+        });
+      };
+      if (media && media.addListener) {
+        media.addListener(onMedia);
+        $scope.$on('$destroy', function () {
+          media.removeListener(onMedia);
+        });
+      }
+
+      // colonnes proposées au tri sur mobile
+      $scope.triables = $scope.cfg.columns.map(function (column, index) {
+        return {index: index, title: column.title};
+      }).filter(function (column) {
+        return column.title;
+      });
+
+      $scope.sortBy = function (index, keepOrder) {
+        index = parseInt(index, 10);
         $scope.sortedItems = [];
+        if (keepOrder) {
+          $scope.sort.column = index;
+          $scope.sort.descending = !!$scope.cfg.columns[index].defaultOrderDescending;
+          return;
+        }
         if ($scope.sort.column === index) {
           $scope.sort.descending = !$scope.sort.descending;
         } else {
@@ -78,9 +108,20 @@ app.directive('lvdlomTable', function() {
         }
         return 'sorting';
       };
+
+      $scope.getAriaSort = function (index) {
+        if (index === $scope.sort.column) {
+          return $scope.sort.descending ? 'descending' : 'ascending';
+        }
+        return 'none';
+      };
       
-      // selection      
+      // selection ; sur mobile, la ligne ouvre directement la fiche
       $scope.selectRow = function (id, rowIndex) {
+        if ($scope.mobile && $scope.lien) {
+          window.location.hash = $scope.lien.replace(/^#\/?/, '/') + id;
+          return;
+        }
         if (id === $scope.cfg.selected.id) {
           $scope.cfg.selected.id = null;
           $scope.cfg.selected.rowIndex = null;

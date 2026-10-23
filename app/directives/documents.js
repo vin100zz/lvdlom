@@ -1,12 +1,18 @@
-app.directive('lvdlomDocuments', function () {
-  
+app.directive('lvdlomDocuments', function (Formatter, Viewer) {
+
   return {
     scope: {
-      documents: '='
+      documents: '=',
+      cfg: '='
     },
     templateUrl: 'app/directives/documents.html',
     controller: function ($scope) {
-      
+
+      var hauteur = function () {
+        return ($scope.cfg && $scope.cfg.hauteur) || 190;
+      };
+      $scope.hauteur = hauteur;
+
       var removeAccents = function(s){
         var r=s.toLowerCase();
         r = r.replace(new RegExp(/\s/g),"");
@@ -15,7 +21,7 @@ app.directive('lvdlomDocuments', function () {
         r = r.replace(new RegExp(/ç/g),"c");
         r = r.replace(new RegExp(/[èéêë]/g),"e");
         r = r.replace(new RegExp(/[ìíîï]/g),"i");
-        r = r.replace(new RegExp(/ñ/g),"n");                
+        r = r.replace(new RegExp(/ñ/g),"n");
         r = r.replace(new RegExp(/[òóôõö]/g),"o");
         r = r.replace(new RegExp(/œ/g),"oe");
         r = r.replace(new RegExp(/[ùúûü]/g),"u");
@@ -23,39 +29,67 @@ app.directive('lvdlomDocuments', function () {
         r = r.replace(new RegExp(/\W/g),"");
         return r;
       };
-      
+
       $scope.getSourceClass = function (source) {
         return removeAccents(source.toLowerCase().replace('\'', '').replace(' ', ''));
       };
-      
+
+      // la visionneuse ne parcourt que les documents disponibles
+      $scope.ouvrir = function (index) {
+        var document = $scope.documents[index];
+        if (document.manquant) {
+          return;
+        }
+        var disponibles = $scope.documents.filter(function (d) {
+          return !d.manquant;
+        });
+        Viewer.open(disponibles, disponibles.indexOf(document));
+      };
+
       var render = function () {
         if (!$scope.documents) {
           return;
         }
-        
+
         $scope.documents.forEach(function (document) {
+          // le service renvoie une image générique quand le fichier n'est pas sur le disque
+          document.manquant = !document.path || document.path.indexOf('doc_not_found') >= 0;
+          document.dateCourte = Formatter.date(document.date);
+          document.titre = [document.source, document.dateCourte].filter(Boolean).join(', ') || 'Document';
+          document.sourceClass = document.source ? $scope.getSourceClass(document.source) : '';
+          if (document.manquant) {
+            document.largeur = Math.round(hauteur() * 0.74);
+            return;
+          }
+          if (!document.largeur) {
+            document.largeur = Math.round(hauteur() * 0.74);
+          }
           var img = new Image();
           img.onload = function() {
-            var wishedHeight = 300;
-            var containerWidth = window.document.querySelector('.dir-documents').offsetWidth - 2*10;
-            
-            document.width = Math.min(this.naturalWidth * wishedHeight / this.naturalHeight, containerWidth);  
-            document.height = this.naturalHeight * document.width / this.naturalWidth;
-            
-            $scope.$apply();
+            document.largeur = Math.max(Math.round(hauteur() * 0.7), Math.round(this.naturalWidth * hauteur() / this.naturalHeight));
+            document.ratio = this.naturalWidth / this.naturalHeight;
+            $scope.$applyAsync();
+          };
+          img.onerror = function () {
+            document.manquant = true;
+            $scope.$applyAsync();
           };
           img.src = document.path;
         });
       };
 
       render();
-      
+
       $scope.$watch('documents', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           render();
         }
-      }, true);
+      });
+      $scope.$watch('documents.length', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
+          render();
+        }
+      });
     }
   };
 });
- 

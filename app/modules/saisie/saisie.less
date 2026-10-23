@@ -1,18 +1,26 @@
 @import "style/variables";
 
+/* Saisie : titre et type de saisie, puis le formulaire */
 #page-saisie {
-  text-align: center;
 
-  .g-block {
-    text-align: left;
+  .saisie-tete {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+  }
 
-    .select-action {
-      text-align: center;
+  @media (max-width: 639px) {
+    .g-button-group {
+      flex-wrap: nowrap;
+      max-width: 100%;
+      overflow-x: auto;
+      border-radius: 14px;
 
-      &:not(:last-child) {
-        margin-bottom: 30px;
+      label {
+        flex: none;
+        padding: 0 14px;
       }
     }
   }
-   
 }

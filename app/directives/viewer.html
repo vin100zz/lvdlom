@@ -1,0 +1,21 @@
+<div class="dir-viewer" ng-if="state.open" role="dialog" aria-modal="true" aria-label="{{titre()}}" ng-click="close()">
+
+  <button type="button" class="viewer-close" ng-click="close(); $event.stopPropagation()" aria-label="Fermer">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+  </button>
+
+  <button type="button" class="viewer-arrow prev" ng-if="state.documents.length > 1" ng-click="move(-1); $event.stopPropagation()" aria-label="Document précédent">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+  </button>
+  <button type="button" class="viewer-arrow next" ng-if="state.documents.length > 1" ng-click="move(1); $event.stopPropagation()" aria-label="Document suivant">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+  </button>
+
+  <figure class="viewer-document" ng-click="$event.stopPropagation()">
+    <img ng-src="{{current().path}}" alt="{{current().legende || titre()}}">
+    <figcaption ng-if="titre()">
+      <span class="logo" ng-if="current().source"><span class="icon-source source-{{current().sourceClass}}" aria-hidden="true"></span></span>{{titre()}}
+    </figcaption>
+  </figure>
+
+</div>

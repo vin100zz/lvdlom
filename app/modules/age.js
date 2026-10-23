@@ -14,10 +14,12 @@
 
     $injector.invoke(AbstractModuleCtrl, this, {$scope: $scope, pageTitle: 'Âges Joueurs'});
 
-    $scope.joueursMin = AgeJoueurs.get({type: 'match', sort: 'min'});
-    $scope.joueursMax = AgeJoueurs.get({type: 'match', sort: 'max'});
-    $scope.buteursMin = AgeJoueurs.get({type: 'but', sort: 'min'});
-    $scope.buteursMax = AgeJoueurs.get({type: 'but', sort: 'max'});
+    $scope.listes = [
+      {titre: 'Plus jeunes joueurs', meta: 'âge au 1er match', joueurs: AgeJoueurs.get({type: 'match', sort: 'min'})},
+      {titre: 'Plus vieux joueurs', meta: 'âge au dernier match', joueurs: AgeJoueurs.get({type: 'match', sort: 'max'})},
+      {titre: 'Plus jeunes buteurs', meta: 'âge au 1er but', joueurs: AgeJoueurs.get({type: 'but', sort: 'min'})},
+      {titre: 'Plus vieux buteurs', meta: 'âge au dernier but', joueurs: AgeJoueurs.get({type: 'but', sort: 'max'})}
+    ];
   });
   
 }) ();

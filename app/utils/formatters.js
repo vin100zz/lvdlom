@@ -19,9 +19,9 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   
   this._nom = function (personne, link) {
     var prenom = personne.prenom.trim();
-    return '<a href="#' + link + '/' + personne.id + '">' + (prenom ? prenom + ' ' : '') + personne.nom + '</a>';
+    return '<a href="#' + link + '/' + personne.id + '" class="g-nom">' + (prenom ? prenom + ' ' : '') + '<b>' + personne.nom + '</b></a>';
   };
-  
+
   this.nomJoueur = function (joueur) {
     var out = _this._nom(joueur, 'joueur');
     if (joueur.auClub === "1" || joueur.auClub === "Y") {
@@ -60,11 +60,121 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return '<div class="icon-flag flag-' + country + '">' + Countries.getLabel(country) + '</div>';
   };
   
+  // dates courtes, sans point après le mois : « 10 avr 2026 »
+  var MOIS = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
+
+  // quelques fiches sont saisies en jj/mm/aaaa : on les ramène à aaaa-mm-jj
+  var isoDate = function (date) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(date || '');
+    return m ? m[3] + '-' + m[2] + '-' + m[1] : date;
+  };
+  this.isoDate = isoDate;
+
   this.date = function (date) {
+    date = isoDate(date);
     if (date && date.length === 10) {
-      return $filter('date')(date, 'dd.MM.yyyy');
+      var jour = parseInt(date.substr(8, 2), 10);
+      return (jour === 1 ? '1er' : jour) + ' ' + MOIS[parseInt(date.substr(5, 2), 10) - 1] + ' ' + date.substr(0, 4);
     }
     return '';
+  };
+
+  // date avec le jour : « Dim 1er mars 2026 »
+  var JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  var MOIS_LONGS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+  this.dateJour = function (date) {
+    date = isoDate(date);
+    if (date && date.length === 10) {
+      var y = parseInt(date.substr(0, 4), 10), m = parseInt(date.substr(5, 2), 10), d = parseInt(date.substr(8, 2), 10);
+      var jour = m && d ? JOURS[new Date(y, m - 1, d).getDay()] + ' ' : '';
+      return jour + (d === 1 ? '1er' : d) + ' ' + (MOIS_LONGS[m - 1] || '') + ' ' + y;
+    }
+    return '';
+  };
+
+  // date longue sans le jour : « 1er mars 2026 »
+  this.dateLongue = function (date) {
+    return _this.dateJour(date).replace(/^[A-Z][a-z]{2} /, '');
+  };
+
+  // âge en années révolues, à aujourd'hui ou à une date donnée
+  this.age = function (dateNaissance, dateRef) {
+    dateNaissance = isoDate(dateNaissance);
+    if (!dateNaissance || dateNaissance.length !== 10) {
+      return null;
+    }
+    var ref = dateRef ? isoDate(dateRef) : null;
+    var now = ref && ref.length === 10 ? new Date(parseInt(ref.substr(0, 4), 10), parseInt(ref.substr(5, 2), 10) - 1, parseInt(ref.substr(8, 2), 10)) : new Date();
+    var y = parseInt(dateNaissance.substr(0, 4), 10), m = parseInt(dateNaissance.substr(5, 2), 10) - 1, d = parseInt(dateNaissance.substr(8, 2), 10);
+    var age = now.getFullYear() - y - 1;
+    if (now.getMonth() > m || (now.getMonth() === m && now.getDate() >= d)) {
+      ++age;
+    }
+    return age;
+  };
+
+  this.ans = function (age) {
+    return age === null || age === undefined ? '' : age + (age > 1 ? ' ans' : ' an');
+  };
+
+  // période couverte par des saisons : « 2024 – 2026 »
+  this.periodeSaisons = function (saisons) {
+    var annees = (saisons || []).filter(function (s) {
+      return /^\d{4}-\d{2}$/.test(s);
+    }).map(function (s) {
+      return parseInt(s.substr(0, 4), 10);
+    }).sort();
+    if (!annees.length) {
+      return '';
+    }
+    var debut = annees[0], fin = annees[annees.length - 1] + 1;
+    return debut + ' – ' + fin;
+  };
+
+  // « 24ème journée » → « 24e journée », « 1ère » → « 1re »
+  this.niveauLong = function (niveau) {
+    return (niveau || '').replace(/(\d+)\s*ème/g, '$1e').replace(/(\d+)\s*ère/g, '$1re');
+  };
+
+  // séparateur des milliers : « 66 225 »
+  this.milliers = function (nombre) {
+    return String(parseInt(nombre, 10) || 0).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+  };
+
+  // libellés courts : « 1ère journée » → J1, « Phase de ligue, 4ème journée » → Ligue J4, « 32ème de finale » → 1/32
+  this.niveauCourt = function (niveau) {
+    var s = (niveau || '').trim(), suf = '', ligue = false, m, r;
+    if (!s) {
+      return '';
+    }
+    if ((m = s.match(/\s*\(([^)]*)\)$/))) { suf = ' (' + m[1] + ')'; s = s.slice(0, m.index); }
+    if ((m = s.match(/\s+(aller|retour)$/i))) { suf = ' ' + m[1].toLowerCase() + suf; s = s.slice(0, m.index); }
+    if ((m = s.match(/\s+en retard$/i))) { suf = ' (retard)' + suf; s = s.slice(0, m.index); }
+    if (/^phase de ligue,\s*/i.test(s)) { ligue = true; s = s.replace(/^phase de ligue,\s*/i, ''); }
+    if ((m = s.match(/^(\d+)\s*(?:re|ère|ème|er|e)?(?:\s+journée)?$/i))) { r = 'J' + m[1]; }
+    else if ((m = s.match(/^(\d+)\s*(?:ème|e)\s+de finale$/i))) { r = '1/' + m[1]; }
+    else if (/^quarts? de finale$/i.test(s)) { r = '1/4'; }
+    else if (/^demi-finales?$/i.test(s)) { r = '1/2'; }
+    else if (/^finale$/i.test(s)) { r = 'Finale'; }
+    else if ((m = s.match(/^(\d+)\s*(?:re|ère|ème|er|e)\s+tour(\s+préliminaire)?$/i))) { r = 'T' + m[1] + (m[2] ? ' prélim.' : ''); }
+    else { r = s; }
+    return (ligue ? 'Ligue ' : '') + r + suf;
+  };
+
+  // J'y étais : badge or puis une pastille bleue par personne (« J'y étais + E + V ! »)
+  this.jyEtais = function (jyEtais) {
+    if (!jyEtais) {
+      return '';
+    }
+    var avec = jyEtais.replace(/^J'y étais/i, '').replace(/!\s*$/, '').split('+').map(function (t) {
+      return t.trim();
+    }).filter(function (t) {
+      return t;
+    }).map(function (t) {
+      return '<span class="avec" title="Avec ' + t + '">' + t + '</span>';
+    });
+    return '<span class="g-jy"><span class="moi">J\'y étais</span>' + avec.join('') + '</span>';
   };
   
   this.dateLong = function (date) {
@@ -79,11 +189,11 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   };
   
   this.dateNaissance = function (dateNaissance) {
+    dateNaissance = isoDate(dateNaissance);
     if (dateNaissance && dateNaissance.length === 10) {
       var dNaiss = dateNaissance.substr(8, 2);
       var mNaiss = dateNaissance.substr(5, 2);
       var yNaiss = dateNaissance.substr(0, 4);
-      var date = dNaiss + '.' + mNaiss + '.' + yNaiss;
       
       var now = new Date();
       var dNow = now.getDate();
@@ -99,13 +209,13 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
         ++age;
       }
       
-      return '<span>' + date + '</span><span class="g-remark">' + age + ' ans</span>';
+      return '<span>' + _this.date(dateNaissance) + '</span><span class="g-remark">· ' + age + (age > 1 ? ' ans' : ' an') + '</span>';
     }
     return '';
   };
   
   this.lieuNaissance = function (joueur) {
-    return '<span>' + joueur.villeNaissance + '</span><span class="g-remark">' + joueur.territoireNaissance + '</span>';
+    return '<span>' + (joueur.villeNaissance || '—') + '</span>' + (joueur.territoireNaissance ? '<span class="g-remark">(' + joueur.territoireNaissance + ')</span>' : '');
   };
   
   this.competition = function (item) {
@@ -113,52 +223,64 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   };
   
   this.sousTypeCompetition = function (sousTypeCompetition) {
+    sousTypeCompetition = (sousTypeCompetition || '').trim();
     return '<span class="g-badge competition ' + sousTypeCompetition + '">' + sousTypeCompetition + '</span>';
   };
   
   this.competitionNiveau = function (match) {
     var badge = _this.sousTypeCompetition(match.sousTypeCompetition);
-    var niveau = match.niveau;
-    return badge + niveau;
+    var titre = (match.competition || '') + (match.niveau ? ' · ' + match.niveau : '');
+    return '<span title="' + titre.replace(/"/g, '&quot;') + '" style="display: inline-flex; align-items: center">' + badge +
+      '<span class="g-niveau">' + _this.niveauCourt(match.niveau) + '</span></span>';
   };
   
+  // un badge par titre, les titres d'une même compétition côte à côte
   this.titres = function (titres) {
-    return titres.split(',').map(_this.sousTypeCompetition).join('');
-  };
-  
-  // bars
-  this._bar = function (width, color) {
-    return '<div style="width: ' + width + '%; background-color: ' + color + ';"></div>';
-  };
-  
-  this._bilan = function (max, data, nbPerDisplay) {
-    var out = '';
-    data.forEach(function (item) {
-      var value = parseInt(item.value, 10) || 0;
-      var width = Math.min(value / max * 100, 100);
-      out += _this._bar(width, item.color);
+    var liste = (titres || '').split(',').filter(function (titre) {
+      return titre;
     });
-    var nbPer = (parseInt(data[1].value, 10) || 0) / (parseInt(data[0].value, 10) || Infinity);
-    nbPer = Math.floor(nbPer*100);
-    nbPer = (nbPerDisplay === 'pc' ? nbPer + '%' : nbPer/100);
-    return '<div class="g-table-bilan"><div class="g-remark">' + nbPer + '</div><div>' + out + '</div></div>';
+    var ordre = liste.reduce(removeDuplicates, []);
+    return liste.sort(function (a, b) {
+      return ordre.indexOf(a) - ordre.indexOf(b);
+    }).map(_this.sousTypeCompetition).join('');
   };
   
+  // bilans dans les tableaux (charte · graphiques)
+  // buts par match : la valeur, puis une barre bleue sur une piste grise
   this.bilanMatchesButs = function (max, joueur) {
-    return _this._bilan(max.value, [{value: joueur.nbMatches, color: '#3498db'}, {value: joueur.nbButs, color: '#ff9000'}]);
+    var matches = _this.int(joueur.nbMatches), buts = _this.int(joueur.nbButs);
+    var ratio = matches ? buts / matches : 0;
+    var largeur = Math.min(ratio / 0.8 * 100, 100);
+    return '<span class="g-ratio" title="' + buts + ' buts en ' + matches + ' matches"><span class="valeur">' + ratio.toFixed(2).replace('.', ',') + '</span>' +
+      '<span class="piste"><span style="width: ' + largeur.toFixed(0) + '%"></span></span></span>';
   };
-  
+
+  // victoires, nuls, défaites : une barre empilée aux couleurs du score, puis le pourcentage de victoires
   this.bilanMatchesVictoires = function (max, bilan) {
-    return _this._bilan(max.value, [{value: bilan.nbMatches, color: '#3498db'}, {value: bilan.nbVictoires, color: '#ff9000'}], 'pc');
+    var matches = _this.int(bilan.nbMatches), v = _this.int(bilan.nbVictoires), n = _this.int(bilan.nbNuls);
+    var d = bilan.nbDefaites !== undefined && bilan.nbDefaites !== '' ? _this.int(bilan.nbDefaites) : Math.max(matches - v - n, 0);
+    var total = v + n + d;
+    var segment = function (valeur, classe, libelle) {
+      if (!valeur) {
+        return '';
+      }
+      // le chiffre n'est écrit que si le segment a la place
+      var texte = total && valeur / total >= 0.12 ? valeur : '';
+      return '<span class="' + classe + '" style="flex: ' + valeur + ' 1 0" title="' + valeur + ' ' + libelle + (valeur > 1 ? 's' : '') + '">' + texte + '</span>';
+    };
+    var pc = matches ? Math.round(v / matches * 100) : 0;
+    return '<span class="g-vnd"><span class="barre" role="img" aria-label="' + v + ' victoires, ' + n + ' nuls, ' + d + ' défaites">' +
+      segment(v, 'V', 'victoire') + segment(n, 'N', 'nul') + segment(d, 'D', 'défaite') + '</span>' +
+      '<span class="pc">' + pc + '\u00A0%</span></span>';
   };
   
   this.lieu = function (lieu) {
     var domicile = Bom.domicile(lieu) ? 'D' : 'E';
-    return '<span class="icon-lieu ' + domicile + '"></span>' + lieu;
+    return '<span class="icon-lieu ' + domicile + '" title="' + (domicile === 'D' ? 'À domicile' : 'À l\'extérieur') + '"></span><span class="g-lieu ' + domicile + '">' + lieu + '</span>';
   };
 
   this._club  = function (match, name) {
-    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div>' + name;
+    return '<div class="icon-club-wrapper"><div class="icon-club club-' + match.idAdv + '"></div></div><span class="g-club">' + name + '</span>';
   };
   
   this.club = function (match) {
@@ -184,11 +306,11 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     var out = '';
     
     if (formatting === _this.$Score.table) {
-      out = '<span class="icon-resultat ' + resultat + '"></span>';
-      out += '<a href="#match/' + match.id + '">' + butsOM + '-' + butsAdv + '</a>';
-      
+      var libelle = {V: 'Victoire', N: 'Nul', D: 'Défaite'}[resultat] || '';
+      out = '<a href="#match/' + match.id + '" class="g-score ' + resultat + '" title="' + libelle + '">' + butsOM + '-' + butsAdv + '</a>';
+
       if (tabOM || tabAdv) {
-        out += '<span class="g-remark">' + tabOM + '-' + tabAdv + ' tab</span>';
+        out += '<span class="g-remark">' + tabOM + '-' + tabAdv + ' t.a.b.</span>';
       } else if (match.rqScore) {
         out += '<span class="g-remark">' + match.rqScore + '</span>';
       }
@@ -206,6 +328,44 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return out;
   };
   
+  // lignes des listes sur mobile (cartes)
+  this.ligneMatch = function (match) {
+    var date = isoDate(match.date) || '';
+    var jour = parseInt(date.substr(8, 2), 10);
+    var resultat = Bom.resultat(match);
+    var libelle = {V: 'Victoire', N: 'Nul', D: 'Défaite'}[resultat] || '';
+    var tabOM = parseInt(match.tabOM, 10) || 0, tabAdv = parseInt(match.tabAdv, 10) || 0;
+    var rq = tabOM || tabAdv ? tabOM + '-' + tabAdv + ' t.a.b.' : (match.rqScore === 'ap' ? 'a.p.' : (match.rqScore || ''));
+    var domicile = Bom.domicile(match.lieu);
+    return '<div class="ligne-match">' +
+      '<span class="date-bloc"><b>' + (jour || '') + '</b><span class="mois">' + (MOIS[parseInt(date.substr(5, 2), 10) - 1] || '') + '</span><span class="annee">' + date.substr(0, 4) + '</span></span>' +
+      '<span class="milieu">' +
+        '<span class="adv"><span class="icon-club-wrapper"><span class="icon-club club-' + match.idAdv + '"></span></span><span class="nom">' + match.nomAdv + '</span>' +
+          '<span class="icon-lieu ' + (domicile ? 'D' : 'E') + '" title="' + (domicile ? 'À domicile' : 'À l\'extérieur') + ' · ' + match.lieu + '"></span></span>' +
+        '<span class="comp" title="' + ((match.competition || '') + (match.niveau ? ' · ' + match.niveau : '')).replace(/"/g, '&quot;') + '">' + _this.sousTypeCompetition(match.sousTypeCompetition) + '<span class="niveau">' + _this.niveauCourt(match.niveau) + '</span></span>' +
+        _this.jyEtais(match.jyEtais) +
+      '</span>' +
+      '<span class="droite"><span class="g-score ' + resultat + '" title="' + libelle + '">' + (parseInt(match.butsOM, 10) || 0) + '-' + (parseInt(match.butsAdv, 10) || 0) + '</span>' +
+        (rq ? '<span class="rq">' + rq + '</span>' : '') + '</span>' +
+      '</div>';
+  };
+
+  this.lignePersonne = function (personne) {
+    var prenom = (personne.prenom || '').trim();
+    var age = personne.dateDeces ? null : _this.age(personne.dateNaissance);
+    var details = [personne.nationalite, age !== null ? _this.ans(age) : '', personne.villeNaissance].filter(Boolean).join(' · ');
+    return '<div class="ligne-personne">' +
+      (personne.fonctions !== undefined ? (personne.fonctions ? _this.fonction(personne.fonctions) : '<span></span>') :
+        (personne.poste ? _this.poste(personne.poste) : '<span></span>')) +
+      '<span class="milieu" style="min-width: 0; display: flex; flex-direction: column; gap: 2px">' +
+        '<span class="nom">' + (prenom ? prenom + ' ' : '') + '<b>' + personne.nom + '</b></span>' +
+        (personne.fonctions ? '<span class="details"><span>' + personne.fonctions.split(',').filter(function (f, i, all) { return all.indexOf(f) === i; }).join(', ') + '</span></span>' : '') +
+        '<span class="details">' + (personne.nationalite ? '<img src="style/flags/large/' + personne.nationalite + '.png" alt="">' : '') + '<span>' + details + '</span></span>' +
+      '</span>' +
+      '<span class="periode">' + (personne.periode || '') + '</span>' +
+      '</div>';
+  };
+
   this.nomOm = function (saison) {
     return saison === '1943-44' ? 'MARSEILLE-PROVENCE' : 'OM';
   };
@@ -213,7 +373,7 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   this.match = function (match) {
     var left = Bom.domicile(match.lieu) ? _this.nomOm(match.saison) : match.nomAdv;
     var right = Bom.domicile(match.lieu) ? match.nomAdv : _this.nomOm(match.saison);
-    return left + '-' + right;
+    return left + ' – ' + right;
   };
 
   this.matchLink = function (match) {
@@ -223,7 +383,7 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   this.matchTitle = function (match) {
     var left = Bom.domicile(match.fiche.lieu) ? _this.nomOm(match.fiche.saison) : match.adversaire.nom;
     var right = Bom.domicile(match.fiche.lieu) ? match.adversaire.nom : _this.nomOm(match.fiche.saison);
-    return left + ' - ' + right;
+    return left + ' – ' + right;
   };
   
   this.carton = function (carton) {

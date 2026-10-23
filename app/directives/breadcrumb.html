@@ -1,14 +1,11 @@
-<div class="dir-breadcrumb">
-
-  <div>
-    <div class="prev" ng-if="cfg.prev">
-      <span class="fa fa-chevron-left"></span>
-      <a href="{{cfg.prev.link}}">{{cfg.prev.label}}</a>
-    </div>
-    <div class="next" ng-if="cfg.next">
-      <a href="{{cfg.next.link}}">{{cfg.next.label}}</a>
-      <span class="fa fa-chevron-right"></span>
-    </div>
-  </div>
-  
-</div>
+<nav class="dir-breadcrumb" aria-label="{{cfg.label || 'Précédent et suivant'}}" ng-if="cfg.prev || cfg.next">
+  <a class="prev" href="{{cfg.prev.link}}" ng-if="cfg.prev">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+    <span>{{cfg.prev.label}}</span>
+  </a>
+  <span ng-if="!cfg.prev"></span>
+  <a class="next" href="{{cfg.next.link}}" ng-if="cfg.next">
+    <span>{{cfg.next.label}}</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+  </a>
+</nav>

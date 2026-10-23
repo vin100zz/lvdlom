@@ -1,0 +1,91 @@
+@import "style/variables";
+
+/* Entraîneurs de la saison : une carte par entraîneur, le dernier en premier */
+.dir-entraineurs-saison {
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid @border;
+    color: @ink;
+    text-decoration: none;
+
+    &.actuel {
+      background: @sky;
+      border-color: @skyLine;
+    }
+    &:hover {
+      border-color: @navy;
+    }
+  }
+  .g-badge {
+    width: 24px;
+    min-width: 24px;
+    height: 24px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 14px;
+  }
+  .texte {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.3;
+
+    b {
+      font-weight: 600;
+    }
+  }
+  .jusque {
+    font-size: 13px;
+    color: @slate;
+  }
+  .pastille {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    padding: 0 7px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+
+    &.premiere {
+      background: #FDF3DC;
+      color: #7A5200;
+    }
+    &.derniere {
+      background: #EEF1F5;
+      color: @slateDark;
+    }
+  }
+  .matches {
+    flex: none;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1;
+    font-size: 12px;
+    color: @slate;
+
+    b {
+      font-family: @fontTitle;
+      font-size: 26px;
+      font-weight: 700;
+      color: @ink;
+    }
+  }
+}

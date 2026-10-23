@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="lib/pure-release-0.5.0/grids-responsive-min.css">
 <link rel="stylesheet" href="lib/font-awesome-4.3.0/css/font-awesome.min.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap">
+
 <link rel="stylesheet" href="style/commentaires.css">
 <link rel="stylesheet" href="style/minified.min.css">
 
@@ -34,16 +38,21 @@
 <script src="app/main.js"></script>
 <script src="app/directives/breadcrumb.js"></script>
 <script src="app/directives/charts.js"></script>
+<script src="app/directives/commentaires.js"></script>
+<script src="app/directives/courbe.js"></script>
 <script src="app/directives/documents.js"></script>
 <script src="app/directives/filters.js"></script>
 <script src="app/directives/format.js"></script>
+<script src="app/directives/frise-survol.js"></script>
 <script src="app/directives/fullscreenable-photo.js"></script>
 <script src="app/directives/links.js"></script>
 <script src="app/directives/liste-age.js"></script>
 <script src="app/directives/maillot.js"></script>
 <script src="app/directives/miniloading.js"></script>
 <script src="app/directives/modal.js"></script>
+<script src="app/directives/repli.js"></script>
 <script src="app/directives/table.js"></script>
+<script src="app/directives/viewer.js"></script>
 <script src="app/directives/dirigeant/fiche.js"></script>
 <script src="app/directives/dirigeant/fonctions.js"></script>
 <script src="app/directives/joueur/biographie.js"></script>
@@ -64,6 +73,7 @@
 <script src="app/directives/mini/minijoueur.js"></script>
 <script src="app/directives/mini/minimatch.js"></script>
 <script src="app/directives/mini/minisaison.js"></script>
+<script src="app/directives/personne/hero.js"></script>
 <script src="app/directives/saisie/adversaire.js"></script>
 <script src="app/directives/saisie/dirige.js"></script>
 <script src="app/directives/saisie/dirigeant.js"></script>
@@ -75,6 +85,7 @@
 <script src="app/directives/saisie/common/match.js"></script>
 <script src="app/directives/saisie/common/source.js"></script>
 <script src="app/directives/saison/dirigeants.js"></script>
+<script src="app/directives/saison/entraineurs.js"></script>
 <script src="app/directives/saison/equipe.js"></script>
 <script src="app/directives/saison/fiche.js"></script>
 <script src="app/modules/adversaire.js"></script>
@@ -105,6 +116,7 @@
 <script src="app/modules/debug/maillots-design.js"></script>
 <script src="app/modules/saisie/saisie.js"></script>
 <script src="app/utils/bom.js"></script>
+<script src="app/utils/club-colors.js"></script>
 <script src="app/utils/countries.js"></script>
 <script src="app/utils/datetime.js"></script>
 <script src="app/utils/diacritics.js"></script>
@@ -123,35 +135,39 @@
 
 <body ng-controller="MainCtrl" ng-click="onClick($event)">
 
+ <!-- Barre d'actualité : dernier match, matches à venir, nouvelle saisie -->
  <div id="header">
 
   <lvdlom-mini-loading ng-if="!actu"></lvdlom-mini-loading>
 
-  <div class="dernier" ng-if="actu">
-   <span>Dernier match :</span> <span class="caret"></span> <a
-    href="#match/{{actu.dernierMatch.id}}" class="match">{{actu.dernierMatch.clubGauche}}
-    - {{actu.dernierMatch.clubDroite}} :
-    {{actu.dernierMatch.butsGauche}} - {{actu.dernierMatch.butsDroite}}</a>
+  <div class="actu" ng-if="actu">
+   <span class="actu-label">Dernier match</span>
+   <a href="#match/{{actu.dernierMatch.id}}" class="actu-dernier" aria-label="Dernier match : {{actu.dernierMatch.clubGauche}} {{actu.dernierMatch.butsGauche}} – {{actu.dernierMatch.butsDroite}} {{actu.dernierMatch.clubDroite}}">
+    <img ng-if="actu.dernierMatch.ecussonGauche" ng-src="{{actu.dernierMatch.ecussonGauche}}" alt="">
+    <span class="club">{{actu.dernierMatch.clubGauche}}</span>
+    <span class="score">{{actu.dernierMatch.butsGauche}}<span class="dash" aria-hidden="true"></span>{{actu.dernierMatch.butsDroite}}</span>
+    <span class="club">{{actu.dernierMatch.clubDroite}}</span>
+    <img ng-if="actu.dernierMatch.ecussonDroite" ng-src="{{actu.dernierMatch.ecussonDroite}}" alt="">
+    <span ng-if="actu.dernierMatch.resultat" class="resultat resultat-{{actu.dernierMatch.resultat}}" title="{{actu.dernierMatch.resultatLabel}}">{{actu.dernierMatch.resultat}}</span>
+   </a>
+   <span class="actu-sep" aria-hidden="true"></span>
+   <span class="actu-label">À venir</span>
+   <span class="actu-prochain" ng-repeat="prochainMatch in actu.prochainsMatches track by $index">
+    <img ng-if="prochainMatch.ecusson" ng-src="{{prochainMatch.ecusson}}" alt="">
+    <span class="texte"><span class="match">{{prochainMatch.affiche || prochainMatch.match}}</span><span class="date">{{prochainMatch.dateCourte || prochainMatch.date}}</span></span>
+   </span>
   </div>
-  
-  <div class="prochain" ng-if="actu">
-   <span>Prochains matches :</span>
-   <ul>
-    <li ng-repeat="prochainMatch in actu.prochainsMatches track by $index"><span
-     class="caret"></span>
-     <div class="match">
-      <span class="tele">{{prochainMatch.date}}</span>
-     </div></li>
-   </ul>
-  </div>
+
+  <a href="#/saisie/new" id="add-data" aria-label="Nouvelle saisie">
+   <span class="fa fa-plus"></span>
+  </a>
  </div>
 
- <a href="#/saisie/new" id="add-data">
-  <span class="fa fa-plus"></span>
- </a>
-
+ <!-- En-tête mobile -->
  <div id="mini-header">
-  <span id="hamburger" class="fa fa-2x fa-bars hamburger" ng-click="toggleMenu()"></span>
+  <span id="hamburger" class="fa fa-bars hamburger" role="button" tabindex="0" aria-label="Ouvrir le menu" ng-click="toggleMenu()"></span>
+  <a href="#/anniversaire" class="logo"><img src="style/img/title.png" alt="La Vie de l'OM — accueil"></a>
+  <a href="#/saisie/new" class="add" aria-label="Nouvelle saisie"><span class="fa fa-plus"></span></a>
  </div>
 
  <div id="content">
@@ -168,7 +184,9 @@
   </div>
  </div>
 
-  <div id="alert" ng-class="{show: alert.show}">
+  <lvdlom-viewer></lvdlom-viewer>
+
+  <div id="alert" role="status" ng-class="{show: alert.show, error: alert.type == 'error'}">
     <span class="fa fa-check status success" ng-if="alert.type == 'success'"></span>
     <span class="fa fa-exclamation status error" ng-if="alert.type == 'error'"></span>
     <span>{{alert.message}}</span>

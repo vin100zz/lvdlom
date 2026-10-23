@@ -1,4 +1,4 @@
-app.directive('lvdlomFonctionsDirigeant', function (Bom, Picture) {
+app.directive('lvdlomFonctionsDirigeant', function (Formatter) {
   return {
     scope: {
       dirigeant: '=',
@@ -6,8 +6,10 @@ app.directive('lvdlomFonctionsDirigeant', function (Bom, Picture) {
     },
     templateUrl: 'app/directives/dirigeant/fonctions.html',
     controller: function ($scope) {
-      $scope.Bom = Bom;
-      $scope.Picture = Picture;
+      $scope.dates = function (fonction) {
+        var debut = Formatter.dateLongue(fonction.debut);
+        return fonction.fin ? 'du ' + debut + ' au ' + Formatter.dateLongue(fonction.fin) : 'depuis le ' + debut;
+      };
     }
   };
 });

@@ -1,27 +1,16 @@
 <div class="dir-premieres-joueur" ng-if="joueur.id">
 
-  <div class="g-row">
-  
-    <ul ng-if="joueur.premierMatch.id">
-      <li class="g-remark">Premier match</li>
-      <li>
-        <span ng-bind-html="Formatter.date(joueur.premierMatch.date)" class="g-remark"></span>
-        <span ng-bind-html="joueur.premierMatch.sousTypeCompetition | format:'sousTypeCompetition'"></span>
-        <span ng-bind-html="Formatter.matchLink(joueur.premierMatch)"></span>
-        <span class="g-remark">à l'âge de {{formatAge(joueur.premierMatch.age)}} ans</span>
-      </li>
-    </ul>
-    
-    <ul ng-if="joueur.premierBut.id">
-      <li class="g-remark">Premier but</li>
-      <li>
-        <span ng-bind-html="Formatter.date(joueur.premierBut.date)" class="g-remark"></span>
-        <span ng-bind-html="joueur.premierBut.sousTypeCompetition | format:'sousTypeCompetition'"></span>
-        <span ng-bind-html="Formatter.matchLink(joueur.premierBut)"></span>
-        <span class="g-remark">pour son {{joueur.premierBut.card}}{{joueur.premierBut.card == 1 ? 'er' : 'ème'}} match</span>
-      </li>
-    </ul>
-    
-  </div>
-  
+  <dl ng-if="premieres.length">
+    <div ng-repeat="p in premieres">
+      <dt>{{p.label}}<span class="date-mobile"> · {{p.date}}</span></dt>
+      <dd>
+        <span class="date">{{p.date}}</span>
+        <span class="match"><span ng-bind-html="p.match.sousTypeCompetition | format:'sousTypeCompetition'"></span><a href="#/match/{{p.match.id}}">{{p.affiche}}</a></span>
+        <span class="note">{{p.note}}</span>
+      </dd>
+    </div>
+  </dl>
+
+  <p class="aucun" ng-if="!premieres.length">Aucun match joué.</p>
+
 </div>

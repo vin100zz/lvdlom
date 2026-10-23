@@ -5,13 +5,17 @@ app.factory('Carriere', function ($resource) {
   });
 });
   
-app.directive('lvdlomCarriereJoueur', function (Carriere) {
+app.directive('lvdlomCarriereJoueur', function (Carriere, Picture) {
   return {
     scope: {
       joueur: '='
     },
     templateUrl: 'app/directives/joueur/carriere.html',
     controller: function ($scope) {
+
+      $scope.ecussonOm = function (saison) {
+        return Picture.club('OM', saison);
+      };
 
       $scope.carrieres = Carriere.get(null, function () {
           

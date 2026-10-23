@@ -48,7 +48,7 @@ app.service('Filter', function (Dictionary) {
   this.jyEtais = function () {
     return {
       criterion: 'jyEtais',
-      label: 'J\'y Étais',
+      label: 'J\'y étais',
       options: [{key: 'P', label: 'Oui'}, {key: 'V', label: 'Avec V'}],
       value: 'P'
     };

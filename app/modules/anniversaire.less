@@ -1,47 +1,321 @@
 @import "style/variables";
 
+/* Accueil · anniversaires : la date du jour en grand, puis une grille chronologique de cartes */
 #page-anniversaire {
-	text-align: center;
 
-	.agenda {
+  .jour-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: @navy;
+    color: @white;
 
-		> div {
-			height: 210px;
-			background: url(img/agenda.png) rgba(255,255,255,0.15) no-repeat center center;
-			box-shadow: none;
+    .ghost {
+      position: absolute;
+      right: 120px;
+      top: -70px;
+      height: 420px;
+      width: auto;
+      opacity: .07;
+      pointer-events: none;
+    }
+    .biais {
+      position: absolute;
+      left: 42%;
+      top: -160px;
+      width: 160px;
+      height: 640px;
+      background: #0E3A66;
+      opacity: .6;
+      transform: rotate(22deg);
 
-			> span {
-				position: absolute;
-				left: 0;
-				right: 0;
+      &.fin {
+        left: 51%;
+        width: 26px;
+        background: #3DB4E8;
+        opacity: .16;
+      }
+    }
+    .contenu {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 26px 40px 30px;
+    }
+    h1 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      line-height: .8;
+    }
+    .jour {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 200px;
+      letter-spacing: -.01em;
+    }
+    .mois-bloc {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .sur-titre {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: @gold;
+      line-height: 1;
+    }
+    .mois {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 84px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      line-height: .85;
+    }
+    nav {
+      display: flex;
+      gap: 10px;
+    }
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      border-radius: 999px;
+      font-size: 15px;
+      text-decoration: none;
 
-				&:first-child {
-					top: 123px;
-				  font-size: 60pt;
-				}
-				&:last-child {
-				  top: 172px;
-				  font-size: 15pt;
-				}
-			}
-		}
-	}
+      &:focus-visible {
+        outline: 3px solid @white;
+        outline-offset: 2px;
+      }
+    }
+    .prec {
+      padding: 0 20px 0 14px;
+      background: rgba(255, 255, 255, .08);
+      color: #DCE5EE;
 
-	.uniformized {
-	 	height: 160px;
-	 
-	 .dir-fiche-match {
-	   	padding-top: 20px;
+      &:hover {
+        background: rgba(255, 255, 255, .14);
+      }
+    }
+    .suiv {
+      padding: 0 14px 0 20px;
+      background: @gold;
+      color: @navy;
+      font-weight: 700;
 
-	   	.row-jyetais {
-	   		margin-top: 5px;
-	   	}
-	 }
-	 
-	 	.dir-fiche-joueur > div,
-	 	.dir-fiche-dirigeant > div {
-	   	height: 140px;
-	 	}
-	}
-	 
+      &:hover {
+        background: #FFB733;
+      }
+    }
+  }
+
+  .cartes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 24px;
+  }
+  .carte {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid @border;
+    border-radius: 18px;
+    background: @white;
+    color: @ink;
+    text-decoration: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+
+    &:hover {
+      border-color: @skyLine;
+      box-shadow: 0 10px 24px rgba(10, 34, 64, .10);
+    }
+    &:focus-visible {
+      outline: 3px solid @gold;
+      outline-offset: 2px;
+    }
+  }
+  .visuel {
+    flex: none;
+    height: 156px;
+  }
+  .match {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: @navy;
+
+    .biais {
+      position: absolute;
+      left: 44%;
+      top: -60px;
+      width: 46px;
+      height: 280px;
+      background: #0E3A66;
+      opacity: .7;
+      transform: rotate(22deg);
+    }
+    img {
+      position: relative;
+      width: 58px;
+      height: 66px;
+      object-fit: contain;
+    }
+    .score {
+      position: relative;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1;
+      color: @white;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+  .photo {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .initiales {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0E2A47;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 60px;
+    letter-spacing: .04em;
+    color: @gold;
+  }
+  .texte {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 16px 16px;
+  }
+  .ligne-annee {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .annee {
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    color: @navy;
+  }
+  .il-y-a {
+    font-size: 13px;
+    color: @slate;
+  }
+  .titre {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .genre {
+    font-size: 13px;
+    color: @slate;
+  }
+
+  @media (max-width: 1023px) {
+    .jour-hero {
+      .jour {
+        font-size: 140px;
+      }
+      .mois {
+        font-size: 60px;
+      }
+    }
+  }
+
+  @media (max-width: 639px) {
+    .jour-hero {
+      border-radius: 18px;
+
+      .ghost {
+        right: -40px;
+        height: 260px;
+      }
+      .contenu {
+        gap: 16px;
+        padding: 18px 18px 20px;
+      }
+      h1 {
+        gap: 14px;
+      }
+      .jour {
+        font-size: 96px;
+      }
+      .mois {
+        font-size: 40px;
+      }
+      nav {
+        width: 100%;
+      }
+      nav a {
+        flex: 1 1 0;
+        justify-content: center;
+        height: 44px;
+        font-size: 14px;
+      }
+    }
+    .cartes {
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .carte {
+      border-radius: 14px;
+    }
+    .visuel {
+      height: 110px;
+    }
+    .match {
+      gap: 8px;
+
+      img {
+        width: 38px;
+        height: 44px;
+      }
+      .score {
+        font-size: 30px;
+      }
+    }
+    .initiales {
+      font-size: 42px;
+    }
+    .texte {
+      padding: 10px 12px 12px;
+    }
+    .annee {
+      font-size: 24px;
+    }
+    .il-y-a {
+      font-size: 12px;
+    }
+    .titre {
+      font-size: 14px;
+    }
+    .genre {
+      font-size: 12px;
+    }
+  }
 }

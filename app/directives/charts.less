@@ -1,38 +1,98 @@
-.dir-charts {
+@import "style/variables";
 
-	width: 100%;
-	text-align: right;
+/* Bilan : anneau extérieur V · N · D, anneau intérieur buts pour / contre, total au centre */
+.dir-charts {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
 
   .canvases {
-    display: inline-block;
     position: relative;
-    width: 70%;
-    height: 100%;
-    vertical-align: middle;
-    text-align: center;
+    flex: none;
+    width: 150px;
+    height: 150px;
 
     &.no-legend {
-      width: 100%;
+      margin: auto;
+    }
+    canvas {
+      position: absolute;
     }
   }
+  .main {
+    left: 0;
+    top: 0;
+  }
   .inner {
+    left: 23px;
+    top: 23px;
+  }
+  .center {
     position: absolute;
-    left: calc(~"50% - 30px");
-    top: calc(~"50% - 33px");
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    pointer-events: none;
+
+    b {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 26px;
+      color: @navy;
+    }
+    span {
+      margin-top: 2px;
+      font-size: 11px;
+      color: @slate;
+    }
   }
 
   .legend {
-    display: inline-block;
-    width: 25%;
-    vertical-align: middle;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .legend ul {
-    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+
+    &.second {
+      padding-top: 10px;
+      border-top: 1px solid @border;
+    }
+  }
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: @slateDark;
+
+    b {
+      min-width: 28px;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 20px;
+      color: @ink;
+    }
   }
   .legend .icon {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-left: 5px;
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+
+    &.round {
+      border-radius: 50%;
+    }
   }
 }

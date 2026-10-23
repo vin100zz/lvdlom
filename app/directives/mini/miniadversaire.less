@@ -1,23 +1,68 @@
 @import "style/variables";
 
+/* Sélection d'un adversaire : carte aux couleurs du club */
 #miniadversaire {
-  
-  .row {
-    display: table;
-    width: 100%;
-    text-align: center;
-  
-    > div {
-      display: table-cell;
-      width: 50%;
-      height: 105px;
-    }
-    
-    .club {
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
+
+  .carte-club {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 136px;
+    padding: 12px 12px 12px 18px;
+    box-sizing: border-box;
+    border-radius: @radiusL;
+    background: @navyChip;
+    color: @white;
+    box-shadow: inset 0 0 0 1px rgba(10, 34, 64, .06);
+  }
+  .lisere {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 6px;
+  }
+  .ghost {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    height: 220px;
+    width: auto;
+    opacity: .10;
+    pointer-events: none;
+  }
+  .ecusson {
+    position: relative;
+    flex: none;
+    height: 84px;
+    width: auto;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .3));
+  }
+  .nom {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: .02em;
+    overflow-wrap: anywhere;
+  }
+  .maillot {
+    position: relative;
+    flex: none;
+    display: block;
+    width: 84px;
+    height: 84px;
+    overflow: hidden;
+
+    .dir-maillot {
+      margin: 0;
+      transform: scale(.535);
+      transform-origin: top left;
     }
   }
-
 }

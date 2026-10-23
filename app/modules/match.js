@@ -20,19 +20,17 @@
 
       $scope.setPageTitle(Formatter.matchTitle($scope.match) + ' ' +  Formatter.score(Formatter.$Score.big, $scope.match.fiche));
 
-      var prev = !$scope.match.navigation.prev.id ? null : {
-        label: Formatter.match($scope.match.navigation.prev) + ' ' + Formatter.score(Formatter.$Score.big, $scope.match.navigation.prev),
-          link: '#/match/' + $scope.match.navigation.prev.id
-      };
-
-      var next = !$scope.match.navigation.next.id ? null : {
-        label: Formatter.match($scope.match.navigation.next) + ' ' + Formatter.score(Formatter.$Score.big, $scope.match.navigation.next),
-          link: '#/match/' + $scope.match.navigation.next.id
+      var navigation = function (match) {
+        return !match.id ? null : {
+          label: Formatter.match(match) + ' ' + Formatter.score(Formatter.$Score.big, match),
+          link: '#/match/' + match.id
+        };
       };
 
       $scope.breadcrumb = {
-        prev: prev,
-        next: next
+        label: 'Match précédent et suivant',
+        prev: navigation($scope.match.navigation.prev),
+        next: navigation($scope.match.navigation.next)
       };
 
     });

@@ -23,16 +23,18 @@
       $scope.currentView = view;
     };
 
-    var getChartCfg = function (nbDone, nbTotal, colorDone, colorNotDone) {
+    // anneau : la part faite en bleu, le reste en bleu ciel, le pourcentage au centre
+    var getChartCfg = function (nbDone, nbTotal) {
       return {
         main: {
           data: {value: [nbTotal-nbDone, nbDone]},
-          settings: [{color: colorNotDone}, {color: colorDone}],
+          settings: [{color: '#E6F4FB'}, {color: '#0E74B8'}],
           chartjsCfg: {
-            percentageInnerCutout: 75,
-            segmentStrokeWidth: 1
+            percentageInnerCutout: 78,
+            segmentStrokeWidth: 2
           }
         },
+        centerText: nbTotal ? Math.round(nbDone / nbTotal * 100) + '\u00A0%' : '–',
         hideLegend: true
       };
     };
@@ -68,8 +70,8 @@
         }
       });
 
-      avancement.chartCfg = getChartCfg(avancement.nbDone, avancement.nbTotal, colorDone, colorNotDone);
-      avancement.idChartCfg = getChartCfg(avancement.nbIdDone, avancement.nbTotal, colorDone, colorNotDone);
+      avancement.chartCfg = getChartCfg(avancement.nbDone, avancement.nbTotal);
+      avancement.idChartCfg = getChartCfg(avancement.nbIdDone, avancement.nbTotal);
 
       $scope.avancements.push(avancement);
       $scope.avancements.sort(function (avancement1, avancement2) {return avancement2.order - avancement1.order;});

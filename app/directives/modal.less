@@ -1,0 +1,205 @@
+@import "style/variables";
+
+/* Fenêtre (biographie, résumé des documents) : en-tête marine, contenu lisible */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: rgba(6, 22, 41, .72);
+}
+
+.modal-dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  overflow: hidden;
+  border-radius: @radiusL;
+  background: @white;
+  box-shadow: 0 24px 60px rgba(6, 22, 41, .4);
+
+  strong {
+    font-weight: 700;
+    color: @navy;
+  }
+}
+
+.modal-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px 14px 22px;
+  background: @navy;
+  color: @white;
+}
+
+.modal-title {
+  font-family: @fontTitle;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  color: @white;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, .18);
+  }
+  &:focus-visible {
+    outline: 3px solid @gold;
+    outline-offset: 2px;
+  }
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px 22px;
+}
+
+/* Contenu généré par IA (biographie, résumé) */
+.dir-biographie-joueur,
+.dir-documents-resume {
+  min-height: 60px;
+}
+
+.bio-generating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 30px 0;
+  color: @slate;
+
+  .fa-spinner {
+    font-size: 18px;
+    color: @blue;
+  }
+}
+
+.bio-error {
+  padding: 12px 14px;
+  border-radius: @radius;
+  background: #F9E6E4;
+  color: @loss;
+
+  .fa {
+    margin-right: 6px;
+  }
+}
+.bio-retry-btn {
+  display: flex !important;
+  margin: 10px 0 0 !important;
+}
+
+.bio-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: @slateDark;
+
+  p {
+    margin: 0 0 12px;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  a {
+    color: @blue;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: @navy;
+  }
+}
+
+.bio-sources {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid @border;
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 18px;
+    list-style: disc;
+  }
+  li {
+    font-size: 13px;
+    line-height: 1.9;
+    color: @slate;
+  }
+  a {
+    color: @blue;
+    text-decoration: underline;
+  }
+}
+.bio-sources-title {
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: @slate;
+
+  .fa {
+    margin-right: 5px;
+  }
+}
+
+.bio-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid @border;
+}
+.bio-disclaimer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: @slate;
+
+  .fa {
+    color: #B57A00;
+  }
+}
+.bio-regenerate-btn {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 639px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-dialog {
+    max-height: 90vh;
+    border-radius: 18px 18px 0 0;
+  }
+  .modal-body {
+    padding: 16px 16px 20px;
+  }
+}

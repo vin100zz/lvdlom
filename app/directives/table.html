@@ -1,29 +1,51 @@
-<div class="dir-table">
+<div class="dir-table" ng-class="{'avec-lignes-mobiles': mobile && cfg.mobile}">
 
-  <table ng-show="!isLoading() && hasResults()">
+  <table ng-if="!(mobile && cfg.mobile)" ng-show="!isLoading() && hasResults()">
     <thead>
       <tr>
-        <th ng-show="cfg.showRanking"></th>
-        <th ng-repeat="column in cfg.columns track by $index" ng-click="sortBy($index)" ng-class="getHeaderClass($index)">{{column.title}}</th>
+        <th ng-show="cfg.showRanking" scope="col" class="ranking"></th>
+        <th ng-repeat="column in cfg.columns track by $index" scope="col" ng-click="sortBy($index)" ng-class="getHeaderClass($index)" aria-sort="{{getAriaSort($index)}}">{{column.title}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending track by item.id" ng-click="selectRow(item.id, $index)" ng-show="saveSortedItem(item.id, $index)" ng-class="{'selected': item.id === cfg.selected.id}">
+      <tr ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending track by item.id" ng-click="selectRow(item.id, $index)" ng-show="saveSortedItem(item.id, $index)" ng-class="{'selected': item.id === cfg.selected.id}" aria-selected="{{item.id === cfg.selected.id}}">
         <td ng-show="cfg.showRanking" class="ranking">{{($index+1) + '.'}}</td>
-        <td ng-repeat="column in cfg.columns track by $index">
+        <td ng-repeat="column in cfg.columns track by $index" ng-class="{principale: $first}">
           <lvdlom-format formatter="column.formatter" value="item[column.key]" item="item"></lvdlom-format>
         </td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="{{getNbColumns()}}">{{cfg.data.list.length}} {{cfg.itemName}}</td>
+        <td colspan="{{getNbColumns()}}"><b class="count">{{cfg.data.list.length}}</b> {{cfg.itemName}}</td>
       </tr>
     </tfoot>
   </table>
-  
-  <div class="no-result" ng-show="!isLoading() && !hasResults()">Pas de résultat</div>
-  
+
+  <!-- mobile : une carte par ligne, qui ouvre directement la fiche -->
+  <div class="lignes-mobiles" ng-if="mobile && cfg.mobile" ng-show="!isLoading() && hasResults()">
+    <div class="tri">
+      <span>Trier par</span>
+      <select ng-model="sort.column" ng-options="t.index as t.title for t in triables" ng-change="sortBy(sort.column, true)" aria-label="Trier par"></select>
+      <button type="button" class="sens" ng-click="sort.descending = !sort.descending" aria-label="{{sort.descending ? 'Ordre décroissant' : 'Ordre croissant'}}">
+        <span aria-hidden="true">{{sort.descending ? '↓' : '↑'}}</span>
+      </button>
+    </div>
+    <ol>
+      <li ng-repeat="item in cfg.data.list | orderBy:sortFn:sort.descending | limitTo:limite track by item.id">
+        <a href="{{cfg.mobile.link || lien}}{{item.id}}"><lvdlom-format formatter="cfg.mobile.row" item="item"></lvdlom-format></a>
+      </li>
+    </ol>
+    <button type="button" class="plus" ng-if="cfg.data.list.length > limite" ng-click="limite = limite + 200">Afficher plus</button>
+    <p class="total"><b class="count">{{cfg.data.list.length}}</b> {{cfg.itemName}}</p>
+  </div>
+
+  <div class="g-empty" ng-show="!isLoading() && !hasResults()">
+    <span class="fa fa-filter" aria-hidden="true"></span>
+    <b>Pas de résultat</b>
+    <span>Aucune ligne ne correspond à ces filtres.</span>
+  </div>
+
   <lvdlom-mini-loading ng-show="isLoading()"></lvdlom-mini-loading>
 
 </div>

@@ -1,109 +1,217 @@
 @import "style/variables";
 
+/* Frise · Timeline (charte · frise) : une colonne par saison, résultats en pastilles,
+   puis présidents, entraîneurs et joueurs groupés par poste */
 #page-timeline {
 
-  .timeline {
+  .intro {
+    margin: 0;
+    color: @slate;
+  }
+
+  .defilement {
+    overflow-x: auto;
+    border: 1px solid @border;
+    border-radius: @radiusL;
+    background: @white;
+  }
+  .frise {
+    position: relative;
+    padding: 0 0 18px;
+  }
+
+  .colonnes span {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 10400px;
-    padding-left: 120px;
-    background: #ddd;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid @border;
+    box-sizing: border-box;
+    pointer-events: none;
 
-    .legend {
-      position: absolute;
-      left: 0;
-
-      > * {
-        position: absolute;
-        width: 110px;
-        text-align: right;
-      }
-
-      :nth-child(1) {
-        top: 60px;
-      }
-      :nth-child(2) {
-        top: 110px;
-      }
-      :nth-child(3) {
-        top: 160px;
-      }
+    &.survol {
+      border-left: 0;
+      background: rgba(230, 244, 251, .7);
     }
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  .rangee {
+    position: relative;
+    height: 38px;
+  }
+  .libelle {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    padding: 0 12px 0 18px;
+    box-sizing: border-box;
+    background: @white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: @slate;
+    box-shadow: 6px 0 8px -6px rgba(10, 34, 64, .18);
+  }
+
+  .tete {
+    height: 44px;
+    border-bottom: 1px solid @borderStrong;
 
     .saison {
-      display: inline-block;
-      vertical-align: top;
-      width: 100px;
-      height: 2735px;
-      padding-top: 10px;
-      border: 1px solid #aaa;
-      text-align: center;
-      
-      .title {
-        margin-bottom: 20px;
+      position: absolute;
+      top: 0;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: @fontTitle;
+      font-size: 18px;
+      font-weight: 700;
+      color: @navy;
+      text-decoration: none;
 
-        > a {
-          font-size: 13pt;
-          font-weight: bold;
-        }
-        
-      }
-
-      .ranking {
-        width: 60px;
-        height: 40px;
-        padding: 10px;
-        border: 1px solid #aaa;
-        border-radius: 10px;
-        font-size: 13pt;
-        margin: 10px 20px;
-        color: #666;
-
-        &.niveau-1 {
-          color: #fff;
-          background: #d1a231;
-          border-color: #bf942c;
-        }
-        &.niveau-2 {
-          color: #fff;
-          background: #b0b3ae;
-          border-color: #aaa;
-        }
-        &.niveau-D2 {
-          font-size: 11pt;
-          padding: 10px 0;
-        }
+      &.survol,
+      &:hover {
+        color: @blue;
       }
     }
+  }
 
-    .joueur {
-      position: absolute;
-      text-align: center;
-      background: white;
-      box-shadow: 1px 1px 2px 1px rgba(100,100,100,0.75);
-      border-left: 5px solid;
-      padding: 5px;
+  .resultat {
+    height: 46px;
 
-      a {
-        display: block;
-        font-size: 10pt;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        line-height: 115%;
+    &:last-of-type {
+      border-bottom: 1px solid @borderStrong;
+    }
+  }
+  .resultat + .groupe {
+    margin-top: 6px;
+  }
+  .cellule {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pastille {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 8px;
+    background: #EEF1F5;
+    color: @navy;
+    font-family: @fontTitle;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    &.titre {
+      background: @gold;
+      color: @navy;
+    }
+    .g-badge {
+      height: 18px;
+      min-width: 24px;
+      font-size: 11px;
+    }
+  }
+  .vide {
+    color: @borderButton;
+  }
+
+  .groupe {
+    padding: 6px 0;
+
+    & + .groupe {
+      border-top: 1px solid @borderStrong;
+    }
+  }
+  .barres {
+    height: 38px;
+  }
+  .barre {
+    position: absolute;
+    top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: @tile;
+    color: @ink;
+    text-decoration: none;
+
+    .nom {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 13.5px;
+
+      b {
+        font-weight: 600;
       }
+    }
+    .meta {
+      flex: none;
+      margin-left: auto;
+      font-size: 12px;
+      color: @slate;
+    }
+    &:hover {
+      filter: brightness(.96);
+    }
+    &:focus-visible {
+      outline: 3px solid @gold;
+      outline-offset: 1px;
+    }
 
-      .stats {
-        font-size: 9pt;
-        color: #aaa;
+    &.president {
+      background: @navy;
+      color: @white;
 
-        > div {
-          position: absolute;
-          top: 40px;
-          width: 100px;
-        }
+      .meta {
+        color: rgba(255, 255, 255, .7);
       }
+    }
+    &.entraineur {
+      background: @sky;
+      box-shadow: inset 3px 0 0 @blue;
+      color: @navy;
+    }
+    &.GA {
+      box-shadow: inset 3px 0 0 @posteG;
+    }
+    &.DE {
+      box-shadow: inset 3px 0 0 @posteD;
+    }
+    &.MI {
+      box-shadow: inset 3px 0 0 @posteM;
+    }
+    &.AV {
+      box-shadow: inset 3px 0 0 @posteA;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .libelle {
+      padding-left: 12px;
+      font-size: 11px;
+      letter-spacing: .04em;
     }
   }
 }

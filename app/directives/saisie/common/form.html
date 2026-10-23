@@ -5,14 +5,23 @@
     <!-- match -->
     <lvdlom-saisie-common-match ng-if="cfg.inputs[0].type === 'match'" cfg="matchCfg"></lvdlom-saisie-common-match>
 
-    <div class="g-row" ng-repeat="input in cfg.inputs">
-      <div class="g-remark">{{input.label}}</div>
-      <div>
-        <!-- text, date, checkbox -->
-        <input ng-if="showInputElement(input.type)" ng-model="data[input.name]" type="{{input.type}}" ng-required="input.required" placeholder="{{input.placeholder}}"></input>
+    <!-- autres saisies : libellé au-dessus du champ -->
+    <div class="champs" ng-if="cfg.inputs[0].type !== 'match'">
+      <div class="champ" ng-repeat="input in cfg.inputs" ng-class="{large: input.type === 'associations' || input.type === 'source', 'case': input.type === 'checkbox'}">
+
+        <!-- case à cocher : la case puis son libellé -->
+        <label class="case-a-cocher" ng-if="input.type === 'checkbox'">
+          <input ng-model="data[input.name]" type="checkbox" ng-required="input.required">
+          <span>{{input.label}}</span>
+        </label>
+
+        <label class="libelle" ng-if="input.type !== 'checkbox'" for="champ-{{cfg.type}}-{{input.name}}">{{input.label}}<span class="obligatoire" ng-if="input.required" aria-label="obligatoire"> *</span></label>
+
+        <!-- text, date -->
+        <input ng-if="input.type === 'text' || input.type === 'date'" id="champ-{{cfg.type}}-{{input.name}}" ng-model="data[input.name]" type="{{input.type}}" ng-required="input.required" placeholder="{{input.placeholder}}">
 
         <!-- select -->
-        <select ng-if="input.type == 'select'" ng-model="data[input.name]" ng-options="option.key as option.label for option in input.options" ng-required="input.required">
+        <select ng-if="input.type == 'select'" id="champ-{{cfg.type}}-{{input.name}}" ng-model="data[input.name]" ng-options="option.key as option.label for option in input.options" ng-required="input.required">
           <option ng-value=""></option>
         </select>
 
@@ -22,20 +31,16 @@
       </div>
     </div>
 
-    <div class="g-row actions">
-      <button type="reset" class="g-button" ng-click="reset($event)">
-        <span class="fa fa-undo"></span> Réinitaliser
+    <div class="actions">
+      <button type="reset" class="g-button g-button-secondaire" ng-click="reset($event)">
+        <span class="fa fa-undo" aria-hidden="true"></span> Réinitialiser
       </button>
 
       <button type="submit" class="g-button">
-        <span class="fa fa-check"></span> Valider
+        <span class="fa fa-check" aria-hidden="true"></span> Valider
       </button>
     </div>
 
-    
-    <!--<pre>{{data | json}}</pre>-->
-    
-
   </form>
-  
+
 </div>

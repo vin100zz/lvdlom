@@ -1,53 +1,57 @@
-<div class="pure-g" id="page-saison" ng-if="saison.id">
+<div id="page-saison" class="g-page" ng-if="saison.id">
 
-  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-  
-  <div class="pure-u-1 pure-u-xl-1-2">
+  <div class="g-page-head">
+    <lvdlom-breadcrumb cfg="breadcrumb"></lvdlom-breadcrumb>
 
-    <div class="pure-u-1 pure-u-lg-1-2 g-block">
-      <div class="g-topbar g-main-topbar">{{saison.id}}</div>
-      <div>
+    <!-- hero saison : l'année en grand, le bilan en tuiles, les matches de la saison -->
+    <section class="saison-hero" aria-label="Saison {{saison.id}}">
+      <img class="ghost" ng-src="{{ecussonOm}}" alt="" aria-hidden="true">
+      <div class="biais" aria-hidden="true"></div>
+      <div class="contenu">
+        <h1><span class="sur-titre">Saison</span><span class="annee">{{saison.id}}</span></h1>
+        <dl class="tuiles" ng-if="bilan">
+          <div ng-repeat="tuile in bilan" ng-class="{or: tuile.or}"><dt>{{tuile.label}}</dt><dd>{{tuile.valeur}}</dd></div>
+        </dl>
+        <a class="cta" href="#/matches/saison/{{saison.id}}">Matches de la saison
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <div class="saison-body">
+
+    <section class="saison-col-effectif" aria-labelledby="h-effectif">
+      <h2 class="g-title" id="h-effectif">Effectif <span class="g-title-extra" ng-if="saison.bilan.length">{{saison.bilan.length}} joueurs</span></h2>
+      <lvdlom-equipe-saison saison="saison"></lvdlom-equipe-saison>
+    </section>
+
+    <div class="saison-col-encadrement">
+      <section aria-labelledby="h-equipe" ng-if="photoEquipe || saison.palmares.length">
+        <h2 class="g-title" id="h-equipe" ng-if="photoEquipe">L'équipe</h2>
+        <h2 class="g-title" id="h-equipe" ng-if="!photoEquipe">Palmarès</h2>
         <lvdlom-fiche-saison saison="saison"></lvdlom-fiche-saison>
-      </div>
+      </section>
+      <section aria-labelledby="h-entraineurs" ng-if="saison.entraineurs.length">
+        <h2 class="g-title" id="h-entraineurs">{{saison.entraineurs.length > 1 ? 'Entraîneurs' : 'Entraîneur'}}</h2>
+        <lvdlom-entraineurs-saison saison="saison"></lvdlom-entraineurs-saison>
+      </section>
+      <section aria-labelledby="h-dirigeants" ng-if="saison.dirigeants.length">
+        <h2 class="g-title" id="h-dirigeants">Dirigeants</h2>
+        <lvdlom-dirigeants-saison saison="saison"></lvdlom-dirigeants-saison>
+      </section>
     </div>
-    
-    <div class="pure-u-1 pure-u-lg-1-2">
-      <div class="pure-u-1 g-block">
-        <div class="g-topbar"><span class="fa fa-briefcase"></span>Dirigeants</div>
-        <div>
-          <lvdlom-dirigeants-saison saison="saison"></lvdlom-dirigeants-saison>
-        </div>
-      </div>
 
-      <div class="pure-u-1 g-block">
-        <div class="g-topbar"><span class="fa fa-link"></span>Liens</div>
-        <div>
-          <lvdlom-links links="links"></lvdlom-links>
-        </div>
-      </div>
-    </div>
-    
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-user"></span>Équipe</div>
-      <div>
-        <lvdlom-equipe-saison saison="saison"></lvdlom-equipe-saison>
-      </div>
-    </div>
-    
-  </div>
-   
-  <div class="pure-u-1 pure-u-xl-1-2 g-block g-fixed-block g-scroll-block">
-    <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
-    <div>
+    <section class="saison-col-presse" aria-labelledby="h-presse">
+      <h2 class="g-title" id="h-presse">Revue de presse</h2>
       <lvdlom-documents documents="saison.documents"></lvdlom-documents>
-    </div>
-  </div>
+    </section>
 
-  <div ng-if="saison.commentaires" class="pure-u-1 pure-u-xl-1-1 g-block g-fixed-block g-scroll-block commentaires">
-    <div class="g-topbar"><span class="fa fa-comment"></span>Commentaires</div>
-    <div>
-      <div ng-bind-html="saison.commentaires"></div>
-    </div>
+    <section class="saison-col-commentaires" aria-labelledby="h-commentaires" ng-if="saison.commentaires">
+      <h2 class="g-title" id="h-commentaires">Commentaires</h2>
+      <div class="commentaires" lvdlom-commentaires ng-bind-html="saison.commentaires"></div>
+    </section>
+
   </div>
 
 </div>

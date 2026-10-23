@@ -5,42 +5,16 @@ lvdlom-fullscreenable-photo,
 
 .lvdlom-fullscreenable-photo {
 
-  > div:first-child {
+  > button {
+    display: block;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
     cursor: zoom-in;
-  }
 
-  .lvdlom-fullscreenable-photo-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-out;
-
-    img {
-      max-width: 95%;
-      max-height: 95%;
-      object-fit: contain;
-    }
-
-    .lvdlom-fullscreenable-photo-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #fff;
-      font-size: 24pt;
-      cursor: pointer;
-      opacity: 0.75;
-
-      &:hover {
-        opacity: 1;
-      }
+    &:focus-visible {
+      outline: 3px solid #F2A516;
+      outline-offset: 2px;
     }
   }
 }
-

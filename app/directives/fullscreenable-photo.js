@@ -1,4 +1,4 @@
-app.directive('lvdlomFullscreenablePhoto', function () {
+app.directive('lvdlomFullscreenablePhoto', function (Viewer) {
   return {
     scope: {
       src:        '@',
@@ -6,10 +6,10 @@ app.directive('lvdlomFullscreenablePhoto', function () {
     },
     templateUrl: 'app/directives/fullscreenable-photo.html',
     controller: function ($scope) {
-      $scope.ui = { fullscreen: false };
-      $scope.openFullscreen  = function () { $scope.ui.fullscreen = true;  };
-      $scope.closeFullscreen = function () { $scope.ui.fullscreen = false; };
+      // la photo s'ouvre dans la visionneuse commune
+      $scope.openFullscreen = function () {
+        Viewer.open([{path: $scope.src}], 0);
+      };
     }
   };
 });
-

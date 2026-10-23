@@ -1,27 +1,60 @@
-<div id="page-timeline">
+<div id="page-timeline" class="g-page">
 
-  <div class="timeline">
+  <div class="g-list-head">
+    <h1 class="g-page-title">Timeline</h1>
+    <p class="intro">Les résultats de chaque saison, puis présidents, entraîneurs et joueurs les plus titularisés, groupés par poste.</p>
+  </div>
 
-    <div class="legend">
-      <div>Championnat</div>
-      <div>Coupe de France</div>
-      <div>Coupe d'Europe</div>
-    </div>
+  <div class="g-squelette" ng-if="!saisons.length" aria-label="Chargement"><span ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8]"></span></div>
 
-    <div class="saison" ng-repeat="saison in saisons track by saison.id">
-      <div class="title" ng-bind-html="Formatter.saison(saison.id)"></div>
-      <div class="ranking niveau-{{palmares.championnat[saison.id].niveau}}">{{palmares.championnat[saison.id].label || '-'}}</div>
-      <div class="ranking niveau-{{palmares.coupeFrance[saison.id].niveau}}">{{palmares.coupeFrance[saison.id].label || '-'}}</div>
-      <div class="ranking niveau-{{palmares.coupeEurope[saison.id].niveau}}">{{palmares.coupeEurope[saison.id].label || '-'}}</div>
-    </div>
+  <div class="defilement" ng-if="saisons.length">
+    <div class="frise" ng-style="{width: largeur + 'px'}" lvdlom-frise-survol="{{COL}}" data-libelle="{{LIBELLE}}">
 
-    <div class="joueur" ng-repeat="personne in personnes track by $index" ng-style="{{personne.style}}">
-      <div ng-bind-html="Formatter.nomJoueurOrDirigeantOnTwoLines(personne)"></div>
-      <div class="stats">
-        <div ng-repeat="stat in personne.stats track by $index" ng-style="{{stat.style}}">{{stat.value}}</div>
+      <!-- séparations verticales entre saisons, la saison survolée en bleu ciel -->
+      <div class="colonnes" aria-hidden="true">
+        <span ng-repeat="colonne in colonnes track by colonne.id" ng-style="{left: colonne.left + 'px', width: COL + 'px'}"></span>
+        <span class="survol" hidden></span>
       </div>
+
+      <div class="rangee tete">
+        <span class="libelle"></span>
+        <a ng-repeat="colonne in colonnes track by colonne.id" class="saison" href="#/saison/{{colonne.id}}" ng-style="{left: colonne.left + 'px', width: COL + 'px'}">{{colonne.id}}</a>
+      </div>
+
+      <div class="rangee resultat">
+        <span class="libelle">Championnat</span>
+        <span ng-repeat="colonne in colonnes track by colonne.id" class="cellule" ng-style="{left: colonne.left + 'px', width: COL + 'px'}">
+          <span class="pastille" ng-if="palmares.championnat[colonne.id]" ng-class="{titre: palmares.championnat[colonne.id].titre}">{{palmares.championnat[colonne.id].label}}</span>
+          <span class="vide" ng-if="!palmares.championnat[colonne.id]">—</span>
+        </span>
+      </div>
+      <div class="rangee resultat">
+        <span class="libelle">Coupe de France</span>
+        <span ng-repeat="colonne in colonnes track by colonne.id" class="cellule" ng-style="{left: colonne.left + 'px', width: COL + 'px'}">
+          <span class="pastille" ng-if="palmares.coupeFrance[colonne.id]" ng-class="{titre: palmares.coupeFrance[colonne.id].titre}">{{palmares.coupeFrance[colonne.id].label}}</span>
+          <span class="vide" ng-if="!palmares.coupeFrance[colonne.id]">—</span>
+        </span>
+      </div>
+      <div class="rangee resultat">
+        <span class="libelle">Coupe d'Europe</span>
+        <span ng-repeat="colonne in colonnes track by colonne.id" class="cellule" ng-style="{left: colonne.left + 'px', width: COL + 'px'}">
+          <span class="pastille" ng-if="palmares.coupeEurope[colonne.id]" ng-class="{titre: palmares.coupeEurope[colonne.id].titre}"><span ng-if="palmares.coupeEurope[colonne.id].badge" ng-bind-html="palmares.coupeEurope[colonne.id].badge | format:'sousTypeCompetition'"></span>{{palmares.coupeEurope[colonne.id].label}}</span>
+          <span class="vide" ng-if="!palmares.coupeEurope[colonne.id]">—</span>
+        </span>
+      </div>
+
+      <!-- présidents, entraîneurs, puis joueurs par poste ; un filet sépare chaque groupe -->
+      <div class="groupe" ng-repeat="groupe in groupes">
+        <div class="rangee barres" ng-repeat="ligne in groupe.lignes">
+          <span class="libelle">{{$first ? groupe.nom : ''}}</span>
+          <a ng-repeat="item in ligne" class="barre {{item.style}}" href="{{item.lien}}" ng-style="item.position" title="{{item.titre}}">
+            <span class="nom"><span ng-if="item.prenomAffiche">{{item.prenomAffiche}} </span><b>{{item.nom}}</b></span>
+            <span class="meta">{{item.meta}}</span>
+          </a>
+        </div>
+      </div>
+
     </div>
-      
   </div>
 
 </div>

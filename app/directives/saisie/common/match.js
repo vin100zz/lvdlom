@@ -4,8 +4,9 @@ app.directive('lvdlomSaisieCommonMatch', function () {
       cfg: '='
     },
     templateUrl: 'app/directives/saisie/common/match.html',
-    controller: function ($scope, $rootScope, Dictionary, Formatter, Widget) {
+    controller: function ($scope, $rootScope, Dictionary, Formatter, Widget, Picture) {
       $scope.Widget = Widget;
+      $scope.Picture = Picture;
 
       $scope.dictionary = {
         joueurs: Dictionary.joueurs(),

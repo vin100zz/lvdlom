@@ -1,285 +1,194 @@
 <div class="dir-saisie-common-match">
 
-  <ul class="joueur-helper">
-    <li ng-repeat="joueur in dictionary.joueursAuClub">
-      <button class="g-button g-icon-button g-button-neutral" ng-click="setNextJoueur($event, joueur)"><span>{{joueur.label}}</span></button>
-    </li>
-  </ul>
+  <div class="saisie-match">
 
-  <div class="fiche">
+    <div class="principal">
 
-  <!-- saison -->
-    <div class="g-row">
-      <div class="g-remark">Saison</div>
-      <div>
-        <select ng-model="cfg.data.saison" ng-options="option.key as option.label for option in dictionary.saisons" required="true">
-          <option ng-value=""></option>
-        </select>
-        <button class="g-button g-icon-button g-button-neutral" ng-click="setLastSaison($event)"><span>{{dictionary.saisons[0].label}}</span></button>
+      <!-- fiche -->
+      <section aria-labelledby="h-saisie-fiche">
+        <h2 class="g-title" id="h-saisie-fiche">Fiche</h2>
+        <div class="champs-fiche">
+
+          <div class="champ">
+            <label class="libelle" for="saisie-saison">Saison<span class="obligatoire" aria-label="obligatoire"> *</span></label>
+            <select id="saisie-saison" ng-model="cfg.data.saison" ng-options="option.key as option.label for option in dictionary.saisons" required="true">
+              <option ng-value=""></option>
+            </select>
+            <span class="raccourcis"><button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setLastSaison($event)"><span class="fa fa-magic" aria-hidden="true"></span><span>{{dictionary.saisons[0].label}}</span></button></span>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-date">Date<span class="obligatoire" aria-label="obligatoire"> *</span></label>
+            <input id="saisie-date" ng-model="cfg.data.date" type="date" required="true">
+            <span class="raccourcis"></span>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-lieu">Lieu<span class="obligatoire" aria-label="obligatoire"> *</span></label>
+            <input id="saisie-lieu" ng-model="cfg.data.lieu" type="text" typeahead="option.key as option.label for option in dictionary.lieux | filter:$viewValue | limitTo:8" required="true" class="g-autocomplete">
+            <span class="raccourcis"><button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setStadeVel($event)"><span class="fa fa-magic" aria-hidden="true"></span><span>Orange Vélodrome</span></button></span>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-competition">Compétition<span class="obligatoire" aria-label="obligatoire"> *</span></label>
+            <select id="saisie-competition" ng-model="cfg.data.competition" ng-options="option.key as option.label for option in dictionary.competitions" required="true">
+              <option ng-value=""></option>
+            </select>
+            <span class="raccourcis"><button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setLigue1($event)"><span class="fa fa-magic" aria-hidden="true"></span><span>Ligue 1</span></button></span>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-niveau">Niveau<span class="obligatoire" aria-label="obligatoire"> *</span></label>
+            <select id="saisie-niveau" ng-model="cfg.data.niveau" ng-options="option.key as option.label for option in dictionary.niveaux" required="true">
+              <option ng-value=""></option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-spectateurs">Spectateurs</label>
+            <input id="saisie-spectateurs" ng-model="cfg.data.spectateurs" type="number" min="0">
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-jy">J'y étais</label>
+            <select id="saisie-jy" ng-model="cfg.data.jyEtais" ng-options="option.key as option.label for option in dictionary.jyEtais">
+              <option ng-value=""></option>
+            </select>
+          </div>
+
+          <div class="champ">
+            <label class="libelle" for="saisie-commentaire">Commentaire</label>
+            <input id="saisie-commentaire" ng-model="cfg.data.commentaire" type="text">
+          </div>
+
+        </div>
+      </section>
+
+      <div class="colonnes">
+
+        <div class="colonne">
+
+          <!-- score -->
+          <section aria-labelledby="h-saisie-score">
+            <h2 class="g-title" id="h-saisie-score">Score</h2>
+            <div class="panneau-score">
+              <div class="equipes">
+                <img ng-if="cfg.data.saison" ng-src="{{Picture.club('OM', cfg.data.saison)}}" alt="" lvdlom-repli="">
+                <span class="om">OM</span>
+                <input class="but" ng-model="cfg.data.butsOM" type="number" min="0" required="true" ng-change="changeButsOM()" aria-label="Buts OM">
+                <span class="tiret" aria-hidden="true"></span>
+                <input class="but" ng-model="cfg.data.butsAdv" type="number" min="0" required="true" ng-change="changeButsAdv()" aria-label="Buts adversaire">
+                <select class="adversaire" ng-model="cfg.data.adversaire" ng-options="option.key as option.label for option in dictionary.adversaires" required="true" aria-label="Adversaire">
+                  <option ng-value=""></option>
+                </select>
+              </div>
+              <div class="prolongation">
+                <label class="libelle" for="saisie-rq">Prolongations ou tirs au but</label>
+                <select id="saisie-rq" ng-model="cfg.data.rqScore" ng-options="rq for rq in dictionary.rqScore">
+                  <option ng-value=""></option>
+                </select>
+                <input class="tab" ng-model="cfg.data.tabOM" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true" aria-label="Tirs au but OM">
+                <input class="tab" ng-model="cfg.data.tabAdv" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true" aria-label="Tirs au but adversaire">
+              </div>
+            </div>
+          </section>
+
+          <!-- buteurs -->
+          <section aria-labelledby="h-saisie-buteurs" ng-if="cfg.data.butsOM + cfg.data.butsAdv > 0">
+            <h2 class="g-title" id="h-saisie-buteurs">Buteurs</h2>
+
+            <div class="groupe-buteurs" ng-if="cfg.data.butsOM > 0">
+              <div class="ligne-buteur entete"><span>Min</span><span>+</span><span>Buteurs OM</span><span></span></div>
+              <div class="ligne-buteur" ng-repeat="buteur in cfg.data.buteursOM">
+                <input ng-model="buteur.minute" type="number" min="0" aria-label="Minute">
+                <input ng-model="buteur.minuteExtra" type="number" min="0" aria-label="Temps additionnel">
+                <span class="qui">
+                  <input ng-model="buteur.joueur" ng-if="!buteur.csc" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(buteur, 'joueur', dictionary.joueurs)" class="g-autocomplete" aria-label="Joueur">
+                  <input ng-model="buteur.nomCsc" ng-if="buteur.csc" type="text" required="true" aria-label="Joueur adverse (csc)">
+                </span>
+                <span class="pastilles">
+                  <label class="pastille-case"><input ng-model="buteur.csc" type="checkbox"><span>CSC</span></label>
+                  <label class="pastille-case"><input ng-model="buteur.penalty" type="checkbox"><span>Pen</span></label>
+                </span>
+              </div>
+            </div>
+
+            <div class="groupe-buteurs" ng-if="cfg.data.butsAdv > 0">
+              <div class="ligne-buteur entete"><span>Min</span><span>+</span><span>Buteurs adversaire</span><span></span></div>
+              <div class="ligne-buteur" ng-repeat="buteur in cfg.data.buteursAdv">
+                <input ng-model="buteur.minute" type="number" min="0" aria-label="Minute">
+                <input ng-model="buteur.minuteExtra" type="number" min="0" aria-label="Temps additionnel">
+                <span class="qui">
+                  <input ng-model="buteur.nom" type="text" required="true" aria-label="Joueur">
+                </span>
+                <span class="pastilles">
+                  <label class="pastille-case"><input ng-model="buteur.csc" type="checkbox"><span>CSC</span></label>
+                  <label class="pastille-case"><input ng-model="buteur.penalty" type="checkbox"><span>Pen</span></label>
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- classement -->
+          <section aria-labelledby="h-saisie-classement">
+            <h2 class="g-title" id="h-saisie-classement">Classement</h2>
+            <div class="grille-classement">
+              <span></span><span class="entete">Équipe</span><span class="entete droite">Pts</span>
+              <span class="rang" ng-repeat-start="row in cfg.data.classement">{{$index + 1}}</span>
+              <input ng-model="row.equipe" type="text" aria-label="Équipe {{$index + 1}}">
+              <input ng-repeat-end ng-model="row.pts" type="number" min="0" aria-label="Points {{$index + 1}}">
+            </div>
+          </section>
+
+        </div>
+
+        <div class="colonne">
+
+          <!-- titulaires -->
+          <section aria-labelledby="h-saisie-titulaires">
+            <h2 class="g-title" id="h-saisie-titulaires">Titulaires</h2>
+            <div class="ligne-joueur complete entete"><span></span><span>Joueur</span><span>Carton</span><span class="droite">Min</span><span class="droite">Rmp</span><span class="droite">Min rmp</span></div>
+            <div class="ligne-joueur complete" ng-repeat="joueur in cfg.data.titulaires">
+              <span class="rang">{{$index + 1}}</span>
+              <input ng-model="joueur.joueur" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(joueur, 'joueur', dictionary.joueurs)" class="g-autocomplete" aria-label="Titulaire {{$index + 1}}">
+              <select ng-model="joueur.carton" ng-options="carton for carton in dictionary.carton" aria-label="Carton">
+                <option ng-value=""></option>
+              </select>
+              <input ng-model="joueur.minuteCarton" type="number" min="0" aria-label="Minute du carton">
+              <input ng-model="joueur.remplacement" type="number" min="1" max="5" aria-label="Remplacé par le remplaçant n°">
+              <input ng-model="joueur.minuteRemplacement" type="number" min="0" aria-label="Minute du remplacement">
+            </div>
+          </section>
+
+          <!-- remplaçants -->
+          <section aria-labelledby="h-saisie-remplacants">
+            <h2 class="g-title" id="h-saisie-remplacants">Remplaçants</h2>
+            <div class="ligne-joueur entete"><span></span><span>Joueur</span><span>Carton</span><span class="droite">Min</span></div>
+            <div class="ligne-joueur" ng-repeat="joueur in cfg.data.remplacants">
+              <span class="rang">{{$index + 1}}</span>
+              <input ng-model="joueur.joueur" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" ng-blur="Widget.restrictTypeahead(joueur, 'joueur', dictionary.joueurs)" class="g-autocomplete" aria-label="Remplaçant {{$index + 1}}">
+              <select ng-model="joueur.carton" ng-options="carton for carton in dictionary.carton" aria-label="Carton">
+                <option ng-value=""></option>
+              </select>
+              <input ng-model="joueur.minuteCarton" type="number" min="0" aria-label="Minute du carton">
+            </div>
+          </section>
+
+        </div>
       </div>
     </div>
 
-    <!-- date -->
-    <div class="g-row">
-      <div class="g-remark">Date</div>
-      <div>
-        <input ng-model="cfg.data.date" type="date" required="true"></input>
-      </div>
-    </div>
-
-    <!-- lieu -->
-    <div class="g-row">
-      <div class="g-remark">Lieu</div>
-      <div>
-        <input ng-model="cfg.data.lieu" type="text" typeahead="option.key as option.label for option in dictionary.lieux | filter:$viewValue | limitTo:8" required="true" class="g-autocomplete"></input>
-        <button class="g-button g-icon-button g-button-neutral" ng-click="setStadeVel($event)"><span>Orange Vélodrome</span></button>
-      </div>
-    </div>
-
-    <!-- competition -->
-    <div class="g-row">
-      <div class="g-remark">Compétition</div>
-      <div>
-        <select ng-model="cfg.data.competition" ng-options="option.key as option.label for option in dictionary.competitions" required="true">
-          <option ng-value=""></option>
-        </select>
-        <button class="g-button g-icon-button g-button-neutral" ng-click="setLigue1($event)"><span>Ligue 1</span></button>
-      </div>
-    </div>
-
-    <!-- niveau -->
-    <div class="g-row">
-      <div class="g-remark">Niveau</div>
-      <div>
-        <select ng-model="cfg.data.niveau" ng-options="option.key as option.label for option in dictionary.niveaux" required="true">
-          <option ng-value=""></option>
-        </select>
-      </div>
-    </div>
-
-    <!-- spectateurs -->
-    <div class="g-row">
-      <div class="g-remark">Spectateurs</div>
-      <div>
-        <input ng-model="cfg.data.spectateurs" type="number" min="0" class="large-number"></input>
-      </div>
-    </div>
-
-    <!-- j'y étais -->
-    <div class="g-row">
-      <div class="g-remark">J'y étais !</div>
-      <div>
-        <select ng-model="cfg.data.jyEtais" ng-options="option.key as option.label for option in dictionary.jyEtais">
-          <option ng-value=""></option>
-        </select>
-      </div>
-    </div>
-
-    <!-- commentaire -->
-    <div class="g-row">
-      <div class="g-remark">Commentaire</div>
-      <div>
-        <input ng-model="cfg.data.commentaire" type="text"></input>
-      </div>
-    </div>
-
-  </div>
-
-
-  <!-- score -->
-  <div class="score">
-
-    <div class="equipes">
-      <!-- OM -->
-      <span>OM</span>
-      <input ng-model="cfg.data.butsOM" type="number" min="0" required="true" ng-change="changeButsOM()"></input>
-
-      <span>-</span>
-
-      <!-- adversaire -->
-      <select ng-model="cfg.data.adversaire" ng-options="option.key as option.label for option in dictionary.adversaires" required="true">
-        <option ng-value=""></option>
-      </select>
-      <input ng-model="cfg.data.butsAdv" type="number" min="0" required="true" ng-change="changeButsAdv()"></input>        
-    </div>
-
-    <div class="rq-score">
-      <span class="g-remark">Prolongations ou tirs au but</span>
-
-      <select ng-model="cfg.data.rqScore" ng-options="rq for rq in dictionary.rqScore">
-        <option ng-value=""></option>
-      </select>
-
-      <!-- tab -->
-      <input ng-model="cfg.data.tabOM" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true"></input>
-      <input ng-model="cfg.data.tabAdv" ng-if="cfg.data.rqScore == 'tab'" type="number" min="0" required="true"></input>
-    </div>
-
-  </div>
-
-
-  <!-- buteurs -->
-  <div class="buteurs" ng-if="cfg.data.butsOM + cfg.data.butsAdv > 0">
-
-    <table>
-
-      <tr>
-
-        <!-- buteurs OM -->
-        <td>
-          <div ng-if="cfg.data.butsOM > 0" class="g-remark">Buteurs OM</div>
-          <ul ng-if="cfg.data.butsOM > 0">
-            <li ng-repeat="buteur in cfg.data.buteursOM">
-
-              <!-- minute -->
-              <input ng-model="buteur.minute" type="number" min="0"></input>
-              <span>+</span><input ng-model="buteur.minuteExtra" type="number" min="0"></input>
-
-              <!-- csc -->
-              <input ng-model="buteur.csc" type="checkbox"></input>
-
-              <!-- joueur -->
-              <input ng-model="buteur.joueur" ng-if="!buteur.csc" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(buteur, 'joueur', dictionary.joueurs)" class="g-autocomplete"></input>
-
-              <!-- nom csc -->
-              <input ng-model="buteur.nomCsc" ng-if="buteur.csc" type="text" required="true"></input>
-
-              <!-- penalty -->
-              <input ng-model="buteur.penalty" type="checkbox"></input>
-
-            </li>
-            
-            <li class="g-remark">
-              <span>Min</span>
-              <span>Min+</span>
-              <span>CSC</span>
-              <span>Joueur</span>
-              <span>Pen</span>
-            </li>
-          </ul>
-
-        </td>
-
-        <!-- buteurs adv -->
-        <td>
-          <div ng-if="cfg.data.butsAdv > 0" class="g-remark">Buteurs adversaire</div>
-          <ul ng-if="cfg.data.butsAdv > 0">
-            <li ng-repeat="buteur in cfg.data.buteursAdv">
-
-              <!-- minute -->
-              <input ng-model="buteur.minute" type="number" min="0"></input>
-              <span>+</span><input ng-model="buteur.minuteExtra" type="number" min="0"></input>
-
-              <!-- csc -->
-              <input ng-model="buteur.csc" type="checkbox"></input>
-
-              <!-- nom -->
-              <input ng-model="buteur.nom" type="text" required="true"></input>
-
-              <!-- penalty -->
-              <input ng-model="buteur.penalty" type="checkbox"></input>
-
-            </li>
-
-            <li class="g-remark">
-              <span>Min</span>
-              <span>Min+</span>
-              <span>CSC</span>
-              <span>Joueur</span>
-              <span>Pen</span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-
-    </table>
-
-  </div>
-
-  <!-- joueurs -->
-  <div class="joueurs">
-
-    <!-- titulaires -->
-    <div class="titulaires">
-      <div class="g-remark">Titulaires</div>
+    <!-- joueurs au club : un clic remplit la prochaine case vide -->
+    <aside class="au-club" aria-labelledby="h-saisie-auclub">
+      <h2 id="h-saisie-auclub">Joueurs au club</h2>
+      <p>Un clic remplit la prochaine case vide : buteurs, puis titulaires, puis remplaçants.</p>
       <ul>
-        <li ng-repeat="joueur in cfg.data.titulaires">
-
-          <!-- joueur -->
-          <input ng-model="joueur.joueur" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" required="true" ng-blur="Widget.restrictTypeahead(joueur, 'joueur', dictionary.joueurs)" class="g-autocomplete"></input>
-
-          <!-- carton -->
-          <select ng-model="joueur.carton" ng-options="carton for carton in dictionary.carton">
-            <option ng-value=""></option>
-          </select>
-
-          <!-- minute carton -->
-          <input ng-model="joueur.minuteCarton" type="number" min="0"></input>
-
-          <!-- replacement -->
-          <input ng-model="joueur.remplacement" type="number" min="1" max="5"></input>
-
-          <!-- minute remplacement -->
-          <input ng-model="joueur.minuteRemplacement" type="number" min="0"></input>
-           
-        </li>
-
-        <li class="g-remark">
-          <span>Joueur</span>
-          <span>Carton</span>
-          <span>Min carton</span>
-          <span>Rmp</span>
-          <span>Min rmp</span>
+        <li ng-repeat="joueur in dictionary.joueursAuClub">
+          <button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setNextJoueur($event, joueur)"><span>{{joueur.label}}</span></button>
         </li>
       </ul>
-    </div>
+    </aside>
 
-    <!-- remplacants -->
-    <div class="remplacants">
-      <div class="g-remark">Remplaçants</div>
-      <ul>
-        <li ng-repeat="joueur in cfg.data.remplacants">
-
-          <!-- joueur -->
-          <input ng-model="joueur.joueur" type="text" typeahead="option as option.label for option in dictionary.joueurs | filter:$viewValue | limitTo:8" ng-blur="Widget.restrictTypeahead(joueur, 'joueur', dictionary.joueurs)" class="g-autocomplete"></input>
-
-          <!-- carton -->
-          <select ng-model="joueur.carton" ng-options="carton for carton in dictionary.carton">
-            <option ng-value=""></option>
-          </select>
-
-          <!-- minute carton -->
-          <input ng-model="joueur.minuteCarton" type="number" min="0"></input> 
-        </li>
-
-        <li class="g-remark">
-          <span>Joueur</span>
-          <span>Carton</span>
-          <span>Min carton</span>
-        </li>
-      </ul>
-    </div>
   </div>
 
-
-  <!-- classement -->
-  <div class="classement">
-    <div class="g-remark">Classement</div>
-    <ul>
-      <li ng-repeat="row in cfg.data.classement">
-
-        <!-- equipe -->
-        <input ng-model="row.equipe" type="text"></input>
-
-        <!-- pts -->
-        <input ng-model="row.pts" type="number" min="0"></input>
-      </li>
-
-      <li class="g-remark">
-        <span>Équipe</span>
-        <span>Pts</span>
-      </li>
-    </ul>
-  </div>
-  
 </div>

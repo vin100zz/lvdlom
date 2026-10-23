@@ -1,31 +1,52 @@
-<div class="dir-equipe-match" ng-if="match.id">
+<div class="dir-equipe-match" ng-class="{mini: cfg.mini}" ng-if="match.id">
 
-  <div class="g-row row-joueurs">
-    <ul>
-      <li ng-repeat="joueur in joueurs" ng-class="{remplacant: joueur.isRemplacant}">
-        <div>
-          <span ng-show="joueur.isRemplacant" class="remplacant g-remark">
-            <span ng-if="joueur.minuteRmp">{{joueur.minuteRmp}}'</span>
+  <div class="colonnes">
+    <div>
+      <h3>Titulaires</h3>
+      <ul>
+        <li ng-repeat="joueur in titulaires">
+          <span ng-bind-html="joueur.poste | format:'poste'" title="{{joueur.posteLabel}}"></span>
+          <span class="nom" ng-bind-html="Formatter.nomJoueur(joueur)"></span>
+          <span class="faits">
+            <svg ng-repeat="b in joueur.buts track by $index" class="ballon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" role="img" aria-label="But"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z"></path></svg>
+            <span class="carton" ng-if="joueur.carton" title="{{joueur.cartonLabel}}"><span class="icon-carton {{joueur.carton[0]}}" aria-hidden="true"></span>{{joueur.cartonMinute}}</span>
+            <span class="sortie" ng-if="joueur.minuteOut" title="Remplacé"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Remplacé"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>{{joueur.minuteOut}}'</span>
+            <span class="pastille premier" ng-if="joueur.firstMatch">1er match</span>
+            <span class="pastille dernier" ng-if="joueur.lastMatch">Dernier match</span>
           </span>
-          <span ng-bind-html="joueur.poste | format:'poste'"></span>
-          <span ng-bind-html="Formatter.nomJoueur(joueur)" ng-class="{'g-highlight-first': joueur.firstMatch, 'g-highlight-last': joueur.lastMatch}"></span>
-          <span ng-show="joueur.minuteOut" class="remplacant g-remark">{{joueur.minuteOut}}'</span>
-        </div>
-        <div ng-bind-html="Formatter.butsPerJoueur(joueur.id, match.buteurs.om)"></div>
-        <div><div ng-bind-html="joueur.carton | format:'carton'"></div></div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 ng-if="remplacants.length">Remplaçants</h3>
+      <ul ng-if="remplacants.length">
+        <li ng-repeat="joueur in remplacants">
+          <span class="entree" title="Entré en jeu"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Entré"><path d="M12 19V5M6 11l6-6 6 6"></path></svg><span ng-if="joueur.minuteRmp">{{joueur.minuteRmp}}'</span></span>
+          <span ng-bind-html="joueur.poste | format:'poste'" title="{{joueur.posteLabel}}"></span>
+          <span class="nom" ng-bind-html="Formatter.nomJoueur(joueur)"></span>
+          <span class="faits">
+            <svg ng-repeat="b in joueur.buts track by $index" class="ballon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" role="img" aria-label="But"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z"></path></svg>
+            <span class="carton" ng-if="joueur.carton" title="{{joueur.cartonLabel}}"><span class="icon-carton {{joueur.carton[0]}}" aria-hidden="true"></span>{{joueur.cartonMinute}}</span>
+            <span class="sortie" ng-if="joueur.minuteOut" title="Remplacé"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Remplacé"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>{{joueur.minuteOut}}'</span>
+            <span class="pastille premier" ng-if="joueur.firstMatch">1er match</span>
+            <span class="pastille dernier" ng-if="joueur.lastMatch">Dernier match</span>
+          </span>
+        </li>
+      </ul>
+
+      <h3 ng-if="match.entraineurs.length" ng-class="{seul: !remplacants.length}">Entraîneur</h3>
+      <ul ng-if="match.entraineurs.length">
+        <li ng-repeat="entraineur in match.entraineurs">
+          <span ng-bind-html="'E' | format:'fonction'" title="Entraîneur"></span>
+          <span class="nom" ng-bind-html="Formatter.nomDirigeant(entraineur)"></span>
+          <span class="faits">
+            <span class="pastille premier" ng-if="entraineur.firstMatch">1er match</span>
+            <span class="pastille dernier" ng-if="entraineur.lastMatch">Dernier match</span>
+          </span>
+        </li>
+      </ul>
+    </div>
   </div>
-   
-  <div class="g-row row-entraineurs">
-    <ul>
-     <li ng-repeat="entraineur in match.entraineurs">
-       <div>
-         <span ng-bind-html="'E' | format:'fonction'"></span>
-         <span ng-bind-html="Formatter.nomDirigeant(entraineur)" ng-class="{'g-highlight-first': entraineur.firstMatch, 'g-highlight-last': entraineur.lastMatch}"></span>
-       </div>
-     </li>
-    </ul>
-  </div>
-  
+
 </div>

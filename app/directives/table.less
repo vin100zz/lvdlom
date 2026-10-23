@@ -1,62 +1,386 @@
 @import "style/variables";
 
+/* Tableau B : zébré compact, lignes de 36 px (charte · tableaux) */
 .dir-table {
-	
+
   table {
 	  width: 100%;
+	  border-collapse: separate;
+	  border-spacing: 0;
     text-align: left;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 1.3;
+    font-variant-numeric: tabular-nums;
   }
-	
+
 	/* Cells */
 	th, td {
-	  padding: 3px 5px;
+	  padding: 0 12px;
 	  vertical-align: middle;
+	  white-space: nowrap;
 	}
 	td.ranking {
-		color: @secondaryText;
+		color: @muted;
+		font-family: @fontTitle;
+		font-weight: 700;
+		font-size: 15px;
 	}
-	
+	/* icône + texte : centrés verticalement (charte · détails communs) */
+	td > lvdlom-format > div {
+	  display: flex;
+	  align-items: center;
+	  gap: 6px;
+	  min-height: 36px;
+	}
+
 	/* Rows */
-	tr {
-	  height: 24px;
-	}
 	tbody tr {
-	  border-bottom: 1px solid @tableBorder;
+	  height: 36px;
 	  cursor: pointer;
+
+	  td:first-child {
+	    border-radius: 8px 0 0 8px;
+	  }
+	  td:last-child {
+	    border-radius: 0 8px 8px 0;
+	  }
 	}
-	tbody tr:nth-child(even) {
-	  background: @alternateBackground;
+	tbody tr:nth-child(odd) td {
+	  background: @zebra;
 	}
-	tbody tr.selected {
-		background: @tableSelected;
+	tbody tr:hover td {
+	  background: #EAF0F6;
 	}
-	
-	/* Footer */
+	tbody tr.selected td {
+		background: @sky;
+		box-shadow: inset 0 1px 0 @skyLine, inset 0 -1px 0 @skyLine;
+	}
+
+	/* Pied de tableau : le nombre de lignes */
 	tfoot td {
-	  text-align: right;
-	  color: @secondaryText;
-	  font-size: 9pt;
+	  height: 44px;
+	  border-top: 1px solid @borderStrong;
+	  font-size: 13px;
+	  color: @slate;
+
+	  .count {
+	    font-family: @fontTitle;
+	    font-weight: 700;
+	    font-size: 17px;
+	    color: @navy;
+	  }
 	}
-	
-	/* Header */
-	th,
-	th.sorting.asc:after,
-	th.sorting.desc:after {
-		color: @secondaryText;
-	}
-	th:hover {
-	  text-decoration: underline;
-	  cursor: pointer;
+
+	/* En-têtes : collés en haut au défilement, tri en bleu */
+	th {
+	  position: sticky;
+	  top: 0;
+	  z-index: 1;
+	  height: 38px;
+	  background: @white;
+	  border-bottom: 1px solid @borderStrong;
+	  font-size: 11px;
+	  font-weight: 600;
+	  letter-spacing: .08em;
+	  text-transform: uppercase;
+		color: @slate;
+		cursor: pointer;
+		user-select: none;
+
+		&:hover {
+		  color: @navy;
+		}
 	}
 	th.sorting:after {
 		display: inline-block;
-		margin-left: 3px;
-		font-size: 8pt;
-		color: @boxBackground;
-		content: '\25b2';
+		margin-left: 5px;
+		font-size: 12px;
+		color: transparent;
+		content: '\2191';
+	}
+	th.sorting.asc,
+	th.sorting.desc {
+	  color: @navy;
+	}
+	th.sorting.asc:after {
+	  color: @blue;
 	}
 	th.sorting.desc:after {
-		content: '\25bc';
+		color: @blue;
+		content: '\2193';
 	}
+
+	.mini-loading {
+	  margin: 40px auto;
+	}
+}
+
+/* Mobile : tableau défilant, la première colonne reste visible */
+@media (max-width: 639px) {
+  .dir-table {
+    table {
+      font-size: 13.5px;
+    }
+    th.ranking,
+    td.ranking {
+      display: none !important;
+    }
+    td.principale,
+    thead th:nth-child(2) {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      box-shadow: 6px 0 8px -6px rgba(10, 34, 64, .25);
+    }
+    td.principale {
+      background: @white;
+      border-radius: 0 !important;
+    }
+    tbody tr:nth-child(odd) td.principale {
+      background: @zebra;
+    }
+    thead th:nth-child(2) {
+      z-index: 3;
+    }
+    tbody tr {
+      height: 44px;
+    }
+    tbody tr td:first-child,
+    tbody tr td:last-child {
+      border-radius: 0;
+    }
+  }
+}
+
+/* Lignes en cartes (matches, joueurs) */
+.dir-table .lignes-mobiles {
+
+  .tri {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: @slate;
+
+    select {
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid @borderStrong;
+      border-radius: 10px;
+      background: @white;
+      color: @ink;
+      font-size: 14px;
+    }
+    .sens {
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 1px solid @borderStrong;
+      border-radius: 10px;
+      background: @white;
+      color: @blue;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li:nth-child(odd) a {
+    background: @zebra;
+  }
+  a {
+    display: block;
+    border-radius: 10px;
+    color: @ink;
+    text-decoration: none;
+
+    &:active {
+      background: #EAF0F6;
+    }
+  }
+  .plus {
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-top: 10px;
+    border: 1px solid @borderButton;
+    border-radius: @radius;
+    background: @white;
+    color: @navy;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .total {
+    margin: 10px 0 0;
+    padding: 12px 10px 0;
+    border-top: 1px solid @borderStrong;
+    font-size: 13px;
+    color: @slate;
+
+    .count {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 17px;
+      color: @navy;
+    }
+  }
+
+  /* ligne de match : date, adversaire et compétition, score */
+  .ligne-match {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+  }
+  .date-bloc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+
+    b {
+      font-family: @fontTitle;
+      font-size: 22px;
+    }
+    .mois {
+      font-size: 11px;
+      color: @slate;
+    }
+    .annee {
+      font-size: 10.5px;
+      color: @muted;
+    }
+  }
+  .milieu {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .adv {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+
+    .icon-club-wrapper {
+      flex: none;
+      width: 20px;
+      margin: 0;
+    }
+    .icon-club {
+      display: block;
+    }
+    .nom {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 600;
+    }
+    .icon-lieu {
+      flex: none;
+    }
+  }
+  .comp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-size: 12px;
+    color: @slate;
+
+    .g-badge {
+      height: 16px;
+      min-width: 24px;
+      font-size: 10.5px;
+    }
+    .niveau {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .droite {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+
+    .g-score {
+      min-width: 44px;
+      height: 26px;
+      font-size: 17px;
+    }
+    .rq {
+      font-size: 11px;
+      color: @muted;
+    }
+  }
+
+  /* ligne de personne : poste, nom et détails, période */
+  .ligne-personne {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 56px;
+    padding: 6px 12px 6px 10px;
+    box-sizing: border-box;
+
+    .g-badge {
+      width: 26px;
+      min-width: 26px;
+      height: 26px;
+      padding: 0;
+      justify-content: center;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+    .nom {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      b {
+        font-weight: 600;
+      }
+    }
+    .details {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      font-size: 12px;
+      color: @slate;
+
+      img {
+        flex: none;
+        width: 18px;
+        height: 12px;
+        object-fit: cover;
+        border-radius: 2px;
+        box-shadow: 0 0 0 1px rgba(10, 34, 64, .08);
+      }
+      span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .periode {
+      font-size: 12.5px;
+      color: @slateDark;
+      font-variant-numeric: tabular-nums;
+    }
+  }
 }

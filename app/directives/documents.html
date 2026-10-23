@@ -1,26 +1,22 @@
-<div class="dir-documents">
-  
-  <ul>
-    <li ng-repeat="document in documents" style="" class="container">
-    
-      <a class="document"
-         style="background-image: url({{document.path}}); width:{{document.width}}px; height:{{document.height}}px;"
-         href="{{document.path}}"
-         target="_blank">
-      </a>
-      
-      <div class="legend" style="width:{{document.width}}px;">
-        <div class="commentaire" ng-if="document.legende">{{document.legende}}</div>
-        <div>
-          <div class="g-remark source" ng-if="document.source"><span class="icon-source source-{{getSourceClass(document.source)}}"></span><span>{{document.source}}</span></div>
-          <div class="g-remark date" ng-if="document.date"><span class="fa fa-calendar"></span>{{document.date | format:'dateLong'}}</div>
-        </div>
-      </div>
-      
-    </li>
-    
-    <li ng-if="documents.length == 0">Aucun document</li>
-  </ul>
-  
-</div>
+<div class="dir-documents" ng-class="{carrousel: cfg.carrousel}">
 
+  <ul ng-if="documents.length">
+    <li ng-repeat="document in documents">
+      <button type="button" class="document" ng-class="{manquant: document.manquant}" ng-style="{width: document.largeur + 'px', height: hauteur() + 'px'}"
+              ng-click="ouvrir($index)" title="{{document.legende || document.titre}}" aria-label="Agrandir : {{document.titre}}">
+        <img ng-if="!document.manquant" ng-src="{{document.path}}" alt="{{document.legende || document.titre}}">
+        <span class="manquant-icone" ng-if="document.manquant" aria-hidden="true"><span class="fa fa-file-text-o"></span></span>
+        <span class="legende" ng-class="{commentee: document.legende}" ng-if="document.source || document.date || document.legende">
+          <span class="commentaire" ng-if="document.legende">{{document.legende}}</span>
+          <span class="source" ng-if="document.source || document.date">
+            <span class="logo" ng-if="document.source"><span class="icon-source source-{{getSourceClass(document.source)}}" aria-hidden="true"></span></span>
+            <span class="texte">{{document.source}}<span ng-if="document.source && document.date"> · </span><b ng-if="document.date">{{document.dateCourte}}</b></span>
+          </span>
+        </span>
+      </button>
+    </li>
+  </ul>
+
+  <p class="aucun" ng-if="documents && !documents.length">Aucun document.</p>
+
+</div>

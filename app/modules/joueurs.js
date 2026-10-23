@@ -64,6 +64,7 @@
         key: 'periode'
       }],
       defaultSort: 1,
+      mobile: {row: Formatter.lignePersonne, link: '#joueur/'},
       selected: $scope.selected,
       itemName: 'joueurs'
     };

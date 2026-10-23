@@ -1,17 +1,14 @@
 <div class="dir-classement-match" ng-if="match.id">
 
-  <div class="g-row row-classement">
-    <ul>
-      <li ng-repeat="row in classement" ng-class="{separator: row.separator, 'g-important': row.om}">
-        <div class="g-remark">{{row.pos}}.</div>
-        <div>{{row.club}}</div>
-        <div class="g-remark">{{row.pts}} pt<span ng-if="row.pts > 1">s</span></div>
-      </li>
-    </ul>
-  </div>
-  
-  <div class="g-row row-commentaires" ng-if="match.fiche.commentaire">
-    <div><span class="fa fa-lg g-fa fa-info-circle"></span>{{match.fiche.commentaire}}</div>
-  </div>
-  
+  <ol>
+    <li ng-repeat="row in classement" ng-class="{om: row.om, separator: row.separator}">
+      <span class="pos">{{row.pos}}</span>
+      <span class="club">{{row.club}}</span>
+      <span class="buts" ng-if="row.buts" title="Buts marqués / encaissés">{{row.buts}}</span>
+      <span class="pts">{{row.pts}} pt<span ng-if="row.pts > 1">s</span></span>
+    </li>
+  </ol>
+
+  <p class="commentaire" ng-if="match.fiche.commentaire"><span class="fa fa-info-circle" aria-hidden="true"></span>{{match.fiche.commentaire}}</p>
+
 </div>

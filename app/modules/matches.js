@@ -63,10 +63,12 @@
         defaultOrderDescending: true
       }, {
         title: 'J\'y étais',
+        formatter: Formatter.jyEtais,
         key: 'jyEtais',
         defaultOrderDescending: true
       }],
       defaultSort: 0,
+      mobile: {row: Formatter.ligneMatch, link: '#match/'},
       selected: $scope.selected,
       itemName: 'matches'
     };
@@ -103,28 +105,30 @@
       }
     });
 
+    $scope.chartTitle = 'Bilan';
     $scope.chartCfg = {
+      centerLabel: 'matches',
       main: {
         data: totalsVnd,
         settings: [{
-          color: '#e74c3c',
-          label: 'D'
+          color: '#B4483F',
+          label: 'défaites'
         }, {
-          color: '#f39c12',
-          label: 'N'
+          color: '#F2A516',
+          label: 'nuls'
         }, {
-          color: '#2ecc71',
-          label: 'V'
+          color: '#0E74B8',
+          label: 'victoires'
         }]
       },
       inner: {
         data: totalsBpBc,
         settings: [{
-          color: '#e74c3c',
-          label: 'BC'
+          color: '#9AA6B4',
+          label: 'buts contre'
         }, {
-          color: '#2ecc71',
-          label: 'BP'
+          color: '#2FAEE0',
+          label: 'buts pour'
         }]
       }
     };

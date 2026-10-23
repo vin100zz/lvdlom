@@ -1,47 +1,37 @@
-<div class="pure-g" id="page-matches-joueur" ng-if="joueur.id">
+<div id="page-matches-joueur" class="g-page" ng-if="joueur.id">
 
-  <div class="pure-u-1">
-  
-    <div class="pure-u-1 pure-u-xl-1-2">
-      <div class="pure-u-1 g-block">
-        <div class="g-topbar g-main-topbar">
-          <span>{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</span>
-        </div>
-        <div>
-          <table>
-            <thead>
-            </thead>
-            <tbody>
-              <tr ng-repeat="match in matches track by match.id" ng-class="{'new-season': match.displaySaison}">
-                <td>
-                  <a ng-if="match.displaySaison" href="#/saison/{{match.saison}}" class="g-remark">{{match.saison}}</a>
-                </td>
-                <td>
-                  <a href="#/match/{{match.id}}">
-                    <span ng-bind-html="Formatter.match(match)"></span>
-                    <span>{{Formatter.score(Formatter.$Score.big, match)}}</span>
-                  </a>
-                </td>
-                <td>
-                  <div class="match-out" style="width:{{match.pcIn}}%"></div>
-                  <div class="match-in" ng-class="{titu: match.pcIn === 0, 'not-played': match.pcOut === 0}" style="width:{{match.pcOut - match.pcIn}}%"></div>
-                  <div class="match-out" style="width:{{match.pcEnd - match.pcOut}}%"></div>
-                </td>
-                <td>
-                  <span ng-if="match.buts" ng-bind-html="Formatter.buts(match.buts)"></span>
-                </td>
-                <td>
-                  <span ng-if="match.carton" ng-bind-html="match.carton | format:'carton'"></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
+  <div class="g-page-head">
+    <a class="retour" href="#/joueur/{{joueur.id}}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Fiche du joueur
+    </a>
+    <h1 class="g-page-title">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</h1>
+    <p class="sous-titre">Ses matches, minute par minute
+      <span class="legende"><span class="puce titu" aria-hidden="true"></span>titulaire <span class="puce entre" aria-hidden="true"></span>entré en jeu</span>
+    </p>
   </div>
 
-   
+  <table class="matches-joueur">
+    <tbody ng-repeat-start="match in matches track by match.id" ng-if="match.displaySaison" class="saison">
+      <tr><th colspan="5" scope="rowgroup"><a href="#/saison/{{match.saison}}">{{match.saison}}</a></th></tr>
+    </tbody>
+    <tbody ng-repeat-end class="ligne">
+      <tr ng-class="{'non-joue': !match.joue, zebre: match.zebre}">
+        <td class="date">{{Formatter.date(match.date)}}</td>
+        <td class="match">
+          <a href="#/match/{{match.id}}"><span ng-bind-html="match.sousTypeCompetition | format:'sousTypeCompetition'"></span>{{Formatter.match(match)}} <b>{{Formatter.score(Formatter.$Score.big, match)}}</b></a>
+        </td>
+        <td class="minutes" title="{{match.joue ? (match.pcIn === 0 ? 'Titulaire' : 'Entré en jeu') : 'Non joué'}}">
+          <span class="piste" ng-style="{width: match.pcEnd + '%'}">
+            <span class="joue" ng-class="{titu: match.pcIn === 0}" ng-if="match.joue && match.pcOut > match.pcIn" ng-style="{left: (match.pcIn / match.pcEnd * 100) + '%', width: ((match.pcOut - match.pcIn) / match.pcEnd * 100) + '%'}"></span>
+          </span>
+        </td>
+        <td class="buts">
+          <svg ng-repeat="b in match.butsListe track by $index" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" role="img" aria-label="But"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z"></path></svg>
+        </td>
+        <td class="carton"><span ng-if="match.carton" ng-bind-html="match.carton | format:'carton'"></span></td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
-  

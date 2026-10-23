@@ -18,25 +18,23 @@
 
       $scope.setPageTitle(dirigeant.fiche.prenom + ' ' + dirigeant.fiche.nom);
 
+      $scope.links = [];
       if (dirigeant.fiche.idJoueur) {
-        $scope.links = [
-          {url: '#/joueur/' + dirigeant.fiche.idJoueur, label: 'Joueur'}
-        ];
-      };
+        $scope.links.push({url: '#/joueur/' + dirigeant.fiche.idJoueur, label: 'Sa fiche joueur', icone: 'personne'});
+      }
+      $scope.links.push({url: '#/saisie/edit/dirigeant/' + dirigeant.id, label: 'Modifier la fiche', modifier: true});
 
-      var prev = !$scope.dirigeant.navigation.prev.id ? null : {
-        label: $scope.dirigeant.navigation.prev.prenom + ' ' + $scope.dirigeant.navigation.prev.nom,
-        link: '#/dirigeant/' + $scope.dirigeant.navigation.prev.id
-      };
-
-      var next = !$scope.dirigeant.navigation.next.id ? null : {
-        label: $scope.dirigeant.navigation.next.prenom + ' ' + $scope.dirigeant.navigation.next.nom,
-        link: '#/dirigeant/' + $scope.dirigeant.navigation.next.id
+      var navigation = function (personne) {
+        return !personne.id ? null : {
+          label: personne.prenom + ' ' + personne.nom,
+          link: '#/dirigeant/' + personne.id
+        };
       };
 
       $scope.breadcrumb = {
-        prev: prev,
-        next: next
+        label: 'Dirigeant précédent et suivant',
+        prev: navigation($scope.dirigeant.navigation.prev),
+        next: navigation($scope.dirigeant.navigation.next)
       };
       
     });

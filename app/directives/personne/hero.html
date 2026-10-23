@@ -1,0 +1,55 @@
+<div class="dir-hero-personne" ng-class="{mini: cfg.mini}" ng-if="cfg">
+
+  <section class="hero" aria-label="{{cfg.aria}}">
+    <img class="flou" ng-if="photoOk" ng-src="{{cfg.photo}}" alt="" aria-hidden="true">
+    <div class="voile" aria-hidden="true"></div>
+    <div class="biais" aria-hidden="true"></div>
+    <div class="biais fin" aria-hidden="true"></div>
+
+    <div class="contenu">
+      <lvdlom-fullscreenable-photo ng-if="photoOk && !cfg.mini" src="{{cfg.photo}}" photo-class="photo"></lvdlom-fullscreenable-photo>
+      <img class="photo" ng-if="photoOk && cfg.mini" ng-src="{{cfg.photo}}" alt="{{cfg.photoAlt}}">
+      <span class="photo initiales" ng-if="!photoOk" role="img" aria-label="Pas de photo">{{cfg.initiales}}</span>
+
+      <div class="identite">
+        <span class="poste-pill" ng-if="cfg.poste"><span ng-bind-html="cfg.poste.code | format:'poste'"></span>{{cfg.poste.label}}</span>
+        <div class="titre">
+          <h1 ng-if="!cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></h1>
+          <p class="nom-bloc" ng-if="cfg.mini"><span class="prenom">{{cfg.prenom}}</span><span class="nom">{{cfg.nom}}</span></p>
+          <span class="badge" ng-if="cfg.badge && !cfg.mini"><span class="point" aria-hidden="true"></span>{{cfg.badge}}</span>
+        </div>
+        <dl class="faits faits-hero">
+          <div ng-repeat="fait in cfg.faits">
+            <dt>{{fait.label}}</dt>
+            <dd>
+              <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
+              <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">
+              {{fait.valeur}}<span class="sub" ng-if="fait.sub">{{fait.sub}}</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <dl class="chiffres" ng-if="cfg.chiffres.length">
+        <div ng-repeat="chiffre in cfg.chiffres" ng-class="{or: chiffre.or}">
+          <dd>{{chiffre.valeur}}</dd>
+          <dt>{{chiffre.label}}</dt>
+        </div>
+      </dl>
+      <span class="periode" ng-if="cfg.periode">{{cfg.periode}}</span>
+    </div>
+  </section>
+
+  <!-- petits écrans et sélection : la fiche passe sous le hero, sur des tuiles claires -->
+  <dl class="faits faits-sous">
+    <div ng-repeat="fait in (cfg.faitsSous || cfg.faits)" ng-class="{large: fait.large, chiffre: fait.chiffre}">
+      <dt>{{fait.label}}</dt>
+      <dd>
+        <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
+        <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">
+        {{fait.valeur}}<span class="sub" ng-if="fait.sub">{{fait.sub}}</span>
+      </dd>
+    </div>
+  </dl>
+
+</div>

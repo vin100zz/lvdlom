@@ -1,30 +1,54 @@
-<div class="pure-g" id="page-anniversaire">
+<div id="page-anniversaire" class="g-page">
 
-  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-  
-  <div class="pure-u-1">
-
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block agenda">
-      <div>
-        <span>{{currentDay}}</span>
-        <span>{{currentMonth}}</span>
-      </div>
+  <!-- hero : la date du jour en grand, jour précédent et suivant -->
+  <section class="jour-hero" aria-label="Date du jour">
+    <img class="ghost" ng-src="{{ecussonOm}}" alt="" aria-hidden="true">
+    <div class="biais" aria-hidden="true"></div>
+    <div class="biais fin" aria-hidden="true"></div>
+    <div class="contenu">
+      <h1>
+        <span class="jour">{{currentDay}}</span>
+        <span class="mois-bloc"><span class="sur-titre">Ce jour-là</span><span class="mois">{{currentMonth}}</span></span>
+      </h1>
+      <nav aria-label="Jour précédent et suivant" ng-if="breadcrumb">
+        <a class="prec" href="{{breadcrumb.prev.link}}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+          {{breadcrumb.prev.label}}
+        </a>
+        <a class="suiv" href="{{breadcrumb.next.link}}">
+          {{breadcrumb.next.label}}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </a>
+      </nav>
     </div>
+  </section>
 
-    <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 g-block" ng-repeat="fiche in fiches">
-      <div class="g-topbar g-main-topbar">{{fiche.title}}</div>
-      <div class="uniformized">
-        <lvdlom-fiche-match match="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'matches'"></lvdlom-fiche-match>
-        <lvdlom-fiche-joueur joueur="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'joueurs'"></lvdlom-fiche-joueur>
-        <lvdlom-fiche-dirigeant dirigeant="fiche.data" cfg="{mini: true}" ng-if="fiche.type == 'dirigeants'"></lvdlom-fiche-dirigeant>
-      </div>
-      <div class="g-bottombar">
-        <span>{{fiche.date | format:'dateLong'}}</span>
-        <span class="g-remark">il y a {{Bom.ageSince(fiche.date)}} ans</span>
-        <a href="{{fiche.link}}" class="fa fa-mail-forward g-link"></a>
-      </div>
+  <!-- grille chronologique : matches joués et naissances de ce jour -->
+  <section aria-label="Anniversaires du {{currentDay}} {{currentMonth}}">
+    <ol class="cartes" ng-if="fiches.length">
+      <li ng-repeat="fiche in fiches track by fiche.link">
+        <a href="{{fiche.link}}" class="carte">
+          <span class="visuel match" ng-if="fiche.type == 'matches'">
+            <span class="biais" aria-hidden="true"></span>
+            <img ng-src="{{fiche.carte.gauche}}" alt="" lvdlom-repli="{{fiche.carte.initialesGauche}}">
+            <span class="score">{{fiche.carte.score}}</span>
+            <img ng-src="{{fiche.carte.droite}}" alt="" lvdlom-repli="{{fiche.carte.initialesDroite}}">
+          </span>
+          <img class="visuel photo" ng-if="fiche.type != 'matches' && fiche.carte.photoOk" ng-src="{{fiche.carte.photo}}" alt="">
+          <span class="visuel initiales" ng-if="fiche.type != 'matches' && !fiche.carte.photoOk" aria-hidden="true">{{fiche.carte.initiales}}</span>
+          <span class="texte">
+            <span class="ligne-annee"><span class="annee">{{fiche.date.substr(0, 4)}}</span><span class="il-y-a">il y a {{Bom.ageSince(fiche.date)}} ans</span></span>
+            <span class="titre">{{fiche.carte.titre}}</span>
+            <span class="genre" ng-if="fiche.carte.genre">{{fiche.carte.genre}}</span>
+          </span>
+        </a>
+      </li>
+    </ol>
+    <div class="g-empty" ng-if="model.$resolved && !fiches.length && !enCours()">
+      <span class="fa fa-calendar-o" aria-hidden="true"></span>
+      <b>Rien ce jour-là</b>
+      <span>Aucun match ni anniversaire le {{currentDay}} {{currentMonth}}.</span>
     </div>
-    
-  </div>
+  </section>
 
 </div>

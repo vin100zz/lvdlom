@@ -1,44 +1,35 @@
-<div class="pure-g" id="page-match" ng-if="match.id">
+<div id="page-match" class="g-page" ng-if="match.id">
 
-  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-  
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar g-main-topbar">{{Formatter.matchTitle(match)}}</div>
-      <div>
-        <lvdlom-fiche-match match="match"></lvdlom-fiche-match>
-      </div>
-    </div>
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-futbol-o"></span>Buts</div>
-      <div>
-        <lvdlom-buteurs-match match="match"></lvdlom-equipe-match>
-      </div>
-    </div>
+  <div class="g-page-head">
+    <lvdlom-breadcrumb cfg="breadcrumb"></lvdlom-breadcrumb>
+    <h1 class="g-sr-only">{{Formatter.matchTitle(match)}} {{Formatter.score(Formatter.$Score.big, match.fiche)}}</h1>
+    <lvdlom-fiche-match match="match"></lvdlom-fiche-match>
   </div>
-    
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-user"></span>Équipe</div>
-      <div>
-        <lvdlom-equipe-match match="match"></lvdlom-equipe-match>
-      </div>
-    </div>
-    <div class="pure-u-1 g-block" ng-if="match.fiche.class1">
-      <div class="g-topbar"><span class="fa fa-list-ul"></span>Classement</div>
-      <div>
+
+  <!-- buts et classement · composition · revue de presse -->
+  <div class="match-body">
+
+    <div class="match-col-buts">
+      <section aria-labelledby="h-buts">
+        <h2 class="g-title" id="h-buts">Buts</h2>
+        <lvdlom-buteurs-match match="match"></lvdlom-buteurs-match>
+      </section>
+      <section aria-labelledby="h-classement" ng-if="match.fiche.class1">
+        <h2 class="g-title" id="h-classement">Classement</h2>
         <lvdlom-classement-match match="match"></lvdlom-classement-match>
-      </div>
+      </section>
     </div>
-  </div>
-  
-  <div class="pure-u-1 pure-u-xl-1-2 g-block g-fixed-block g-scroll-block">
-    <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
-    <div>
+
+    <section class="match-col-compo" aria-labelledby="h-compo">
+      <h2 class="g-title" id="h-compo">Composition</h2>
+      <lvdlom-equipe-match match="match"></lvdlom-equipe-match>
+    </section>
+
+    <section class="match-col-presse" aria-labelledby="h-presse">
+      <h2 class="g-title" id="h-presse">Revue de presse</h2>
       <lvdlom-documents documents="match.documents"></lvdlom-documents>
-    </div>
+    </section>
+
   </div>
 
-   
 </div>
-  

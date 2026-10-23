@@ -19,29 +19,28 @@
       $scope.setPageTitle(joueur.fiche.prenom + ' ' + joueur.fiche.nom);
 
       $scope.links = [
-        {url: '#/matches-joueur/' + joueur.id, label: 'Matches'},
-        {fn: $scope.openBiographie, label: 'Biographie', icon: 'style/img/AI.png'}
+        {url: '#/matches-joueur/' + joueur.id, label: 'Ses matches', icone: 'matches'},
+        {fn: $scope.openBiographie, label: 'Biographie', ia: true, title: 'Biographie générée par IA'}
       ];
       if (joueur.documents && joueur.documents.length) {
-        $scope.links.push({fn: $scope.openDocumentsResume, label: 'Documents', icon: 'style/img/AI.png'});
+        $scope.links.push({fn: $scope.openDocumentsResume, label: 'Résumé des documents', ia: true, title: 'Résumé des documents généré par IA'});
       }
       if (joueur.dirigeant) {
-        $scope.links.push({url: '#/dirigeant/' + joueur.dirigeant, label: 'Dirigeant'});
-      };
+        $scope.links.push({url: '#/dirigeant/' + joueur.dirigeant, label: 'Sa fiche dirigeant', icone: 'personne'});
+      }
+      $scope.links.push({url: '#/saisie/edit/joueur/' + joueur.id, label: 'Modifier la fiche', modifier: true});
 
-      var prev = !$scope.joueur.navigation.prev.id ? null : {
-        label: $scope.joueur.navigation.prev.prenom + ' ' + $scope.joueur.navigation.prev.nom,
-        link: '#/joueur/' + $scope.joueur.navigation.prev.id
-      };
-
-      var next = !$scope.joueur.navigation.next.id ? null : {
-        label: $scope.joueur.navigation.next.prenom + ' ' + $scope.joueur.navigation.next.nom,
-        link: '#/joueur/' + $scope.joueur.navigation.next.id
+      var navigation = function (personne) {
+        return !personne.id ? null : {
+          label: personne.prenom + ' ' + personne.nom,
+          link: '#/joueur/' + personne.id
+        };
       };
 
       $scope.breadcrumb = {
-        prev: prev,
-        next: next
+        label: 'Joueur précédent et suivant',
+        prev: navigation($scope.joueur.navigation.prev),
+        next: navigation($scope.joueur.navigation.next)
       };
 
     });

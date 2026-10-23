@@ -1,40 +1,24 @@
-<div class="pure-g" id="page-dirigeant" ng-if="dirigeant.id">
+<div id="page-dirigeant" class="g-page g-fiche" ng-if="dirigeant.id">
 
-  <lvdlom-breadcrumb cfg="breadcrumb" class="pure-u-1"></lvdlom-breadcrumb>
-  
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar g-main-topbar">
-        <span>{{dirigeant.fiche.prenom}} {{dirigeant.fiche.nom}}</span>
-        <a href="#/saisie/edit/dirigeant/{{dirigeant.id}}" class="g-edit-data"><span class="fa fa-pencil"></span></a>
-      </div>
-      <div>
-        <lvdlom-fiche-dirigeant dirigeant="dirigeant"></lvdlom-fiche-match>
-      </div>
-    </div>
+  <div class="g-page-head">
+    <lvdlom-breadcrumb cfg="breadcrumb"></lvdlom-breadcrumb>
+    <lvdlom-fiche-dirigeant dirigeant="dirigeant"></lvdlom-fiche-dirigeant>
+    <lvdlom-links links="links"></lvdlom-links>
   </div>
-    
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-briefcase"></span>Fonctions</div>
-      <div>
-        <lvdlom-fonctions-dirigeant dirigeant="dirigeant"></lvdlom-fonctions-dirigeant>
-      </div>
-    </div>
-    <div ng-if="links.length" class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-link"></span>Liens</div>
-      <div>
-        <lvdlom-links links="links"></lvdlom-links>
-      </div>
-    </div>
+
+  <!-- fonctions · revue de presse -->
+  <div class="fiche-body">
+
+    <section class="dirigeant-col-fonctions" aria-labelledby="h-fonctions">
+      <h2 class="g-title" id="h-fonctions">Fonctions</h2>
+      <lvdlom-fonctions-dirigeant dirigeant="dirigeant"></lvdlom-fonctions-dirigeant>
+    </section>
+
+    <section class="dirigeant-col-presse" aria-labelledby="h-presse">
+      <h2 class="g-title" id="h-presse">Revue de presse</h2>
+      <lvdlom-documents documents="dirigeant.documents" cfg="{hauteur: 240}"></lvdlom-documents>
+    </section>
+
   </div>
-  
-  <div class="pure-u-1 pure-u-xl-1-2 g-block g-fixed-block g-scroll-block">
-    <div class="g-topbar"><span class="fa fa-camera"></span>Documents</div>
-    <div>
-      <lvdlom-documents documents="dirigeant.documents"></lvdlom-documents>
-    </div>
-  </div>
-   
+
 </div>
-  

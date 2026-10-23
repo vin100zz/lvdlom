@@ -1,13 +1,35 @@
 @import "style/variables";
 
+/* Séries : une carte par série, ses matches en lignes zébrées */
 #page-series {
-  
-  ul > li > div > span {
-    display: inline-block;
 
-    &:first-child {
-      width: 55px;
+  .g-cartes {
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  }
+  .date {
+    flex: none;
+    width: 92px;
+    color: @slate;
+    font-variant-numeric: tabular-nums;
+  }
+  .score {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .aucun {
+    margin: 0;
+    padding: 8px;
+    color: @slate;
+  }
+
+  @media (max-width: 639px) {
+    .g-cartes {
+      grid-template-columns: 1fr;
+    }
+    .date {
+      width: 78px;
+      font-size: 13px;
     }
   }
-   
 }

@@ -59,4 +59,28 @@ var AbstractListCtrl = function ($scope, $injector, Loading, Filter, pageTitle) 
   
   // chart
   $scope.chartCfg = null;
+
+  // bilan compact (mobile) : les parts du graphique, de la plus favorable à la moins favorable
+  var compact = {key: null, value: null};
+  $scope.bilanCompact = function () {
+    var cfg = $scope.chartCfg;
+    if (!cfg || !cfg.main) {
+      return {parts: []};
+    }
+    var values = cfg.main.data.value || [];
+    var inner = (cfg.inner && cfg.inner.data.value) || [];
+    var key = values.join(',') + '|' + inner.join(',');
+    if (key !== compact.key) {
+      var parts = values.map(function (n, i) {
+        return {n: parseInt(n, 10) || 0, color: cfg.main.settings[i].color, label: cfg.main.settings[i].label};
+      }).reverse();
+      compact.key = key;
+      compact.value = {
+        parts: parts,
+        aria: parts.map(function (part) { return part.n + ' ' + part.label; }).join(', '),
+        buts: inner.length === 2 ? (parseInt(inner[1], 10) || 0) + ' – ' + (parseInt(inner[0], 10) || 0) + ' buts' : ''
+      };
+    }
+    return compact.value;
+  };
 };

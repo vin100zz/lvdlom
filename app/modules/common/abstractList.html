@@ -1,44 +1,51 @@
 <meta charset="utf-8">
 
-<div class="pure-g">
+<div class="g-list">
 
-  <div class="pure-u-1 g-block">
-    <div class="g-topbar"><span class="fa fa-filter"></span>Filtres</div>
-    <div>
-      <lvdlom-filters cfg="filters"></lvdlom-filters>
-    </div>
+  <!-- Titre + filtres -->
+  <div class="g-list-head">
+    <h1 class="g-page-title">{{pageTitle}}</h1>
+    <lvdlom-filters cfg="filters"></lvdlom-filters>
   </div>
-    
-  <div class="pure-u-1 pure-u-xl-3-4 g-fixed-block">
-    <div class="pure-u-1 g-block g-scroll-block">
-      <div class="g-topbar"><span class="fa fa-list-ul"></span>Résultats</div>
-      <div>
-        <lvdlom-table cfg="tableCfg"></lvdlom-table>
+
+  <div class="g-list-body">
+
+    <!-- Mobile : bilan compact au-dessus de la liste -->
+    <section class="g-bilan-compact" ng-if="chartCfg" aria-label="{{chartTitle || 'Bilan'}}">
+      <div class="barre" role="img" aria-label="{{bilanCompact().aria}}">
+        <span ng-repeat="part in bilanCompact().parts" ng-style="{flex: part.n + ' 1 0', background: part.color}"></span>
       </div>
+      <div class="legende">
+        <span ng-repeat="part in bilanCompact().parts"><span class="puce" aria-hidden="true" ng-style="{background: part.color}"></span><b>{{part.n}}</b>{{part.label}}</span>
+        <span class="buts" ng-if="bilanCompact().buts">{{bilanCompact().buts}}</span>
+      </div>
+    </section>
+
+    <!-- Résultats -->
+    <section class="g-list-results" aria-label="Résultats">
+      <lvdlom-table cfg="tableCfg" lien="selectionLink"></lvdlom-table>
+    </section>
+
+    <!-- Panneau : bilan + sélection -->
+    <div class="g-list-aside" ng-if="chartCfg || selectionTpl">
+      <section class="g-block" ng-show="chartCfg != null">
+        <div class="g-topbar">{{chartTitle || 'Stats'}}</div>
+        <div>
+          <lvdlom-charts cfg="chartCfg"></lvdlom-charts>
+        </div>
+      </section>
+
+      <section class="g-block g-selection" ng-if="selectionTpl">
+        <div class="g-topbar">Sélection</div>
+        <div>
+          <ng-include src="selectionTpl"></ng-include>
+        </div>
+        <div class="g-bottombar" ng-if="selectionLink && selected.id">
+          <a href="{{selectionLink}}{{selected.id}}" class="fa fa-mail-forward g-link" aria-label="Voir la fiche"></a>
+        </div>
+      </section>
     </div>
-  </div>
-  
-  <div class="pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4">
-    <div class="pure-u-1 g-block" ng-show="chartCfg != null">
-      <div class="g-topbar"><span class="fa fa-pie-chart"></span>Stats</div>
-      <div>
-        <lvdlom-charts cfg="chartCfg"></lvdlom-charts>
-      </div>
-    </div>
-    
-    <div class="pure-u-1 g-block">
-      <div class="g-topbar"><span class="fa fa-search"></span>Sélection</div>
-      <div>
-        <ng-include src="selectionTpl"></ng-include>
-      </div>
-      <div class="g-bottombar" ng-if="selectionLink && selected.id">
-        <a href="{{selectionLink}}{{selected.id}}" class="fa fa-mail-forward g-link"></a>
-      </div>
-    </div>
+
   </div>
 
 </div>
-
-		
-
-

@@ -1,12 +1,70 @@
 @import "style/variables";
 
+/* Carrière : un club par ligne, les passages à l'OM en bleu ciel avec l'écusson */
 .dir-carriere-joueur {
 
-	 li > div {
-	 
-		 &:first-child {
-		   text-align: right;
-		   padding-left: 15px !important;
-		 }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 8px;
+
+    &:nth-child(odd) {
+      background: @zebra;
+    }
+    &.om {
+      background: @sky;
+
+      .nom {
+        font-weight: 700;
+        color: @navy;
+      }
+    }
+  }
+  .saison {
+    color: @slate;
+    font-variant-numeric: tabular-nums;
+  }
+  .club {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+
+    img {
+      height: 18px;
+      width: auto;
+    }
+  }
+  .nom {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .remarque {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    padding: 0 7px;
+    border-radius: 999px;
+    background: #EEF1F5;
+    color: @slateDark;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .aucun {
+    margin: 0;
+    padding: 8px 12px;
+    color: @slate;
   }
 }

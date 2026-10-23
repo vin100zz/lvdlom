@@ -1,27 +1,3 @@
 <div class="dir-fiche-dirigeant" ng-if="dirigeant.id">
-  
-  <lvdlom-fullscreenable-photo src="{{Picture.dirigeant(dirigeant.id)}}" photo-class="g-photo-id"></lvdlom-fullscreenable-photo>
-
-  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
-    <div>
-      <div ng-if="dateNaissance">
-        <span class="g-remark">né le</span>
-        <span>{{dateNaissance}}</span>
-      </div>
-      <div ng-if="dirigeant.fiche.villeNaissance">
-        <span class="g-remark">à</span>
-        <span>{{dirigeant.fiche.villeNaissance}}</span>
-        <span class="g-remark" ng-if="dirigeant.fiche.territoireNaissance">{{dirigeant.fiche.territoireNaissance}}</span>
-      </div>
-    </div>
-    <div>
-      <div ng-bind-html="dirigeant.fiche.nationalite | format:'flagFullNat'"></div>
-      <div ng-if="dateDeces">
-        <span class="g-remark">décédé le</span>
-        <span>{{dateDeces}}</span>
-      </div>
-    </div>
-  </div>
-  
-  
+  <lvdlom-hero-personne cfg="hero"></lvdlom-hero-personne>
 </div>

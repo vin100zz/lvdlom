@@ -1,0 +1,21 @@
+@import "style/variables";
+
+/* Fiche dirigeant : fonctions, revue de presse */
+#page-dirigeant {
+
+  .dirigeant-col-fonctions {
+    flex: .6 1 320px;
+    min-width: 0;
+  }
+  .dirigeant-col-presse {
+    flex: 2.4 1 760px;
+    min-width: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .dirigeant-col-fonctions,
+    .dirigeant-col-presse {
+      flex-basis: 100%;
+    }
+  }
+}

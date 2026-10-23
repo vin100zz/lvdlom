@@ -1,41 +1,160 @@
 @import "style/variables";
 
+/* Buts : liste chronologique, domicile à gauche, extérieur à droite, score courant au centre */
 .dir-buteurs-match {
 
-  .row-maillots {    
-    text-align: center;
+  .maillots {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 6px 6px;
 
-    > div {
-      display: table-cell;
+    .label {
+      display: none;
     }
   }
-  
-  .row-buteurs {
-    
+  .maillot {
+    position: relative;
+    display: block;
+    width: 52px;
+    height: 52px;
+    overflow: hidden;
+
+    .dir-maillot {
+      margin: 0;
+      transform: scale(.33);
+      transform-origin: top left;
+    }
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 8px;
+    border-radius: 8px;
+
+    &:nth-child(odd):not(.prolongation) {
+      background: @zebra;
+    }
+  }
+  .side {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    b {
+      font-weight: 600;
+    }
+    a {
+      color: @ink;
+    }
+    a:hover {
+      color: @blue;
+    }
+  }
+  .side-right {
+    text-align: right;
+  }
+  .minute {
+    color: @slate;
+    font-variant-numeric: tabular-nums;
+  }
+  .note {
+    font-size: 12px;
+    color: @muted;
+  }
+  .pill {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 24px;
+    border-radius: 7px;
+    background: #E4E9EF;
+    color: @slateDark;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 17px;
+
+    &.om {
+      background: @navy;
+      color: @white;
+    }
+    &.vide {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    &.tab {
+      width: auto;
+      min-width: 48px;
+      height: 26px;
+      padding: 0 8px;
+      box-sizing: border-box;
+      background: #FDF3DC;
+      color: #7A5200;
+    }
+  }
+  .prolongation {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 10px;
+    height: 40px;
+    margin-top: 6px;
+    border-top: 1px solid @border;
+    border-radius: 0;
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: @slate;
+    }
+  }
+  .aucun {
+    margin: 0;
+    padding: 10px 8px;
+    color: @slate;
+  }
+
+  /* mobile : maillots de part et d'autre du libellé, lignes un peu plus serrées */
+  @media (max-width: 639px) {
+    .maillots {
+      align-items: center;
+      padding: 0 0 4px;
+
+      .label {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: @slate;
+      }
+    }
+    .maillot {
+      width: 34px;
+      height: 34px;
+
+      .dir-maillot {
+        transform: scale(.22);
+      }
+    }
     li {
-      padding: 0 5px;
-      display: block !important;
-      
-      &.right {
-        text-align: right;
-      }
-      &.adv {
-        background: @alternateBackground;
-      }
-      
-      &.first {
-        padding-top: 3px;
-      }
-      &.last {
-        padding-bottom: 3px;
-      }
-      
-      &.first.adv {
-        border-top: 1px solid @tableBorder;
-      }
-      &.last.adv {
-        border-bottom: 1px solid @tableBorder;
-      }
+      grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+      height: 34px;
+      padding: 0 6px;
+      font-size: 13.5px;
     }
   }
 }

@@ -1,0 +1,18 @@
+<div class="dir-entraineurs-saison" ng-if="saison.id">
+
+  <ul>
+    <li ng-repeat="entraineur in entraineurs track by entraineur.id">
+      <a href="#/dirigeant/{{entraineur.id}}" ng-class="{actuel: $first}">
+        <span ng-bind-html="'E' | format:'fonction'" title="Entraîneur"></span>
+        <span class="texte">
+          <span class="nom">{{entraineur.prenom}} <b>{{entraineur.nom}}</b></span>
+          <span class="jusque" ng-if="entraineur.jusque">{{entraineur.jusque}}</span>
+        </span>
+        <span class="pastille premiere" ng-if="entraineur.firstSaison">1re saison</span>
+        <span class="pastille derniere" ng-if="entraineur.lastSaison">Dernière saison</span>
+        <span class="matches" ng-if="entraineurs.length > 1"><b>{{entraineur.nbMatches}}</b>{{entraineur.nbMatches > 1 ? 'matches' : 'match'}}</span>
+      </a>
+    </li>
+  </ul>
+
+</div>

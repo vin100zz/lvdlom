@@ -1,54 +1,154 @@
 @import "style/variables";
 
+/* Revue de presse : unes et photos à hauteur fixe, légende sur dégradé marine (charte · cartes) */
 .dir-documents {
-	text-align: center;
-	
-	.container {
-	  display: inline-block;
-	  margin: 0 10px 25px 10px;
-	  box-shadow: 1px 1px 5px 1px @tableBorder;
-	}
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
   .document {
+    position: relative;
     display: block;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-  }
-  
-  .legend {
-    padding: 5px 5px 3px 5px;
-    
-    .commentaire {
-      margin-bottom: 5px;
-      line-height: 18px;
-    }
-    
-    .g-remark {
-      display: inline-block;
-      
-      &:not(:first-child) {
-        margin-left: 5px;
-      }
-    }
-    
-    .date {
-      .fa {
-        margin-right: 5px;
-      }
+    height: 190px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: @radiusS;
+    overflow: hidden;
+    background: #EEF1F5;
+    box-shadow: 0 6px 18px rgba(10, 34, 64, .18);
+    color: @white;
+    font: inherit;
+    cursor: zoom-in;
+    transition: transform .15s ease, box-shadow .15s ease;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
     }
 
-    .source {
-      background-repeat: no-repeat;
-      background-position: left 2px;
-      background-size: 16px;
-      
-      .icon-source {
-        margin-right: 5px;
-        display: inline-block;
-        vertical-align: text-bottom;
-      }
-    }    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(10, 34, 64, .24);
+    }
+    &:focus-visible {
+      outline: 3px solid @gold;
+      outline-offset: 2px;
+    }
+
+    &.manquant {
+      box-shadow: inset 0 0 0 1px @border;
+      cursor: default;
+    }
+  }
+
+  .manquant-icone {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+    font-size: 34px;
+    color: @muted;
+  }
+
+  .legende {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 4px;
+    height: 36%;
+    padding: 0 10px 9px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(6, 22, 41, .94), rgba(6, 22, 41, 0));
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+
+    &.commentee {
+      height: 50%;
+    }
+  }
+  .commentaire {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  .source {
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+  }
+  /* logo du journal sur une pastille blanche : les logos noirs restent lisibles */
+  .logo {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: @white;
+
+    .icon-source {
+      display: block;
+      border-radius: 2px;
+    }
+  }
+  /* légende sur deux lignes au plus quand la une est étroite */
+  .texte {
+    min-width: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    line-height: 17px;
+
+    b {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+  }
+
+  .aucun {
+    margin: 0;
+    color: @slate;
+  }
+
+  /* mobile : carrousel horizontal */
+  @media (max-width: 639px) {
+    ul {
+      flex-wrap: nowrap;
+      gap: 12px;
+      margin: 0 -16px;
+      padding: 0 16px 6px;
+      overflow-x: auto;
+    }
+    li {
+      flex: none;
+    }
+    .document {
+      max-width: none;
+    }
   }
 }

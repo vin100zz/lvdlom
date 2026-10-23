@@ -1,15 +1,17 @@
 <div class="dir-liste-age">
 
-  <lvdlom-mini-loading ng-if="joueurs.length == 0"></lvdlom-mini-loading>
+  <div class="g-squelette" ng-if="!joueurs.$resolved" aria-label="Chargement"><span ng-repeat="i in [1, 2, 3, 4, 5, 6]"></span></div>
 
-  <div class="g-row" ng-if="joueurs.length > 0">
-    <ul>
-      <li ng-repeat="joueur in joueurs">
-        <div class="g-remark">{{$index+1}}.</div>
-        <div ng-bind-html="Formatter.nomJoueur(joueur)"></div>
-        <div class="g-remark">{{Bom.age(joueur.age, true)}}</div>
-      </li>
-    </ul>
-  </div>
+  <ol class="g-carte-liste" ng-if="joueurs.$resolved && joueurs.length > 0">
+    <li ng-repeat="joueur in joueurs">
+      <span class="g-carte-ligne">
+        <span class="rang">{{$index + 1}}</span>
+        <span class="principal" ng-bind-html="Formatter.nomJoueur(joueur)"></span>
+        <span class="valeur secondaire">{{Bom.age(joueur.age, true)}}</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="aucun" ng-if="joueurs.$resolved && !joueurs.length">Aucun joueur.</p>
 
 </div>

@@ -1,9 +1,20 @@
 @import "style/variables";
 
+/* Source : la liste, puis les raccourcis des journaux les plus fréquents */
 .dir-saisie-common-source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 
-  button {
-    line-height: 12px;
-    vertical-align: middle;
+  select {
+    flex: 1 1 240px;
+  }
+  .g-button.g-icon-button.g-button-neutral {
+    height: 28px;
+
+    .icon-source {
+      display: block;
+    }
   }
 }

@@ -1,15 +1,16 @@
 <div class="dir-carriere-joueur" ng-if="joueur.id">
 
-  <div class="g-row">
-    <ul>
-      <li ng-repeat="row in carriere" ng-class="{'g-important': row.om}">
-        <div class="g-remark">{{row.saison}}</div>
-        <div>
-          <span>{{row.club}}</span>
-          <span class="g-remark" ng-if="row.remark">{{row.remark}}</span>
-        </div>
-      <li>
-    </ul>
-  </div>
-  
+  <ol ng-if="carriere.length">
+    <li ng-repeat="row in carriere" ng-class="{om: row.om}">
+      <span class="saison">{{row.saison}}</span>
+      <span class="club">
+        <img ng-if="row.om" ng-src="{{ecussonOm(row.saison)}}" alt="">
+        <span class="nom">{{row.club}}</span>
+        <span class="remarque" ng-if="row.remark">{{row.remark}}</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="aucun" ng-if="carrieres.$resolved && !carriere.length">Non renseignée</p>
+
 </div>

@@ -22,10 +22,16 @@ app.directive('lvdlomClassementMatch', function () {
               pos = club.substr(0, dotIndex);
               club = club.substr(dotIndex+2);
             }
+            // « OM (51/33) » : buts pour et contre de l'OM, affichés à part
+            var buts = /^(.*?)\s*\((\d+)\s*\/\s*(\d+)\)$/.exec(club);
+            if (buts) {
+              club = buts[1];
+            }
             $scope.classement.push({
-              om: dotIndex > 0,
+              om: dotIndex > 0 || /^(OM|MARSEILLE)/.test(club),
               pos: pos || i,
               club: club,
+              buts: buts ? buts[2] + ' / ' + buts[3] : '',
               pts: $scope.match.fiche['classPts' + i]
             });
             if (i === 4 && pos && parseInt(pos, 10) > 4 && $scope.classement.length >= 2) {

@@ -1,31 +1,41 @@
-<div class="dir-fiche-match" ng-if="match.id">
+<div class="dir-fiche-match" ng-class="{mini: cfg.mini}" ng-if="match.id">
 
-  <div class="g-row row-score">
-    <div class="club" style="background-image: url({{Picture.club(left.id, match.fiche.saison)}})"></div>
-    <div class="score">
-      <div class="score-container">
-        <div class="plain">{{left.buts}}-{{right.buts}}</div>
-        <div class="rq" ng-show="match.fiche.rqScore !== ''">{{rqScore}}</div>
+  <section class="hero" aria-label="Résumé du match {{left.nom}} – {{right.nom}}" ng-style="{'background-color': left.colors.bg}" ng-class="{'light-left': left.colors.light}">
+    <div class="half" aria-hidden="true" ng-style="{'background-color': right.colors.bg}"></div>
+    <div class="stripe stripe-left" aria-hidden="true" ng-style="{'background-color': left.colors.accent}"></div>
+    <div class="stripe stripe-right" aria-hidden="true" ng-style="{'background-color': right.colors.accent}"></div>
+    <img class="ghost ghost-left" ng-src="{{left.crest}}" alt="" aria-hidden="true" lvdlom-repli="">
+    <img class="ghost ghost-right" ng-src="{{right.crest}}" alt="" aria-hidden="true" lvdlom-repli="">
+
+    <!-- infos du match, dans la couleur lisible de chaque moitié -->
+    <div class="infos">
+      <span class="competition" ng-style="{color: left.colors.fg}"><span ng-bind-html="badge"></span>{{competition}} · <a href="#/saison/{{match.fiche.saison}}">{{match.fiche.saison}}</a></span>
+      <span class="jy" ng-bind-html="jy"></span>
+      <span class="meta" ng-style="{color: right.colors.sub}">{{meta}}</span>
+    </div>
+
+    <div class="teams">
+      <div class="team team-left" ng-style="{color: left.colors.fg}">
+        <img ng-src="{{left.crest}}" alt="Écusson {{left.nom}}" lvdlom-repli="{{left.nom.substr(0, 1)}}">
+        <span class="name" ng-class="left.taille">{{left.nom}}</span>
+      </div>
+
+      <div class="score" aria-label="{{scoreAria}}">
+        <span class="buts"><span>{{left.buts}}</span><span class="dash" aria-hidden="true"></span><span>{{right.buts}}</span></span>
+        <span class="rq" ng-if="rq"><span class="long">{{rq}}</span><span class="court">{{rqCourt}}</span></span>
+      </div>
+
+      <div class="team team-right" ng-style="{color: right.colors.fg}">
+        <span class="name" ng-class="right.taille">{{right.nom}}</span>
+        <img ng-src="{{right.crest}}" alt="Écusson {{right.nom}}" lvdlom-repli="{{right.nom.substr(0, 1)}}">
       </div>
     </div>
-    <div class="club" style="background-image: url({{Picture.club(right.id, match.fiche.saison)}})"></div>
+  </section>
+
+  <!-- petits écrans : les infos passent sous le hero, sur fond blanc -->
+  <div class="infos-below">
+    <span class="competition"><span ng-bind-html="badge"></span>{{competition}} · <a href="#/saison/{{match.fiche.saison}}">{{match.fiche.saison}}</a></span>
+    <span class="meta">{{metaCourt}}</span>
   </div>
-  
-  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
-    <div>
-      <div>{{match.fiche.date | format:'dateLong'}}</div>
-      <div><span ng-bind-html="match.competition.sousType | format:'sousTypeCompetition'"></span><span>{{match.competition.nom}}</span></div>
-      <div>{{match.fiche.niveau}}</div>
-    </div>
-    <div>
-      <div ng-bind-html="Formatter.saison(match.fiche.saison, 'Saison')"></div>
-      <div>{{match.fiche.lieu}}</div>
-      <div ng-show="match.fiche.spectateurs > 0">{{match.fiche.spectateurs}} spectateurs</div>
-    </div>
-  </div>
-  
-  <div class="g-row row-jyetais" ng-if="match.fiche.jyEtais" >
-    <div><span class="fa fa-lg g-fa fa-child"></span>{{match.fiche.jyEtais}}</div>
-  </div>
-  
+
 </div>

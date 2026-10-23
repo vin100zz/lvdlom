@@ -1,49 +1,137 @@
+@import "style/variables";
+
+/* Filtres en pastilles : marine quand le filtre est appliqué (charte · filtres) */
 .dir-filters {
 
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
   li {
-    display: inline-block;
-    margin: 5px 5px 5px 0;
-  }
-  li,
-  select {
-    color: #333;
-    background: #ccc;
-    cursor: pointer;
-  }
-  li.active,
-  .active select {
-    color: #eee;
-    background: #2196f3;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 38px;
+    padding: 0 12px 0 14px;
+    border-radius: 999px;
+    border: 1px solid @borderStrong;
+    background: @white;
+    color: @ink;
+    font-size: 14px;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: @borderButton;
+      background: @tile;
+    }
   }
 
   .label {
-    display: inline-block;
-  }
-  .label:before {
-    content: '\25cf';
-    color: gray;
-    margin: 0 5px;
-  }
-  .active .label:before {
-    color: #2ecc71;
+    color: @slate;
+    cursor: pointer;
   }
 
   .select-container {
     position: relative;
-    display: inline-block;	
+    display: inline-flex;
+    align-items: center;
+
+    &:after {
+      content: '\f107';
+      font-family: FontAwesome;
+      font-size: 14px;
+      color: @slate;
+      pointer-events: none;
+      margin-left: -14px;
+    }
   }
-  .select-container:after {
-    content: '\25bc';
-    font-size: 8pt;
-    position: absolute;
-    top: 1px;
-    right: 5px;
-    pointer-events: none;
-  }
+
   select {
     -webkit-appearance: none;
+    appearance: none;
     border: none;
-    padding: 2px 15px 2px 0;
+    background: transparent;
+    padding: 0 18px 0 0;
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+    option {
+      color: @ink;
+      background: @white;
+    }
+  }
+
+  .clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-left: 2px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: @navyLine;
+    color: @white;
+    font-size: 11px;
+    cursor: pointer;
+
+    .fa {
+      color: @white;
+    }
+    &:hover {
+      background: @blue;
+    }
+  }
+
+  li.active {
+    padding: 0 8px 0 14px;
+    border-color: @navy;
+    background: @navy;
+    color: @white;
+
+    .label {
+      color: @onNavySoft;
+    }
+    .select-container:after {
+      display: none;
+    }
+    select {
+      padding-right: 0;
+      color: @white;
+    }
   }
 }
 
+/* Mobile : les pastilles défilent sur une seule ligne */
+@media (max-width: 639px) {
+  .dir-filters {
+    ul {
+      flex-wrap: nowrap;
+      margin: 0 -16px;
+      padding: 0 16px 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    li {
+      flex: none;
+    }
+    select {
+      max-width: 160px;
+      text-overflow: ellipsis;
+    }
+  }
+}

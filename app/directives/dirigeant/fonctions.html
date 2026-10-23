@@ -1,13 +1,16 @@
 <div class="dir-fonctions-dirigeant" ng-if="dirigeant.id">
-  
-  <div class="g-row">
-    <ul>
-      <li ng-repeat="fonction in dirigeant.fonctions">
-        <div><span ng-bind-html="fonction.titre | format:'fonction'"></span><span>{{fonction.titre}}</span></div>
-        <div class="g-remark">du {{fonction.debut | format:'dateLong'}} au {{fonction.fin | format:'dateLong'}}</div>
-      </li>
-    </ul>
-  </div>
-  
-  
+
+  <ol ng-if="dirigeant.fonctions.length">
+    <li ng-repeat="fonction in dirigeant.fonctions">
+      <span ng-bind-html="fonction.titre | format:'fonction'" title="{{fonction.titre}}"></span>
+      <span class="texte">
+        <span class="titre">{{fonction.titre}}</span>
+        <span class="dates">{{dates(fonction)}}</span>
+      </span>
+      <span class="en-poste" ng-if="!fonction.fin"><span class="point" aria-hidden="true"></span>En poste</span>
+    </li>
+  </ol>
+
+  <p class="aucun" ng-if="!dirigeant.fonctions.length">Aucune fonction renseignée.</p>
+
 </div>

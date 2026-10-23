@@ -13,66 +13,91 @@
   height: 100%;
 }
 
-/* Blocks */
+/* Blocks : un titre + filet bleuté, puis le contenu sur fond blanc (charte · blocs) */
 .g-block {
   position: relative;
-  padding: 10px;
+  padding: 0 12px 28px;
   line-height: 22px;
 
   > div {
     background: @boxBackground;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
-    padding: 10px;
+    padding: 0;
     overflow-x: auto;
     overflow-y: hidden;
-    
-    /* Top bar */
+
+    /* Titre de section : Barlow Condensed + filet bleuté 3 px */
 		&.g-topbar {
-		  line-height: 26px;
-		  padding: 0 10px;
-		  background-color: @breadcrumbBackground;
-		  color: white;
+		  display: flex;
+		  align-items: center;
+		  gap: 16px;
+		  margin-bottom: 10px;
+		  padding: 0;
+		  overflow: visible;
+		  font-family: @fontTitle;
+		  font-weight: 700;
+		  font-size: 26px;
+		  line-height: 1.2;
+		  letter-spacing: .04em;
+		  text-transform: uppercase;
+		  color: @ink;
       text-align: left;
+
+      &:after {
+        content: '';
+        flex: 1 1 40px;
+        height: 3px;
+        border-radius: 2px;
+        background: @skyRule;
+      }
 		}
 		&.g-topbar > .fa {
-		  font-size: 1.1em;
-		  opacity: 0.25;
-		  margin-right: 8px;
-		  vertical-align: text-bottom;
+		  display: none;
 		}
-		
+
+		/* Titre principal d'une fiche */
 		&.g-main-topbar {
-		  font-size: 1.1em;
-		  text-align: center;
-		  line-height: 28px;
+		  font-size: 34px;
+		  letter-spacing: .03em;
 		}
-		
-		/* Bottom bar */
+
+		/* Lien vers la fiche : bouton marine « Voir la fiche » */
 		&.g-bottombar {
-		  height: 22px;
-      line-height: 22px;
-      text-align: center;
-      padding: 0 10px;
-      background-color: @barBackground;
-      color: white;
-      
+		  display: inline-flex;
+		  align-items: center;
+		  gap: 8px;
+		  height: 40px;
+      margin-top: 14px;
+      padding: 0 16px;
+      border-radius: @radius;
+      background: @navy;
+      color: @white;
+      font-size: 14px;
+      font-weight: 600;
+      overflow: visible;
+
+      &:before {
+        content: 'Voir la fiche';
+      }
+      &:after {
+        content: '\f061';
+        font-family: FontAwesome;
+        font-size: 13px;
+      }
+
+      /* tout le bloc reste cliquable, comme avant */
       .g-link {
 		    position: absolute;
-        top: 10px;
-		    bottom: 10px;
-        left: 10px;
-        right: 10px;
-		    color: white;
-		    opacity: 0.5;
+        top: 0;
+		    bottom: 28px;
+        left: 12px;
+        right: 12px;
+		    font-size: 0;
 
         &:before {
-          position: absolute;
-          bottom: 4px;
-          right: 5px;
+          display: none;
         }
 		  }
 		  .g-link:hover {
-		    opacity: 1;
 		    text-decoration: none;
 		  }
     }
@@ -132,3 +157,446 @@
   }
 }
 
+
+/* ======================================================================
+   Page de liste : titre + filtres, tableau, panneau (bilan, sélection)
+   ====================================================================== */
+.g-page-title {
+  margin: 0;
+  font-family: @fontTitle;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: @ink;
+}
+
+.g-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.g-list-head {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.g-list-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px 40px;
+}
+
+.g-list-results {
+  flex: 3 1 820px;
+  min-width: 0;
+}
+
+.g-list-aside {
+  flex: 1 1 380px;
+  min-width: 0;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+
+  > .g-block {
+    padding: 0 0 28px;
+  }
+}
+
+/* Sélection : la fiche résumée dans une carte */
+.g-selection > div:not(.g-topbar):not(.g-bottombar) {
+  overflow: visible;
+}
+
+@media (max-width: 1279px) {
+  .g-page-title {
+    font-size: 34px;
+  }
+  .g-list-results {
+    flex-basis: 100%;
+    overflow-x: auto;
+  }
+  .g-list-aside {
+    position: static;
+  }
+}
+
+.g-list-aside .g-bottombar .g-link {
+  left: 0;
+  right: 0;
+}
+
+
+/* ======================================================================
+   Fiches (match, joueur, dirigeant, saison…) : en-tête puis sections titrées
+   ====================================================================== */
+.g-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 1752px;
+}
+
+.g-page-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Titre de section : Barlow Condensed + filet bleuté 3 px */
+.g-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 8px;
+  font-family: @fontTitle;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: @ink;
+
+  &:after {
+    content: '';
+    flex: 1 1 40px;
+    height: 3px;
+    border-radius: 2px;
+    background: @skyRule;
+  }
+
+  .g-title-extra {
+    order: 2;
+    font-family: @fontText;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: @slate;
+  }
+}
+
+/* texte réservé aux lecteurs d'écran */
+.g-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1023px) {
+  .g-page {
+    gap: 26px;
+  }
+  .g-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 639px) {
+  .g-page {
+    gap: 24px;
+  }
+  .g-title {
+    gap: 14px;
+    font-size: 22px;
+  }
+}
+
+/* Corps d'une fiche joueur / dirigeant : colonne principale, colonne secondaire, revue de presse */
+.fiche-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px 48px;
+}
+.fiche-col-principale,
+.fiche-col-secondaire {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.fiche-col-principale {
+  flex: 1.35 1 600px;
+}
+.fiche-col-secondaire {
+  flex: .85 1 320px;
+}
+.fiche-col-presse {
+  flex: 1.5 1 540px;
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  .fiche-body {
+    gap: 26px 28px;
+  }
+  .fiche-col-presse {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 639px) {
+  .fiche-body,
+  .fiche-col-principale,
+  .fiche-col-secondaire {
+    gap: 24px;
+  }
+  .fiche-col-principale,
+  .fiche-col-secondaire {
+    flex-basis: 100%;
+  }
+}
+
+/* Bilan compact : barre empilée et légende, au-dessus de la liste sur mobile */
+.g-bilan-compact {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: @tile;
+
+  .barre {
+    display: flex;
+    gap: 2px;
+    height: 10px;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .legende {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 16px;
+    font-size: 13.5px;
+    color: @slateDark;
+
+    > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    b {
+      font-family: @fontTitle;
+      font-size: 18px;
+      color: @navy;
+    }
+  }
+  .puce {
+    width: 9px;
+    height: 9px;
+    border-radius: 3px;
+  }
+  .buts {
+    margin-left: auto;
+    color: @slate;
+  }
+}
+
+@media (max-width: 639px) {
+  .g-list-body {
+    gap: 16px;
+  }
+  .g-bilan-compact {
+    display: flex;
+    flex-basis: 100%;
+  }
+  .g-list-aside {
+    display: none;
+  }
+}
+
+/* ======================================================================
+   Cartes-listes (Âge, Séries, Équipe-types) : un titre, une courte liste zébrée,
+   un lien vers la suite (charte · compléments)
+   ====================================================================== */
+.g-cartes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.g-carte {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid @border;
+  border-radius: @radiusL;
+  background: @white;
+}
+.g-carte-tete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 10px;
+
+  h2,
+  h3 {
+    margin: 0;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 1.15;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: @navy;
+  }
+  .meta {
+    flex: none;
+    font-size: 13px;
+    color: @slate;
+  }
+}
+.g-carte-corps {
+  padding: 0 8px 8px;
+}
+.g-carte-entete,
+.g-carte-ligne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+.g-carte-entete {
+  height: 26px;
+
+  .principal {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .valeur {
+    flex: none;
+    text-align: right;
+  }
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: @slate;
+}
+.g-carte-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.g-carte-ligne {
+  height: 34px;
+  border-radius: 8px;
+  font-size: 14px;
+
+  .g-carte-liste > li:nth-child(odd) > & {
+    background: @zebra;
+  }
+  .rang {
+    flex: none;
+    width: 22px;
+    text-align: right;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 15px;
+    color: @muted;
+  }
+  .principal {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    a {
+      color: @ink;
+    }
+    a:hover {
+      color: @blue;
+    }
+    .icon-au-club {
+      display: none;
+    }
+  }
+  .valeur {
+    flex: none;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .secondaire {
+    color: @slate;
+  }
+  .g-badge {
+    flex: none;
+  }
+}
+.g-carte-pied {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  margin-top: auto;
+  padding: 0 16px;
+  border-top: 1px solid @border;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: @blue;
+  text-decoration: none;
+
+  &:hover {
+    color: @navy;
+    background: @zebra;
+  }
+}
+
+/* Chargement : des lignes grises à la place du contenu */
+.g-squelette {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    display: block;
+    height: 34px;
+    border-radius: 8px;
+    position: relative;
+
+    &:nth-child(odd) {
+      background: @zebra;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      height: 10px;
+      width: 60%;
+      border-radius: 5px;
+      background: @border;
+    }
+    &:nth-child(3n+2):after {
+      width: 45%;
+    }
+    &:nth-child(3n):after {
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 639px) {
+  .g-cartes {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

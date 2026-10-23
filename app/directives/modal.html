@@ -1,8 +1,8 @@
 <div class="modal-overlay" ng-if="isOpen" ng-click="close()">
-  <div class="modal-dialog" ng-click="$event.stopPropagation()">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="{{title}}" ng-click="$event.stopPropagation()">
     <div class="modal-header">
       <span class="modal-title">{{title}}</span>
-      <button class="modal-close" ng-click="close()" title="Fermer">
+      <button type="button" class="modal-close" ng-click="close()" aria-label="Fermer">
         <span class="fa fa-times"></span>
       </button>
     </div>

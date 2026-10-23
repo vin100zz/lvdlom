@@ -1,37 +1,3 @@
 <div class="dir-fiche-joueur" ng-if="joueur.id">
-  
-  <lvdlom-fullscreenable-photo src="{{Picture.joueur(joueur.id)}}" photo-class="g-photo-id"></lvdlom-fullscreenable-photo>
-
-  <div class="g-row g-info-block row-info" ng-if="!cfg.mini">
-    <div>
-      <div>
-        <span ng-bind-html="joueur.fiche.poste | format:'poste'"></span>
-        <span>{{Bom.poste(joueur.fiche.poste)}}</span>
-      </div>
-      <div ng-if="dateNaissance">
-        <span class="g-remark">né le</span>
-        <span>{{dateNaissance}}</span>
-      </div>
-      
-      <div ng-if="dateDeces">
-        <span class="g-remark">décédé le</span>
-        <span>{{dateDeces}}</span>
-      </div>
-    </div>
-    <div>
-      <div ng-bind-html="joueur.fiche.nationalite | format:'flagFullNat'">
-      </div>
-      <div ng-if="joueur.fiche.villeNaissance">
-        <span class="g-remark">à</span>
-        <span>{{joueur.fiche.villeNaissance}}</span>
-        <span class="g-remark" ng-if="joueur.fiche.territoireNaissance">{{joueur.fiche.territoireNaissance}}</span>
-      </div>
-      <div ng-if="joueur.fiche.selections">
-        <span>{{joueur.fiche.selections}}</span>
-        <span class="g-remark">sélections</span>
-      </div>
-    </div>
-  </div>
-  
-  
+  <lvdlom-hero-personne cfg="hero"></lvdlom-hero-personne>
 </div>

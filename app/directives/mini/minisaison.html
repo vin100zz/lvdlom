@@ -2,14 +2,10 @@
 
   <lvdlom-mini-loading ng-if="loading"></lvdlom-mini-loading>
 
-  <div ng-if="!loading && !saison">Aucune saison sélectionnée</div>
+  <div class="g-empty" ng-if="!loading && !saison"><span class="fa fa-hand-pointer-o" aria-hidden="true"></span><b>Aucune saison sélectionnée</b><span>Cliquez sur une ligne du tableau pour afficher son détail ici.</span></div>
   
   <div ng-if="!loading && saison">
-    
-    <div class="g-row">
-      <lvdlom-fiche-saison saison="saison"></lvdlom-fiche-saison>
-    </div>
-    
+    <lvdlom-fiche-saison saison="saison"></lvdlom-fiche-saison>
   </div>
   
 

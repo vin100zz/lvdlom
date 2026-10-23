@@ -40,7 +40,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 }]);
 
 // controller
-app.controller('MainCtrl', function ($scope, $timeout, $http, Loading) {
+app.controller('MainCtrl', function ($scope, $timeout, $http, Loading, Dictionary, Picture) {
   $scope.loading = Loading.isLoading();
 
   $scope.$on('loading.update', function () {
@@ -65,9 +65,57 @@ app.controller('MainCtrl', function ($scope, $timeout, $http, Loading) {
     pattern: ''
   };
 
+  // barre d'actualité : écussons, résultat et dates courtes (« Jeu 22 · 18h45 »)
+  var normalize = function (name) {
+    return (name || '').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Z0-9]/g, '');
+  };
+
+  var ecusson = function (name) {
+    if (normalize(name) === 'OM') {
+      var saisons = Dictionary.saisons() || [];
+      return Picture.club('OM', saisons.length ? saisons[0].key : null);
+    }
+    var adversaire = (Dictionary.adversaires() || []).filter(function (a) {
+      return normalize(a.label) === normalize(name);
+    })[0];
+    return adversaire ? Picture.club(adversaire.key) : null;
+  };
+
+  var dateCourte = function (date) {
+    var m = /^(\S+)\s+(\d+)\s*\((.+)\)$/.exec((date || '').trim());
+    return m ? m[1].charAt(0).toUpperCase() + m[1].substring(1, 3) + ' ' + m[2] + ' · ' + m[3] : date;
+  };
+
+  var decorateActu = function (actu) {
+    var dernier = actu.dernierMatch;
+    if (dernier) {
+      dernier.ecussonGauche = ecusson(dernier.clubGauche);
+      dernier.ecussonDroite = ecusson(dernier.clubDroite);
+      var omAGauche = normalize(dernier.clubGauche) === 'OM';
+      var butsOM = parseInt(omAGauche ? dernier.butsGauche : dernier.butsDroite, 10);
+      var butsAdv = parseInt(omAGauche ? dernier.butsDroite : dernier.butsGauche, 10);
+      if (!isNaN(butsOM) && !isNaN(butsAdv)) {
+        dernier.resultat = butsOM > butsAdv ? 'V' : (butsOM < butsAdv ? 'D' : 'N');
+        dernier.resultatLabel = {V: 'Victoire', N: 'Nul', D: 'Défaite'}[dernier.resultat];
+      }
+    }
+    (actu.prochainsMatches || []).forEach(function (prochain) {
+      var clubs = (prochain.match || '').split(' - ');
+      var adversaire = clubs.filter(function (club) {
+        return normalize(club) !== 'OM';
+      })[0];
+      prochain.ecusson = adversaire ? ecusson(adversaire) : null;
+      prochain.affiche = clubs.join(' – ').toUpperCase();
+      prochain.dateCourte = dateCourte(prochain.date);
+    });
+    return actu;
+  };
+
   $http.get('services/actu.php')
   .success(function (data, status, headers, config) {
-    $scope.actu = data;
+    Dictionary.init.then(function () {
+      $scope.actu = decorateActu(data);
+    });
   });
 
   // click

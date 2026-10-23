@@ -1,17 +1,19 @@
 <div class="dir-fiche-saison" ng-if="saison.id">
 
-  <div class="g-row">
+  <div class="photo-equipe" ng-if="photoOk">
     <lvdlom-fullscreenable-photo src="{{Picture.saison(saison.id)}}" photo-class="image-equipe"></lvdlom-fullscreenable-photo>
   </div>
 
-  <div class="g-row">
-    <ul>
-      <li ng-repeat="row in saison.palmares track by $index">
-        <div><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span>{{row.nomCompetition}}</span></div>
-        <div class="g-remark">{{row.bilan}}</div>
-      </li>
-    </ul>
-  </div>
-  
-  
+  <ol class="palmares" ng-if="saison.palmares.length">
+    <li ng-repeat="row in saison.palmares track by $index" ng-class="{gagne: row.titre == 1}">
+      <span class="competition"><span ng-bind-html="row.sousTypeCompetition | format:'sousTypeCompetition'"></span><span class="nom">{{row.nomCompetition}}</span></span>
+      <span class="bilan">
+        <svg ng-if="row.titre == 1" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 3h10v2h3v3a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V5h3zm0 4H6v1a2 2 0 0 0 1 1.7zm10 0v2.7A2 2 0 0 0 18 8V7z"></path></svg>
+        {{Formatter.niveauLong(row.bilan)}}
+      </span>
+    </li>
+  </ol>
+
+  <p class="aucun" ng-if="!photoOk && !saison.palmares.length">Pas de photo ni de classement pour cette saison.</p>
+
 </div>

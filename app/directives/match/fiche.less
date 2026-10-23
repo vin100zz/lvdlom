@@ -1,50 +1,403 @@
 @import "style/variables";
 
-.dir-fiche-match {
-  text-align: center;
+/* Hero du match « face-à-face » : deux moitiés aux couleurs des clubs, coupées en biais,
+   le score dans une capsule marine, les infos du match en haut (charte · hero fin) */
 
-  .row-score {
-  
-    > div {
-      width: 33.33%;
-      height: 100px;
-      vertical-align: middle;
-    }
-  
-    .club {
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-    }
-    
-    .score-container {
-      width: 70px;
-      margin: auto;
-      color: @secondaryText;
-      border-radius: 5px;
-      border: 1px solid @lightBorder;
-      text-align: center;
-      
-      .plain {
-        line-height: 34px;
-        font-size: 22pt;
-      }
-      
-      .rq {
-        line-height: 20px;
-        border-top: 1px dashed @lightBorder;
-      }
-    }  
+.hero-skew(@angle, @stripe, @gapLeft, @gapRight) {
+  .half {
+    transform: skewX(@angle);
   }
-  
-  .row-equipes {
-    margin-top: 15px !important;
-    
-    > div {
-      width: 33%;
+  .stripe {
+    width: @stripe;
+    transform: skewX(@angle);
+  }
+  .stripe-left {
+    left: calc(~"50% - @{gapLeft}");
+  }
+  .stripe-right {
+    left: calc(~"50% + @{gapRight}");
+  }
+}
+
+/* version compacte : écussons au-dessus des noms, infos sous le hero (mobile, cartes) */
+.hero-compact() {
+  .hero {
+    min-height: 0;
+    border-radius: 18px;
+    .hero-skew(-9deg, 4px, 6px, 2px);
+  }
+  .ghost {
+    top: -30px;
+    height: 240px;
+  }
+  .ghost-left {
+    left: -50px;
+  }
+  .ghost-right {
+    right: -50px;
+  }
+  .infos {
+    position: relative;
+    top: auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px 14px 0;
+
+    .competition,
+    .meta {
+      display: none;
+    }
+    .jy:empty {
+      display: none;
+    }
+  }
+  .teams {
+    gap: 8px;
+    min-height: 0;
+    padding: 12px 14px 18px;
+  }
+  .team {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+
+    img {
+      height: 54px;
+    }
+    .name {
+      max-width: 100%;
+      text-align: center;
+
+      &, &.xl, &.l, &.m, &.s {
+        font-size: 28px;
+      }
+    }
+  }
+  .team-right {
+    flex-direction: column-reverse;
+  }
+  .score {
+    padding: 8px 14px 7px;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .35);
+
+    .buts {
+      gap: 12px;
+      font-size: 60px;
+    }
+    .dash {
+      width: 15px;
+      height: 5px;
+    }
+    .rq {
+      height: 18px;
+      padding: 0 8px;
+      font-size: 11px;
+    }
+    .long {
+      display: none;
+    }
+    .court {
+      display: inline;
+    }
+  }
+  .infos-below {
+    display: flex;
+  }
+  .g-jy {
+    padding: 3px;
+    border-radius: 9px;
+
+    .moi {
+      height: 18px;
+      padding: 0 6px;
+      font-size: 12px;
+    }
+    .avec {
+      min-width: 18px;
+      height: 18px;
+      font-size: 11px;
     }
   }
 }
 
+.dir-fiche-match {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-  
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 196px;
+    border-radius: 20px;
+    background-color: @navyChip;
+    box-shadow: inset 0 0 0 1px rgba(10, 34, 64, .06);
+    .hero-skew(-16deg, 6px, 10px, 4px);
+  }
+  .half {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    transform-origin: top left;
+  }
+  .stripe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transform-origin: top left;
+  }
+  .ghost {
+    position: absolute;
+    top: -70px;
+    height: 340px;
+    width: auto;
+    opacity: .10;
+    pointer-events: none;
+  }
+  .ghost-left {
+    left: -60px;
+  }
+  .ghost-right {
+    right: -60px;
+  }
+
+  /* bandeau d'infos : compétition et saison à gauche, J'y étais au centre, date et lieu à droite */
+  .infos {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 9px;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    padding: 0 20px;
+    font-size: 12px;
+    line-height: 18px;
+
+    .competition {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    }
+    .meta {
+      justify-self: end;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .jy {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  /* J'y étais dans une petite capsule marine, juste au-dessus du score */
+  .g-jy {
+    padding: 3px;
+    border-radius: 9px;
+    background: @navyDeep;
+    border: 1px solid rgba(255, 255, 255, .16);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
+  }
+
+  .teams {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+    min-height: 196px;
+    box-sizing: border-box;
+    padding: 30px 56px 0;
+  }
+  .team {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    min-width: 0;
+
+    img {
+      flex: none;
+      height: 112px;
+      width: auto;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .3));
+    }
+    .name {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: @fontTitle;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: .02em;
+
+      &.xl { font-size: 64px; }
+      &.l { font-size: 56px; }
+      &.m { font-size: 46px; }
+      &.s { font-size: 38px; }
+    }
+  }
+  .team-right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 28px 10px;
+    border-radius: 24px;
+    background: @navyDeep;
+    color: @white;
+    border: 2px solid rgba(255, 255, 255, .16);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .35);
+    text-align: center;
+
+    .buts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 88px;
+      line-height: .95;
+      font-variant-numeric: tabular-nums;
+    }
+    .dash {
+      width: 22px;
+      height: 6px;
+      border-radius: 3px;
+      background: @gold;
+    }
+    .rq {
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(242, 165, 22, .16);
+      color: #F7C35A;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .court {
+      display: none;
+    }
+  }
+
+  .infos-below {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    text-align: center;
+
+    .competition {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: @navy;
+
+      a {
+        color: @blue;
+      }
+    }
+    .meta {
+      font-size: 12px;
+      color: @slate;
+    }
+  }
+
+  /* tablette : écussons au-dessus des noms, infos toujours dans le hero */
+  @media (max-width: 1023px) {
+    .hero {
+      min-height: 0;
+      border-radius: 18px;
+      .hero-skew(-12deg, 5px, 8px, 3px);
+    }
+    .ghost {
+      top: -40px;
+    }
+    .infos {
+      top: 10px;
+      gap: 12px;
+      padding: 0 18px;
+      font-size: 11.5px;
+    }
+    .teams {
+      gap: 12px;
+      min-height: 0;
+      padding: 38px 20px 14px;
+    }
+    .team {
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+
+      img {
+        height: 76px;
+      }
+      .name {
+        max-width: 100%;
+
+        &, &.xl, &.l, &.m, &.s {
+          font-size: 40px;
+        }
+      }
+    }
+    .team-right {
+      flex-direction: column-reverse;
+    }
+    .score {
+      padding: 6px 22px 8px;
+      border-radius: 22px;
+
+      .buts {
+        gap: 16px;
+        font-size: 72px;
+      }
+      .dash {
+        width: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 639px) {
+    .hero-compact();
+  }
+
+  &.mini {
+    .hero-compact();
+  }
+}

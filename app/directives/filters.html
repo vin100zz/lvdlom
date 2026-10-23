@@ -1,15 +1,15 @@
-<div class="dir-filters">
+<div class="dir-filters" role="group" aria-label="Filtres">
 
   <ul>
     <li ng-repeat="filter in cfg" ng-class="{'active': filter.active}">
-      <span class="label" ng-click="toggleActivation(filter)">{{filter.label}} :</span>
-      <div class="select-container">
-       
-       <select ng-model="filter.value" ng-change="activate(filter)">
-         <option ng-repeat="option in filter.options" value="{{option.key}}" ng-selected="option.key == filter.value">{{option.label}}</option>
-       </select>
-      </div>
+      <span class="label" ng-click="toggleActivation(filter)">{{filter.label}}</span>
+      <span class="select-container">
+        <select ng-model="ui[$index]" ng-change="choose(filter, $index)" ng-options="option.key as option.label for option in filter.options" aria-label="{{filter.label}}">
+          <option value="">{{allLabel(filter)}}</option>
+        </select>
+      </span>
+      <button type="button" class="clear" ng-if="filter.active" ng-click="deactivate(filter)" aria-label="Retirer le filtre {{filter.label}}"><span class="fa fa-times" aria-hidden="true"></span></button>
     </li>
   </ul>
-  
+
 </div>

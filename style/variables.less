@@ -1,69 +1,144 @@
-/* Background */
-@mainBackground: #0769ad;
-@mainBackgroundGradientEnd: #032f4c;
-@menuBackground: #01131f;
-@menuHighlightBackground: #02273f;
-@boxBackground: #fff;
-@alternateBackground: #f7f7f7;
-@barBackground: #666;
-@maskBackground: #02273f;
-@breadcrumbBackground: rgba(25, 25, 25, 0.4);
-@tableSelected: lighten(@selectedText, 30%);
+/* ======================================================================
+   Charte graphique 2026 (canevas « La Vie de l'OM — Redesign »)
+   ====================================================================== */
 
-/* Texts */
-@primaryText: #333;
-@secondaryText: #999;
-@importantText: #009ddc;
-@primaryReversedText: #ccc;
-@secondaryReversedText: #999;
-@selectedText: #ff9000;
-@iconText: #fff;
+/* Polices */
+@fontText: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+@fontTitle: 'Barlow Condensed', 'Barlow', sans-serif;
 
-/* Border */
-@tableBorder: #ccc;
-@lightBorder: #e7e7e7;
-@menuBorder: #333;
+/* Marine, bleu, or */
+@navyDeep: #061629;      /* menu */
+@navy: #0A2240;          /* barre d'actualité, boutons principaux, titres */
+@navyChip: #10294A;      /* pastille « dernier match » */
+@navyLine: #1C3B62;      /* bordures sur fond marine */
+@navyActive: #133159;    /* entrée de menu active */
+@navySep: #13294A;       /* séparateurs du menu */
+@blue: #0E74B8;          /* bleu OM : liens, victoires, domicile */
+@sky: #E6F4FB;           /* ligne sélectionnée, ligne de total */
+@skyLine: #BFE0F2;       /* liseré de la ligne sélectionnée */
+@skyRule: #B3D4EC;       /* filet sous les titres */
+@gold: #F2A516;          /* accents, nuls, titres */
 
-/* Buttons */
-@button: #0769ad;
+/* Textes */
+@ink: #0E1B2B;
+@slateDark: #3B4A5C;
+@slate: #5A6878;
+@muted: #8A97A6;
+@onNavy: #C3CFDC;
+@onNavyMuted: #8EA2B8;
+@onNavySoft: #A9BACB;
 
-/* Icons */
-@auClub: #2196f3;
+/* Fonds et bordures */
+@white: #FFFFFF;
+@zebra: #F2F5F8;
+@tile: #F4F6F9;
+@border: #E4E8EE;
+@borderStrong: #D5DCE4;
+@borderButton: #C9D3DE;
 
-/* Lieux */
-@domicile: #4caF50;
-@exterieur: #e91e63;
+/* Résultats (score coloré) */
+@win: #0E74B8;
+@draw: #F2A516;
+@loss: #B4483F;
 
 /* Postes */
-@poste_ga: #3f51b5;
-@poste_de: #009688;
-@poste_mi: #ff9800;
-@poste_av: #e91e63;
+@posteG: #F5B300;
+@posteGText: #2A1E00;
+@posteD: #2563EB;
+@posteM: #087F56;
+@posteA: #D42A38;
+
+/* Compétitions (couleur du badge = couleur des graphiques) */
+@compL1: #5B3CC4;
+@compC1: #0B0F2E;
+@compC2: #7C3AED;
+@compC3: #E35205;
+@compCF: #D42A38;
+@compCL: #0F766E;
+@compIN: #0E7490;
+@compTC: #F5B300;
+@compTCText: #2A1E00;
+@compD2: #475569;
+@compCH: #64748B;
+
+/* Lieux */
+@home: #0E74B8;
+@away: #D42A38;
+
+/* Rayons */
+@radiusS: 6px;
+@radius: 12px;
+@radiusL: 16px;
+
+
+/* ======================================================================
+   Anciens noms, rebranchés sur la charte (utilisés par les composants)
+   ====================================================================== */
+
+/* Background */
+@mainBackground: @white;
+@mainBackgroundGradientEnd: @white;
+@menuBackground: @navyDeep;
+@menuHighlightBackground: @navyActive;
+@boxBackground: @white;
+@alternateBackground: @zebra;
+@barBackground: @navy;
+@maskBackground: @white;
+@breadcrumbBackground: rgba(6, 22, 41, .72);
+@tableSelected: @sky;
+
+/* Texts */
+@primaryText: @ink;
+@secondaryText: @slate;
+@importantText: @blue;
+@primaryReversedText: @onNavy;
+@secondaryReversedText: @onNavyMuted;
+@selectedText: @gold;
+@iconText: @white;
+
+/* Border */
+@tableBorder: @borderStrong;
+@lightBorder: @border;
+@menuBorder: @navySep;
+
+/* Buttons */
+@button: @navy;
+
+/* Icons */
+@auClub: @blue;
+
+/* Lieux */
+@domicile: @home;
+@exterieur: @away;
+
+/* Postes */
+@poste_ga: @posteG;
+@poste_de: @posteD;
+@poste_mi: @posteM;
+@poste_av: @posteA;
 
 /* Fonction */
-@fonction_generic: #999;
-@fonction_entraineur: #666;
+@fonction_generic: @muted;
+@fonction_entraineur: @compD2;
 
 /* Competitions */
-@competition_europe: #e91e63;
-@competition_coupe_france: #9c27b0;
-@competition_championnat: #3f51b5;
-@competition_coupe_ligue: #4caf50;
+@competition_europe: @compC1;
+@competition_coupe_france: @compCF;
+@competition_championnat: @compL1;
+@competition_coupe_ligue: @compCL;
 
 /* Résultat */
-@resultat_v: #4caf50;
-@resultat_n: #ff9800;
-@resultat_d: #f44336;
+@resultat_v: @win;
+@resultat_n: @draw;
+@resultat_d: @loss;
 
 /* Cartons */
-@cartonJaune: #ffeB3b;
-@cartonRouge: #f44336;
+@cartonJaune: #FFE03B;
+@cartonRouge: #D42A38;
 
 /* Remplacant */
-@remplacant: #ccc;
+@remplacant: @borderButton;
 
 /* Palmares */
-@trophyVictoire: #4caf50;
-@trophyFinale: #f44336;
-
-
+@trophyVictoire: @gold;
+@trophyFinale: @borderButton;

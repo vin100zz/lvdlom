@@ -1,62 +1,56 @@
 <div class="dir-stats-joueur" ng-if="joueur.id">
 
-  <div class="g-row">
-    <table>
-    
-      <thead class="g-remark">
-        <tr>
-          <th></th>
-          <th colspan="2">Total</th>
-          <th colspan="2">Champ</th>
-          <th colspan="2">Cp Nat</th>
-          <th colspan="2">Europe</th>
-        </tr>
-      
-        <tr>
-          <th></th>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr class="stats-comp" ng-repeat="(saison, row) in joueur.bilan" ng-if="saison != 'total'">
-        <td ng-bind-html="Formatter.saison(saison)" class="saison g-remark"></div>
-          
-          <!-- total -->
-          <td>{{row.total.tit + row.total.rmp}}</td>
-          <td>{{row.total.buts || '-'}}</td>
-          
-          <!-- per competition -->
-          <td ng-repeat-start="comp in ['ch', 'cn', 'ce'] track by $index">
-            <span>{{row[comp].tit || '-'}}</span>
-            <span class="g-remark" ng-if="row[comp].rmp > 0">({{row[comp].rmp}})</span>
-          </td>
-          <td ng-repeat-end>{{row[comp].buts || '-'}}</td>
-        </tr>
-      </tbody>
-      
-      <tfoot class="g-important">        
-        <tr>
-          <td>Total</td>
-          
-          <!-- total -->
-          <td><span>{{joueur.bilan['total'].total.tit + joueur.bilan['total'].total.rmp || '-'}}</span></td>
-          <td>{{joueur.bilan['total'].total.buts || '-'}}</td>
-          
-          <!-- per competition -->
-          <td ng-repeat-start="comp in ['ch', 'cn', 'ce'] track by $index">{{joueur.bilan['total'][comp].tit + joueur.bilan['total'][comp].rmp || '-'}}</td>
-          <td ng-repeat-end>{{joueur.bilan['total'][comp].buts || '-'}}</td>
-        </tr>
-      </tfoot>
-      
-    </table>
+  <p class="aucun" ng-if="!saisons.length">Aucun match joué.</p>
+
+  <!-- tableau : M = titularisations, (entrées en jeu) en petit -->
+  <table class="tableau" ng-if="saisons.length">
+    <colgroup><col class="col-saison"><col><col><col><col><col><col><col><col></colgroup>
+    <thead>
+      <tr class="groupes">
+        <th scope="col" rowspan="2" class="saison">Saison</th>
+        <th scope="colgroup" colspan="2" class="total">Total</th>
+        <th scope="colgroup" colspan="2">Championnat</th>
+        <th scope="colgroup" colspan="2">Coupe nat.</th>
+        <th scope="colgroup" colspan="2">Europe</th>
+      </tr>
+      <tr class="sous">
+        <th scope="col" title="Matches" class="total">M</th><th scope="col" title="Buts" class="total">B</th>
+        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="s in saisons">
+        <th scope="row"><a href="#/saison/{{s.saison}}">{{s.saison}}</a></th>
+        <td class="total">{{s.total.m}}</td><td class="total">{{s.total.b}}</td>
+        <td ng-repeat-start="c in s.comps track by $index">{{c.tit}} <span class="rmp" ng-if="c.rmp" title="Entrées en jeu">({{c.rmp}})</span></td>
+        <td ng-repeat-end>{{c.b}}</td>
+      </tr>
+      <tr class="somme">
+        <th scope="row">Total</th>
+        <td>{{totalLigne.total.m}}</td><td>{{totalLigne.total.b}}</td>
+        <td ng-repeat-start="c in totalLigne.comps track by $index">{{c.m}}</td>
+        <td ng-repeat-end>{{c.b}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- mobile : une ligne par saison, le détail par compétition dessous -->
+  <div class="liste" ng-if="saisons.length">
+    <div class="entete"><span>Saison</span><span>M</span><span>B</span></div>
+    <ol>
+      <li ng-repeat="s in saisons">
+        <span class="libelle"><a href="#/saison/{{s.saison}}">{{s.saison}}</a><span class="detail">{{s.detail}}</span></span>
+        <span class="n">{{s.total.m}}</span>
+        <span class="n">{{s.total.b}}</span>
+      </li>
+      <li class="somme">
+        <span class="libelle"><span>Total</span><span class="detail">{{totalLigne.detail}}</span></span>
+        <span class="n">{{totalLigne.total.m}}</span>
+        <span class="n">{{totalLigne.total.b}}</span>
+      </li>
+    </ol>
   </div>
-  
+
 </div>

@@ -1,17 +1,28 @@
 @import "style/variables";
 
+/* Associations d'un document : type, élément lié, retirer / ajouter une ligne */
 .dir-saisie-common-associations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   > div {
-    margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
     .assoc-type {
-      width: 90px;
-
-      + select,
-      + input {
-        width: calc(~"100% - 92px") !important;
-      }
+      flex: none;
+      width: 130px;
+    }
+    > select:not(.assoc-type),
+    > input {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .g-button {
+      flex: none;
     }
   }
 }

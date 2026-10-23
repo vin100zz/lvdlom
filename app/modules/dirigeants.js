@@ -62,6 +62,7 @@
         key: 'periode'
       }],
       defaultSort: 5,
+      mobile: {row: Formatter.lignePersonne, link: '#dirigeant/'},
       selected: $scope.selected,
       itemName: 'dirigeants'
     };

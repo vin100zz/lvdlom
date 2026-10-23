@@ -1,55 +1,64 @@
 @import "style/variables";
 
+/* Résultats de recherche : panneau marine qui glisse à droite du menu */
 #search-results {
   position: fixed;
-  top: 35px;
+  z-index: 7;
+  top: 0;
   left: -80px;
   bottom: 0;
-  width: 220px;
+  width: 320px;
   overflow-y: auto;
-  border-left: 1px solid @menuBorder;
-  font-size: 9pt;
-  color: @primaryReversedText;
-  background: @menuBackground;
-  transition: left 0.5s ease;
-   
+  padding: 120px 12px 24px;
+  border-left: 1px solid @navySep;
+  font-size: 14px;
+  color: @onNavy;
+  background: @navyDeep;
+  box-shadow: 16px 0 40px rgba(6, 22, 41, .25);
+  opacity: 0;
+  transition: left .35s ease, opacity .35s ease;
+
   &.visible {
-    left: 160px;
+    left: 248px;
+    opacity: 1;
   }
-  
+
   > li {
 
     a {
       display: block;
       width: 100%;
-      height: 100%;
-      padding: 8px 5px 8px 10px;
-      color: @primaryReversedText;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: @onNavy;
       text-decoration: none;
-      
+
 		  &:hover {
-	      background: @menuHighlightBackground;
+	      background: @navyActive;
+	      color: @white;
 	    }
-	    
+
 	    .match {
-	      color: lighten(@selectedText, 25%);
+	      color: @gold;
+	      font-weight: 600;
 	    }
-      
+
       .g-remark {
-        margin: 5px 0 0 0;
+        margin: 2px 0 0 0;
+        color: @onNavyMuted;
+        font-size: 12px;
       }
     }
-    
+
     &.no-result {
-      font-size: 10pt;
-      padding: 20px;
-      color: @secondaryText;
+      padding: 20px 12px;
+      color: @onNavyMuted;
     }
   }
 }
 
 @media (max-width: 1279px) {
   #search-results {
-    left: -220px;
+    left: -320px;
   }
 }

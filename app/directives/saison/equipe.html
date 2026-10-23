@@ -1,67 +1,58 @@
 <div class="dir-equipe-saison" ng-if="saison.id">
 
-  <div class="g-row">
-    <ul class="entraineurs">
-      <li>
-        <div class="g-remark">Entraîneur<span ng-if="entraineurs.length > 1">s</span></div>
-      </li>
-      <li ng-repeat="entraineur in entraineurs track by entraineur.id">
-        <div>
-          <span ng-bind-html="'E' | format:'fonction'"></span>
-          <span ng-bind-html="Formatter.nomDirigeant(entraineur)" ng-class="{'g-highlight-first': entraineur.firstSaison, 'g-highlight-last': entraineur.lastSaison}"></span>
-        </div>
-        <div>
-          <span class="g-remark" ng-if="!$last || $index > 0"> {{entraineur.nbMatches}} match<span ng-if="entraineur.nbMatches > 1">es</span></span>
-          <span class="g-remark" ng-if="!$last">(jusqu'au {{entraineur.fin | format:'dateLong'}})</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-  
-  <div class="g-row">  
+  <div class="defilement">
     <table>
-       <thead class="g-remark">
-        <tr>
-          <th rowspan="2">Joueur</th>
-          <th rowspan="2">Âge</th>
-          <th rowspan="2">Nationalité</th>
-          <th colspan="2">Total</th>
-          <th colspan="2">Champ</th>
-          <th colspan="2">Cp Nat</th>
-          <th colspan="2">Europe</th>
+      <thead>
+        <tr class="groupes">
+          <th scope="col" rowspan="2" class="gauche">Joueur</th>
+          <th scope="col" rowspan="2" class="gauche">Poste</th>
+          <th scope="col" rowspan="2">Âge</th>
+          <th scope="col" rowspan="2" class="gauche">Nat.</th>
+          <th scope="colgroup" colspan="2" class="total">Total</th>
+          <th scope="colgroup" colspan="2">Championnat</th>
+          <th scope="colgroup" colspan="2">Coupe nat.</th>
+          <th scope="colgroup" colspan="2">Europe</th>
         </tr>
-      
-        <tr>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
-          <th>M</th>
-          <th>B</th>
+        <tr class="sous">
+          <th scope="col" title="Matches" class="total">M</th><th scope="col" title="Buts" class="total">B</th>
+          <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+          <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+          <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="row in joueurs track by row.joueur.id">
-          <td>
-            <span ng-bind-html="row.joueur.poste | format:'poste'"></span>
-            <span ng-bind-html="Formatter.nomJoueur(row.joueur)" ng-class="{'g-highlight-first': row.joueur.firstSaison, 'g-highlight-last': row.joueur.lastSaison}"></span>
+          <td class="gauche joueur">
+            <span ng-bind-html="Formatter.nomJoueur(row.joueur)"></span>
+            <span class="pastille premiere" ng-if="row.joueur.firstSaison">1re saison</span>
+            <span class="pastille derniere" ng-if="row.joueur.lastSaison">Dernière saison</span>
           </td>
-          <td>{{Bom.age(row.joueur.age)}}</td>
-          <td ng-bind-html="row.joueur.nationalite | format:'flag'"></td>
-          <td><span>{{row.total.tit + row.total.rmp}}</span></td>
-          <td>{{row.total.buts || '-'}}</td>
-          <td><span>{{row.ch.tit || '-'}}</span><span class="g-remark" ng-if="row.ch.rmp > 0">({{row.ch.rmp}})</span></td>
-          <td>{{row.ch.buts || '-'}}</td>
-          <td><span>{{row.cn.tit || '-'}}</span><span class="g-remark" ng-if="row.cn.rmp > 0">({{row.cn.rmp}})</span></td>
-          <td>{{row.cn.buts || '-'}}</td>
-          <td><span>{{row.ce.tit || '-'}}</span><span class="g-remark" ng-if="row.ce.rmp > 0">({{row.ce.rmp}})</span></td>
-          <td>{{row.ce.buts || '-'}}</td>
+          <td class="gauche"><span ng-bind-html="row.joueur.poste | format:'poste'" title="{{Bom.poste(row.joueur.poste)}}"></span></td>
+          <td class="age">{{Bom.age(row.joueur.age)}}</td>
+          <td class="gauche nat"><img class="drapeau" ng-if="row.joueur.nationalite" ng-src="style/flags/large/{{row.joueur.nationalite}}.png" alt="">{{row.joueur.nationalite}}</td>
+          <td class="total">{{(row.total.tit + row.total.rmp) || '–'}}</td>
+          <td class="total">{{row.total.buts || '–'}}</td>
+          <td ng-repeat-start="comp in ['ch', 'cn', 'ce'] track by $index">{{row[comp].tit || '–'}} <span class="rmp" ng-if="row[comp].rmp > 0" title="Entrées en jeu">({{row[comp].rmp}})</span></td>
+          <td ng-repeat-end>{{row[comp].buts || '–'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  
-  
+
+  <!-- mobile : une ligne par joueur, matches et buts à droite -->
+  <div class="liste">
+    <div class="entete"><span>Joueur</span><span>M</span><span>B</span></div>
+    <ol>
+      <li ng-repeat="row in joueurs track by row.joueur.id">
+        <span ng-bind-html="row.joueur.poste | format:'poste'" title="{{Bom.poste(row.joueur.poste)}}"></span>
+        <span class="libelle">
+          <span ng-bind-html="Formatter.nomJoueur(row.joueur)"></span>
+          <span class="detail">{{Bom.age(row.joueur.age)}}<span ng-if="row.joueur.nationalite"> · {{row.joueur.nationalite}}</span><span class="pastille premiere" ng-if="row.joueur.firstSaison">1re saison</span><span class="pastille derniere" ng-if="row.joueur.lastSaison">Dernière saison</span></span>
+        </span>
+        <span class="n">{{(row.total.tit + row.total.rmp) || '–'}}</span>
+        <span class="n">{{row.total.buts || '–'}}</span>
+      </li>
+    </ol>
+  </div>
+
 </div>

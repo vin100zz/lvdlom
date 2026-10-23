@@ -1,8 +1,45 @@
 @import "style/variables";
 
+/* Dirigeants de la saison : fonction, nom, dates */
 .dir-dirigeants-saison {
 
-  li > div:first-child {
-    width: 180px;
+  dl {
+    margin: 0;
+    font-size: 14px;
+
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 2px 12px;
+      padding: 9px 12px;
+      border-radius: 8px;
+
+      &:nth-child(odd) {
+        background: @zebra;
+      }
+    }
+  }
+  dt {
+    flex: 0 0 150px;
+    color: @slate;
+  }
+  dd {
+    margin: 0;
+
+    a {
+      color: @ink;
+    }
+    a:hover {
+      color: @blue;
+    }
+    b {
+      font-weight: 600;
+    }
+  }
+  .dates {
+    margin-left: auto;
+    font-size: 13px;
+    color: @slate;
   }
 }

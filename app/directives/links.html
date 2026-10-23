@@ -1,13 +1,16 @@
- <div class="dir-links">
-  
-  <ul>
-    <li ng-repeat="link in links">
-      <a ng-if="!link.fn && !link.action" href="{{link.url}}" style="background-image: url(style/img/link.png)"></a>
-      <a ng-if="link.fn" ng-click="link.fn()" href="" style="background-image: url({{link.icon}}); background-size: contain; background-color: transparent"></a>
-      <div class="g-remark">{{link.label}}</div>
-    </li>
-    
-  </ul>
-  
-</div>
+<div class="dir-links" role="group" aria-label="Actions">
 
+  <a ng-repeat="link in links" class="action" ng-class="{ia: link.ia, modifier: link.modifier}"
+     href="{{link.url || ''}}" ng-click="link.fn && link.fn(); link.fn && $event.preventDefault()"
+     title="{{link.title}}">
+    <span class="etincelle" ng-if="link.ia" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9z"></path><path d="M18 13l.95 2.05L21 16l-2.05.95L18 19l-.95-2.05L15 16l2.05-.95z"></path><path d="M18 2l.7 1.3L20 4l-1.3.7L18 6l-.7-1.3L16 4l1.3-.7z"></path></svg>
+    </span>
+    <svg ng-if="link.icone == 'matches'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+    <svg ng-if="link.icone == 'personne'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"></path></svg>
+    <svg ng-if="link.icone == 'lien'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg>
+    <svg ng-if="link.modifier" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"></path></svg>
+    <span class="libelle">{{link.label}}</span>
+  </a>
+
+</div>

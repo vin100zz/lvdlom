@@ -1,32 +1,166 @@
 @import "style/variables";
 
+/* Statistiques par saison : lignes zébrées, total en bleu ciel (charte · tableaux) */
 .dir-stats-joueur {
-  text-align: center;
 
-  table {
-  
+  .tableau {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+
+    .col-saison {
+      width: 100px;
+    }
+    th,
     td {
-      width: 40px;
+      padding: 0 8px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
     }
-    td:first-child {
-      width: 75px;
+    thead th {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: @slate;
     }
-    
-    th[colspan]:nth-child(2),
-    th[colspan]:nth-child(4),
-    th:nth-child(2), td:nth-child(2),
-    th:nth-child(3):not([colspan]), td:nth-child(3),
-    th:nth-child(6), td:nth-child(6),
-    th:nth-child(7), td:nth-child(7) {
-      background: @alternateBackground;
+    .groupes th {
+      padding: 8px 8px 2px;
+      font-weight: 600;
     }
-  
-    tbody {
-      .g-remark {
-        margin: 0;
+    .sous th {
+      padding: 2px 8px 8px;
+      border-bottom: 1px solid @borderStrong;
+    }
+    thead .saison {
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: bottom;
+      font-weight: 600;
+      border-bottom: 1px solid @borderStrong;
+    }
+    thead .total {
+      font-weight: 600;
+      color: @navy;
+    }
+
+    tbody th {
+      height: 36px;
+      padding: 0 12px;
+      text-align: left;
+      font-weight: 500;
+      border-radius: 8px 0 0 8px;
+
+      a {
+        color: @blue;
       }
     }
-
+    tbody td:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+    tbody tr:nth-child(odd) > * {
+      background: @zebra;
+    }
+    td.total {
+      font-weight: 700;
+    }
+    .rmp {
+      font-size: 12px;
+      color: @muted;
+    }
+    .somme > * {
+      height: 40px;
+      background: @sky !important;
+      font-weight: 700;
+      color: @navy;
+    }
   }
-  
+
+  .liste {
+    display: none;
+
+    .entete,
+    li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 44px 40px;
+      align-items: center;
+      gap: 0 8px;
+    }
+    .entete {
+      padding: 0 10px 6px;
+      border-bottom: 1px solid @borderStrong;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: @slate;
+
+      span + span {
+        text-align: right;
+      }
+    }
+    ol {
+      margin: 4px 0 0;
+      padding: 0;
+      list-style: none;
+      font-variant-numeric: tabular-nums;
+    }
+    li {
+      padding: 7px 10px;
+      border-radius: 8px;
+
+      &:nth-child(odd) {
+        background: @zebra;
+      }
+    }
+    .libelle {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+
+      a {
+        color: @blue;
+        font-weight: 500;
+      }
+    }
+    .detail {
+      font-size: 12px;
+      color: @slate;
+    }
+    .n {
+      text-align: right;
+      font-weight: 700;
+    }
+    li.somme {
+      margin-top: 4px;
+      padding: 9px 10px;
+      background: @sky;
+      color: @navy;
+      font-weight: 700;
+
+      .detail {
+        font-weight: 500;
+        color: @slateDark;
+      }
+    }
+  }
+
+  .aucun {
+    margin: 0;
+    padding: 8px 12px;
+    color: @slate;
+  }
+
+  @media (max-width: 639px) {
+    .tableau {
+      display: none;
+    }
+    .liste {
+      display: block;
+    }
+  }
 }

@@ -1,27 +1,87 @@
 @import "style/variables";
 
+/* Actions d'une fiche : boutons secondaires bordés, hors du hero ; l'IA est signalée par une étincelle */
 .dir-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 
-  > ul {
-    margin-bottom: -10px;
-    text-align: center;
+  .action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 16px 0 12px;
+    box-sizing: border-box;
+    border-radius: @radius;
+    border: 1px solid @borderButton;
+    background: @white;
+    color: @navy;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
 
-    > li {
-    display: inline-block;
-    width: 60px;
-  
-      a {
-        display: block;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        background-color: fade(@mainBackground, 30%);
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
+    &:hover {
+      border-color: @navy;
+      background: @zebra;
+    }
+    &:focus-visible {
+      outline: 3px solid @gold;
+      outline-offset: 2px;
+    }
+
+    &.ia {
+      padding-left: 8px;
+    }
+    &.modifier {
+      margin-left: auto;
+      padding: 0 14px;
+      border-color: transparent;
+      background: transparent;
+      color: @slate;
+
+      &:hover {
+        color: @navy;
+        background: @zebra;
       }
-      a:hover {
-        background-color: fade(@mainBackground, 50%);
+    }
+  }
+  .etincelle {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #FDF3DC;
+    color: #B57A00;
+  }
+
+  @media (max-width: 639px) {
+    gap: 8px;
+
+    .action {
+      padding: 0 14px 0 11px;
+
+      &.ia {
+        padding-left: 7px;
+      }
+      &.modifier {
+        margin-left: 0;
+        width: 40px;
+        padding: 0;
+        justify-content: center;
+
+        .libelle {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip: rect(0 0 0 0);
+        }
       }
     }
   }

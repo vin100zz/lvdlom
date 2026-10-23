@@ -1,0 +1,455 @@
+@import "style/variables";
+
+/* Hero joueur / dirigeant : même hauteur que le hero match, photo floutée en fond,
+   champs étiquetés sur des tuiles claires, chiffres clés à droite (charte · fiches) */
+
+.personne-compact() {
+  .hero {
+    min-height: 0;
+    border-radius: 18px;
+  }
+  .flou {
+    filter: blur(30px) saturate(1.2);
+    transform: scale(1.3);
+  }
+  .biais {
+    right: 18%;
+    top: -80px;
+    width: 70px;
+    height: 400px;
+  }
+  .biais.fin {
+    display: none;
+  }
+  .contenu {
+    min-height: 0;
+    gap: 14px;
+    padding: 12px 14px;
+  }
+  .photo,
+  .lvdlom-fullscreenable-photo .photo {
+    width: 88px;
+    height: 106px;
+    border-radius: 12px;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .4);
+  }
+  .initiales {
+    font-size: 34px;
+  }
+  .identite {
+    gap: 9px;
+  }
+  .poste-pill {
+    display: inline-flex;
+  }
+  .titre {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  h1,
+  .nom-bloc {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    line-height: .92;
+
+    .prenom {
+      font-size: 17px;
+    }
+    .nom {
+      font-size: 40px;
+    }
+  }
+  .badge {
+    height: 22px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+  .faits-hero,
+  .chiffres,
+  .periode {
+    display: none;
+  }
+  .faits-sous {
+    display: grid;
+  }
+}
+
+.dir-hero-personne {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 196px;
+    border-radius: 20px;
+    background: @navy;
+    color: @white;
+  }
+  .flou {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(44px) saturate(1.2);
+    transform: scale(1.25);
+    opacity: .45;
+  }
+  .voile {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 26, 50, .66);
+  }
+  .biais {
+    position: absolute;
+    right: 31%;
+    top: -160px;
+    width: 150px;
+    height: 600px;
+    background: #0E3A66;
+    opacity: .45;
+    transform: rotate(22deg);
+
+    &.fin {
+      right: 27%;
+      width: 24px;
+      background: #3DB4E8;
+      opacity: .18;
+    }
+  }
+
+  .contenu {
+    position: relative;
+    min-height: 196px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 40px 16px 16px;
+  }
+
+  .photo,
+  .lvdlom-fullscreenable-photo .photo {
+    flex: none;
+    display: block;
+    width: 140px;
+    height: 164px;
+    object-fit: cover;
+    object-position: center 20%;
+    background-size: cover;
+    background-position: center 20%;
+    border-radius: 14px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .45);
+  }
+  lvdlom-fullscreenable-photo {
+    flex: none;
+  }
+  .initiales {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: @navyActive;
+    border: 1px solid rgba(255, 255, 255, .14);
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 52px;
+    letter-spacing: .04em;
+    color: @onNavyMuted;
+  }
+
+  .identite {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .poste-pill {
+    display: none;
+    align-self: flex-start;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    padding: 0 10px 0 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+    font-size: 12px;
+    font-weight: 600;
+
+    .g-badge {
+      width: 18px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0;
+      justify-content: center;
+      font-size: 11px;
+    }
+  }
+  .titre {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+  h1,
+  .nom-bloc {
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    min-width: 0;
+    line-height: .9;
+    white-space: nowrap;
+
+    .prenom {
+      font-weight: 300;
+      font-size: 30px;
+      color: #DCE5EE;
+    }
+    .nom {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 76px;
+      letter-spacing: .005em;
+    }
+  }
+  .badge {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 26px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(46, 204, 113, .16);
+    color: #9BE8B8;
+    font-size: 13px;
+    font-weight: 600;
+
+    .point {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2ECC71;
+    }
+  }
+
+  .faits {
+    margin: 0;
+
+    dt {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    dd {
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .g-badge {
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .drapeau {
+      width: 22px;
+      height: 15px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+  }
+  .faits-hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 9px 16px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .08);
+    }
+    dt {
+      color: @onNavyMuted;
+    }
+    dd {
+      font-size: 15px;
+    }
+    .sub {
+      color: @onNavySoft;
+      font-weight: 400;
+    }
+  }
+
+  .chiffres {
+    flex: none;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 0 24px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+      & + div {
+        border-left: 1px solid rgba(255, 255, 255, .16);
+      }
+    }
+    dd {
+      order: 1;
+      margin: 0;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: .95;
+    }
+    .or dd {
+      color: @gold;
+    }
+    dt {
+      order: 2;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: @onNavyMuted;
+    }
+  }
+  .periode {
+    flex: none;
+    font-family: @fontTitle;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: .95;
+    color: @gold;
+    white-space: nowrap;
+  }
+
+  /* fiche sous le hero (mobile, sélection) : tuiles claires sur deux colonnes */
+  .faits-sous {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: @tile;
+
+      &.large {
+        grid-column: ~"1 / -1";
+      }
+    }
+    dt {
+      font-size: 10.5px;
+      color: @muted;
+    }
+    dd {
+      font-size: 14.5px;
+      color: @navy;
+    }
+    .sub {
+      margin-left: -4px;
+      color: @slate;
+      font-weight: 400;
+    }
+    .chiffre dd {
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1;
+    }
+  }
+
+  /* tablette : le hero s'allonge si les champs passent sur deux lignes */
+  @media (max-width: 1279px) {
+    .contenu {
+      gap: 24px;
+      padding-right: 28px;
+    }
+    h1 .nom {
+      font-size: 64px;
+    }
+    .chiffres dd,
+    .periode {
+      font-size: 52px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .personne-compact();
+  }
+
+  /* carte de sélection : mini hero, nom sur deux lignes, fiche dessous */
+  &.mini {
+    .personne-compact();
+
+    .hero {
+      border-radius: 16px;
+    }
+    .contenu {
+      min-height: 136px;
+      gap: 16px;
+      padding: 12px 18px 12px 12px;
+    }
+    .photo {
+      width: 96px;
+      height: 112px;
+    }
+    .poste-pill {
+      display: none;
+    }
+    .nom-bloc {
+      gap: 4px;
+      line-height: .95;
+
+      .prenom {
+        font-size: 20px;
+      }
+      .nom {
+        font-size: 46px;
+      }
+    }
+    .faits-sous {
+      dt {
+        font-size: 11px;
+        color: @slate;
+      }
+      > div {
+        padding: 9px 14px 10px;
+      }
+    }
+  }
+}

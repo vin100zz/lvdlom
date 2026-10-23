@@ -1,26 +1,36 @@
 @import "style/variables";
 
+/* Formulaires de saisie (charte · formulaires) : libellé au-dessus du champ, grille de deux colonnes */
 .dir-saisie-form {
 
-  .g-row {
-    padding-bottom: 5px;
-
-    > div:first-child {
-      width: 35%;
-      padding-right: 10px;
-      text-align: right;
-    }
-
-    > div:last-child {
-      padding-right: 25%;
-    } 
-
-    &.actions {
-      text-align: center;
-      padding: 15px 0 5px 0;
-    }
-    
+  .champs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px 20px;
+    max-width: 900px;
   }
-  
-}
+  .champ {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
 
+    &.large {
+      grid-column: ~"1 / -1";
+    }
+    &.case {
+      justify-content: flex-end;
+      min-height: 40px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid @border;
+  }
+}

@@ -20,8 +20,8 @@
       <option ng-value=""></option>
     </select>
 
-    <button class="g-button g-icon-button g-button-danger" ng-if="!$first" ng-click="deleteRow($event, $index)"><span class="fa fa-times"></span></button>
-    <button class="g-button g-icon-button g-button-action" ng-if="$last" ng-click="addRow($event)"><span class="fa fa-plus"></span></button>
+    <button type="button" class="g-button g-icon-button g-button-danger" ng-if="!$first" ng-click="deleteRow($event, $index)" aria-label="Retirer la ligne"><span class="fa fa-times" aria-hidden="true"></span></button>
+    <button type="button" class="g-button g-icon-button g-button-action" ng-if="$last" ng-click="addRow($event)" aria-label="Ajouter une ligne"><span class="fa fa-plus" aria-hidden="true"></span></button>
 
   </div>
   

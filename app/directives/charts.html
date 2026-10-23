@@ -1,18 +1,17 @@
 <div class="dir-charts">
 
   <div ng-attr-id="{{uniqueId}}" class="canvases" ng-class="{'no-legend': cfg.hideLegend}">
-    <canvas class="inner" width="60px" height="60px" style="z-index: 1;"></canvas>
-    <canvas class="main" width="120px" height="120px" style="z-index: 2;"></canvas>
+    <canvas class="main" width="150" height="150" style="z-index: 1;"></canvas>
+    <canvas class="inner" width="104" height="104" style="z-index: 2;"></canvas>
+    <div class="center" ng-if="cfg.centerLabel || cfg.centerText"><b>{{cfg.centerText || total()}}</b><span>{{cfg.centerLabel}}</span></div>
   </div>
   <div class="legend" ng-if="!cfg.hideLegend">
-    <div>
     <ul>
-      <li ng-repeat="data in mainData | reverse">{{data.value}} {{data.label}}<span class="icon" style="background-color:{{data.color}};"></span></li>
+      <li ng-repeat="data in mainData | reverse"><span class="icon" ng-style="{'background-color': data.color}"></span><b>{{data.value}}</b><span>{{data.label}}</span></li>
     </ul>
-    <ul>
-      <li ng-repeat="data in innerData | reverse">{{data.value}} {{data.label}}<span class="icon" style="background-color:{{data.color}};"></span></li>
+    <ul class="second" ng-if="innerData.length">
+      <li ng-repeat="data in innerData | reverse"><span class="icon round" ng-style="{'background-color': data.color}"></span><b>{{data.value}}</b><span>{{data.label}}</span></li>
     </ul>
-    </div>
   </div>
-  
+
 </div>
