@@ -22,6 +22,158 @@
     margin-bottom: 12px;
   }
 
+  /* pré-remplissage depuis la page du match : panneau gris, l'IA signalée par l'étincelle */
+  .import-page {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: @tile;
+  }
+  .import-tete {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h2 {
+      margin: 0;
+      font-family: @fontTitle;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: @navy;
+    }
+  }
+  .etincelle {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #FDF3DC;
+    color: #B57A00;
+
+    svg {
+      display: block;
+    }
+  }
+  .import-ligne {
+    display: flex;
+    gap: 10px;
+
+    input {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .g-button {
+      flex: none;
+    }
+  }
+  .import-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    font-size: 13px;
+    color: @slate;
+  }
+  .lien {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: @blue;
+    font-family: @fontText;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .favori-zone {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+  }
+  /* le lien du favori se glisse : bord pointillé, curseur de saisie */
+  .favori {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 12px;
+    border: 1px dashed @blue;
+    border-radius: 999px;
+    background: @white;
+    color: @blue;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: grab;
+  }
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid @borderStrong;
+    border-radius: 10px;
+    background: @white;
+    color: @ink;
+    font-family: @fontText;
+    font-size: 14px;
+    line-height: 1.4;
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+      border-color: @blue;
+      box-shadow: 0 0 0 3px rgba(61, 180, 232, .28);
+    }
+  }
+  .import-erreur {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #B42330;
+  }
+  .import-resultat {
+    padding: 10px 14px;
+    border: 1px solid @border;
+    border-radius: 10px;
+    background: @white;
+    font-size: 14px;
+
+    p {
+      margin: 0;
+    }
+    .fa-check-circle {
+      margin-right: 4px;
+      color: @win;
+    }
+    a {
+      color: @blue;
+      font-weight: 600;
+    }
+    ul {
+      margin: 6px 0 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: @slateDark;
+    }
+    li + li {
+      margin-top: 2px;
+    }
+  }
+
   .champs-fiche {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -279,6 +431,13 @@
   }
 
   @media (max-width: 639px) {
+    .import-ligne {
+      flex-wrap: wrap;
+
+      .g-button {
+        flex: 1 1 100%;
+      }
+    }
     .ligne-buteur {
       grid-template-columns: 56px 52px minmax(0, 1fr);
 

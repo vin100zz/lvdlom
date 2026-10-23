@@ -24,13 +24,16 @@ class AI {
    * @param  string[]|null $keys     Clés JSON attendues dans la réponse (validation optionnelle).
    * @param  array|null    $images   Tableau d'images à envoyer : chaque entrée est
    *                                 ['data' => <base64>, 'media_type' => 'image/jpeg'|'image/png'|...].
+   * @param  int|null      $maxTokens Limite de tokens générés pour cet appel (défaut : AI_MAX_TOKENS).
    * @return array  ['data' => array, 'truncated' => bool]
    * @throws RuntimeException en cas d'erreur de configuration ou d'API.
    */
-  public static function call($prompt, $keys = null, $images = null) {
+  public static function call($prompt, $keys = null, $images = null, $maxTokens = null) {
     $provider = defined('AI_PROVIDER') ? AI_PROVIDER : 'anthropic';
     $timeout  = defined('AI_TIMEOUT')    ? AI_TIMEOUT    : 180;
-    $maxTokens = defined('AI_MAX_TOKENS') ? AI_MAX_TOKENS : 1024;
+    if (!$maxTokens) {
+      $maxTokens = defined('AI_MAX_TOKENS') ? AI_MAX_TOKENS : 1024;
+    }
 
     // --- Validation de la configuration ---
     if ($provider === 'openai') {

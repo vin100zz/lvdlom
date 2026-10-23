@@ -4,6 +4,53 @@
 
     <div class="principal">
 
+      <!-- pré-remplissage depuis la page du match : adresse, texte collé, ou favori cliqué sur la page -->
+      <section class="import-page" aria-labelledby="h-saisie-import">
+        <div class="import-tete">
+          <span class="etincelle" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9z"></path><path d="M18 13l.95 2.05L21 16l-2.05.95L18 19l-.95-2.05L15 16l2.05-.95z"></path><path d="M18 2l.7 1.3L20 4l-1.3.7L18 6l-.7-1.3L16 4l1.3-.7z"></path></svg>
+          </span>
+          <h2 id="h-saisie-import">Pré-remplir depuis la page du match</h2>
+        </div>
+
+        <div class="import-ligne">
+          <input ng-model="importPage.url" type="text" inputmode="url" ng-keydown="toucheAdresse($event)" ng-disabled="importPage.enCours" placeholder="Adresse de la page : L'Équipe, Google…" aria-label="Adresse de la page du match">
+          <button type="button" class="g-button" ng-click="preRemplir($event)" ng-disabled="importPage.enCours">
+            <span class="fa fa-circle-o-notch fa-spin" ng-if="importPage.enCours" aria-hidden="true"></span>
+            <span>{{importPage.enCours ? 'Analyse en cours…' : 'Pré-remplir'}}</span>
+          </button>
+        </div>
+
+        <div class="import-options">
+          <button type="button" class="lien" ng-click="importPage.texteVisible = !importPage.texteVisible" aria-expanded="{{importPage.texteVisible}}">
+            <span class="fa" ng-class="importPage.texteVisible ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
+            <span>Coller le texte de la page</span>
+          </button>
+          <span class="favori-zone">
+            <a class="favori" lvdlom-favori-import title="Glisser dans la barre de favoris">
+              <span class="fa fa-bookmark" aria-hidden="true"></span>
+              <span>Envoyer à LVDLOM</span>
+            </a>
+            <span>à glisser dans la barre de favoris, puis à cliquer depuis la page d'un match</span>
+          </span>
+        </div>
+
+        <textarea ng-if="importPage.texteVisible" ng-model="importPage.texte" ng-disabled="importPage.enCours" rows="6" placeholder="Sur la page du match : Ctrl+A, Ctrl+C, puis coller ici." aria-label="Texte de la page du match"></textarea>
+
+        <p class="import-erreur" ng-if="importPage.erreur" role="alert">{{importPage.erreur}}</p>
+        <div class="import-resultat" ng-if="importPage.source" role="status">
+          <p>
+            <span class="fa fa-check-circle" aria-hidden="true"></span>
+            Formulaire pré-rempli depuis
+            <a ng-if="importPage.source.url" ng-href="{{importPage.source.url}}" target="_blank" rel="noopener">« {{importPage.source.titre || importPage.source.url}} »</a><span ng-if="!importPage.source.url">le texte collé</span> :
+            à relire avant de valider.
+          </p>
+          <ul ng-if="importPage.avertissements.length">
+            <li ng-repeat="avertissement in importPage.avertissements">{{avertissement}}</li>
+          </ul>
+        </div>
+      </section>
+
       <!-- fiche -->
       <section aria-labelledby="h-saisie-fiche">
         <h2 class="g-title" id="h-saisie-fiche">Fiche</h2>
