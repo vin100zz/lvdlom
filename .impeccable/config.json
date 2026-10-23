@@ -1,0 +1,125 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/match/fiche.html"
+        ],
+        "createdAt": "2026-10-22T16:37:41.388Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/documents.html"
+        ],
+        "createdAt": "2026-10-22T16:40:33.377Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/viewer.html"
+        ],
+        "createdAt": "2026-10-22T16:40:59.246Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "index.tpl.html"
+        ],
+        "createdAt": "2026-10-22T16:41:24.062Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/personne/hero.html"
+        ],
+        "createdAt": "2026-10-22T16:48:19.246Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/joueur/carriere.html"
+        ],
+        "createdAt": "2026-10-22T16:50:35.243Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/modules/saison.html"
+        ],
+        "createdAt": "2026-10-22T21:27:13.785Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/saison/equipe.html"
+        ],
+        "createdAt": "2026-10-22T21:28:03.912Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/mini/miniadversaire.html"
+        ],
+        "createdAt": "2026-10-22T21:29:51.708Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/modules/anniversaire.html"
+        ],
+        "createdAt": "2026-10-22T21:36:28.575Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/saisie/common/match.html"
+        ],
+        "createdAt": "2026-10-22T21:49:04.616Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-23T07:16:55.887Z",
+        "reason": "Claude: AngularJS ng-src sets src at runtime, not a broken image (same as index.tpl.html)"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "app/directives/maillot.html"
+        ],
+        "createdAt": "2026-10-23T14:28:15.057Z",
+        "reason": "Claude: Angular ng-src binding guarded by ng-if, the detector does not read ng-src"
+      }
+    ]
+  }
+}

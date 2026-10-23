@@ -30,14 +30,23 @@ app.service('Maillots', function() {
     61: {template: 11, color1: "D91521", color2: "293383", color3: "F1C600"}, // CSKA MOSCOU
     63: {template: 1, color1: "C11929", color2: "FFFFFF", color3: "ffffff"}, // DIJON
     72: {template: 37, color1: "CE000C", color2: "ffffff", color3: "CE000C"}, // ETOILE ROUGE BELGRADE
+    74: {template: 5, color1: "ED1B2E", color2: "ffffff", color3: "000000"}, // FEYENOORD ROTTERDAM
+    93: {template: 41, color1: "000000", color2: "005DAA", color3: "005DAA"}, // INTER MILAN
     99: {template: 36, color1: "F5822A", color2: "000000", color3: "000000"}, // LAVAL
+    100: {template: 1, color1: "00ADEF", color2: "ffffff", color3: "ffffff"}, // LAZIO ROME
     105: {template: 1, color1: "0E447B", color2: "FFFFFF", color3: "FFFFFF"}, // LECH POZNAN
+    106: {template: 1, color1: "004898", color2: "FFDC37", color3: "FFDC37"}, // LEIPZIG
     117: {template: 2, color1: "FCDC4F", color2: "E32219", color3: "E32219"}, // LOUHANS-CUISEAUX
     123: {template: 1, color1: "E20E0E", color2: "FFFFFF", color3: "FFFFFF"}, // MANCHESTER UTD
     125: {template: 37, color1: "FDE531", color2: "DE0021", color3: "000000"}, // MARTIGUES
     126: {template: 51, color1: "8DAABB", color2: "FFFFFF", color3: "FFFFFF"}, // MATRA RACING
     129: {template: 1, color1: "ffffff", color2: "009EE0", color3: "009EE0"}, // MLADA BOLESLAV
     132: {template: 1, color1: "F8E520", color2: "ffffff", color3: "0652BD"}, // MONTAUBAN
+    147: {template: 41, color1: "ffffff", color2: "E2001A", color3: "E2001A"}, // OLYMPIAKOS LE PIRÉE
+    141: {template: 48, color1: "ffffff", color2: "000000", color3: "000000"}, // NEWCASTLE
+    149: {template: 1, color1: "0D1C44", color2: "ffffff", color3: "1A94CA"}, // PARIS FC
+    161: {template: 37, color1: "00529B", color2: "ffffff", color3: "ffffff"}, // PORTO
+    162: {template: 1, color1: "157C31", color2: "000000", color3: "000000"}, // QUIMPER
     184: {template: 5, color1: "F92400", color2: "FFFFFF", color3: "ffffff"}, // SION,
     200: {template: 10, color1: "ffffff", color2: "0097DB", color3: "0097DB"}, // ST-PÉTERSBOURG
     219: {template: 36, color1: "ffffff", color2: "ff8000", color3: "000000"}, // VALENCE CF
@@ -82,10 +91,13 @@ app.service('Maillots', function() {
     300: {template: 1, color1: "FFFFFF", color2: "FFFFFF", color3: "002156"}, // TOTTENHAM
     301: {template: 4, color1: "008863", color2: "FFFFFF", color3: "FFFFFF"}, // SPORTING PORTUGAL
     302: {template: 1, color1: "00793F", color2: "FFFFFF", color3: "FFFFFF"}, // PANATHINAIKOS
-	303: {template: 33, color1: "005DAA", color2: "FFFFFF", color3: "FFFFFF"}, // BRIGHTON
-	304: {template: 1, color1: "79B1E2", color2: "FFFFFF", color3: "FFFFFF"}, // THIONVILLE
-	305: {template: 1, color1: "FCE100", color2: "1F4774", color3: "1F4774"}, // VILLARREAL
-	306: {template: 3, color1: "0067B2", color2: "000000", color3: "000000"}, // ATALANTA BERGAME
+    303: {template: 33, color1: "005DAA", color2: "FFFFFF", color3: "FFFFFF"}, // BRIGHTON
+    304: {template: 1, color1: "79B1E2", color2: "FFFFFF", color3: "FFFFFF"}, // THIONVILLE
+    305: {template: 1, color1: "FCE100", color2: "1F4774", color3: "1F4774"}, // VILLARREAL
+    306: {template: 3, color1: "0067B2", color2: "000000", color3: "000000"}, // ATALANTA BERGAME
+    307: {template: 1, color1: "0059A1", color2: "0059A1", color3: "0059A1"}, // BAYEUX
+    308: {template: 37, color1: "0472FF", color2: "000000", color3: "000000"}, // CLUB BRUGES
+
     "ALÈS": {template: 36, color1: "034EA2", color2: "FFFFFF", color3: "FFFFFF"},
     "AJACCIO": {template: 48, color1: "FFFFFF", color2: "ED1C24", color3: "ED1C24"},
     "AJAX AMSTERDAM": {template: 16, color1: "FFFFFF", color2: "EC1346", color3: "EC1346"},
