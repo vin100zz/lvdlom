@@ -145,7 +145,8 @@ $entraineurs = DBAccess::query
     Prenom AS prenom,
     Nom AS nom
   FROM dirige, dirigeants
-  WHERE IdFonction=1 AND dirige.IdDirigeant = dirigeants.IdDirigeant AND dirige.Debut <= '$dateMatch' AND dirige.Fin >= '$dateMatch'
+  WHERE IdFonction=1 AND dirige.IdDirigeant = dirigeants.IdDirigeant
+    AND dirige.Debut <= '$dateMatch' AND (dirige.Fin IS NULL OR dirige.Fin >= '$dateMatch')
 ");
 
 // documents
@@ -226,7 +227,8 @@ function decorateEntraineurWithFirstLastMatch ($entraineur, $dateMatch, $dateLas
     SELECT Min(DateMatch) as firstMatch, Max(DateMatch) as lastMatch
     FROM matches, dirige 
     WHERE dirige.IdDirigeant = " . $entraineur["id"] . "
-          AND DateMatch >= Debut AND DateMatch <= Fin"
+          AND IdFonction=1
+          AND DateMatch >= Debut AND (Fin IS NULL OR DateMatch <= Fin)"
   );
   $entraineur["firstMatch"] = $dates["firstMatch"] == $dateMatch;
   $entraineur["lastMatch"] = $dates["lastMatch"] == $dateMatch && $dateMatch != $dateLastMatch;

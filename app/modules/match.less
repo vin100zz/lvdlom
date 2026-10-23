@@ -17,11 +17,16 @@
     gap: 32px;
   }
   .match-col-compo {
-    flex: 2 1 640px;
+    flex: .9 1 300px;
     min-width: 0;
+
+    .dir-equipe-match .colonnes {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
   }
   .match-col-presse {
-    flex: 1.1 1 380px;
+    flex: 2.2 1 720px;
     min-width: 0;
   }
 

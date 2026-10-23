@@ -28,6 +28,10 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    & + ul {
+      margin-top: 16px;
+    }
   }
   li {
     display: flex;
@@ -95,7 +99,10 @@
       background: #F5C518;
     }
   }
-  .sortie svg {
+  .sortie {
+    gap: 3px;
+    font-size: 13px;
+    font-weight: 600;
     color: @loss;
   }
   .entree {

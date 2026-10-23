@@ -45,8 +45,16 @@
     text-align: right;
   }
   .minute {
-    color: @slate;
+    font-size: 13px;
+    font-weight: 600;
+    color: @blue;
     font-variant-numeric: tabular-nums;
+  }
+  .side-left .minute:not(:empty) {
+    margin-right: 4px;
+  }
+  .side-right .minute:not(:empty) {
+    margin-left: 4px;
   }
   .note {
     font-size: 12px;
