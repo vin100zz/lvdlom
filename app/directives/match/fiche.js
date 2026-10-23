@@ -5,34 +5,7 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter, ClubColors)
       cfg: '='
     },
     templateUrl: 'app/directives/match/fiche.html',
-    controller: function ($scope, $element, $timeout) {
-
-      // un nom trop long pour sa moitié est réduit jusqu'à tenir, plutôt que coupé
-      var fit = function () {
-        angular.forEach($element[0].querySelectorAll('.team .name'), function (name) {
-          name.style.fontSize = '';
-          var size = parseFloat(window.getComputedStyle(name).fontSize) || 0;
-          while (name.scrollWidth > name.clientWidth + 1 && size > 14) {
-            size -= 2;
-            name.style.fontSize = size + 'px';
-          }
-        });
-      };
-      var fitLater = function () {
-        $timeout(fit, 0, false);
-      };
-      var resizeTimer = null;
-      var onResize = function () {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(fit, 120);
-      };
-      window.addEventListener('resize', onResize);
-      $scope.$on('$destroy', function () {
-        window.removeEventListener('resize', onResize);
-      });
-      if (window.document.fonts && window.document.fonts.ready) {
-        window.document.fonts.ready.then(fitLater);
-      }
+    controller: function ($scope) {
 
       // taille du nom selon sa longueur, pour qu'il tienne sur sa moitié
       var taille = function (nom) {
@@ -41,6 +14,13 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter, ClubColors)
       };
 
       var team = function (id, nom, buts, tab, saison) {
+        // Certains noms historiques contiennent des entités HTML. Décoder les
+        // caractères seuls : le nom reste du texte, y compris dans les attributs.
+        var decoder = window.document.createElement('textarea');
+        nom = (nom || '').replace(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]+);/gi, function (entity) {
+          decoder.innerHTML = entity;
+          return decoder.value;
+        });
         var t = {
           id: id,
           nom: nom,
@@ -85,7 +65,6 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter, ClubColors)
 
         $scope.jy = Formatter.jyEtais(fiche.jyEtais);
         $scope.scoreAria = 'Score : ' + $scope.left.buts + ' à ' + $scope.right.buts + ($scope.rq ? ', ' + $scope.rq : '');
-        fitLater();
       };
 
       render();

@@ -270,7 +270,7 @@
   gap: 6px;
 }
 
-/* Titre de section : Barlow Condensed + filet bleuté 3 px */
+/* Titre de section : logo du site (3 carrés) + Barlow Condensed + filet bleuté 3 px */
 .g-title {
   display: flex;
   align-items: center;
@@ -283,6 +283,20 @@
   letter-spacing: .04em;
   text-transform: uppercase;
   color: @ink;
+
+  /* logo ton sur ton avec le filet : haut-droite, bas-gauche, bas-droite, bas calé sur la ligne de base */
+  &:before {
+    content: '';
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-right: -4px;
+    background:
+      linear-gradient(@skyRule, @skyRule) right top no-repeat,
+      linear-gradient(@skyRule, @skyRule) left bottom no-repeat,
+      linear-gradient(@skyRule, @skyRule) right bottom no-repeat;
+    background-size: 7px 7px;
+  }
 
   &:after {
     content: '';
@@ -323,6 +337,13 @@
   .g-title {
     gap: 12px;
     font-size: 20px;
+
+    &:before {
+      width: 14px;
+      height: 14px;
+      margin-right: -3px;
+      background-size: 6px 6px;
+    }
   }
 }
 

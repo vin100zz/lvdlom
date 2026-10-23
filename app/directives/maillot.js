@@ -1,4 +1,4 @@
-app.directive('lvdlomMaillot', function (Maillots, Picture) {
+app.directive('lvdlomMaillot', function (Maillots, Picture, ClubColors) {
 
   // gabarits de style/maillots (tools/maillots.py) : le rouge, le vert et le bleu marquent
   // les trois couleurs du maillot, leur intensité porte l'ombre du tissu
@@ -39,6 +39,8 @@ app.directive('lvdlomMaillot', function (Maillots, Picture) {
       var pending = null;
 
       var render = function () {
+        var request = {};
+        pending = request;
         if (!$scope.cfg) {
           return;
         }
@@ -46,23 +48,38 @@ app.directive('lvdlomMaillot', function (Maillots, Picture) {
         var cfg = $scope.cfg.debug || (om ? OM : Maillots.get($scope.cfg.idClub, $scope.cfg.nomClub));
         $scope.ecusson = om ? ($scope.cfg.saison ? Picture.club('OM', $scope.cfg.saison) : null) : 'style/clubs/large/' + $scope.cfg.idClub + '.png';
 
-        // seul le dernier maillot demandé est dessiné, même si les images arrivent dans le désordre
-        var img = new Image();
-        pending = img;
-        img.onload = function () {
-          if (img !== pending) {
+        // Seul le dernier maillot demandé est dessiné, même si les couleurs ou images arrivent dans le désordre.
+        var draw = function (config) {
+          if (request !== pending) {
             return;
           }
-          var canvas = $element[0].querySelector('canvas');
-          var context = canvas.getContext('2d');
-          context.clearRect(0, 0, SIZE, SIZE);
-          context.drawImage(img, 0, 0, SIZE, SIZE);
-          var map = context.getImageData(0, 0, SIZE, SIZE);
-          recolor(map.data, [hex2rgb(cfg.color1), hex2rgb(cfg.color2), hex2rgb(cfg.color3)]);
-          context.putImageData(map, 0, 0);
+          var img = new Image();
+          img.onload = function () {
+            if (request !== pending) {
+              return;
+            }
+            var canvas = $element[0].querySelector('canvas');
+            var context = canvas.getContext('2d');
+            context.clearRect(0, 0, SIZE, SIZE);
+            context.drawImage(img, 0, 0, SIZE, SIZE);
+            var map = context.getImageData(0, 0, SIZE, SIZE);
+            recolor(map.data, [hex2rgb(config.color1), hex2rgb(config.color2), hex2rgb(config.color3)]);
+            context.putImageData(map, 0, 0);
+          };
+          img.src = 'style/maillots/' + config.template + '.png';
         };
-        img.src = 'style/maillots/' + cfg.template + '.png';
+        if (cfg) {
+          draw(cfg);
+        } else {
+          ClubColors.get($scope.cfg.idClub, $scope.cfg.saison).then(function (colors) {
+            draw({template: 1, color1: colors.bg, color2: colors.accent, color3: colors.accent});
+          });
+        }
       };
+
+      $scope.$on('$destroy', function () {
+        pending = null;
+      });
 
       render();
 

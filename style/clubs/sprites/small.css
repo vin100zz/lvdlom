@@ -42,13 +42,13 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-103 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -84px -215px;
+  background-position: -70px -215px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-105 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -72px;
+  background-position: -242px -90px;
   width: 12px;
   height: 18px;
 }
@@ -60,7 +60,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-108 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -97px -215px;
+  background-position: -83px -215px;
   width: 13px;
   height: 18px;
 }
@@ -96,7 +96,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-115 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -110px -215px;
+  background-position: -96px -215px;
   width: 13px;
   height: 18px;
 }
@@ -126,7 +126,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-121 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -90px;
+  background-position: -242px -108px;
   width: 12px;
   height: 18px;
 }
@@ -144,7 +144,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-126 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -108px;
+  background-position: -242px -126px;
   width: 12px;
   height: 18px;
 }
@@ -156,7 +156,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-128 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px 0px;
+  background-position: -255px -18px;
   width: 11px;
   height: 18px;
 }
@@ -174,7 +174,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-130 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -216px;
+  background-position: 0px -245px;
   width: 10px;
   height: 18px;
 }
@@ -216,7 +216,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-140 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -123px -215px;
+  background-position: -109px -215px;
   width: 13px;
   height: 18px;
 }
@@ -228,7 +228,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-142 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -18px;
+  background-position: -255px -36px;
   width: 11px;
   height: 18px;
 }
@@ -312,7 +312,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-163 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -136px -215px;
+  background-position: -122px -215px;
   width: 13px;
   height: 18px;
 }
@@ -336,7 +336,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-168 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -149px -215px;
+  background-position: -135px -215px;
   width: 13px;
   height: 18px;
 }
@@ -348,7 +348,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-17 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -36px;
+  background-position: -255px -54px;
   width: 11px;
   height: 18px;
 }
@@ -408,7 +408,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-186 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -54px;
+  background-position: -255px -72px;
   width: 11px;
   height: 18px;
 }
@@ -456,7 +456,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-197 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -162px -215px;
+  background-position: -148px -215px;
   width: 13px;
   height: 18px;
 }
@@ -498,7 +498,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-208 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -72px;
+  background-position: -255px -90px;
   width: 11px;
   height: 18px;
 }
@@ -552,7 +552,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-219 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -175px -215px;
+  background-position: -161px -215px;
   width: 13px;
   height: 18px;
 }
@@ -570,13 +570,13 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-221 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -126px;
+  background-position: -242px -144px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-224 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -144px;
+  background-position: -242px -162px;
   width: 12px;
   height: 18px;
 }
@@ -642,7 +642,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-240 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -90px;
+  background-position: -255px -108px;
   width: 11px;
   height: 18px;
 }
@@ -666,7 +666,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-246 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -188px -215px;
+  background-position: -174px -215px;
   width: 13px;
   height: 18px;
 }
@@ -678,7 +678,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-248 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -201px -215px;
+  background-position: -187px -215px;
   width: 13px;
   height: 18px;
 }
@@ -744,13 +744,13 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-27 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -162px;
+  background-position: -242px -180px;
   width: 12px;
   height: 18px;
 }
 .icon-club.club-270 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -108px;
+  background-position: -255px -126px;
   width: 11px;
   height: 18px;
 }
@@ -768,7 +768,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-28 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -126px;
+  background-position: -255px -144px;
   width: 11px;
   height: 18px;
 }
@@ -822,7 +822,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-288 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -180px;
+  background-position: -242px -198px;
   width: 12px;
   height: 18px;
 }
@@ -864,7 +864,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-294 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -214px -215px;
+  background-position: -200px -215px;
   width: 13px;
   height: 18px;
 }
@@ -894,7 +894,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-299 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -227px -215px;
+  background-position: -213px -215px;
   width: 13px;
   height: 18px;
 }
@@ -906,7 +906,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-300 {
   background-image: url(clubs/sprites/small.png);
-  background-position: 0px -245px;
+  background-position: -10px -245px;
   width: 9px;
   height: 18px;
 }
@@ -942,8 +942,20 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-306 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -144px;
+  background-position: -255px -162px;
   width: 11px;
+  height: 18px;
+}
+.icon-club.club-307 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: -226px -215px;
+  width: 13px;
+  height: 18px;
+}
+.icon-club.club-308 {
+  background-image: url(clubs/sprites/small.png);
+  background-position: -242px 0px;
+  width: 13px;
   height: 18px;
 }
 .icon-club.club-33 {
@@ -996,7 +1008,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-45 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -162px;
+  background-position: -255px -180px;
   width: 11px;
   height: 18px;
 }
@@ -1062,7 +1074,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-61 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px 0px;
+  background-position: -242px -18px;
   width: 13px;
   height: 18px;
 }
@@ -1098,7 +1110,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-67 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -198px;
+  background-position: -255px 0px;
   width: 12px;
   height: 18px;
 }
@@ -1122,7 +1134,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-72 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -18px;
+  background-position: -242px -36px;
   width: 13px;
   height: 18px;
 }
@@ -1236,19 +1248,19 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-93 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -36px;
+  background-position: -242px -54px;
   width: 13px;
   height: 18px;
 }
 .icon-club.club-94 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -180px;
+  background-position: -255px -198px;
   width: 11px;
   height: 18px;
 }
 .icon-club.club-95 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -255px -198px;
+  background-position: -255px -216px;
   width: 11px;
   height: 18px;
 }
@@ -1264,12 +1276,6 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   width: 18px;
   height: 14px;
 }
-.icon-club.club-OM {
-  background-image: url(clubs/sprites/small.png);
-  background-position: -28px -215px;
-  width: 14px;
-  height: 18px;
-}
 .icon-club.club-om-1899 {
   background-image: url(clubs/sprites/small.png);
   background-position: 0px -18px;
@@ -1284,7 +1290,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-om-1935 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -42px -215px;
+  background-position: -28px -215px;
   width: 14px;
   height: 18px;
 }
@@ -1326,19 +1332,19 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .icon-club.club-om-1999 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -56px -215px;
+  background-position: -42px -215px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-om-2004 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -70px -215px;
+  background-position: -56px -215px;
   width: 14px;
   height: 18px;
 }
 .icon-club.club-om-2026 {
   background-image: url(clubs/sprites/small.png);
-  background-position: -242px -54px;
+  background-position: -242px -72px;
   width: 13px;
   height: 18px;
 }

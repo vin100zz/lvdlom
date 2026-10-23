@@ -7,8 +7,8 @@
   <!-- carte aux couleurs du club : écusson, nom, maillot -->
   <section class="carte-club" ng-if="!loading && adversaire" aria-label="{{adversaire.nom}}" ng-style="{'background-color': couleurs.bg, color: couleurs.fg}">
     <div class="lisere" aria-hidden="true" ng-style="{'background-color': couleurs.accent}"></div>
-    <img class="ghost" ng-src="{{Picture.club(adversaire.id)}}" alt="" aria-hidden="true">
-    <img class="ecusson" ng-src="{{Picture.club(adversaire.id)}}" alt="Écusson {{adversaire.nom}}">
+    <img class="ghost" ng-src="{{Picture.club(adversaire.id)}}" alt="" aria-hidden="true" lvdlom-repli>
+    <img class="ecusson" ng-src="{{Picture.club(adversaire.id)}}" alt="Écusson {{adversaire.nom}}" lvdlom-repli>
     <span class="nom">{{adversaire.nom}}</span>
     <span class="maillot"><lvdlom-maillot cfg="cfgMaillot"></lvdlom-maillot></span>
   </section>

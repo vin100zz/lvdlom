@@ -30,9 +30,9 @@
         <a href="{{fiche.link}}" class="carte">
           <span class="visuel match" ng-if="fiche.type == 'matches'">
             <span class="biais" aria-hidden="true"></span>
-            <img ng-src="{{fiche.carte.gauche}}" alt="" lvdlom-repli="{{fiche.carte.initialesGauche}}">
+            <img ng-src="{{fiche.carte.gauche}}" alt="" lvdlom-repli>
             <span class="score">{{fiche.carte.score}}</span>
-            <img ng-src="{{fiche.carte.droite}}" alt="" lvdlom-repli="{{fiche.carte.initialesDroite}}">
+            <img ng-src="{{fiche.carte.droite}}" alt="" lvdlom-repli>
           </span>
           <img class="visuel photo" ng-if="fiche.type != 'matches' && fiche.carte.photoOk" ng-src="{{fiche.carte.photo}}" alt="">
           <span class="visuel initiales" ng-if="fiche.type != 'matches' && !fiche.carte.photoOk" aria-hidden="true">{{fiche.carte.initiales}}</span>

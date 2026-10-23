@@ -4,7 +4,8 @@ app.service('Maillots', function() {
     if (nomClub === 'OM') {
       return {template: 'OM'};
     }
-    return config[nomClub] || config[idClub] || defaultConfig;
+    // Sans configuration, la directive utilise les couleurs du club.
+    return config[nomClub] || config[idClub] || null;
   };
   
   var config = {
@@ -154,5 +155,4 @@ app.service('Maillots', function() {
     "ZURICH": {template: 12, color1: "FFFFFF", color2: "004799", color3: "004799"}
   };
   
-  var defaultConfig = {template: 1, color1: "CCCCCC", color2: "CCCCCC", color3: "CCCCCC"};
 });

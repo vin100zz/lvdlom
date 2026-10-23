@@ -233,7 +233,6 @@
     <!-- joueurs au club : un clic remplit la prochaine case vide -->
     <aside class="au-club" aria-labelledby="h-saisie-auclub">
       <h2 id="h-saisie-auclub">Joueurs au club</h2>
-      <p>Un clic remplit la prochaine case vide : buteurs, puis titulaires, puis remplaçants.</p>
       <ul>
         <li ng-repeat="joueur in dictionary.joueursAuClub">
           <button type="button" class="g-button g-icon-button g-button-neutral" ng-click="setNextJoueur($event, joueur)"><span>{{joueur.label}}</span></button>
