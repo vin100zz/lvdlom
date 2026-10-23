@@ -396,6 +396,16 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   this.nomOm = function (saison) {
     return saison === '1943-44' ? 'MARSEILLE-PROVENCE' : 'OM';
   };
+
+  this.decodeClubName = function (nom) {
+    // Les noms historiques peuvent omettre le point-virgule des entités numériques.
+    // Décoder les caractères seuls pour conserver le nom comme texte brut.
+    var decoder = window.document.createElement('textarea');
+    return (nom || '').replace(/&(?:#x[\da-f]+;?|#\d+;?|[a-z][a-z\d]+;)/gi, function (entity) {
+      decoder.innerHTML = entity;
+      return decoder.value;
+    });
+  };
   
   this.match = function (match) {
     var left = Bom.domicile(match.lieu) ? _this.nomOm(match.saison) : match.nomAdv;
@@ -408,8 +418,9 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   };
   
   this.matchTitle = function (match) {
-    var left = Bom.domicile(match.fiche.lieu) ? _this.nomOm(match.fiche.saison) : match.adversaire.nom;
-    var right = Bom.domicile(match.fiche.lieu) ? match.adversaire.nom : _this.nomOm(match.fiche.saison);
+    var nomAdv = _this.decodeClubName(match.adversaire.nom);
+    var left = Bom.domicile(match.fiche.lieu) ? _this.nomOm(match.fiche.saison) : nomAdv;
+    var right = Bom.domicile(match.fiche.lieu) ? nomAdv : _this.nomOm(match.fiche.saison);
     return left + ' – ' + right;
   };
   

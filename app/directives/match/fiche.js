@@ -14,13 +14,7 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter, ClubColors)
       };
 
       var team = function (id, nom, buts, tab, saison) {
-        // Certains noms historiques contiennent des entités HTML. Décoder les
-        // caractères seuls : le nom reste du texte, y compris dans les attributs.
-        var decoder = window.document.createElement('textarea');
-        nom = (nom || '').replace(/&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]+);/gi, function (entity) {
-          decoder.innerHTML = entity;
-          return decoder.value;
-        });
+        nom = Formatter.decodeClubName(nom);
         var t = {
           id: id,
           nom: nom,
