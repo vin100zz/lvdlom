@@ -111,13 +111,13 @@
       main: {
         data: totalsVnd,
         settings: [{
-          color: '#B4483F',
+          color: '#D03A3A',
           label: 'défaites'
         }, {
-          color: '#F2A516',
+          color: '#0E74B8',
           label: 'nuls'
         }, {
-          color: '#0E74B8',
+          color: '#1E9E5A',
           label: 'victoires'
         }]
       },

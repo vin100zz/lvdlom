@@ -4,23 +4,24 @@
 #menu {
   position: fixed;
   z-index: 8;
-  width: 248px;
+  width: 232px;
   top: 0;
   bottom: 0;
   left: 0;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 26px;
-  padding: 28px 18px 40px;
+  gap: 14px;
+  padding: 14px 14px 18px;
   background: @navyDeep;
 
   .title {
     flex: none;
-    width: 114px;
-    height: 80px;
-    margin: 0 10px;
+    width: 80px;
+    height: 56px;
+    margin: 0 8px;
     background: url(img/title.png) no-repeat;
+    background-size: contain;
   }
 
   .navigation {
@@ -30,19 +31,19 @@
 
   .navigation li {
     &.sep {
-      padding-bottom: 10px;
-      margin-bottom: 10px;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
       border-bottom: 1px solid @navySep;
     }
 
     a {
       display: flex;
       align-items: center;
-      height: 40px;
-      padding: 0 12px;
-      border-radius: 8px;
+      height: 30px;
+      padding: 0 10px;
+      border-radius: 7px;
       color: @onNavy;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 500;
       text-decoration: none;
 
@@ -78,9 +79,9 @@
 
     input {
       width: 100%;
-      height: 44px;
-      padding: 0 34px 0 38px;
-      border-radius: 10px;
+      height: 34px;
+      padding: 0 32px 0 34px;
+      border-radius: 9px;
       border: 1px solid #1D3A5E;
       background: #0C2240;
       color: @white;
@@ -98,12 +99,12 @@
     .fa {
       position: absolute;
       top: 50%;
-      margin-top: -8px;
+      margin-top: -7px;
       color: @onNavyMuted;
-      font-size: 15px;
+      font-size: 13px;
 
       &.search {
-        left: 13px;
+        left: 12px;
       }
       &.clear {
         right: 12px;
@@ -124,7 +125,7 @@
 	  box-shadow: 12px 0 32px rgba(6, 22, 41, .28);
 
 	  &.offcanvas {
-	    left: -260px;
+	    left: -244px;
 	    box-shadow: none;
 	  }
 	}

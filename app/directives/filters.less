@@ -7,7 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   li {
@@ -15,13 +15,13 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    height: 38px;
-    padding: 0 12px 0 14px;
+    height: 32px;
+    padding: 0 10px 0 12px;
     border-radius: 999px;
     border: 1px solid @borderStrong;
     background: @white;
     color: @ink;
-    font-size: 14px;
+    font-size: 13.5px;
     white-space: nowrap;
 
     &:hover {
@@ -57,7 +57,7 @@
     background: transparent;
     padding: 0 18px 0 0;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13.5px;
     color: inherit;
     cursor: pointer;
 
@@ -65,8 +65,57 @@
       outline: none;
     }
     option {
+      padding: 6px 12px;
       color: @ink;
       background: @white;
+    }
+  }
+
+  /* liste déroulante : carte blanche arrondie, options aérées (navigateurs qui le permettent) */
+  @supports (appearance: base-select) {
+    select,
+    select::picker(select) {
+      appearance: base-select;
+    }
+    select {
+      display: inline-flex;
+      align-items: center;
+      min-height: 0;
+      border: 0;
+    }
+    select::picker-icon {
+      display: none;
+    }
+    select::picker(select) {
+      min-width: 180px;
+      max-height: 360px;
+      margin-top: 8px;
+      padding: 5px;
+      border: 1px solid @border;
+      border-radius: 12px;
+      background: @white;
+      box-shadow: 0 16px 36px rgba(10, 34, 64, .14);
+    }
+    option {
+      min-height: 32px;
+      padding: 0 10px;
+      border-radius: 7px;
+      font-size: 14px;
+
+      &:hover,
+      &:focus-visible {
+        background: @sky;
+        outline: none;
+      }
+      &:checked {
+        font-weight: 600;
+        color: @navy;
+      }
+      &::checkmark {
+        order: 1;
+        margin-left: auto;
+        color: @blue;
+      }
     }
   }
 
@@ -74,8 +123,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     margin-left: 2px;
     padding: 0;
     border: 0;
@@ -94,7 +143,7 @@
   }
 
   li.active {
-    padding: 0 8px 0 14px;
+    padding: 0 6px 0 12px;
     border-color: @navy;
     background: @navy;
     color: @white;

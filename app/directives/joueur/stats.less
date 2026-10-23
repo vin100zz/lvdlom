@@ -49,21 +49,32 @@
     }
 
     tbody th {
-      height: 36px;
+      height: 30px;
       padding: 0 12px;
       text-align: left;
       font-weight: 500;
-      border-radius: 8px 0 0 8px;
+      border-radius: 7px 0 0 7px;
 
       a {
         color: @blue;
       }
     }
     tbody td:last-child {
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 7px 7px 0;
     }
     tbody tr:nth-child(odd) > * {
       background: @zebra;
+    }
+    /* Total, Championnat, Coupe nat., Europe : un filet vertical sépare chaque groupe,
+       la colonne Total sur un fond légèrement teinté */
+    .debut {
+      box-shadow: inset 1px 0 0 @borderStrong;
+    }
+    tbody td.total {
+      background: fade(@sky, 60%);
+    }
+    tbody tr:nth-child(odd) > td.total {
+      background: #DCEEF8;
     }
     td.total {
       font-weight: 700;
@@ -73,7 +84,7 @@
       color: @muted;
     }
     .somme > * {
-      height: 40px;
+      height: 34px;
       background: @sky !important;
       font-weight: 700;
       color: @navy;

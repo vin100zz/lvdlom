@@ -57,11 +57,11 @@
     font-variant-numeric: tabular-nums;
   }
   .saison th {
-    padding: 22px 12px 6px;
+    padding: 14px 10px 4px;
     text-align: left;
     border-bottom: 1px solid @borderStrong;
     font-family: @fontTitle;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: .03em;
 
@@ -73,8 +73,8 @@
     padding-top: 0;
   }
   .ligne td {
-    height: 36px;
-    padding: 0 12px;
+    height: 30px;
+    padding: 0 10px;
     vertical-align: middle;
     white-space: nowrap;
   }
@@ -94,8 +94,12 @@
   .match a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     color: @ink;
+
+    .g-badge {
+      margin-right: 0;
+    }
 
     b {
       font-weight: 700;
@@ -127,7 +131,7 @@
   }
   .buts {
     width: 60px;
-    color: @navy;
+    white-space: nowrap;
   }
   .carton {
     width: 50px;

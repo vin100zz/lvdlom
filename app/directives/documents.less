@@ -1,21 +1,32 @@
 @import "style/variables";
 
-/* Revue de presse : unes et photos à hauteur fixe, légende sur dégradé marine (charte · cartes) */
+/* Revue de presse : unes et photos en rangées justifiées, qui prennent toute la largeur disponible
+   (chaque document grandit en proportion de sa largeur, la dernière rangée garde sa taille) ;
+   légende sur dégradé marine (charte · cartes) */
 .dir-documents {
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    &:after {
+      content: '';
+      flex: 100000 1 0px;
+    }
+  }
+  li {
+    min-width: 0;
   }
 
   .document {
     position: relative;
     display: block;
-    height: 190px;
+    width: 100%;
+    height: auto;
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -145,9 +156,11 @@
       overflow-x: auto;
     }
     li {
-      flex: none;
+      flex: none !important;
     }
     .document {
+      width: auto;
+      height: 190px;
       max-width: none;
     }
   }

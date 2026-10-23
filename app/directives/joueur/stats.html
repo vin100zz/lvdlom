@@ -8,29 +8,29 @@
     <thead>
       <tr class="groupes">
         <th scope="col" rowspan="2" class="saison">Saison</th>
-        <th scope="colgroup" colspan="2" class="total">Total</th>
-        <th scope="colgroup" colspan="2">Championnat</th>
-        <th scope="colgroup" colspan="2">Coupe nat.</th>
-        <th scope="colgroup" colspan="2">Europe</th>
+        <th scope="colgroup" colspan="2" class="total debut">Total</th>
+        <th scope="colgroup" colspan="2" class="debut">Championnat</th>
+        <th scope="colgroup" colspan="2" class="debut">Coupe nat.</th>
+        <th scope="colgroup" colspan="2" class="debut">Europe</th>
       </tr>
       <tr class="sous">
-        <th scope="col" title="Matches" class="total">M</th><th scope="col" title="Buts" class="total">B</th>
-        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
-        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
-        <th scope="col" title="Matches">M</th><th scope="col" title="Buts">B</th>
+        <th scope="col" title="Matches" class="total debut">M</th><th scope="col" title="Buts" class="total">B</th>
+        <th scope="col" title="Matches" class="debut">M</th><th scope="col" title="Buts">B</th>
+        <th scope="col" title="Matches" class="debut">M</th><th scope="col" title="Buts">B</th>
+        <th scope="col" title="Matches" class="debut">M</th><th scope="col" title="Buts">B</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="s in saisons">
         <th scope="row"><a href="#/saison/{{s.saison}}">{{s.saison}}</a></th>
-        <td class="total">{{s.total.m}}</td><td class="total">{{s.total.b}}</td>
-        <td ng-repeat-start="c in s.comps track by $index">{{c.tit}} <span class="rmp" ng-if="c.rmp" title="Entrées en jeu">({{c.rmp}})</span></td>
+        <td class="total debut">{{s.total.m}}</td><td class="total">{{s.total.b}}</td>
+        <td ng-repeat-start="c in s.comps track by $index" class="debut">{{c.tit}} <span class="rmp" ng-if="c.rmp" title="Entrées en jeu">({{c.rmp}})</span></td>
         <td ng-repeat-end>{{c.b}}</td>
       </tr>
       <tr class="somme">
         <th scope="row">Total</th>
-        <td>{{totalLigne.total.m}}</td><td>{{totalLigne.total.b}}</td>
-        <td ng-repeat-start="c in totalLigne.comps track by $index">{{c.m}}</td>
+        <td class="total debut">{{totalLigne.total.m}}</td><td class="total">{{totalLigne.total.b}}</td>
+        <td ng-repeat-start="c in totalLigne.comps track by $index" class="debut">{{c.m}}</td>
         <td ng-repeat-end>{{c.b}}</td>
       </tr>
     </tbody>

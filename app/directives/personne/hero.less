@@ -26,14 +26,23 @@
     gap: 14px;
     padding: 12px 14px;
   }
-  .photo,
-  .lvdlom-fullscreenable-photo .photo {
-    width: 88px;
+  /* petite place : la photo garde ses proportions jusqu'à 120 px de large, au-delà elle est recadrée */
+  .photo {
     height: 106px;
-    border-radius: 12px;
+    max-width: 120px;
+    border-radius: 10px;
     box-shadow: 0 10px 22px rgba(0, 0, 0, .4);
   }
+  lvdlom-fullscreenable-photo {
+    height: 106px;
+    max-width: 120px;
+
+    .lvdlom-fullscreenable-photo .photo {
+      background-size: cover;
+    }
+  }
   .initiales {
+    width: 88px;
     font-size: 34px;
   }
   .identite {
@@ -84,8 +93,8 @@
   .hero {
     position: relative;
     overflow: hidden;
-    min-height: 196px;
-    border-radius: 20px;
+    min-height: @heroHeight;
+    border-radius: @heroRadius;
     background: @navy;
     color: @white;
   }
@@ -125,31 +134,43 @@
 
   .contenu {
     position: relative;
-    min-height: 196px;
+    min-height: @heroHeight;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: 32px;
-    padding: 16px 40px 16px 16px;
+    gap: 24px;
+    padding: 12px 28px 12px 12px;
   }
 
-  .photo,
-  .lvdlom-fullscreenable-photo .photo {
+  /* photo entière : l'image garde ses proportions, le cadre plein écran prend celles de la photo
+     (aspect-ratio posé par le hero) */
+  .photo {
     flex: none;
     display: block;
-    width: 140px;
-    height: 164px;
+    width: auto;
+    height: @heroHeight - 24px;
+    max-width: 180px;
     object-fit: cover;
-    object-position: center 20%;
-    background-size: cover;
-    background-position: center 20%;
-    border-radius: 14px;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, .45);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .4);
   }
   lvdlom-fullscreenable-photo {
     flex: none;
+    height: @heroHeight - 24px;
+    aspect-ratio: .85;
+
+    .lvdlom-fullscreenable-photo,
+    .lvdlom-fullscreenable-photo .photo {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+    }
   }
   .initiales {
+    width: 96px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,7 +179,7 @@
     border: 1px solid rgba(255, 255, 255, .14);
     font-family: @fontTitle;
     font-weight: 700;
-    font-size: 52px;
+    font-size: 40px;
     letter-spacing: .04em;
     color: @onNavyMuted;
   }
@@ -168,7 +189,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 12px;
   }
   .poste-pill {
     display: none;
@@ -209,7 +230,7 @@
 
     .prenom {
       font-weight: 300;
-      font-size: 30px;
+      font-size: 24px;
       color: #DCE5EE;
     }
     .nom {
@@ -218,7 +239,7 @@
       text-overflow: ellipsis;
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 76px;
+      font-size: 56px;
       letter-spacing: .005em;
     }
   }
@@ -279,21 +300,22 @@
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    gap: 8px;
+    gap: 6px;
 
     > div {
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      padding: 9px 16px 10px;
-      border-radius: 12px;
+      justify-content: center;
+      gap: 2px;
+      padding: 6px 12px 7px;
+      border-radius: 10px;
       background: rgba(255, 255, 255, .08);
     }
     dt {
       color: @onNavyMuted;
     }
     dd {
-      font-size: 15px;
+      font-size: 14px;
     }
     .sub {
       color: @onNavySoft;
@@ -311,7 +333,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      padding: 0 24px;
+      padding: 0 20px;
 
       &:first-child {
         padding-left: 0;
@@ -328,7 +350,7 @@
       margin: 0;
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 60px;
+      font-size: 46px;
       line-height: .95;
     }
     .or dd {
@@ -347,7 +369,7 @@
     flex: none;
     font-family: @fontTitle;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 46px;
     line-height: .95;
     color: @gold;
     white-space: nowrap;
@@ -396,15 +418,15 @@
   /* tablette : le hero s'allonge si les champs passent sur deux lignes */
   @media (max-width: 1279px) {
     .contenu {
-      gap: 24px;
-      padding-right: 28px;
+      gap: 20px;
+      padding-right: 22px;
     }
     h1 .nom {
-      font-size: 64px;
+      font-size: 48px;
     }
     .chiffres dd,
     .periode {
-      font-size: 52px;
+      font-size: 40px;
     }
   }
 
@@ -420,13 +442,16 @@
       border-radius: 16px;
     }
     .contenu {
-      min-height: 136px;
+      min-height: @heroHeight;
       gap: 16px;
       padding: 12px 18px 12px 12px;
     }
     .photo {
+      height: @heroHeight - 24px;
+      max-width: 130px;
+    }
+    .initiales {
       width: 96px;
-      height: 112px;
     }
     .poste-pill {
       display: none;

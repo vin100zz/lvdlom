@@ -131,10 +131,10 @@ app.directive('lvdlomCourbe', function () {
         groupes.forEach(function (gr, index) {
           if (index % 2 === 1) {
             var y0 = Y(gr.debut - 0.5), y1 = Math.min(Y(gr.fin + 0.5), B);
-            o.push('<rect x="' + L + '" y="' + y0.toFixed(1) + '" width="' + pw + '" height="' + (y1 - y0).toFixed(1) + '" fill="#F4F6F9"></rect>');
+            o.push('<rect x="' + L + '" y="' + y0.toFixed(1) + '" width="' + pw + '" height="' + (y1 - y0).toFixed(1) + '" fill="#E1EAF4"></rect>');
           }
           if (gr.nom && groupes.length > 1) {
-            o.push('<text x="' + (R - 8) + '" y="' + (Math.min(Y(gr.fin + 0.5), B) - 6).toFixed(1) + '" text-anchor="end" font-size="11" font-weight="600" fill="#8A97A6">' +
+            o.push('<text x="' + (R - 8) + '" y="' + (Math.min(Y(gr.fin + 0.5), B) - 6).toFixed(1) + '" text-anchor="end" font-size="11" font-weight="600" fill="' + SLATE + '">' +
               echapper(gr.nom.replace(/^D(\d)$/, 'Division $1')) + '</text>');
           }
         });
@@ -201,10 +201,21 @@ app.directive('lvdlomCourbe', function () {
         dessin.innerHTML = o.join('');
         dessin.style.width = largeur + 'px';
 
-        // légende : une pastille par compétition, l'or pour les titres
-        legende.innerHTML = series.map(function (serie) {
-          return '<span><span class="puce" style="background: ' + serie.couleur + '"></span>' + echapper(serie.nom) + '</span>';
-        }).join('') + '<span><span class="puce" style="background: ' + GOLD + '"></span>' + (cfg.titreGagne || 'Vainqueur') + '</span>';
+        // légende : une pastille par compétition, l'or pour les titres ; la page peut l'afficher
+        // elle-même (cfg.legendeExterne, dans l'en-tête de la carte)
+        var items = series.map(function (serie) {
+          return {nom: serie.nom, couleur: serie.couleur};
+        }).concat([{nom: cfg.titreGagne || 'Vainqueur', couleur: GOLD}]);
+        if (cfg.legendeExterne) {
+          legende.hidden = true;
+          scope.$applyAsync(function () {
+            cfg.legende = items;
+          });
+        } else {
+          legende.innerHTML = items.map(function (item) {
+            return '<span><span class="puce" style="background: ' + item.couleur + '"></span>' + echapper(item.nom) + '</span>';
+          }).join('');
+        }
       };
 
       // survol : la pastille la plus proche est entourée, l'infobulle liste les matches de la saison

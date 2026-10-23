@@ -16,8 +16,8 @@
     var FIRST_SAISON = "1923-24";
 
     // une colonne par saison, la colonne des libellés reste visible au défilement
-    var COL = 112;
-    var LIBELLE = 150;
+    var COL = 88;
+    var LIBELLE = 128;
     $scope.COL = COL;
     $scope.LIBELLE = LIBELLE;
 
@@ -51,18 +51,32 @@
       return prenom ? prenom.split('-').filter(Boolean).map(function (p) { return p[0] + '.'; }).join('-') : '';
     };
 
-    // prénom entier s'il tient dans la barre, sinon l'initiale, sinon le nom seul
-    var prenomQuiTient = function (personne, largeur, meta) {
-      var place = largeur - 6 - 20 - 8 - meta.length * 6.4;
-      var nom = personne.nom.length * 8.6;
-      var prenom = (personne.prenom || '').trim();
-      var candidats = [prenom, initiales(prenom), ''];
-      for (var i = 0; i < candidats.length; ++i) {
-        if (candidats[i].length * 7.1 + (candidats[i] ? 5 : 0) + nom <= place) {
-          return candidats[i];
-        }
+    // largeur d'un texte dans la police des barres
+    var contexte = window.document.createElement('canvas').getContext('2d');
+    var mesure = function (texte, police) {
+      contexte.font = police;
+      return contexte.measureText(texte).width;
+    };
+
+    // « G. KONDOBIA » puis le total quand tout tient dans la barre ; sinon le nom avec l'initiale,
+    // sinon le nom seul (l'infobulle donne le reste)
+    var affichage = function (personne, largeur, meta) {
+      var place = largeur - 6 - 12;
+      var initiale = initiales((personne.prenom || '').trim());
+      var nom = mesure(personne.nom, '600 14px "Barlow Condensed"');
+      var prenom = initiale ? mesure(initiale + ' ', '500 14px "Barlow Condensed"') : 0;
+      var total = meta ? mesure(meta, '400 11px Barlow') + 6 : 0;
+      if (prenom + nom + total <= place) {
+        return {prenom: initiale, meta: meta};
       }
-      return '';
+      if (prenom + nom <= place) {
+        return {prenom: initiale, meta: ''};
+      }
+      return {prenom: '', meta: ''};
+    };
+
+    var pluriel = function (n, mot) {
+      return n + ' ' + mot + (n > 1 ? 's' : '');
     };
 
     // répartit les barres sur le moins de lignes possible, sans chevauchement
@@ -82,17 +96,24 @@
       return rangs;
     };
 
-    var barres = function (items, style, lien) {
+    var barres = function (items, groupe) {
       return lignes(items).map(function (rang) {
         return rang.map(function (item) {
-          var largeur = (item.fin - item.debut + 1) * COL;
+          var saisons = item.fin - item.debut + 1;
+          var largeur = saisons * COL;
           // les dirigeants n'ont pas de matches dans les équipes-types : pas de total
-          item.meta = item.joueur ? item.matches + ' m' + (item.buts ? ' · ' + item.buts + ' b' : '') : '';
-          item.prenomAffiche = prenomQuiTient(item, largeur, item.meta);
-          item.style = style;
-          item.lien = lien + item.id;
+          var meta = item.joueur ? item.matches + ' m' + (item.buts ? ' · ' + item.buts + ' b' : '') : '';
+          var texte = affichage(item, largeur, meta);
+          item.prenomAffiche = texte.prenom;
+          item.meta = texte.meta;
+          item.style = groupe.style;
+          item.lien = groupe.lien + item.id;
           item.position = {left: (LIBELLE + item.debut * COL + 3) + 'px', width: (largeur - 6) + 'px'};
-          item.titre = [((item.prenom || '').trim() + ' ' + item.nom).trim(), item.premiere + (item.premiere !== item.derniere ? ' → ' + item.derniere : ''), item.meta].filter(Boolean).join(' · ');
+          // infobulle : nom complet, période, puis matches et buts (ou la fonction)
+          item.nomComplet = ((item.prenom || '').trim() + ' ' + item.nom).trim();
+          item.periode = (item.premiere !== item.derniere ? item.premiere + ' → ' + item.derniere : item.premiere) + ' · ' + pluriel(saisons, 'saison');
+          item.stats = item.joueur ? item.matches + (item.matches > 1 ? ' matches' : ' match') + (item.buts ? ' · ' + pluriel(item.buts, 'but') : '') : groupe.fonction;
+          item.titre = [item.nomComplet, item.periode, item.stats].join(' · ');
           return item;
         });
       });
@@ -114,7 +135,7 @@
     });
 
     // Equipe-types
-    EquipeTypes.get(null, function (saisons) {
+    var construire = function (saisons) {
       $scope.saisons = saisons.filter(function (saison) {
         return saison.id >= FIRST_SAISON;
       });
@@ -173,18 +194,32 @@
 
       // présidents puis entraîneurs, ensuite les joueurs par poste, sans jamais mélanger les postes
       var GROUPES = [
-        {nom: 'Présidents', style: 'president', lien: '#/dirigeant/', filtre: function (p) { return !p.joueur && p.idFonction !== '1'; }},
-        {nom: 'Entraîneurs', style: 'entraineur', lien: '#/dirigeant/', filtre: function (p) { return !p.joueur && p.idFonction === '1'; }},
+        {nom: 'Présidents', fonction: 'Président', style: 'president', lien: '#/dirigeant/', filtre: function (p) { return !p.joueur && p.idFonction !== '1'; }},
+        {nom: 'Entraîneurs', fonction: 'Entraîneur', style: 'entraineur', lien: '#/dirigeant/', filtre: function (p) { return !p.joueur && p.idFonction === '1'; }},
         {nom: 'Gardiens', style: 'GA', lien: '#/joueur/', filtre: function (p) { return p.joueur && p.poste === 'GA'; }},
         {nom: 'Défenseurs', style: 'DE', lien: '#/joueur/', filtre: function (p) { return p.joueur && p.poste === 'DE'; }},
         {nom: 'Milieux', style: 'MI', lien: '#/joueur/', filtre: function (p) { return p.joueur && p.poste === 'MI'; }},
         {nom: 'Attaquants', style: 'AV', lien: '#/joueur/', filtre: function (p) { return p.joueur && p.poste === 'AV'; }}
       ];
       $scope.groupes = GROUPES.map(function (groupe) {
-        return {nom: groupe.nom, lignes: barres(tous.filter(groupe.filtre), groupe.style, groupe.lien)};
+        return {nom: groupe.nom, lignes: barres(tous.filter(groupe.filtre), groupe)};
       }).filter(function (groupe) {
         return groupe.lignes.length;
       });
+    };
+
+    // les barres sont calculées une fois la police chargée, pour mesurer les noms
+    var policeChargee = window.document.fonts && window.document.fonts.ready ? window.document.fonts.ready : null;
+    EquipeTypes.get(null, function (saisons) {
+      if (policeChargee) {
+        policeChargee.then(function () {
+          $scope.$applyAsync(function () {
+            construire(saisons);
+          });
+        });
+      } else {
+        construire(saisons);
+      }
     });
 
   });

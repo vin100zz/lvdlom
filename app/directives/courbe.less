@@ -4,27 +4,36 @@
 .dir-courbe {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 
-  .legende {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    font-size: 13px;
-    color: @slateDark;
+  .legende[hidden] {
+    display: none;
+  }
+}
 
-    > span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+/* légende : dans le graphique, ou dans l'en-tête de la carte (palmarès) */
+.dir-courbe .legende,
+.legende-courbe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 13px;
+  color: @slateDark;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
   }
   .puce {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     box-shadow: 0 0 0 2px @white, 0 0 0 3px @borderStrong;
   }
+}
+
+.dir-courbe {
   .zone {
     position: relative;
   }

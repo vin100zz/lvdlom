@@ -1,8 +1,8 @@
 <div class="dir-documents" ng-class="{carrousel: cfg.carrousel}">
 
   <ul ng-if="documents.length">
-    <li ng-repeat="document in documents">
-      <button type="button" class="document" ng-class="{manquant: document.manquant}" ng-style="{width: document.largeur + 'px', height: hauteur() + 'px'}"
+    <li ng-repeat="document in documents" ng-style="{'flex-grow': document.largeur, 'flex-basis': document.largeur + 'px'}">
+      <button type="button" class="document" ng-class="{manquant: document.manquant}" ng-style="{'aspect-ratio': document.largeur + ' / ' + hauteur()}"
               ng-click="ouvrir($index)" title="{{document.legende || document.titre}}" aria-label="Agrandir : {{document.titre}}">
         <img ng-if="!document.manquant" ng-src="{{document.path}}" alt="{{document.legende || document.titre}}">
         <span class="manquant-icone" ng-if="document.manquant" aria-hidden="true"><span class="fa fa-file-text-o"></span></span>

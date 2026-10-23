@@ -4,20 +4,18 @@
    puis présidents, entraîneurs et joueurs groupés par poste */
 #page-timeline {
 
-  .intro {
-    margin: 0;
-    color: @slate;
-  }
-
+  /* la frise défile dans un cadre à la hauteur de l'écran : la barre horizontale reste visible,
+     les saisons restent en haut et les libellés à gauche */
   .defilement {
-    overflow-x: auto;
+    max-height: calc(~"100vh - 156px");
+    overflow: auto;
     border: 1px solid @border;
-    border-radius: @radiusL;
+    border-radius: 14px;
     background: @white;
   }
   .frise {
     position: relative;
-    padding: 0 0 18px;
+    padding: 0 0 10px;
   }
 
   .colonnes span {
@@ -39,7 +37,7 @@
 
   .rangee {
     position: relative;
-    height: 38px;
+    height: 28px;
   }
   .libelle {
     position: sticky;
@@ -47,32 +45,37 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    width: 150px;
+    width: 128px;
     height: 100%;
-    padding: 0 12px 0 18px;
+    padding: 0 10px 0 14px;
     box-sizing: border-box;
     background: @white;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: .08em;
+    letter-spacing: .07em;
     text-transform: uppercase;
     color: @slate;
     box-shadow: 6px 0 8px -6px rgba(10, 34, 64, .18);
   }
 
   .tete {
-    height: 44px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    height: 32px;
+    background: @white;
     border-bottom: 1px solid @borderStrong;
 
     .saison {
       position: absolute;
       top: 0;
-      height: 44px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: inset 1px 0 0 @border;
       font-family: @fontTitle;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 700;
       color: @navy;
       text-decoration: none;
@@ -80,19 +83,20 @@
       &.survol,
       &:hover {
         color: @blue;
+        background: @sky;
       }
     }
   }
 
   .resultat {
-    height: 46px;
+    height: 30px;
 
     &:last-of-type {
       border-bottom: 1px solid @borderStrong;
     }
   }
   .resultat + .groupe {
-    margin-top: 6px;
+    margin-top: 3px;
   }
   .cellule {
     position: absolute;
@@ -105,14 +109,14 @@
   .pastille {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    height: 26px;
-    padding: 0 10px;
-    border-radius: 8px;
+    gap: 4px;
+    height: 20px;
+    padding: 0 7px;
+    border-radius: 6px;
     background: #EEF1F5;
     color: @navy;
     font-family: @fontTitle;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     white-space: nowrap;
 
@@ -121,9 +125,10 @@
       color: @navy;
     }
     .g-badge {
-      height: 18px;
-      min-width: 24px;
-      font-size: 11px;
+      height: 15px;
+      min-width: 20px;
+      margin-right: 0;
+      font-size: 10px;
     }
   }
   .vide {
@@ -131,36 +136,39 @@
   }
 
   .groupe {
-    padding: 6px 0;
+    padding: 3px 0;
 
     & + .groupe {
       border-top: 1px solid @borderStrong;
     }
   }
   .barres {
-    height: 38px;
+    height: 26px;
   }
   .barre {
     position: absolute;
-    top: 4px;
+    top: 2px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     min-width: 0;
-    height: 30px;
-    padding: 0 10px;
+    height: 22px;
+    padding: 0 6px;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 6px;
     background: @tile;
     color: @ink;
     text-decoration: none;
 
+    /* « G. KONDOBIA » en condensé : le nom tient dans une barre d'une saison */
     .nom {
       min-width: 0;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 13.5px;
+      font-family: @fontTitle;
+      font-size: 14px;
+      font-weight: 500;
 
       b {
         font-weight: 600;
@@ -169,11 +177,12 @@
     .meta {
       flex: none;
       margin-left: auto;
-      font-size: 12px;
+      font-size: 11px;
       color: @slate;
     }
     &:hover {
       filter: brightness(.96);
+      text-decoration: none;
     }
     &:focus-visible {
       outline: 3px solid @gold;
@@ -207,10 +216,52 @@
     }
   }
 
+  /* infobulle d'une barre : carte blanche, le nom en titre */
+  .infobulle {
+    position: fixed;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-width: 280px;
+    padding: 9px 12px 10px;
+    border-radius: 10px;
+    background: @white;
+    box-shadow: 0 0 0 1px @border, 0 14px 32px rgba(6, 22, 41, .18);
+    pointer-events: none;
+    white-space: nowrap;
+
+    &[hidden] {
+      display: none;
+    }
+    b {
+      font-family: @fontTitle;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: @navy;
+    }
+    .periode {
+      font-size: 12.5px;
+      color: @slate;
+    }
+    .stats {
+      font-size: 13px;
+      font-weight: 600;
+      color: @ink;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .defilement {
+      max-height: calc(~"100vh - 196px");
+    }
+  }
+
   @media (max-width: 639px) {
     .libelle {
-      padding-left: 12px;
-      font-size: 11px;
+      padding-left: 10px;
+      font-size: 10.5px;
       letter-spacing: .04em;
     }
   }

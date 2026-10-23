@@ -75,7 +75,7 @@
   letter-spacing: .02em;
   text-align: center;
   vertical-align: middle;
-  margin-right: 6px;
+  margin-right: 4px;
 
   /* Postes */
   &.poste {
@@ -159,16 +159,16 @@
 .g-ratio {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
   .valeur {
-    width: 34px;
+    width: 30px;
     color: @slateDark;
     font-variant-numeric: tabular-nums;
   }
   .piste {
     display: block;
-    width: 110px;
+    width: 90px;
     height: 5px;
     border-radius: 999px;
     background: @border;
@@ -186,13 +186,13 @@
 .g-vnd {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 
   .barre {
     display: flex;
     gap: 2px;
-    width: 170px;
-    height: 18px;
+    width: 150px;
+    height: 16px;
     border-radius: 5px;
     overflow: hidden;
     background: @border;
@@ -213,7 +213,7 @@
     }
     .N {
       background: @draw;
-      color: @navy;
+      color: @white;
     }
     .D {
       background: @loss;
@@ -228,14 +228,15 @@
   }
 }
 
-/* Au Club */
+/* Au Club : la même pastille verte que le badge « Au club » du hero */
 .icon-au-club {
 	display: inline-block;
+  flex: none;
   width: 8px;
   height: 8px;
-  border: 4px solid @auClub;
   border-radius: 50%;
-  margin-left: 5px;
+  background: @auClub;
+  margin-left: 6px;
 }
 
 /* Lieu : maison bleue à domicile, petit avion rouge à l'extérieur */
@@ -292,14 +293,44 @@
   }
 }
 
-/* But */
+/* But : le ballon, un par but, tous sur une seule ligne */
 .icon-but {
   background: url(img/but.png);
   width: 12px;
   height: 12px;
   display: inline-block;
-  margin-right: 2px;
+  flex: none;
   vertical-align: middle;
+}
+.g-buts {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Titres : un badge par compétition, « ×3 » quand il y en a plusieurs */
+.g-titres {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.g-titre {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+
+  .g-badge {
+    margin-right: 0;
+  }
+  .nb {
+    font-size: 12px;
+    font-weight: 600;
+    color: @slate;
+    font-variant-numeric: tabular-nums;
+  }
 }
 
 
@@ -437,8 +468,8 @@ form {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 44px;
-  padding: 0 22px;
+  height: 40px;
+  padding: 0 20px;
   box-sizing: border-box;
   border: 0;
   border-radius: @radius;
@@ -655,8 +686,8 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 22px 16px;
+  gap: 4px;
+  padding: 16px 14px;
   border-radius: 14px;
   border: 1.5px dashed @borderButton;
   text-align: center;
@@ -674,14 +705,14 @@ form {
   }
 }
 
-/* Score coloré : bleu victoire, or nul, brique défaite (les tirs au but décident) */
+/* Score coloré : vert victoire, bleu nul, rouge défaite (les tirs au but décident) */
 .g-score {
   flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  height: 24px;
+  min-width: 42px;
+  height: 22px;
   padding: 0 7px;
   border-radius: 7px;
   font-family: @fontTitle;
@@ -696,7 +727,7 @@ form {
     filter: brightness(1.08);
   }
   &.V { background: @win; color: @white; }
-  &.N { background: @draw; color: @navy; }
+  &.N { background: @draw; color: @white; }
   &.D { background: @loss; color: @white; }
 }
 

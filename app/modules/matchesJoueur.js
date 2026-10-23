@@ -47,7 +47,6 @@
         }
         match.pcEnd = (match.rqScore || !hasEverPlayedMatchWithProlongation) ? 100 : (95 / 125 * 100);
         match.displaySaison = (index === 0 || matches[index-1].saison !== match.saison);
-        match.butsListe = new Array(match.buts || 0);
         // lignes zébrées, en repartant à chaque saison
         match.zebre = match.displaySaison ? true : !matches[index-1].zebre;
         return match;

@@ -4,7 +4,7 @@
 .dir-charts {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
 
   .canvases {
@@ -57,31 +57,32 @@
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
+  /* puce, nombre, libellé : la colonne des nombres prend la largeur du plus grand, sans plus */
   .legend ul {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: 10px auto 1fr;
+    align-items: center;
+    gap: 2px 7px;
     margin: 0;
 
     &.second {
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid @border;
     }
   }
   .legend li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: contents;
     font-size: 14px;
     color: @slateDark;
 
     b {
-      min-width: 28px;
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 19px;
+      line-height: 1.2;
+      text-align: right;
       color: @ink;
     }
   }

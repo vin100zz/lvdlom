@@ -6,7 +6,7 @@
       Fiche du joueur
     </a>
     <h1 class="g-page-title">{{joueur.fiche.prenom}} {{joueur.fiche.nom}}</h1>
-    <p class="sous-titre">Ses matches, minute par minute
+    <p class="sous-titre">
       <span class="legende"><span class="puce titu" aria-hidden="true"></span>titulaire <span class="puce entre" aria-hidden="true"></span>entré en jeu</span>
     </p>
   </div>
@@ -26,9 +26,7 @@
             <span class="joue" ng-class="{titu: match.pcIn === 0}" ng-if="match.joue && match.pcOut > match.pcIn" ng-style="{left: (match.pcIn / match.pcEnd * 100) + '%', width: ((match.pcOut - match.pcIn) / match.pcEnd * 100) + '%'}"></span>
           </span>
         </td>
-        <td class="buts">
-          <svg ng-repeat="b in match.butsListe track by $index" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" role="img" aria-label="But"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z"></path></svg>
-        </td>
+        <td class="buts"><span ng-if="match.buts" ng-bind-html="Formatter.buts(match.buts)"></span></td>
         <td class="carton"><span ng-if="match.carton" ng-bind-html="match.carton | format:'carton'"></span></td>
       </tr>
     </tbody>

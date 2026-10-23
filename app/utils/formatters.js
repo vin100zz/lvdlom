@@ -79,23 +79,27 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return '';
   };
 
-  // date avec le jour : « Dim 1er mars 2026 »
-  var JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+  // date avec le jour en toutes lettres : « Dimanche 1er mars 2026 »
+  var JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   var MOIS_LONGS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
-  this.dateJour = function (date) {
+  var dateLongue = function (date, avecJour) {
     date = isoDate(date);
     if (date && date.length === 10) {
       var y = parseInt(date.substr(0, 4), 10), m = parseInt(date.substr(5, 2), 10), d = parseInt(date.substr(8, 2), 10);
-      var jour = m && d ? JOURS[new Date(y, m - 1, d).getDay()] + ' ' : '';
+      var jour = avecJour && m && d ? JOURS[new Date(y, m - 1, d).getDay()] + ' ' : '';
       return jour + (d === 1 ? '1er' : d) + ' ' + (MOIS_LONGS[m - 1] || '') + ' ' + y;
     }
     return '';
   };
 
+  this.dateJour = function (date) {
+    return dateLongue(date, true);
+  };
+
   // date longue sans le jour : « 1er mars 2026 »
   this.dateLongue = function (date) {
-    return _this.dateJour(date).replace(/^[A-Z][a-z]{2} /, '');
+    return dateLongue(date, false);
   };
 
   // âge en années révolues, à aujourd'hui ou à une date donnée
@@ -234,15 +238,20 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
       '<span class="g-niveau">' + _this.niveauCourt(match.niveau) + '</span></span>';
   };
   
-  // un badge par titre, les titres d'une même compétition côte à côte
+  // un badge par compétition, suivi du nombre de titres quand il y en a plusieurs : « CF ×3 »
   this.titres = function (titres) {
-    var liste = (titres || '').split(',').filter(function (titre) {
+    var liste = (titres || '').split(',').map(function (titre) {
+      return titre.trim();
+    }).filter(function (titre) {
       return titre;
     });
-    var ordre = liste.reduce(removeDuplicates, []);
-    return liste.sort(function (a, b) {
-      return ordre.indexOf(a) - ordre.indexOf(b);
-    }).map(_this.sousTypeCompetition).join('');
+    return '<span class="g-titres">' + liste.reduce(removeDuplicates, []).map(function (competition) {
+      var nb = liste.filter(function (titre) {
+        return titre === competition;
+      }).length;
+      return '<span class="g-titre" title="' + nb + ' titre' + (nb > 1 ? 's' : '') + '">' + _this.sousTypeCompetition(competition) +
+        (nb > 1 ? '<span class="nb">×' + nb + '</span>' : '') + '</span>';
+    }).join('') + '</span>';
   };
   
   // bilans dans les tableaux (charte · graphiques)
@@ -293,6 +302,7 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
   
   this.$Score = {
     table: 'table',
+    badge: 'badge',
     big: 'big',
     complete: 'complete'
   };
@@ -305,10 +315,14 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     var resultat = Bom.resultat(match);
     var out = '';
     
-    if (formatting === _this.$Score.table) {
+    if (formatting === _this.$Score.table || formatting === _this.$Score.badge) {
       var libelle = {V: 'Victoire', N: 'Nul', D: 'Défaite'}[resultat] || '';
       out = '<a href="#match/' + match.id + '" class="g-score ' + resultat + '" title="' + libelle + '">' + butsOM + '-' + butsAdv + '</a>';
 
+      // le badge seul : sans « ap » ni tirs au but à côté
+      if (formatting === _this.$Score.badge) {
+        return out;
+      }
       if (tabOM || tabAdv) {
         out += '<span class="g-remark">' + tabOM + '-' + tabAdv + ' t.a.b.</span>';
       } else if (match.rqScore) {
@@ -400,12 +414,13 @@ app.service('Formatter', function (Bom, Dictionary, $filter, Countries) {
     return _this.buts(nbButs);
   };
 
+  // un ballon par but, tous sur une seule ligne
   this.buts = function (nbButs) {
     var res = '';
     for (var i=0; i<nbButs; ++i) {
-      res += '<div class="icon-but"></div>';
+      res += '<span class="icon-but"></span>';
     }
-    return res;
+    return nbButs ? '<span class="g-buts" role="img" aria-label="' + nbButs + ' but' + (nbButs > 1 ? 's' : '') + '">' + res + '</span>' : '';
   };
   
   this.saison = function (saison, prefix) {

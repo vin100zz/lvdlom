@@ -130,8 +130,8 @@
   .hero {
     position: relative;
     overflow: hidden;
-    min-height: 196px;
-    border-radius: 20px;
+    min-height: @heroHeight;
+    border-radius: @heroRadius;
     background-color: @navyChip;
     box-shadow: inset 0 0 0 1px rgba(10, 34, 64, .06);
     .hero-skew(-16deg, 6px, 10px, 4px);
@@ -152,8 +152,8 @@
   }
   .ghost {
     position: absolute;
-    top: -70px;
-    height: 340px;
+    top: -50px;
+    height: 240px;
     width: auto;
     opacity: .10;
     pointer-events: none;
@@ -165,31 +165,35 @@
     right: -60px;
   }
 
-  /* bandeau d'infos : compétition et saison à gauche, J'y étais au centre, date et lieu à droite */
+  /* bandeau d'infos : compétition et saison à gauche, J'y étais au centre, date et lieu à droite,
+     les deux textes dans le même corps */
   .infos {
     position: absolute;
     left: 0;
     right: 0;
-    top: 9px;
+    top: 8px;
     z-index: 1;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 16px;
-    padding: 0 20px;
+    padding: 0 18px;
     font-size: 12px;
     line-height: 18px;
 
-    .competition {
-      justify-self: start;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .competition,
+    .meta {
       min-width: 0;
       font-weight: 600;
       letter-spacing: .08em;
       text-transform: uppercase;
       white-space: nowrap;
+    }
+    .competition {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
 
       a {
         color: inherit;
@@ -199,10 +203,8 @@
     }
     .meta {
       justify-self: end;
-      min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
       text-align: right;
     }
     .jy {
@@ -225,22 +227,22 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    gap: 24px;
-    min-height: 196px;
+    gap: 20px;
+    min-height: @heroHeight;
     box-sizing: border-box;
-    padding: 30px 56px 0;
+    padding: 26px 44px 4px;
   }
   .team {
     display: flex;
     align-items: center;
-    gap: 26px;
+    gap: 18px;
     min-width: 0;
 
     img {
       flex: none;
-      height: 112px;
+      height: 72px;
       width: auto;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .3));
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, .3));
     }
     .name {
       min-width: 0;
@@ -251,10 +253,10 @@
       line-height: 1;
       letter-spacing: .02em;
 
-      &.xl { font-size: 64px; }
-      &.l { font-size: 56px; }
-      &.m { font-size: 46px; }
-      &.s { font-size: 38px; }
+      &.xl { font-size: 48px; }
+      &.l { font-size: 42px; }
+      &.m { font-size: 36px; }
+      &.s { font-size: 30px; }
     }
   }
   .team-right {
@@ -266,40 +268,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 6px 28px 10px;
-    border-radius: 24px;
+    gap: 3px;
+    padding: 4px 20px 6px;
+    border-radius: 18px;
     background: @navyDeep;
     color: @white;
     border: 2px solid rgba(255, 255, 255, .16);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, .35);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .35);
     text-align: center;
 
     .buts {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 14px;
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 88px;
+      font-size: 60px;
       line-height: .95;
       font-variant-numeric: tabular-nums;
     }
     .dash {
-      width: 22px;
-      height: 6px;
+      width: 16px;
+      height: 5px;
       border-radius: 3px;
       background: @gold;
     }
     .rq {
       display: inline-flex;
       align-items: center;
-      height: 22px;
-      padding: 0 10px;
+      height: 18px;
+      padding: 0 9px;
       border-radius: 999px;
       background: rgba(242, 165, 22, .16);
       color: #F7C35A;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: .04em;
       white-space: nowrap;
@@ -342,37 +344,36 @@
   @media (max-width: 1023px) {
     .hero {
       min-height: 0;
-      border-radius: 18px;
       .hero-skew(-12deg, 5px, 8px, 3px);
     }
     .ghost {
       top: -40px;
     }
     .infos {
-      top: 10px;
+      top: 8px;
       gap: 12px;
-      padding: 0 18px;
+      padding: 0 16px;
       font-size: 11.5px;
     }
     .teams {
       gap: 12px;
       min-height: 0;
-      padding: 38px 20px 14px;
+      padding: 32px 16px 10px;
     }
     .team {
       flex-direction: column;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       text-align: center;
 
       img {
-        height: 76px;
+        height: 56px;
       }
       .name {
         max-width: 100%;
 
         &, &.xl, &.l, &.m, &.s {
-          font-size: 40px;
+          font-size: 30px;
         }
       }
     }
@@ -380,15 +381,11 @@
       flex-direction: column-reverse;
     }
     .score {
-      padding: 6px 22px 8px;
-      border-radius: 22px;
+      padding: 4px 18px 6px;
 
       .buts {
-        gap: 16px;
-        font-size: 72px;
-      }
-      .dash {
-        width: 20px;
+        gap: 12px;
+        font-size: 54px;
       }
     }
   }

@@ -1,17 +1,27 @@
 @import "style/variables";
 
-/* Palmarès : une carte par graphique */
+/* Palmarès : une carte par graphique, la légende en haut à droite de la carte */
 #page-palmares {
   max-width: 1752px;
 
   .courbe-carte {
     overflow: visible;
   }
+  .g-carte-tete {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legende-courbe {
+    justify-content: flex-end;
+  }
   .corps {
-    padding: 0 16px 16px;
+    padding: 0 12px 10px;
   }
 
   @media (max-width: 639px) {
+    .legende-courbe {
+      justify-content: flex-start;
+    }
     .corps {
       padding: 0 10px 12px;
     }

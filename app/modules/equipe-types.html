@@ -8,7 +8,7 @@
 
   <ul class="g-cartes">
     <li class="g-carte" ng-repeat="saison in saisons">
-      <div class="g-carte-tete"><h2>Équipe-type {{saison.id}}</h2><span class="meta">matches · buts</span></div>
+      <div class="g-carte-tete"><h2><a href="#/saison/{{saison.id}}" title="Voir la saison {{saison.id}}">{{saison.id}}</a></h2></div>
       <div class="g-carte-corps">
         <div class="g-carte-entete" ng-if="saison.joueurs.length"><span class="poste"></span><span class="principal">Joueur</span><span class="valeur m" title="Matches">M</span><span class="valeur b" title="Buts">B</span></div>
         <p class="aucun" ng-if="!saison.joueurs.length">Aucun joueur renseigné.</p>
@@ -23,9 +23,6 @@
           </li>
         </ol>
       </div>
-      <a class="g-carte-pied" href="#/saison/{{saison.id}}">Voir la saison {{saison.id}}
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-      </a>
     </li>
   </ul>
 

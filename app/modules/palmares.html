@@ -3,7 +3,12 @@
   <h1 class="g-page-title">Palmarès</h1>
 
   <section class="g-carte courbe-carte" ng-repeat="chart in chartCfg" aria-labelledby="{{'h-courbe-' + $index}}">
-    <div class="g-carte-tete"><h2 id="{{'h-courbe-' + $index}}">{{chart.title}}</h2><span class="meta">{{chart.sousTitre}}</span></div>
+    <div class="g-carte-tete">
+      <h2 id="{{'h-courbe-' + $index}}">{{chart.title}}</h2>
+      <span class="legende-courbe" ng-if="chart.data.legende">
+        <span ng-repeat="item in chart.data.legende"><span class="puce" ng-style="{background: item.couleur}"></span>{{item.nom}}</span>
+      </span>
+    </div>
     <div class="corps">
       <div class="g-squelette" ng-if="!chart.data" aria-label="Chargement"><span ng-repeat="i in [1, 2, 3, 4, 5]"></span></div>
       <lvdlom-courbe cfg="chart.data" ng-if="chart.data"></lvdlom-courbe>

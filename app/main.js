@@ -65,7 +65,7 @@ app.controller('MainCtrl', function ($scope, $timeout, $http, Loading, Dictionar
     pattern: ''
   };
 
-  // barre d'actualité : écussons, résultat et dates courtes (« Jeu 22 · 18h45 »)
+  // barre d'actualité : écussons et dates courtes (« Jeu 22 · 18h45 »)
   var normalize = function (name) {
     return (name || '').toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Z0-9]/g, '');
   };
@@ -91,13 +91,6 @@ app.controller('MainCtrl', function ($scope, $timeout, $http, Loading, Dictionar
     if (dernier) {
       dernier.ecussonGauche = ecusson(dernier.clubGauche);
       dernier.ecussonDroite = ecusson(dernier.clubDroite);
-      var omAGauche = normalize(dernier.clubGauche) === 'OM';
-      var butsOM = parseInt(omAGauche ? dernier.butsGauche : dernier.butsDroite, 10);
-      var butsAdv = parseInt(omAGauche ? dernier.butsDroite : dernier.butsGauche, 10);
-      if (!isNaN(butsOM) && !isNaN(butsAdv)) {
-        dernier.resultat = butsOM > butsAdv ? 'V' : (butsOM < butsAdv ? 'D' : 'N');
-        dernier.resultatLabel = {V: 'Victoire', N: 'Nul', D: 'Défaite'}[dernier.resultat];
-      }
     }
     (actu.prochainsMatches || []).forEach(function (prochain) {
       var clubs = (prochain.match || '').split(' - ');

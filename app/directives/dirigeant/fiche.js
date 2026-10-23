@@ -37,7 +37,8 @@ app.directive('lvdlomFicheDirigeant', function (Bom, Picture, Formatter, Countri
         var fiche = dirigeant.fiche;
         var mini = !!($scope.cfg && $scope.cfg.mini);
 
-        var nationalite = fiche.nationalite ? {label: 'Nationalité', valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
+        // le drapeau suffit : pas d'étiquette « Nationalité » à l'écran
+        var nationalite = fiche.nationalite ? {label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
         var lieu = fiche.villeNaissance ? fiche.villeNaissance + (fiche.territoireNaissance ? ' (' + fiche.territoireNaissance + ')' : '') : '';
         var naissance = fiche.dateNaissance ? {label: 'Naissance', valeur: Formatter.dateLongue(fiche.dateNaissance), sub: lieu ? '· ' + lieu : '', large: true} :
           (lieu ? {label: 'Naissance', valeur: lieu, large: true} : null);

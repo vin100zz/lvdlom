@@ -44,20 +44,18 @@
         droite: domicile ? adv : om,
         initialesGauche: domicile ? 'OM' : initialesAdv,
         initialesDroite: domicile ? initialesAdv : 'OM',
-        score: Formatter.score(Formatter.$Score.big, fiche),
-        genre: Formatter.niveauLong([match.competition && match.competition.nom, fiche.niveau].filter(Boolean).join(' · '))
+        score: Formatter.score(Formatter.$Score.big, fiche)
       };
     };
 
     // carte d'une personne : sa photo, ou ses initiales quand il n'y en a pas
-    var cartePersonne = function (personne, photo, genre) {
+    var cartePersonne = function (personne, photo) {
       var prenom = (personne.fiche.prenom || '').trim();
       var carte = {
         titre: (prenom ? prenom + ' ' : '') + personne.fiche.nom,
         photo: photo,
         photoOk: false,
-        initiales: (prenom ? prenom[0] : '') + (personne.fiche.nom || '').substr(0, 1),
-        genre: genre
+        initiales: (prenom ? prenom[0] : '') + (personne.fiche.nom || '').substr(0, 1)
       };
       var img = new Image();
       img.onload = function () {
@@ -111,13 +109,13 @@
                 function (joueur) {return joueur.fiche.prenom + ' ' + joueur.fiche.nom;},
                 function (joueur) {return joueur.fiche.dateNaissance;},
                 function (joueur) {return '#joueur/' + joueur.id;},
-                function (joueur) {return cartePersonne(joueur, Picture.joueur(joueur.id), 'Naissance · joueur');});
+                function (joueur) {return cartePersonne(joueur, Picture.joueur(joueur.id));});
 
       fetchData('dirigeants', 'dateNaissance', Dirigeant,
                 function (dirigeant) {return dirigeant.fiche.prenom + ' ' + dirigeant.fiche.nom;},
                 function (dirigeant) {return dirigeant.fiche.dateNaissance;},
                 function (dirigeant) {return '#dirigeant/' + dirigeant.id;},
-                function (dirigeant) {return cartePersonne(dirigeant, Picture.dirigeant(dirigeant.id), 'Naissance · dirigeant');});
+                function (dirigeant) {return cartePersonne(dirigeant, Picture.dirigeant(dirigeant.id));});
 
       // breadcrumb
       var month = parseInt($scope.model.date.substr(0, 2), 10);

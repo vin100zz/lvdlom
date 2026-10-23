@@ -7,7 +7,7 @@
     <div class="biais fin" aria-hidden="true"></div>
 
     <div class="contenu">
-      <lvdlom-fullscreenable-photo ng-if="photoOk && !cfg.mini" src="{{cfg.photo}}" photo-class="photo"></lvdlom-fullscreenable-photo>
+      <lvdlom-fullscreenable-photo ng-if="photoOk && !cfg.mini" src="{{cfg.photo}}" photo-class="photo" style="aspect-ratio: {{photoRatio}}"></lvdlom-fullscreenable-photo>
       <img class="photo" ng-if="photoOk && cfg.mini" ng-src="{{cfg.photo}}" alt="{{cfg.photoAlt}}">
       <span class="photo initiales" ng-if="!photoOk" role="img" aria-label="Pas de photo">{{cfg.initiales}}</span>
 
@@ -20,7 +20,7 @@
         </div>
         <dl class="faits faits-hero">
           <div ng-repeat="fait in cfg.faits">
-            <dt>{{fait.label}}</dt>
+            <dt ng-class="{'g-sr-only': fait.sansLabel}">{{fait.label}}</dt>
             <dd>
               <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
               <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">
@@ -43,7 +43,7 @@
   <!-- petits écrans et sélection : la fiche passe sous le hero, sur des tuiles claires -->
   <dl class="faits faits-sous">
     <div ng-repeat="fait in (cfg.faitsSous || cfg.faits)" ng-class="{large: fait.large, chiffre: fait.chiffre}">
-      <dt>{{fait.label}}</dt>
+      <dt ng-class="{'g-sr-only': fait.sansLabel}">{{fait.label}}</dt>
       <dd>
         <span ng-if="fait.poste" ng-bind-html="fait.poste | format:'poste'"></span>
         <img ng-if="fait.flag" class="drapeau" ng-src="style/flags/large/{{fait.flag}}.png" alt="">

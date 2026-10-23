@@ -6,15 +6,15 @@
   .jour-hero {
     position: relative;
     overflow: hidden;
-    border-radius: 24px;
+    border-radius: @heroRadius;
     background: @navy;
     color: @white;
 
     .ghost {
       position: absolute;
       right: 120px;
-      top: -70px;
-      height: 420px;
+      top: -60px;
+      height: 280px;
       width: auto;
       opacity: .07;
       pointer-events: none;
@@ -42,29 +42,31 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding: 26px 40px 30px;
+      gap: 16px 24px;
+      min-height: @heroHeight;
+      box-sizing: border-box;
+      padding: 12px 32px;
     }
     h1 {
       margin: 0;
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 20px;
       line-height: .8;
     }
     .jour {
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 200px;
+      font-size: 124px;
       letter-spacing: -.01em;
     }
     .mois-bloc {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
     .sur-titre {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: .16em;
       text-transform: uppercase;
@@ -74,22 +76,22 @@
     .mois {
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 84px;
+      font-size: 58px;
       letter-spacing: .03em;
       text-transform: uppercase;
       line-height: .85;
     }
     nav {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
     nav a {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      height: 48px;
+      gap: 6px;
+      height: 38px;
       border-radius: 999px;
-      font-size: 15px;
+      font-size: 14px;
       text-decoration: none;
 
       &:focus-visible {
@@ -98,7 +100,7 @@
       }
     }
     .prec {
-      padding: 0 20px 0 14px;
+      padding: 0 16px 0 12px;
       background: rgba(255, 255, 255, .08);
       color: #DCE5EE;
 
@@ -107,7 +109,7 @@
       }
     }
     .suiv {
-      padding: 0 14px 0 20px;
+      padding: 0 12px 0 16px;
       background: @gold;
       color: @navy;
       font-weight: 700;
@@ -123,8 +125,8 @@
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 16px;
   }
   .carte {
     display: flex;
@@ -133,7 +135,7 @@
     box-sizing: border-box;
     overflow: hidden;
     border: 1px solid @border;
-    border-radius: 18px;
+    border-radius: 14px;
     background: @white;
     color: @ink;
     text-decoration: none;
@@ -150,7 +152,7 @@
   }
   .visuel {
     flex: none;
-    height: 156px;
+    height: 132px;
   }
   .match {
     position: relative;
@@ -158,7 +160,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 12px;
     background: @navy;
 
     .biais {
@@ -173,15 +175,15 @@
     }
     img {
       position: relative;
-      width: 58px;
-      height: 66px;
+      width: 52px;
+      height: 58px;
       object-fit: contain;
     }
     .score {
       position: relative;
       font-family: @fontTitle;
       font-weight: 700;
-      font-size: 42px;
+      font-size: 38px;
       line-height: 1;
       color: @white;
       font-variant-numeric: tabular-nums;
@@ -207,8 +209,8 @@
   .texte {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 14px 16px 16px;
+    gap: 3px;
+    padding: 10px 12px 12px;
   }
   .ligne-annee {
     display: flex;
@@ -219,51 +221,34 @@
   .annee {
     font-family: @fontTitle;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 24px;
     line-height: 1;
     color: @navy;
   }
   .il-y-a {
-    font-size: 13px;
+    font-size: 12.5px;
     color: @slate;
   }
   .titre {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-  }
-  .genre {
-    font-size: 13px;
-    color: @slate;
-  }
-
-  @media (max-width: 1023px) {
-    .jour-hero {
-      .jour {
-        font-size: 140px;
-      }
-      .mois {
-        font-size: 60px;
-      }
-    }
   }
 
   @media (max-width: 639px) {
     .jour-hero {
-      border-radius: 18px;
-
       .ghost {
         right: -40px;
-        height: 260px;
+        height: 220px;
       }
       .contenu {
-        gap: 16px;
-        padding: 18px 18px 20px;
+        gap: 12px;
+        padding: 14px 16px 16px;
       }
       h1 {
         gap: 14px;
       }
       .jour {
-        font-size: 96px;
+        font-size: 88px;
       }
       .mois {
         font-size: 40px;
@@ -274,7 +259,7 @@
       nav a {
         flex: 1 1 0;
         justify-content: center;
-        height: 44px;
+        height: 40px;
         font-size: 14px;
       }
     }
@@ -313,9 +298,6 @@
     }
     .titre {
       font-size: 14px;
-    }
-    .genre {
-      font-size: 12px;
     }
   }
 }

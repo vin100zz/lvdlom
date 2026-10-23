@@ -32,10 +32,10 @@
   li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    height: 36px;
+    gap: 8px;
+    height: 30px;
     padding: 0 10px;
-    border-radius: 8px;
+    border-radius: 7px;
 
     &:nth-child(odd) {
       background: @zebra;
@@ -43,12 +43,13 @@
   }
 
   .g-badge {
-    width: 22px;
-    min-width: 22px;
-    height: 22px;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    margin-right: 0;
     padding: 0;
     justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .nom {
@@ -73,13 +74,10 @@
     margin-left: auto;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     font-size: 13px;
     color: @slate;
     font-variant-numeric: tabular-nums;
-  }
-  .ballon {
-    color: @navy;
   }
   .carton,
   .sortie {
@@ -150,7 +148,7 @@
       grid-template-columns: 1fr;
     }
     li {
-      height: 32px;
+      height: 28px;
     }
   }
 }

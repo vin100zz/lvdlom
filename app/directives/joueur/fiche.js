@@ -15,8 +15,9 @@ app.directive('lvdlomFicheJoueur', function (Bom, Picture, Formatter, Countries)
         var fiche = joueur.fiche;
         var mini = !!($scope.cfg && $scope.cfg.mini);
 
-        var poste = fiche.poste ? {label: 'Poste', valeur: Bom.poste(fiche.poste), poste: fiche.poste} : null;
-        var nationalite = fiche.nationalite ? {label: 'Nationalité', valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
+        // la valeur suffit : pas d'étiquette « Poste » ni « Nationalité » à l'écran
+        var poste = fiche.poste ? {label: 'Poste', sansLabel: true, valeur: Bom.poste(fiche.poste), poste: fiche.poste} : null;
+        var nationalite = fiche.nationalite ? {label: 'Nationalité', sansLabel: true, valeur: Countries.getLabel(fiche.nationalite) || fiche.nationalite, flag: fiche.nationalite} : null;
         var lieu = fiche.villeNaissance ? fiche.villeNaissance + (fiche.territoireNaissance ? ' (' + fiche.territoireNaissance + ')' : '') : '';
         var naissance = fiche.dateNaissance ? {label: 'Naissance', valeur: Formatter.dateLongue(fiche.dateNaissance), sub: lieu ? '· ' + lieu : '', large: true} :
           (lieu ? {label: 'Naissance', valeur: lieu, large: true} : null);

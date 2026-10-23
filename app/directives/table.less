@@ -15,7 +15,7 @@
 
 	/* Cells */
 	th, td {
-	  padding: 0 12px;
+	  padding: 0 10px;
 	  vertical-align: middle;
 	  white-space: nowrap;
 	}
@@ -23,19 +23,23 @@
 		color: @muted;
 		font-family: @fontTitle;
 		font-weight: 700;
-		font-size: 15px;
+		font-size: 14px;
 	}
 	/* icône + texte : centrés verticalement (charte · détails communs) */
 	td > lvdlom-format > div {
 	  display: flex;
 	  align-items: center;
 	  gap: 6px;
-	  min-height: 36px;
+	  min-height: 30px;
+
+	  > .g-badge {
+	    margin-right: 0;
+	  }
 	}
 
 	/* Rows */
 	tbody tr {
-	  height: 36px;
+	  height: 30px;
 	  cursor: pointer;
 
 	  td:first-child {
@@ -58,7 +62,7 @@
 
 	/* Pied de tableau : le nombre de lignes */
 	tfoot td {
-	  height: 44px;
+	  height: 34px;
 	  border-top: 1px solid @borderStrong;
 	  font-size: 13px;
 	  color: @slate;
@@ -76,7 +80,7 @@
 	  position: sticky;
 	  top: 0;
 	  z-index: 1;
-	  height: 38px;
+	  height: 30px;
 	  background: @white;
 	  border-bottom: 1px solid @borderStrong;
 	  font-size: 11px;
