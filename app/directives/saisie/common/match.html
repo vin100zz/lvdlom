@@ -26,16 +26,21 @@
             <span class="fa" ng-class="importPage.texteVisible ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
             <span>Coller le texte de la page</span>
           </button>
-          <span class="favori-zone">
-            <a class="favori" lvdlom-favori-import title="Glisser dans la barre de favoris">
-              <span class="fa fa-bookmark" aria-hidden="true"></span>
-              <span>Envoyer à LVDLOM</span>
-            </a>
-            <span>à glisser dans la barre de favoris, puis à cliquer depuis la page d'un match</span>
-          </span>
+          <button type="button" class="lien" ng-click="importPage.favoriVisible = !importPage.favoriVisible" aria-expanded="{{importPage.favoriVisible}}">
+            <span class="fa" ng-class="importPage.favoriVisible ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
+            <span>Installer le favori « Envoyer à LVDLOM »</span>
+          </button>
         </div>
 
         <textarea ng-if="importPage.texteVisible" ng-model="importPage.texte" ng-disabled="importPage.enCours" rows="6" placeholder="Sur la page du match : Ctrl+A, Ctrl+C, puis coller ici." aria-label="Texte de la page du match"></textarea>
+
+        <div class="favori-zone" ng-if="importPage.favoriVisible">
+          <a class="favori" lvdlom-favori-import title="Glisser dans la barre de favoris">
+            <span class="fa fa-bookmark" aria-hidden="true"></span>
+            <span>Envoyer à LVDLOM</span>
+          </a>
+          <span>à glisser dans la barre de favoris (Ctrl+Maj+B pour l'afficher), puis à cliquer depuis la page d'un match</span>
+        </div>
 
         <p class="import-erreur" ng-if="importPage.erreur" role="alert">{{importPage.erreur}}</p>
         <div class="import-resultat" ng-if="importPage.source" role="status">

@@ -166,6 +166,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
         url: '',
         texte: '',
         texteVisible: false,
+        favoriVisible: false,
         enCours: false,
         erreur: null,
         source: null,
