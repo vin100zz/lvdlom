@@ -1,10 +1,7 @@
 <div class="dir-buteurs-match" ng-if="match.id">
 
-  <div class="maillots">
-    <span class="maillot"><lvdlom-maillot cfg="left.maillot"></lvdlom-maillot></span>
-    <span class="label">Buts</span>
-    <span class="maillot"><lvdlom-maillot cfg="right.maillot"></lvdlom-maillot></span>
-  </div>
+  <!-- mobile : le titre de section est masqué, ce libellé coiffe l'encadré -->
+  <div class="label" aria-hidden="true">Buts</div>
 
   <!-- liste chronologique : buts à domicile à gauche, à l'extérieur à droite, score à chaque but -->
   <ol class="buts">

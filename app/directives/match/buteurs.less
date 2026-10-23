@@ -3,28 +3,8 @@
 /* Buts : liste chronologique, domicile à gauche, extérieur à droite, score courant au centre */
 .dir-buteurs-match {
 
-  .maillots {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 0 6px 6px;
-
-    .label {
-      display: none;
-    }
-  }
-  .maillot {
-    position: relative;
-    display: block;
-    width: 44px;
-    height: 44px;
-    overflow: hidden;
-
-    .dir-maillot {
-      margin: 0;
-      transform: scale(.28);
-      transform-origin: top left;
-    }
+  > .label {
+    display: none;
   }
 
   ol {
@@ -127,28 +107,18 @@
     color: @slate;
   }
 
-  /* mobile : maillots de part et d'autre du libellé, lignes un peu plus serrées */
+  /* mobile : libellé en tête de l'encadré, lignes un peu plus serrées */
   @media (max-width: 639px) {
-    .maillots {
-      align-items: center;
-      padding: 0 0 4px;
-
-      .label {
-        display: block;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-        color: @slate;
-      }
-    }
-    .maillot {
-      width: 34px;
-      height: 34px;
-
-      .dir-maillot {
-        transform: scale(.22);
-      }
+    > .label {
+      display: block;
+      padding: 4px 0 8px;
+      text-align: center;
+      font-size: 11px;
+      line-height: 18px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: @slate;
     }
     li {
       grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);

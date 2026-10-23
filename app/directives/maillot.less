@@ -1,18 +1,16 @@
 @import "style/variables";
 
+/* maillot dessiné en 420 px dans une boîte de 157 px, net jusqu'en 2,5x ; écusson côté cœur */
 .dir-maillot {
   position: relative;
+  width: 157px;
+  height: 157px;
   margin-left: -5px;
 
-  > div > canvas:first-of-type {
-    display: none;
-  }
-
-  > div > canvas,
-  > div > img {
-    width: 157px;
-    height: 157px;
+  canvas {
     display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .ecusson {

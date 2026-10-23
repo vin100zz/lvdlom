@@ -1,19 +1,4 @@
 <div class="dir-maillot">
-
-  <div ng-show="cfg.nomClub != 'OM'" >
-    <canvas id="template" width="210px" height="210px">
-    </canvas>
-    
-    <canvas id="{{canvasCfg.canvasId}}" width="210px" height="210px">
-    </canvas>
-    
-    <img ng-src="style/clubs/large/{{cfg.idClub}}.png" class="ecusson"></img>
-  </div>
-  
-  <div ng-show="cfg.nomClub == 'OM'">
-    <img src="style/maillots/effect.png"></img>
-    <img ng-src="{{Picture.club('OM', cfg.saison)}}" class="ecusson" ng-if="cfg.saison"></img>
-  </div>
-
+  <canvas width="420" height="420"></canvas>
+  <img ng-src="{{ecusson}}" class="ecusson" alt="" ng-if="ecusson">
 </div>
-

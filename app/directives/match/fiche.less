@@ -1,7 +1,7 @@
 @import "style/variables";
 
 /* Hero du match « face-à-face » : deux moitiés aux couleurs des clubs, coupées en biais,
-   le score dans une capsule marine, les infos du match en haut (charte · hero fin) */
+   le score dans une capsule marine, les maillots au bord, les infos du match en haut (charte · hero fin) */
 
 .hero-skew(@angle, @stripe, @gapLeft, @gapRight) {
   .half {
@@ -26,15 +26,25 @@
     border-radius: 18px;
     .hero-skew(-9deg, 4px, 6px, 2px);
   }
-  .ghost {
-    top: -30px;
-    height: 240px;
+  /* plus de place au bord : le maillot repasse en filigrane derrière l'écusson */
+  .maillot {
+    top: -20px;
+    width: 200px;
+    height: 200px;
+    opacity: .18;
+    filter: none;
+
+    .dir-maillot {
+      transform: scale(1.274);
+    }
   }
-  .ghost-left {
+  .maillot-left {
     left: -50px;
+    transform: none;
   }
-  .ghost-right {
+  .maillot-right {
     right: -50px;
+    transform: none;
   }
   .infos {
     position: relative;
@@ -150,19 +160,28 @@
     bottom: 0;
     transform-origin: top left;
   }
-  .ghost {
+  /* maillots du match au bord de chaque moitié, inclinés et rognés par le bas */
+  .maillot {
     position: absolute;
-    top: -50px;
-    height: 240px;
-    width: auto;
-    opacity: .10;
+    top: 30px;
+    width: 170px;
+    height: 170px;
     pointer-events: none;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, .3));
+
+    .dir-maillot {
+      margin: 0;
+      transform: scale(1.083);
+      transform-origin: top left;
+    }
   }
-  .ghost-left {
-    left: -60px;
+  .maillot-left {
+    left: -22px;
+    transform: rotate(-7deg);
   }
-  .ghost-right {
-    right: -60px;
+  .maillot-right {
+    right: -22px;
+    transform: rotate(7deg);
   }
 
   /* bandeau d'infos : compétition et saison à gauche, J'y étais au centre, date et lieu à droite,
@@ -230,7 +249,7 @@
     gap: 20px;
     min-height: @heroHeight;
     box-sizing: border-box;
-    padding: 26px 44px 4px;
+    padding: 26px 162px 4px;
   }
   .team {
     display: flex;
@@ -346,8 +365,20 @@
       min-height: 0;
       .hero-skew(-12deg, 5px, 8px, 3px);
     }
-    .ghost {
-      top: -40px;
+    .maillot {
+      top: 34px;
+      width: 130px;
+      height: 130px;
+
+      .dir-maillot {
+        transform: scale(.828);
+      }
+    }
+    .maillot-left {
+      left: -20px;
+    }
+    .maillot-right {
+      right: -20px;
     }
     .infos {
       top: 8px;
@@ -358,7 +389,7 @@
     .teams {
       gap: 12px;
       min-height: 0;
-      padding: 32px 16px 10px;
+      padding: 32px 116px 10px;
     }
     .team {
       flex-direction: column;

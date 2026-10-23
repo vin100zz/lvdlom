@@ -47,6 +47,7 @@ app.directive('lvdlomFicheMatch', function (Bom, Picture, Formatter, ClubColors)
           buts: parseInt(buts, 10) || 0,
           tab: parseInt(tab, 10) || 0,
           crest: Picture.club(id, saison),
+          maillot: id === 'OM' ? {idClub: 'OM', nomClub: 'OM', saison: saison} : {idClub: id, nomClub: nom},
           colors: ClubColors.initial(id),
           taille: taille(nom)
         };

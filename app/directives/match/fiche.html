@@ -4,8 +4,9 @@
     <div class="half" aria-hidden="true" ng-style="{'background-color': right.colors.bg}"></div>
     <div class="stripe stripe-left" aria-hidden="true" ng-style="{'background-color': left.colors.accent}"></div>
     <div class="stripe stripe-right" aria-hidden="true" ng-style="{'background-color': right.colors.accent}"></div>
-    <img class="ghost ghost-left" ng-src="{{left.crest}}" alt="" aria-hidden="true" lvdlom-repli="">
-    <img class="ghost ghost-right" ng-src="{{right.crest}}" alt="" aria-hidden="true" lvdlom-repli="">
+    <!-- maillots du match, suspendus au bord de chaque moitié -->
+    <span class="maillot maillot-left" aria-hidden="true"><lvdlom-maillot cfg="left.maillot"></lvdlom-maillot></span>
+    <span class="maillot maillot-right" aria-hidden="true"><lvdlom-maillot cfg="right.maillot"></lvdlom-maillot></span>
 
     <!-- infos du match, dans la couleur lisible de chaque moitié -->
     <div class="infos">

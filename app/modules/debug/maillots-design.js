@@ -29,11 +29,10 @@
     };
 
     var refreshMaillots = function () {
-      $scope.maillots = Array.apply(null, {length: 56}).map(function (unused, index) {
+      $scope.maillots = Array.apply(null, {length: 57}).map(function (unused, index) {
         return {
           idClub: $scope.adversaire.id,
           debug: {
-            canvasId: 'maillot-' + (index+1),
             template: index+1,
             color1: $scope.color1.substr(1),
             color2: $scope.color2.substr(1),
