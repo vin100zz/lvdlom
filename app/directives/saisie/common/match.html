@@ -13,28 +13,33 @@
           <h2 id="h-saisie-import">Pré-remplir depuis la page du match</h2>
         </div>
 
+        <!-- une seule section ouverte à la fois : adresse, texte collé ou favori -->
         <div class="import-ligne">
-          <input ng-model="importPage.url" type="text" inputmode="url" ng-keydown="toucheAdresse($event)" ng-disabled="importPage.enCours" placeholder="Adresse de la page : L'Équipe, Google…" aria-label="Adresse de la page du match">
+          <div class="import-options">
+            <button type="button" class="lien" ng-click="ouvrirSection('adresse')" aria-expanded="{{importPage.section === 'adresse'}}">
+              <span class="fa" ng-class="importPage.section === 'adresse' ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
+              <span>Saisir l'adresse de la page</span>
+            </button>
+            <button type="button" class="lien" ng-click="ouvrirSection('texte')" aria-expanded="{{importPage.section === 'texte'}}">
+              <span class="fa" ng-class="importPage.section === 'texte' ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
+              <span>Coller le texte de la page</span>
+            </button>
+            <button type="button" class="lien" ng-click="ouvrirSection('favori')" aria-expanded="{{importPage.section === 'favori'}}">
+              <span class="fa" ng-class="importPage.section === 'favori' ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
+              <span>Installer le favori « Envoyer à LVDLOM »</span>
+            </button>
+          </div>
           <button type="button" class="g-button" ng-click="preRemplir($event)" ng-disabled="importPage.enCours">
             <span class="fa fa-circle-o-notch fa-spin" ng-if="importPage.enCours" aria-hidden="true"></span>
             <span>{{importPage.enCours ? 'Analyse en cours…' : 'Pré-remplir'}}</span>
           </button>
         </div>
 
-        <div class="import-options">
-          <button type="button" class="lien" ng-click="importPage.texteVisible = !importPage.texteVisible" aria-expanded="{{importPage.texteVisible}}">
-            <span class="fa" ng-class="importPage.texteVisible ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
-            <span>Coller le texte de la page</span>
-          </button>
-          <button type="button" class="lien" ng-click="importPage.favoriVisible = !importPage.favoriVisible" aria-expanded="{{importPage.favoriVisible}}">
-            <span class="fa" ng-class="importPage.favoriVisible ? 'fa-caret-down' : 'fa-caret-right'" aria-hidden="true"></span>
-            <span>Installer le favori « Envoyer à LVDLOM »</span>
-          </button>
-        </div>
+        <input class="import-adresse" ng-if="importPage.section === 'adresse'" ng-model="importPage.url" type="text" inputmode="url" ng-keydown="toucheAdresse($event)" ng-disabled="importPage.enCours" placeholder="Adresse de la page : L'Équipe, Google…" aria-label="Adresse de la page du match">
 
-        <textarea ng-if="importPage.texteVisible" ng-model="importPage.texte" ng-disabled="importPage.enCours" rows="6" placeholder="Sur la page du match : Ctrl+A, Ctrl+C, puis coller ici." aria-label="Texte de la page du match"></textarea>
+        <textarea ng-if="importPage.section === 'texte'" ng-model="importPage.texte" ng-disabled="importPage.enCours" rows="6" placeholder="Sur la page du match : Ctrl+A, Ctrl+C, puis coller ici." aria-label="Texte de la page du match"></textarea>
 
-        <div class="favori-zone" ng-if="importPage.favoriVisible">
+        <div class="favori-zone" ng-if="importPage.section === 'favori'">
           <a class="favori" lvdlom-favori-import title="Glisser dans la barre de favoris">
             <span class="fa fa-bookmark" aria-hidden="true"></span>
             <span>Envoyer à LVDLOM</span>

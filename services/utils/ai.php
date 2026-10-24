@@ -37,8 +37,10 @@ class AI {
 
     // --- Validation de la configuration ---
     if ($provider === 'openai') {
-      if (!defined('OPENAI_API_KEY') || OPENAI_API_KEY === 'YOUR_OPENAI_KEY_HERE') {
-        throw new RuntimeException('Clé API OpenAI non configurée. Modifiez services/config.php.');
+      $keyName = 'OPENAI_API_KEY';
+      $apiKey  = defined('OPENAI_API_KEY') ? self::cleanKey(OPENAI_API_KEY) : '';
+      if ($apiKey === '' || $apiKey === 'xxx' || $apiKey === 'YOUR_OPENAI_KEY_HERE') {
+        throw new RuntimeException('Clé API OpenAI non configurée. Renseignez OPENAI_API_KEY dans services/secrets.php.');
       }
       $model   = defined('OPENAI_MODEL') ? OPENAI_MODEL : 'gpt-4o';
       // Construction du contenu (texte + images éventuelles)
@@ -62,14 +64,16 @@ class AI {
       ], JSON_UNESCAPED_UNICODE);
       $headers = [
         'Content-Type: application/json',
-        'Authorization: Bearer ' . OPENAI_API_KEY,
+        'Authorization: Bearer ' . $apiKey,
         'Content-Length: ' . strlen($payload)
       ];
       $apiUrl  = 'https://api.openai.com/v1/chat/completions';
       $apiName = 'OpenAI';
     } else {
-      if (!defined('ANTHROPIC_API_KEY') || ANTHROPIC_API_KEY === 'YOUR_API_KEY_HERE') {
-        throw new RuntimeException('Clé API Anthropic non configurée. Modifiez services/config.php.');
+      $keyName = 'ANTHROPIC_API_KEY';
+      $apiKey  = defined('ANTHROPIC_API_KEY') ? self::cleanKey(ANTHROPIC_API_KEY) : '';
+      if ($apiKey === '' || $apiKey === 'xxx' || $apiKey === 'YOUR_API_KEY_HERE') {
+        throw new RuntimeException('Clé API Anthropic non configurée. Renseignez ANTHROPIC_API_KEY dans services/secrets.php.');
       }
       $model   = defined('ANTHROPIC_MODEL') ? ANTHROPIC_MODEL : 'claude-opus-4-5';
       // Construction du contenu (texte + images éventuelles)
@@ -96,7 +100,7 @@ class AI {
       ], JSON_UNESCAPED_UNICODE);
       $headers = [
         'Content-Type: application/json',
-        'x-api-key: ' . ANTHROPIC_API_KEY,
+        'x-api-key: ' . $apiKey,
         'anthropic-version: 2023-06-01',
         'Content-Length: ' . strlen($payload)
       ];
@@ -109,6 +113,9 @@ class AI {
     $httpCode = $response['httpCode'];
     $body     = $response['body'];
 
+    if ($httpCode === 401) {
+      throw new RuntimeException("Clé API $apiName refusée (HTTP 401) : vérifiez $keyName dans services/secrets.php. $body");
+    }
     if ($httpCode !== 200) {
       throw new RuntimeException("Erreur API $apiName (HTTP $httpCode) : $body");
     }
@@ -167,8 +174,14 @@ class AI {
   }
 
   // ---------------------------------------------------------------------------
-  // Méthode HTTP interne
+  // Méthodes internes
   // ---------------------------------------------------------------------------
+
+  // Une clé copiée à la main peut traîner des espaces, un retour à la ligne ou un caractère
+  // invisible (espace insécable, espace de largeur nulle…) : seuls les caractères ASCII visibles comptent
+  private static function cleanKey($key) {
+    return preg_replace('/[^\x21-\x7E]/', '', $key);
+  }
 
   private static function httpPost($url, $headers, $payload, $timeout, $apiName) {
     if (function_exists('curl_init')) {

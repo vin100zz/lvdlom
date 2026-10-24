@@ -165,24 +165,30 @@ app.directive('lvdlomSaisieCommonMatch', function () {
       $scope.importPage = {
         url: '',
         texte: '',
-        texteVisible: false,
-        favoriVisible: false,
+        section: null, // section dépliée : 'adresse', 'texte' ou 'favori'
         enCours: false,
         erreur: null,
         source: null,
         avertissements: []
       };
 
+      // déplier une section replie les autres ; recliquer sur la section ouverte la replie
+      $scope.ouvrirSection = function (nom) {
+        var page = $scope.importPage;
+        page.section = (page.section === nom) ? null : nom;
+      };
+
       $scope.preRemplir = function (evt) {
         evt.preventDefault();
         var page = $scope.importPage;
-        var texte = page.texteVisible ? page.texte : '';
+        var url = (page.section === 'adresse') ? page.url : '';
+        var texte = (page.section === 'texte') ? page.texte : '';
 
-        if (!page.url && !texte) {
+        if (!url && !texte) {
           page.erreur = 'Indiquez l\'adresse de la page du match ou collez son texte.';
           return;
         }
-        analyser({url: page.url, texte: texte});
+        analyser({url: url, texte: texte});
       };
 
       // Entrée dans le champ d'adresse : pré-remplir, sans valider le formulaire du match
@@ -270,6 +276,7 @@ app.directive('lvdlomSaisieCommonMatch', function () {
 
       if (PageEnvoyee.page) {
         $scope.importPage.url = PageEnvoyee.page.url || '';
+        $scope.importPage.section = $scope.importPage.url ? 'adresse' : null;
         analyser(PageEnvoyee.page);
         PageEnvoyee.page = null;
       }
