@@ -394,6 +394,8 @@ Format de réponse :
 
 JOUEURS DE L'OM (id | prénom nom | poste) :
 $listeJoueurs
+Autres noms usuels des joueurs : EMERSON (id 1059) est aussi couramment appelé PALMIERI.
+
 ADVERSAIRES (id | nom | pays) :
 $listeAdversaires
 COMPÉTITIONS : $listeCompetitions
